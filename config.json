@@ -3,7 +3,6 @@
   "description": "A custom application built with @Bloggify.",
   "domain": "http://custom-app.com",
   "plugins": [
-    "bloggify-template-renderer",
     "bloggify-custom-assets"
   ],
   "router": "bloggify-flexible-router",

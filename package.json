@@ -1,6 +1,6 @@
 {
   "name": "bloggify-custom-app-template",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A custom application built with @Bloggify.",
   "main": "bloggify.js",
   "scripts": {
@@ -13,6 +13,8 @@
   "dependencies": {
     "bloggify-cli": "^1.0.0",
     "bloggify-config": "^1.0.6",
+    "bloggify-custom-assets": "^1.0.2",
+    "bloggify-flexible-router": "^1.0.0",
     "bloggify-router": "^1.0.7"
   },
   "files": [
