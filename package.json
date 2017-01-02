@@ -28,13 +28,13 @@
     "index.js"
   ],
   "bugs": {
-    "url": "https://github.com/BloggifyTutorials/bloggify-custom-app/issues"
+    "url": "https://github.com/BloggifyTutorials/custom-app/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BloggifyTutorials/bloggify-custom-app.git"
+    "url": "git+https://github.com/BloggifyTutorials/custom-app.git"
   },
-  "homepage": "https://github.com/BloggifyTutorials/bloggify-custom-app#readme",
+  "homepage": "https://github.com/BloggifyTutorials/custom-app#readme",
   "blah": {
     "title": "Bloggify Custom App",
     "installation_command": {
