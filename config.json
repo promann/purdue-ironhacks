@@ -1,0 +1,24 @@
+{
+  "title": "Custom App",
+  "description": "A custom application built with @Bloggify.",
+  "domain": "http://custom-app.com",
+  "plugins": [
+    "bloggify-template-renderer",
+    "bloggify-custom-assets"
+  ],
+  "router": "bloggify-flexible-router",
+  "viewer": null,
+  "config": {
+      "bloggify-custom-assets": {
+          "styles": [
+              "src/css/index.css"
+          ]
+      },
+      "bloggify-flexible-router": {
+          "errorPages": {
+              "404": "404.ajs",
+              "500": "500.ajs"
+          }
+      }
+  }
+}

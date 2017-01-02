@@ -1,0 +1,8 @@
+<% include("../views/header") %>
+Whoups! Something went really wrong!
+
+<% var err = typeof error === "undefined" ? null : error %>
+<% if (err && !Bloggify.production) { %>
+    <pre><%= err.stack %></pre>
+<% } %>
+<% include("../views/footer") %>

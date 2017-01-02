@@ -1,7 +1,7 @@
 {
-  "name": "bloggify-bloggify-quick-start",
+  "name": "bloggify-custom-app-template",
   "version": "1.0.1",
-  "description": "A simple example of a Bloggify app.",
+  "description": "A custom application built with @Bloggify.",
   "main": "bloggify.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,9 +11,11 @@
   "author": "Ionică Bizău <bizauionica@gmail.com> (http://ionicabizau.net)",
   "license": "MIT",
   "dependencies": {
-    "bloggify-config": "^1.0.1",
-    "bloggify-theme-light": "^1.0.3",
-    "bloggify-cli": "^1.0.0"
+    "bloggify-cli": "^1.0.0",
+    "bloggify-config": "^1.0.6",
+    "bloggify-router": "^1.0.7",
+    "bloggify-template-renderer": "^1.0.0",
+    "bloggify-theme-light": "^1.0.8"
   },
   "files": [
     "bin/",
@@ -28,28 +30,11 @@
     "index.js"
   ],
   "bugs": {
-    "url": "https://github.com/Bloggify/bloggify-quick-start/issues"
+    "url": "https://github.com/BloggifyTutorials/bloggify-custom-app/issues"
   },
-  "blah": {
-    "title": "Bloggify Quick Start App",
-    "installation_command": {
-      "content": [
-        "# Clone this repository",
-        "git clone https://github.com/Bloggify/bloggify-quick-start",
-        "",
-        "# Install the dependencies",
-        "cd bloggify-quick-start && npm i",
-        "",
-        "# Start the app in dev mode",
-        "npm run start:dev"
-      ],
-      "language": "bash"
-    }
-  },
-  "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Bloggify/bloggify-quick-start.git"
+    "url": "git+https://github.com/BloggifyTutorials/bloggify-custom-app.git"
   },
-  "homepage": "https://github.com/Bloggify/bloggify-quick-start#readme"
+  "homepage": "https://github.com/BloggifyTutorials/bloggify-custom-app#readme"
 }
