@@ -1,6 +1,6 @@
 {
   "name": "bloggify-custom-app-template",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "A custom application built with @Bloggify.",
   "main": "bloggify.js",
   "scripts": {
@@ -34,5 +34,21 @@
     "type": "git",
     "url": "git+https://github.com/BloggifyTutorials/bloggify-custom-app.git"
   },
-  "homepage": "https://github.com/BloggifyTutorials/bloggify-custom-app#readme"
+  "homepage": "https://github.com/BloggifyTutorials/bloggify-custom-app#readme",
+  "blah": {
+    "title": "Bloggify Custom App",
+    "installation_command": {
+      "content": [
+        "# Clone this repository",
+        "git clone https://github.com/BloggifyTutorials/custom-app",
+        "",
+        "# Install the dependencies",
+        "cd custom-app && npm i",
+        "",
+        "# Start the app in dev mode",
+        "npm run start:dev"
+      ],
+      "language": "bash"
+    }
+  }
 }
