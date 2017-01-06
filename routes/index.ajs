@@ -1,4 +1,3 @@
-<% title = "Home" %>
 <% include("../views/header") %>
 <div class="box">
     <img src="<%= _public("/images/logo.png") %>" alt="">
