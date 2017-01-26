@@ -1,23 +1,53 @@
 {
-  "title": "Custom App",
-  "description": "A custom application built with @Bloggify.",
-  "domain": "http://custom-app.com",
-  "plugins": [
-    "bloggify-custom-assets"
-  ],
-  "router": "bloggify-flexible-router",
-  "viewer": null,
-  "config": {
-      "bloggify-custom-assets": {
-          "styles": [
-              "src/css/index.css"
-          ]
-      },
-      "bloggify-flexible-router": {
-          "errorPages": {
-              "404": "404.ajs",
-              "500": "500.ajs"
-          }
-      }
-  }
+    "title": "Bloggify Forum",
+    "description": "A forum application.",
+    "domain": "http://bloggify-forum.com",
+    "plugins": [
+        "bloggify-custom-assets",
+        "bloggify-mongoose"
+    ],
+    "router": "bloggify-flexible-router",
+    "viewer": null,
+    "config": {
+        "bloggify-custom-assets": {
+            "styles": [
+                "src/css/index.css"
+            ],
+            "server": [
+                "server/index.js"
+            ]
+        },
+        "bloggify-flexible-router": {
+            "errorPages": {
+                "404": "404.ajs",
+                "500": "500.ajs"
+            }
+        },
+        "bloggify-mongoose": {
+            "db": "mongodb://localhost/bloggify-forum",
+            "models": {
+                "User": {
+                    "username": "string",
+                    "email": "string",
+                    "password": "string",
+                    "profile": "object"
+                },
+                "Topic": {
+                    "author": "string",
+                    "title": "string",
+                    "slug": "string",
+                    "body": "string",
+                    "created_at": "date",
+                    "votes": "number"
+                },
+                "Comment": {
+                    "author": "string",
+                    "body": "string",
+                    "created_at": "date",
+                    "topic": "string",
+                    "votes": "number"
+                }
+            }
+        }
+    }
 }

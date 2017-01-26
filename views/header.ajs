@@ -4,5 +4,13 @@
         <meta charset="UTF-8">
         <title><%= title %></title>
         <%- Bloggify.assets.html() %>
+        <% if (typeof user !== "undefined" && user) { %>
+            <%- Bloggify.bundles.auth.html(); %>
+        <% } else { %>
+            <%- Bloggify.bundles.notAuth.html(); %>
+        <% } %>
     </head>
     <body>
+        <nav>
+            <strong>Bloggify</strong> Discussions
+        </nav>

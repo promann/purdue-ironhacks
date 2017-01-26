@@ -1,0 +1,4 @@
+<% include("../../../views/user-data") %>
+<% include("../../../views/header") %>
+<% include("../../../views/error-box") %>
+<% include("../../../views/footer") %>

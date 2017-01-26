@@ -1,0 +1,7 @@
+<script>
+    window._pageData = {
+        component: "topics",
+        user: <%- stringify(user) %>
+    };
+</script>
+<div id="app"></div>

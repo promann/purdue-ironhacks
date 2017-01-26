@@ -1,0 +1,15 @@
+<% include("../user-data") %>
+<% include("../header") %>
+<div class="box">
+    <% include("../error-box") %>
+    <script>
+        window._pageData = {
+            component: "edit-topic",
+            user: <%- stringify(user) %>,
+            topic: <%- stringify(f("topic") ? topic : {}) %>,
+            csrfToken: "<%= lien.csrfToken %>"
+        };
+    </script>
+    <div id="app"></div>
+</div>
+<% include("../footer") %>

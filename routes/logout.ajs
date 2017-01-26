@@ -1,0 +1,4 @@
+<form method="post">
+    <%- lien.csrfInput %>
+    <input type="submit" value="Logout">
+</form>

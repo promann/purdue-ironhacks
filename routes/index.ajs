@@ -1,8 +1,8 @@
 <% include("../views/header") %>
-<div class="box">
-    <img src="<%= _public("/images/logo.png") %>" alt="">
-    <p>Congrats! <3
-    <br>You are running <strong>Bloggify</strong> on Node <%= process.version %>. </p>
-    <% include("../views/menu") %>
-</div>
+<% if (user) { %>
+    <% include("../views/homepage/auth") %>
+<% } else { %>
+    <% include("../views/homepage/public") %>
+<% } %>
+
 <% include("../views/footer") %>

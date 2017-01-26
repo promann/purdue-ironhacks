@@ -15,7 +15,13 @@
     "bloggify-config": "^1.0.6",
     "bloggify-custom-assets": "^1.0.2",
     "bloggify-flexible-router": "^1.0.0",
-    "bloggify-router": "^1.0.7"
+    "bloggify-mongoose": "^1.0.2",
+    "bloggify-router": "^1.0.7",
+    "moment": "^2.17.1",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-markdown": "^2.4.4",
+    "react-md-editor": "^0.2.2"
   },
   "files": [
     "bin/",
@@ -37,6 +43,28 @@
     "url": "git+https://github.com/BloggifyTutorials/custom-app.git"
   },
   "homepage": "https://github.com/BloggifyTutorials/custom-app#readme",
+  "bloggify": {
+    "bundles": {
+      "auth": {
+        "scripts": [
+          "client/javascripts/private-router.js"
+        ],
+        "styles": [
+          "src/css/auth.css"
+        ]
+      },
+      "notAuth": {
+        "scripts": [
+          "client/javascripts/public-router.js"
+        ]
+      },
+      "main": {
+        "scripts": [
+          "client/javascripts/common-router.js"
+        ]
+      }
+    }
+  },
   "blah": {
     "title": "Bloggify Custom App",
     "installation_command": {

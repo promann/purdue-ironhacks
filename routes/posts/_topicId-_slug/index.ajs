@@ -1,0 +1,14 @@
+<% include("../../../views/user-data") %>
+<% include("../../../views/header") %>
+
+<script>
+    window._pageData = {
+        component: "topic-page",
+        user: <%- stringify(user) %>,
+        topic: <%- stringify(topic) %>,
+        csrfToken: "<%= lien.csrfToken %>"
+    };
+</script>
+
+<div id="app"></div>
+<% include("../../../views/footer") %>

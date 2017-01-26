@@ -1,0 +1,21 @@
+<% title = "Register" %>
+<% include("../views/header") %>
+<div class="box">
+    <% include("../views/error-box") %>
+    <form method="post">
+        <%- lien.csrfInput %>
+        <div>
+            <input name="username" type="text" placeholder="Username" value="<%= lien.data.username %>" autofocus="autofocus">
+        </div>
+        <div>
+            <input name="email" type="email" placeholder="Email" value="<%= lien.data.email %>">
+        </div>
+        <div>
+            <input name="password" type="password" placeholder="Password" value="<%= lien.data.password %>">
+        </div>
+        <div>
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>
+<% include("../views/footer") %>

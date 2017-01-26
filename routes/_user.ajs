@@ -1,3 +1,0 @@
-<% include("../views/header") %>
-Hello, <%= lien.params.user %>!
-<% include("../views/footer") %>
