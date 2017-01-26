@@ -5,7 +5,7 @@ export default class TopicCommentsItem extends React.Component {
     render () {
         return (
             <div className="topic-comment-item">
-                <ReactMarkdown source={this.props.body} escapeHtml="true" />
+                <ReactMarkdown source={this.props.body} escapeHtml={true} />
             </div>
         );
     }

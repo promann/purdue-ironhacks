@@ -1,6 +1,15 @@
 import React from "react";
+import UpvoteTopicItem from "./upvote-topic-item";
 
 export default class TopicsListItem extends React.Component {
+    renderUpvote () {
+        const user = _pageData.user;
+        if (!user) {
+            return "";
+        }
+        return <UpvoteTopicItem {...this.props} user={user}/>
+    }
+
     render () {
         return (
             <div className="post-item">
@@ -10,6 +19,8 @@ export default class TopicsListItem extends React.Component {
                     </h2>
                 </a>
                 <div className="post-info">
+                    {this.renderUpvote()}
+                    {this.props.votes.length} Votes |
                     By <a href={`/users/${this.props.author.username}`}>{this.props.author.username}</a> |
                     {this.props.created_at.fromNow()} |
                     {this.props.comments.length} Comments

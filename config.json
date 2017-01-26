@@ -38,7 +38,7 @@
                     "slug": "string",
                     "body": "string",
                     "created_at": "date",
-                    "votes": "number"
+                    "votes": ["string"]
                 },
                 "Comment": {
                     "author": "string",

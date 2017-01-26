@@ -1,4 +1,6 @@
-const Topic = require("../controllers/Topic");
+const Topic = require("../controllers/Topic")
+    , SocketIO = require("socket.io")
+    ;
 
 module.exports = bloggify => {
     global.Bloggify = bloggify;
@@ -10,4 +12,9 @@ module.exports = bloggify => {
             lien.end(data);
         });
     });
+
+    Bloggify.websocket = SocketIO(Bloggify.server.server);
+    Bloggify.wsNamespaces = {
+        topic: Bloggify.websocket.of("/topic")
+    };
 };
