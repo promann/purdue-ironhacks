@@ -28,7 +28,7 @@ module.exports = class User {
     }
 
     static get (data, cb) {
-        const $or = []
+        const $or = [];
         if (data.email) {
             $or.push({ email: data.email });
         }
