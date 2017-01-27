@@ -1,5 +1,6 @@
 const Topic = require("./Topic")
     , ul = require("ul")
+    , regexEscape = require("regex-escape")
     ;
 
 let UserModel = null;
@@ -27,11 +28,16 @@ module.exports = class User {
     }
 
     static get (data, cb) {
+        const $or = [
+        ]
+        if (data.email) {
+            $or.push({ email: data.email });
+        }
+        if (data.username) {
+            $or.push({ username: new RegExp("^" + regexEscape(data.username) + "$", "i") });
+        }
         UserModel.findOne({
-            $or: [
-                { username: new RegExp(data.username, "i") },
-                { email: data.email }
-            ]
+            $or: $or
         }, cb);
     }
 

@@ -22,6 +22,7 @@
     "react-dom": "^15.4.2",
     "react-markdown": "^2.4.4",
     "react-md-editor": "^0.2.2",
+    "regex-escape": "^3.4.4",
     "socket.io": "^1.7.2",
     "socket.io-client": "^1.7.2"
   },
