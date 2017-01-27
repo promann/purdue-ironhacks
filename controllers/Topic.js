@@ -67,7 +67,7 @@ module.exports = class Topic {
 
     static getMore (opts, cb) {
         opts = opts || {};
-        opts.limit = opts.limit || 5;
+        //opts.limit = opts.limit || 5;
         let topics = [];
         return TopicModel.find(opts.filters, opts.fields).limit(opts.limit).sort({
             created_at: -1
@@ -119,7 +119,7 @@ module.exports = class Topic {
             _id: data.topic
         }, (err, topic) => {
             if (err) { return cb(err); }
-            const votes = topic.get("votes");
+            const votes = topic.toObject().votes;
             if (votes.includes(data.user)) {
                 votes.splice(votes.indexOf(data.user), 1);
             } else {

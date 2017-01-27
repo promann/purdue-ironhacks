@@ -1,3 +1,4 @@
+<% title = topic.title %>
 <% include("../../../views/user-data") %>
 <% include("../../../views/header") %>
 

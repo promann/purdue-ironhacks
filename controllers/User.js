@@ -1,4 +1,6 @@
-const Topic = require("./Topic");
+const Topic = require("./Topic")
+    , ul = require("ul")
+    ;
 
 let UserModel = null;
 setTimeout(function() {
@@ -6,6 +8,10 @@ setTimeout(function() {
 }, 1000);
 
 module.exports = class User {
+
+    static getProfileUrl (user) {
+        return `/users/${user.username}`;
+    }
 
     static auth (data, cb) {
         User.get(data, (err, user) => {
@@ -44,13 +50,17 @@ module.exports = class User {
         });
     }
 
-    static update (data, cb) {
-        UserModel.findOne(data.email, (err, user) => {
+    static update (id, data, cb) {
+        UserModel.findOne({
+            _id: id
+        }, (err, user) => {
             if (err) { return cb(err); }
             if (!user) {
                 return cb(new Error("User not found."));
             }
-            user.set(data.update);
+            let update = ul.deepMerge(data, user.toObject());
+            delete update._id;
+            user.set(update);
             user.save(cb);
         });
     }

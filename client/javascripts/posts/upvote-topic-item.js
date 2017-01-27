@@ -1,4 +1,5 @@
 import React from "react";
+import util from "../util";
 
 export default class UpvoteTopicItem extends React.Component {
     get upvoted () {
@@ -20,16 +21,8 @@ export default class UpvoteTopicItem extends React.Component {
     }
 
     toggleVote () {
-        fetch(`${this.props.url}/toggle-vote`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            credentials: "same-origin",
-            body: JSON.stringify({
-                topic: this.props._id
-              , _csrf: _pageData.csrfToken
-            })
-        });
+        util.post(`${this.props.url}/toggle-vote`, {
+            topic: this.props._id
+        })
     }
 }

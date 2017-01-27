@@ -1,3 +1,0 @@
-<% include("../../views/header") %>
-<pre><%- stringify(user) %></pre>
-<% include("../../views/footer") %>

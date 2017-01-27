@@ -1,8 +1,0 @@
-<% title = "About" %>
-<% include("../views/header") %>
-<div class="box">
-    This is a Bloggify custom app template.
-    <hr>
-    Back to <a href="/">the homepage</a>.
-</div>
-<% include("../views/footer") %>

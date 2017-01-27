@@ -1,3 +1,4 @@
+<% title = "Ouch! Server error! " %>
 <% include("../views/header") %>
 Whoups! Something went really wrong!
 

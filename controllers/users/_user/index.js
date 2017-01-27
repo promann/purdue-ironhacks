@@ -1,4 +1,4 @@
-const User = require("../User");
+const User = require("../../User");
 
 exports.get = (lien, cb) => {
     User.get({
@@ -11,9 +11,10 @@ exports.get = (lien, cb) => {
             return lien.next();
         }
         user = user.toObject();
+        user.url = User.getProfileUrl(user);
         delete user.password;
         cb(null, {
-            user: user
+            profile: user
         });
     });
 };

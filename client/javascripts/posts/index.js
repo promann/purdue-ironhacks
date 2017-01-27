@@ -21,12 +21,12 @@ export default class App extends React.Component {
                 }
             }
         });
-        fetch("/api/posts")
-            .then(c => c.json())
-            .then(topics => {
-                topics.forEach(util.normalizeTopic);
-                this.setState({ topics })
-            })
+        util
+          .getJSON("/api/posts")
+          .then(topics => {
+              topics.forEach(util.normalizeTopic);
+              this.setState({ topics })
+          })
     }
     render () {
         return (

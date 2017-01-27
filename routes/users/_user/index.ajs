@@ -1,0 +1,22 @@
+<% title = profile.username %>
+<% include("../../../views/header") %>
+<h1><%= profile.username %></h1>
+<% if (profile._id.toString() === user._id.toString()) { %>
+    <a href="<%= profile.url %>/edit">Edit</a>
+<% } %>
+<% profileInfo = profile.profile || {} %>
+<% if (profileInfo.twitter) { %>
+    <p>Twitter: <a target="_blank" href="https://twitter.com/<%= profileInfo.twitter %>"><%= profileInfo.twitter %></a></p>
+<% } %>
+<% if (profileInfo.bio) { %>
+    <p>
+        <%= profileInfo.bio %>
+    </p>
+<% } %>
+<% if (profileInfo.website) { %>
+    <p>
+        Website:
+        <a target="_blank" href="<%= profileInfo.website %>"><%= profileInfo.website %></a>
+    </p>
+<% } %>
+<% include("../../../views/footer") %>
