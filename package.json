@@ -17,6 +17,7 @@
     "bloggify-flexible-router": "^1.0.0",
     "bloggify-mongoose": "^1.0.2",
     "bloggify-router": "^1.0.7",
+    "codemirror": "^5.23.0",
     "moment": "^2.17.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
