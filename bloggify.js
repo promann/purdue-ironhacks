@@ -9,10 +9,17 @@ module.exports = conf({
     "domain": "http://bloggify-forum.com",
     "plugins": [
         "bloggify-custom-assets",
-        "bloggify-mongoose"
+        "bloggify-mongoose",
+        "bloggify-github-login"
     ],
     "router": "bloggify-flexible-router",
     "viewer": null,
+    "devConfig": {
+        "bloggify-github-login": {
+            "githubClient": "c26d485f95fb06c9002d",
+            "githubSecret": "22cb7e7b89a41b2e65338e4382909a504aa0ca0d"
+        }
+    },
     "config": {
         "bloggify-custom-assets": {
             "styles": [
@@ -27,6 +34,10 @@ module.exports = conf({
                 "404": "404.ajs",
                 "500": "500.ajs"
             }
+        },
+        "bloggify-github-login": {
+            "githubClient": "c26d485f95fb06c9002d",
+            "githubSecret": "22cb7e7b89a41b2e65338e4382909a504aa0ca0d"
         },
         "bloggify-mongoose": {
             "db": DB_URI,
