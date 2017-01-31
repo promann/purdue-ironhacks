@@ -5,6 +5,15 @@ const Comment = require("./Comment");
 let CommentModel = null;
 setTimeout(function() {
     CommentModel = Bloggify.models.Comment
+    CommentModel.schema.pre("save", function (next) {
+        this.wasNew = this.isNew;
+        next();
+    });
+    CommentModel.schema.post("save", function (comment) {
+        if (this.wasNew) {
+            Bloggify.emit("comment:created", comment);
+        }
+    });
 }, 1000);
 
 module.exports = class Comment {
@@ -19,7 +28,7 @@ module.exports = class Comment {
         opts = opts || {};
         let topics = [];
         return CommentModel.find(opts.filters, opts.fields).sort({
-            created_at: -1
+            created_at: 1
         }).exec(cb);
     }
 };

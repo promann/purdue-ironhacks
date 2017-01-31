@@ -1,6 +1,5 @@
-<% title = topic.title %>
 <% include("../../../views/user-data") %>
-<% include("../../../views/header") %>
+<% include("../../../views/header", { title: topic.title }) %>
 
 <script>
     window._pageData = {

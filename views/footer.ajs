@@ -1,2 +1,10 @@
+        </div>
+        <footer>
+            <div class="bag fixed">
+                <div class="text-center">
+                    BlackIronHack
+                </div>
+            </div>
+        </footer>
     </body>
 </html>

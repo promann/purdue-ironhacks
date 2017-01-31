@@ -8,6 +8,7 @@ module.exports = conf({
     "description": "A forum application.",
     "domain": "http://bloggify-forum.com",
     "plugins": [
+        "bloggify-sendgrid",
         "bloggify-custom-assets",
         "bloggify-mongoose",
         "bloggify-github-login"
@@ -54,16 +55,20 @@ module.exports = conf({
                     "slug": "string",
                     "body": "string",
                     "created_at": "date",
-                    "votes": ["string"]
+                    "votes": ["string"],
+                    "sticky": "boolean"
                 },
                 "Comment": {
                     "author": "string",
                     "body": "string",
                     "created_at": "date",
                     "topic": "string",
-                    "votes": "number"
+                    "votes": ["string"]
                 }
             }
+        },
+        "bloggify-sendgrid": {
+            "key": "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"
         }
     }
 }, {

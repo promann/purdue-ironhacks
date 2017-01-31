@@ -22,7 +22,7 @@ export default class TopicsList extends React.Component {
         }
         return (
             <div className="posts-list">
-                <h1>Posts</h1>
+                <h1>Latest posts</h1>
                 {this.renderItems()}
             </div>
         )

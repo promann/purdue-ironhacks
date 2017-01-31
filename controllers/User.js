@@ -1,14 +1,8 @@
-const Topic = require("./Topic")
-    , ul = require("ul")
+const ul = require("ul")
     , regexEscape = require("regex-escape")
     ;
 
-let UserModel = null;
-setTimeout(function() {
-    exports.model = UserModel = Bloggify.models.User
-}, 1000);
-
-module.exports = class User {
+class User {
 
     static getProfileUrl (user) {
         return `/users/${user.username}`;
@@ -28,6 +22,9 @@ module.exports = class User {
     }
 
     static get (data, cb) {
+        if (data.filters) {
+            return UserModel.findOne(data.filters, data.fields, cb);
+        }
         const $or = [];
         if (data.email) {
             $or.push({ email: data.email });
@@ -35,7 +32,7 @@ module.exports = class User {
         if (data.username) {
             $or.push({ username: new RegExp("^" + regexEscape(data.username) + "$", "i") });
         }
-        UserModel.findOne({
+        return UserModel.findOne({
             $or: $or
         }, cb);
     }
@@ -71,6 +68,15 @@ module.exports = class User {
     }
 
     static createTopic (data, cb) {
+        const Topic = require("./Topic");
         Topic.create(data, cb);
     }
-};
+}
+
+let UserModel = null;
+setTimeout(function() {
+    debugger
+    User.model = UserModel = Bloggify.models.User
+}, 1000);
+
+module.exports = User;

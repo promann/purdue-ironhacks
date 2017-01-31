@@ -9,6 +9,20 @@ exports.get = lien => {
 exports.post = (lien, cb) => {
     const user = Session.getUser(lien);
     if (!user) { return lien.next(); }
+    if (lien.data.toggleVote) {
+        Topic.toggleCommentVote({
+            user: user._id,
+            comment: lien.data.comment
+        }, (err, data) => {
+            if (err) {
+                return cb(null, {
+                    err: err
+                });
+            }
+            cb(null, {});
+        });
+        return;
+    }
     Topic.postComment({
         author: user._id,
         body: lien.data.body,

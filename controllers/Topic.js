@@ -2,11 +2,23 @@ const slug = require("slug");
 const User = require("./User");
 const Comment = require("./Comment");
 
+const USER_FIELDS = {
+    password: 0
+};
+
 let TopicModel = null;
 setTimeout(function() {
     TopicModel = Bloggify.models.Topic
+    TopicModel.schema.pre("save", function (next) {
+        this.wasNew = this.isNew;
+        next();
+    });
     TopicModel.schema.post("save", topic => {
-        module.exports.emitTopicUpdated(topic._id);
+        if (topic.wasNew) {
+            module.exports.emitTopicCreated(topic._id);
+        } else {
+            module.exports.emitTopicUpdated(topic._id);
+        }
     });
 }, 1000);
 
@@ -14,21 +26,25 @@ module.exports = class Topic {
     // TODO Validation
     static create (data, cb) {
         data.slug = slug(data.title, { lowercase: true });
+        data.sticky = !!data.sticky;
         return new TopicModel(data).save(cb);
     }
 
-    static populate (item) {
+    static populate (item, options) {
+
         if (Array.isArray(item)) {
-            return Promise.all(item.map(c => Topic.populate(c)));
+            return Promise.all(item.map(c => Topic.populate(c, options)));
         }
 
+        options = options || {};
+        options.userFields = options.userFields || USER_FIELDS
+
         return Promise.all([
-            User.model.findOne({
-                _id: item.author
-            }, {
-                username: 1
+            User.get({
+                filters: { _id: item.author },
+                fields: options.userFields
             })
-          , Topic.getComments(item)
+          , Topic.getComments(item, undefined, options)
         ]).then(data => {
             item.author = data[0];
             item.comments = data[1];
@@ -37,17 +53,31 @@ module.exports = class Topic {
         });
     }
 
-    static getComments (item, cb) {
+    static getComments (item, cb, opts) {
+        opts = opts || {};
+        opts.userFields = opts.userFields || USER_FIELDS;
         return Comment.query({
             filters: {
                 topic: item._id
             }
-        }, cb);
+        }).then(comments => {
+            return Promise.all(comments.map(comment => {
+                return User.get({
+                    filters: { _id: comment.author },
+                    fields: opts.userFields
+                }).then(author => {
+                    comment = comment.toObject();
+                    comment.author = author.toObject();
+                    return comment;
+                });
+            }));
+        });
     }
 
     static update (filters, data, cb) {
         Topic.get(filters, (err, topic) => {
             if (err) { return cb(err); }
+            data.sticky = !!data.sticky;
             topic.set(data).save(cb);
         });
     }
@@ -80,7 +110,7 @@ module.exports = class Topic {
         }).catch(err => cb(err));
     }
 
-    static getPopulated (id, cb) {
+    static getPopulated (id, cb, opts) {
        Topic.get({
           _id: id
        }, (err, topic) => {
@@ -89,17 +119,25 @@ module.exports = class Topic {
                topic = null;
            }
            if (err) { return cb(err); }
-           Topic.populate(topic.toObject()).then(topic => {
+           Topic.populate(topic.toObject(), opts).then(topic => {
                cb(null, topic);
            }).catch(e => cb(e));
        });
+    }
+
+    static emitTopicCreated (id) {
+        Topic.getPopulated({
+            _id: id
+        }, (err, topic) => {
+            topic && Bloggify.emit("topic:created", topic);
+        });
     }
 
     static emitTopicUpdated (id) {
         Topic.getPopulated({
             _id: id
         }, (err, topic) => {
-            topic && Bloggify.wsNamespaces.topic.emit("updated", topic)
+            topic && Bloggify.emit("topic:updated", topic);
         });
     }
 
@@ -127,6 +165,24 @@ module.exports = class Topic {
             }
             topic.set("votes", votes);
             topic.save(cb);
+        });
+    }
+
+    static toggleCommentVote (data, cb) {
+        Comment.get({
+            _id: data.comment
+        }, (err, comment) => {
+            if (err) { return cb(err); }
+            const votes = comment.toObject().votes;
+            if (votes.includes(data.user)) {
+                votes.splice(votes.indexOf(data.user), 1);
+            } else {
+                votes.push(data.user);
+            }
+            comment.set("votes", votes);
+            comment.save(cb).then(c => {
+                Topic.emitTopicUpdated(comment.topic);
+            });
         });
     }
 };

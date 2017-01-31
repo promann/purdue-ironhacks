@@ -1,4 +1,3 @@
-<% title = "Page not found." %>
-<% include("../views/header") %>
+<% include("../views/header", { title: "Page not found" }) %>
 Not found.
 <% include("../views/footer") %>

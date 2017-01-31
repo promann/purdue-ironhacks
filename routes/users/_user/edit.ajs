@@ -1,5 +1,4 @@
-<% title = "Edit Profile" %>
-<% include("../../../views/header") %>
+<% include("../../../views/header", { title: "Edit Profile" }) %>
 <h1><%= profile.username %></h1>
 <% profileInfo = profile.profile || {} %>
 <form method="post">

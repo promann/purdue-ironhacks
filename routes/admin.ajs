@@ -1,0 +1,16 @@
+<% include("../views/header", { title: "Countdown" }) %>
+<% include("../views/container/start") %>
+
+<script>
+    window._pageData = {
+        component: "admin-view",
+        user: <%- stringify(user) %>,
+        users: <%- stringify(users) %>
+    };
+</script>
+
+<h1>Admin</h1>
+<div id="app"></div>
+
+<% include("../views/container/end") %>
+<% include("../views/footer") %>

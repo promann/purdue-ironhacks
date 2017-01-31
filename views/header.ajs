@@ -3,13 +3,19 @@
     <head>
         <meta charset="UTF-8">
         <title><%= title %> | <%= siteMetadata.title %></title>
+        <% var user = lien.user = lien.getSessionData("user") %>
         <%- Bloggify.assets.html() %>
-        <% if (typeof user !== "undefined" && user) { %>
+        <% ____test = 42 %>
+        <% if (user) { %>
             <%- Bloggify.bundles.auth.html(); %>
         <% } else { %>
             <%- Bloggify.bundles.notAuth.html(); %>
         <% } %>
     </head>
-    <body>
-        <% user = lien.getSessionData("user") %>
-        <% include("navigation") %>
+    <% var bodyClass = ""; %>
+    <% if (user) { %>
+    <%    bodyClass = "university-" + user.profile.university + " user-hack-id-" + user.profile.hack_id; %>
+    <% } %>
+    <body class="<%= bodyClass %>">
+        <div class="whole-page-wrapper">
+            <% include("navigation", { user: user }) %>

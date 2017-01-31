@@ -1,5 +1,4 @@
-<% title = "Ouch! Server error! " %>
-<% include("../views/header") %>
+<% include("../views/header", { title: title = "Ouch! Server error! " }) %>
 Whoups! Something went really wrong!
 
 <% var err = typeof error === "undefined" ? null : error %>

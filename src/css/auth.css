@@ -1,2 +1,15 @@
 @import "react-md-editor/dist/react-md-editor.css";
 @import "codemirror/lib/codemirror.css";
+
+span.user-label {
+    display: inline-block;
+    min-width: 180px;
+    font-weight: bold;
+}
+
+.user-item {
+    background: white;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

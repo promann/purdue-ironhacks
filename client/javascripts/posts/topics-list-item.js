@@ -12,7 +12,7 @@ export default class TopicsListItem extends React.Component {
 
     render () {
         return (
-            <div className="post-item">
+            <div className={`post-item ${this.props.sticky ? "topic-sticky" : "topic-not-sticky"}`}>
                 <a href={this.props.url} className="post-item-title">
                     <h2>
                         {this.props.title}

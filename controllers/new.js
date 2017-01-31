@@ -21,7 +21,7 @@ exports.post = (lien, cb) => {
 
     lien.data.author = user._id;
     lien.data.created_at = new Date();
-    lien.data.votes = 0;
+    lien.data.votes = [];
 
     User.createTopic(lien.data, (err, topic) => {
         if (err) {

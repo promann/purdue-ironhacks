@@ -1,8 +1,10 @@
 <nav>
-    <strong>Bloggify</strong> Discussions
-    <% if (user) { %>
-        <% include("logout") %>
-    <% } else { %>
-        <a href="/login">Login</a>
-    <% } %>
+    <span class="site-title"><a href="/"><strong>Bloggify</strong> Discussions</a></span>
+    <span class="auth-buttons float-right">
+        <% if (user) { %>
+            <% include("user-controls") %>
+        <% } else { %>
+            <a href="/login"><strong>Login</strong></a>
+        <% } %>
+    </span>
 </nav>

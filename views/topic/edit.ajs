@@ -1,5 +1,6 @@
 <% include("../user-data") %>
-<% include("../header") %>
+<% include("../header", { title: title }) %>
+<% var user = lien.user %>
 <div class="box">
     <% include("../error-box") %>
     <script>

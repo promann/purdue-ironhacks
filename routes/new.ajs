@@ -1,2 +1,1 @@
-<% title = "New topic" %>
-<% include("../views/topic/edit") %>
+<% include("../views/topic/edit", { title: "New topic" }) %>

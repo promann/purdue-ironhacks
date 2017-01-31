@@ -1,2 +1,4 @@
-<h1>Bloggify Forum</h1>
-<a href="/login">Login</a>
+<div class="text-center">
+    <p>Welcome!</p>
+    <a class="btn btn-big" href="/login">Login</a>
+</div>
