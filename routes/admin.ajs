@@ -1,11 +1,12 @@
-<% include("../views/header", { title: "Countdown" }) %>
+<% include("../views/header", { title: "Admin" }) %>
 <% include("../views/container/start") %>
 
 <script>
     window._pageData = {
         component: "admin-view",
         user: <%- stringify(user) %>,
-        users: <%- stringify(users) %>
+        users: <%- stringify(users) %>,
+        csrfToken: <%- stringify(lien.csrfToken) %>
     };
 </script>
 

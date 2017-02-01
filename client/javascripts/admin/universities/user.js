@@ -17,7 +17,7 @@ export default class UserItem extends React.Component {
                     <span className="user-label">GitHub Repository URL:</span> <input type="text" name="github_repo_url" defaultValue={this.props.user.profile.github_repo_url} />
                 </div>
                 <div className="score-technical">
-                    <span className="user-label">technical score:</span> <input type="number" name="score_technical" defaultValue={this.props.user.profile.score_technical} />
+                    <span className="user-label">Technical score:</span> <input type="number" name="score_technical" defaultValue={this.props.user.profile.score_technical} />
                 </div>
                 <div className="score-info-viz">
                     <span className="user-label">Info Viz Score:</span> <input type="number" name="score_info_viz" defaultValue={this.props.user.profile.score_info_viz} />
