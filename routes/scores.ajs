@@ -1,0 +1,29 @@
+<% include("../views/header", { title: "Scores" }) %>
+<% include("../views/container/start") %>
+
+<h1>Scores</h1>
+<table border="1">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Technical Score</td>
+            <td>Info Viz Score</td>
+            <td>Novelty Score</td>
+            <td>Total Score</td>
+        </tr>
+    </thead>
+    <tbody>
+        <% users.forEach(function (user) { %>
+            <tr>
+                <td><%= user.username %></td>
+                <td><%= user.profile.score_technical %></td>
+                <td><%= user.profile.score_info_viz %></td>
+                <td><%= user.profile.score_novelty %></td>
+                <td><%= user.profile.score_total %></td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+
+<% include("../views/container/end") %>
+<% include("../views/footer") %>
