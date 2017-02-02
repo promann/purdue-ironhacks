@@ -1,6 +1,8 @@
-const unique = require("unique-random-range");
-const forEach = require("iterate-object");
-const Settings = require("./Settings");
+const Bloggify = require("bloggify")
+    , unique = require("unique-random-range")
+    , forEach = require("iterate-object")
+    , Settings = require("./Settings")
+    ;
 
 const UNIVERSITIES = {
     // Gold
@@ -30,6 +32,13 @@ const UNIVERSITIES = {
 
 const update = () => {
     Settings.get((err, doc) => {
+        if (err) {
+            return Bloggify.log(err);
+        }
+        if (!err && !doc) {
+            Bloggify.log("Settings not found. Trying again in a second.");
+            return setTimeout(update, 1000);
+        }
         forEach(doc.settings.universities, (uni, name) => {
             UNIVERSITIES[name].start_date = uni.start_date;
         });
