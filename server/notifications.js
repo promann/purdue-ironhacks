@@ -1,5 +1,6 @@
 const Email = Bloggify.require("sendgrid", true);
 const uniq = require("array-unique");
+const User = require("../controllers/User");
 
 const FROM_EMAIL = "noreply@bloggify.org";
 
@@ -35,8 +36,10 @@ exports.commentPosted = comment => {
 };
 
 exports.topicCreated = topic => {
-    const User = require("../controllers/User");
-    User.model.find({}, {
+    User.model.find({
+        "profile.university": topic.metadata.university
+      , "profile.hack_id": topic.metadata.hack_id
+    }, {
         email: 1
     }, (err, docs) => {
         const emails = docs.map(c => c.email);
