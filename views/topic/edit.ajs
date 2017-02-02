@@ -7,7 +7,7 @@
         window._pageData = {
             component: "edit-topic",
             user: <%- stringify(user) %>,
-            topic: <%- stringify(f("topic") ? topic : {}) %>,
+            topic: <%- stringify(f("topic") ? topic : f("post_data") ? post_data : {}) %>,
             csrfToken: "<%= lien.csrfToken %>"
         };
     </script>

@@ -10,6 +10,13 @@ export default class TopicsListItem extends React.Component {
         return <UpvoteTopicItem {...this.props} user={user}/>
     }
 
+    renderEdit () {
+        if (this.props.author._id === window._pageData.user._id) {
+            return <span>| <a href={`${this.props.url}/edit`}>edit</a></span>
+        }
+        return "";
+    }
+
     render () {
         return (
             <div className={`post-item ${this.props.sticky ? "topic-sticky" : "topic-not-sticky"}`}>
@@ -24,6 +31,7 @@ export default class TopicsListItem extends React.Component {
                     By <a href={`/users/${this.props.author.username}`}>{this.props.author.username}</a> |
                     {this.props.created_at.fromNow()} |
                     {this.props.comments.length} Comments
+                    {this.renderEdit()}
                 </div>
             </div>
         )

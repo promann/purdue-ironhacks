@@ -9,7 +9,7 @@ export default class AdminUniversityItem extends React.Component {
         forEach(this.props.university, (hackObj, hackId) => {
             if (typeof hackObj === "string") { return; }
             hackObj.id = hackId;
-            items.push(<HackItem hack={hackObj} key={++index} />);
+            items.push(<HackItem hack={hackObj} key={++index} phase={this.props.phase} />);
         });
         return items;
     }

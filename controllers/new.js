@@ -22,11 +22,16 @@ exports.post = (lien, cb) => {
     lien.data.author = user._id;
     lien.data.created_at = new Date();
     lien.data.votes = [];
+    lien.data.metadata = {
+        university: user.profile.university,
+        hack_id: user.profile.hack_id
+    };
 
     User.createTopic(lien.data, (err, topic) => {
         if (err) {
             return cb(null, {
                 err: err
+              , post_data: lien.data
             });
         }
         lien.redirect(Topic.getUrl(topic));

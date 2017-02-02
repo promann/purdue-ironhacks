@@ -7,7 +7,7 @@ export default class HackItem extends React.Component {
         const items = [];
         let index = -1;
         forEach(this.props.hack, user => {
-            items.push(<UserItem user={user} key={++index} />);
+            items.push(<UserItem user={user} key={++index} phase={this.props.phase} />);
         });
         return items;
     }

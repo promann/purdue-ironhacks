@@ -1,5 +1,6 @@
 const Topic = require("../controllers/Topic")
     , Session = require("../controllers/Session")
+    , Stats = require("../controllers/Stats")
     , Universities = require("../controllers/Universities")
     , SocketIO = require("socket.io")
     , idy = require("idy")
@@ -24,11 +25,42 @@ module.exports = bloggify => {
     });
 
     Bloggify.server.addPage("/api/posts", lien => {
-        Topic.getMore(lien.query, (err, data) => {
+        const user = Session.getUser(lien);
+        if (!user) {
+            return lien.next();
+        }
+
+        lien.query["metadata.university"] = user.profile.university;
+        lien.query["metadata.hack_id"] = user.profile.hack_id;
+
+        Topic.getMore({
+            filters: lien.query
+        }, (err, data) => {
             if (err) {
                 return lien.apiError(err);
             }
             lien.end(data);
+        });
+    });
+
+    Bloggify.server.addPage("/api/stats", "post", lien => {
+        const user = Session.getUser(lien);
+        if (!user) {
+            return lien.next();
+
+        }
+
+        const ev = {
+            actor: user._id,
+            event: lien.data.event,
+            metadata: lien.data.metadata || {}
+        };
+
+        Stats.record(ev, (err, data) => {
+            if (err) {
+                return lien.apiError(err);
+            }
+            lien.apiMsg("success");
         });
     });
 

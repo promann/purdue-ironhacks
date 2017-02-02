@@ -1,5 +1,6 @@
 const ul = require("ul")
     , regexEscape = require("regex-escape")
+    , deffy = require("deffy")
     ;
 
 class User {
@@ -52,18 +53,16 @@ class User {
         });
     }
 
-    static update (id, data, cb) {
-        UserModel.findOne({
-            _id: id
-        }, (err, user) => {
-            if (err) { return cb(err); }
+    static update (filters, data, cb) {
+        return UserModel.findOne(filters).then(user => {
             if (!user) {
-                return cb(new Error("User not found."));
+                throw new Error("User not found.");
             }
+            if (user.username === "IonicaBizau") debugger
             let update = ul.deepMerge(data, user.toObject());
             delete update._id;
             user.set(update);
-            user.save(cb);
+            return user.save(cb);
         });
     }
 
@@ -75,8 +74,28 @@ class User {
 
 let UserModel = null;
 setTimeout(function() {
-    debugger
     User.model = UserModel = Bloggify.models.User
+    UserModel.schema.pre("save", function (next) {
+        const phases = ["phase1", "phase2", "phase3", "phase4"];
+        phases.forEach(cPhase => {
+            const phaseObj = Object(this.profile[cPhase]);
+            this.set(`profile.${cPhase}.project_url`, deffy(phaseObj.project_url, ""));
+            this.set(`profile.${cPhase}.github_repo_url`, deffy(phaseObj.github_repo_url, ""));
+            this.set(`profile.${cPhase}.score_technical`, deffy(phaseObj.score_technical, 0));
+            this.set(`profile.${cPhase}.score_info_viz`, deffy(phaseObj.score_info_viz, 0));
+            this.set(`profile.${cPhase}.score_novelty`, deffy(phaseObj.score_novelty, 0));
+
+            if (this.username === "IonicaBizau") debugger
+            if (phaseObj.score_custom) {
+                total = phaseObj.score_custom;
+            } else {
+                total = phaseObj.score_technical + phaseObj.score_info_viz + phaseObj.score_novelty
+            }
+
+            this.set(`profile.${cPhase}.score_total`, total);
+        });
+        next();
+    });
 }, 1000);
 
 module.exports = User;

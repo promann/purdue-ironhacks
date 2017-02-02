@@ -21,6 +21,13 @@ export default class App extends React.Component {
             topic: topic,
             user: window._pageData.user
         };
+        util.post("/api/stats", {
+            event: "view-topic",
+            metadata: {
+                topic_id: topic._id,
+                topic_author: topic.author._id
+            }
+        });
     }
     renderCommentForm () {
         if (!this.state.user) {

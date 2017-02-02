@@ -1,6 +1,7 @@
 const slug = require("slug");
 const User = require("./User");
 const Comment = require("./Comment");
+const deffy = require("deffy");
 
 const USER_FIELDS = {
     password: 0
@@ -10,6 +11,14 @@ let TopicModel = null;
 setTimeout(function() {
     TopicModel = Bloggify.models.Topic
     TopicModel.schema.pre("save", function (next) {
+        this.set("title", deffy(this.title, "").trim());
+        this.set("body", deffy(this.body, "").trim());
+        if (!this.title.length) {
+            return next(new Error("Topic title cannot be empty."));
+        }
+        if (!this.body.length) {
+            return next(new Error("Topic body cannot be empty."));
+        }
         this.wasNew = this.isNew;
         next();
     });
@@ -23,9 +32,8 @@ setTimeout(function() {
 }, 1000);
 
 module.exports = class Topic {
-    // TODO Validation
     static create (data, cb) {
-        data.slug = slug(data.title, { lowercase: true });
+        data.slug = slug(data.title, { lower: true });
         data.sticky = !!data.sticky;
         return new TopicModel(data).save(cb);
     }
@@ -154,14 +162,16 @@ module.exports = class Topic {
 
     static toggleVote (data, cb) {
         Topic.get({
-            _id: data.topic
+            _id: data.topic,
+            "metadata.university": data.user.profile.university,
+            "metadata.hack_id": data.user.profile.hack_id
         }, (err, topic) => {
             if (err) { return cb(err); }
             const votes = topic.toObject().votes;
-            if (votes.includes(data.user)) {
-                votes.splice(votes.indexOf(data.user), 1);
+            if (votes.includes(data.user._id)) {
+                votes.splice(votes.indexOf(data.user._id), 1);
             } else {
-                votes.push(data.user);
+                votes.push(data.user._id);
             }
             topic.set("votes", votes);
             topic.save(cb);

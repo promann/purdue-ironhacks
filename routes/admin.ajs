@@ -5,6 +5,7 @@
     window._pageData = {
         component: "admin-view",
         user: <%- stringify(user) %>,
+        settings: <%- stringify(settings) %>,
         users: <%- stringify(users) %>,
         csrfToken: <%- stringify(lien.csrfToken) %>
     };

@@ -5,6 +5,13 @@ import AdminUniversities from "./universities";
 import $ from "elly";
 import { $$ } from "elly";
 
+const PHASES = [
+    ["Phase 1", "phase1"]
+  , ["Phase 2", "phase2"]
+  , ["Phase 3", "phase3"]
+  , ["Phase 4", "phase4"]
+];
+
 export default class App extends React.Component {
     constructor (props) {
         super(props);
@@ -18,8 +25,16 @@ export default class App extends React.Component {
             user: window._pageData.user
           , users: users
           , Universities: univs
+          , phase: _pageData.settings.phase
         };
     }
+
+    onPhaseChange () {
+        this.setState({
+            phase: document.getElementById("contest-phase").value
+        });
+    }
+
     saveUsers () {
         const users = $$(".user-item").map(c => {
             return {
@@ -30,16 +45,19 @@ export default class App extends React.Component {
                   , score_technical: $("[name='score_technical']", c).value
                   , score_info_viz: $("[name='score_info_viz']", c).value
                   , score_novelty: $("[name='score_novelty']", c).value
+                  , score_custom: $("[name='score_custom']", c).value
                 }
             };
         });
 
         this.setState({ loading: true });
         util.post(location.pathname, {
-            users
+            users,
+            phase: document.getElementById("contest-phase").value
         }).then(c => {
             if (c.status > 400) { throw new Error("Cannot save the data."); }
-            this.setState({ loading: false });
+            location.reload();
+            //this.setState({ loading: false });
         }).catch(e => {
             this.setState({ loading: false });
             alert(e.message);
@@ -55,10 +73,16 @@ export default class App extends React.Component {
         return "";
     }
     render () {
+        const options = PHASES.map((c, i) => <option key={i} value={c[1]}>{c[0]}</option>);
         return (
             <div className="admin-view">
+                <div className="phase-select-wrapper">
+                    <select value={this.state.phase} id="contest-phase" className="phase-select" onChange={this.onPhaseChange.bind(this)}>
+                        {options}
+                    </select>
+                </div>
                 {this.renderLoader()}
-                <AdminUniversities universities={this.state.Universities} />
+                <AdminUniversities phase={this.state.phase} universities={this.state.Universities} />
                 <button onClick={this.saveUsers.bind(this)} className="save-btn btn btn-big full-width">Save</button>
             </div>
         );

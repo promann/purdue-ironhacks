@@ -28,7 +28,6 @@ exports.get = (lien, cb) => {
     if (userId === qsuid) {
         const uni = UNIVERSITIES[user.profile.university];
         user.profile.hack_id = uni.getHackId();
-        debugger
         return User.create(user, (err, newUser) => {
             debugger
             if (err) { return lien.redirect("/"); }

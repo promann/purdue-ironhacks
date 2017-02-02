@@ -1,6 +1,7 @@
 const slug = require("slug");
 const User = require("./User");
 const Comment = require("./Comment");
+const deffy = require("deffy");
 
 let CommentModel = null;
 setTimeout(function() {
@@ -17,8 +18,12 @@ setTimeout(function() {
 }, 1000);
 
 module.exports = class Comment {
-    // TODO Validation
     static create (data, cb) {
+        data.body = deffy(data.body, "").trim();
+        data.votes = [];
+        if (!data.body.length) {
+            return cb(new Error("Comment cannot be empty."));
+        }
         return new CommentModel(data).save(cb);
     }
     static get (filters, cb) {

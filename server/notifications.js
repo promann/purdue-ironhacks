@@ -15,6 +15,7 @@ const log = (err, data) => {
 exports.commentPosted = comment => {
     const emails = uniq(comment.topic.comments.map(c => c.author.email).concat(comment.topic.author.email));
     const authorEmail = comment.author.email;
+    uniq(emails);
     const authorIndex = emails.indexOf(authorEmail);
     if (~authorIndex) {
         emails.splice(authorIndex, 1);
@@ -40,6 +41,7 @@ exports.topicCreated = topic => {
     }, (err, docs) => {
         const emails = docs.map(c => c.email);
         const authorEmail = topic.author.email;
+        uniq(emails);
         const authorIndex = emails.indexOf(authorEmail);
 
         if (~authorIndex) {

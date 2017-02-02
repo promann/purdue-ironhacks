@@ -5,10 +5,17 @@ const Topic = require("../../Topic")
 const getTopic = require("./index");
 
 exports.get = (lien, cb) => {
-    if (!Session.isAuthenticated(lien)) {
+    const user = Session.isAuthenticated(lien);
+    if (!user) {
         return lien.next();
     }
-    getTopic(lien, cb);
+    getTopic(lien, (err, data) => {
+        if (err) { return cb(err); }
+        if (data.topic.author._id.toString() === user._id) {
+            return cb(null, data);
+        }
+        lien.next();
+    });
 };
 
 exports.post = (lien, cb) => {
@@ -16,10 +23,13 @@ exports.post = (lien, cb) => {
    if (!user) { return lien.next(); }
    Topic.update({
       _id: lien.params.topicId
+    , author: user._id
    }, lien.data, (err, topic) => {
+       debugger
        if (err) {
-           return cb({
+           return cb(null, {
                err: err
+             , topic: lien.data
            });
        }
        lien.redirect(Topic.getUrl(topic));

@@ -30,7 +30,9 @@ exports.post = (lien, cb) => {
       , website: lien.data.website
     };
 
-    User.update(user._id, {
+    User.update({
+        _id: user._id
+    }, {
         profile: updateData
     }, (err, data) => {
         lien.redirect(User.getProfileUrl(user));

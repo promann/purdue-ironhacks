@@ -33,13 +33,9 @@ git push heroku master
 ======================================================
 - Clicks tracking
   - post mechanism - who clicks on whose posts
-  - score clicks -
-  - score randomizations of table hacker 1,2,3,4,5,6
   - when, who clicks on whose score, what is the links click on,
-  - categorize comments into hackathon, replies and posts to rekevant hackathon, pages
-  - show the score creates a new page.
-  - checking people whether they have already
-
+    - button on the scores page
+         -> Show scores
 
 Purudue, Bogota, Platzi
 --------|------|-------

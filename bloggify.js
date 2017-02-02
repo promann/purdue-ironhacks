@@ -56,7 +56,8 @@ module.exports = conf({
                     "body": "string",
                     "created_at": "date",
                     "votes": ["string"],
-                    "sticky": "boolean"
+                    "sticky": "boolean",
+                    "metadata": "object"
                 },
                 "Comment": {
                     "author": "string",
@@ -64,7 +65,17 @@ module.exports = conf({
                     "created_at": "date",
                     "topic": "string",
                     "votes": ["string"]
+                },
+                "Stats": {
+                    "actor": "string",
+                    "metadata": "object",
+                    "event": "string",
+                    "created_at": "date",
+                },
+                "Settings": {
+                    "settings": "object"
                 }
+
             }
         },
         "bloggify-sendgrid": {

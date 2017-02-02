@@ -17,6 +17,8 @@ export default {
         });
     }
   , getJSON (url) {
-        return fetch(url).then(c => c.json())
+        return fetch(url, {
+            credentials: "same-origin"
+        }).then(c => c.json())
     }
 };

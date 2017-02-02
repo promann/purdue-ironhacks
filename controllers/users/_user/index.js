@@ -1,8 +1,20 @@
 const User = require("../../User");
+const Session = require("../../Session");
 
 exports.get = (lien, cb) => {
+    const authUser = Session.getUser(lien);
+    if (!authUser) {
+        return lien.next();
+    }
     User.get({
-        username: lien.params.user
+        filters: {
+            username: lien.params.user,
+            "profile.university": authUser.profile.university,
+            "profile.hack_id": authUser.profile.hack_id
+        }
+      , fields: {
+            password: 0
+        }
     }, (err, user) => {
         if (err) {
             return cb(err);
@@ -12,7 +24,6 @@ exports.get = (lien, cb) => {
         }
         user = user.toObject();
         user.url = User.getProfileUrl(user);
-        delete user.password;
         cb(null, {
             profile: user
         });

@@ -10,7 +10,7 @@ exports.post = (lien, cb) => {
     const user = Session.getUser(lien);
     if (!user) { return lien.next(); }
     Topic.toggleVote({
-        user: user._id,
+        user: user,
         topic: lien.params.topicId
     }, err => {
         if (err) {
