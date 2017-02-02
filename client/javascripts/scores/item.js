@@ -21,6 +21,15 @@ export default class ScoreItem extends React.Component {
             opened: !this.state.opened
         });
     }
+    onLinkClick (e) {
+        util.post("/api/stats", {
+            event: e.target.dataset.event,
+            metadata: {
+                hacker_id: this.props.hacker._id,
+                url: e.target.href
+            }
+        });
+    }
     renderViewButton () {
         const btn = <button onClick={this.toggleScores.bind(this)}>
             {(this.state.opened ? "Hide" : "View") +  " scores"}
@@ -28,6 +37,7 @@ export default class ScoreItem extends React.Component {
         return <td>{btn}</td>
     }
     render () {
+
         const scoreColumns = [
             this.props.hacker.score_technical
           , this.props.hacker.score_info_viz
@@ -36,17 +46,19 @@ export default class ScoreItem extends React.Component {
         ].map((c, i) => {
             return <td key={i}>{this.state.opened ? c : ""}</td>
         });
+
         const projectLinks = [
             this.props.hacker.project_url
           , this.props.hacker.github_repo_url
         ].map((c, i) => {
             if (!c) { return <td key={i} />; }
             return <td key={i}>
-                <a target="_blank" href={c}>
+                <a target="_blank" href={c} data-event={i ? "click-github-repo-url" : "click-project-url"} onClick={this.onLinkClick.bind(this)}>
                     Click
                 </a>
             </td>
         });
+
         return (
             <tr className="score-item">
                 <td className="username">{this.props.hacker.username}</td>

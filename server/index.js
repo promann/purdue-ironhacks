@@ -4,6 +4,7 @@ const Topic = require("../controllers/Topic")
     , Universities = require("../controllers/Universities")
     , SocketIO = require("socket.io")
     , idy = require("idy")
+    , Settings = require("../controllers/Settings")
     ;
 
 module.exports = bloggify => {
@@ -47,7 +48,6 @@ module.exports = bloggify => {
         const user = Session.getUser(lien);
         if (!user) {
             return lien.next();
-
         }
 
         const ev = {
@@ -56,11 +56,16 @@ module.exports = bloggify => {
             metadata: lien.data.metadata || {}
         };
 
-        Stats.record(ev, (err, data) => {
-            if (err) {
-                return lien.apiError(err);
+        Settings.get((err, settings) => {
+            if (settings) {
+                ev.metadata.phase = settings.settings.phase;
             }
-            lien.apiMsg("success");
+            Stats.record(ev, (err, data) => {
+                if (err) {
+                    return lien.apiError(err);
+                }
+                lien.apiMsg("success");
+            });
         });
     });
 
