@@ -1,6 +1,7 @@
 const Session = require("./Session");
 const User = require("./User");
 const Settings = require("./Settings");
+const forEach = require("iterate-object");
 
 const ADMINS = ["IonicaBizau"];
 
@@ -10,9 +11,12 @@ module.exports = (lien, cb) => {
         return lien.redirect("/");
     }
     if (lien.method === "post") {
-
+        forEach(lien.data.universities, uni => {
+            uni.start_date = new Date(uni.start_date);
+        });
         Settings.set({
             phase: lien.data.phase
+          , universities: lien.data.universities
         });
 
         Promise.all(lien.data.users.map(c => {

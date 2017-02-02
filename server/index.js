@@ -18,6 +18,7 @@ module.exports = bloggify => {
         "/posts",
         "/posts/:postId-:postSlug",
         "/new",
+        "/scores",
     ], (lien, cb) => {
         const user = Session.getUser(lien);
         if (user && Universities[user.profile.university].start_date > new Date()) {

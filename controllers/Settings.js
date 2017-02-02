@@ -3,7 +3,7 @@ const Bloggify = require("bloggify")
     ;
 
 const ID = "0".repeat(24);
-const FIFTEENTH_OF_MARCH = new Date(new Date().getFullYear(), 0, 31, 19, 38);
+const FIFTEENTH_OF_MARCH = new Date(new Date().getFullYear(), 2, 15);
 
 class Settings {
     static set (data, cb) {

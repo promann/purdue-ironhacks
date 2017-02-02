@@ -4,6 +4,8 @@ import setOrGet from "set-or-get";
 import AdminUniversities from "./universities";
 import $ from "elly";
 import { $$ } from "elly";
+import forEach from "iterate-object";
+import moment from "moment";
 
 const PHASES = [
     ["Phase 1", "phase1"]
@@ -50,10 +52,17 @@ export default class App extends React.Component {
             };
         });
 
+        const universities = {};
+        $$(".uni-start-date").forEach(c => {
+            let input = $("input", c);
+            universities[input.dataset.university] = { start_date: input.value };
+        });
+
         this.setState({ loading: true });
         util.post(location.pathname, {
             users,
-            phase: document.getElementById("contest-phase").value
+            phase: document.getElementById("contest-phase").value,
+            universities
         }).then(c => {
             if (c.status > 400) { throw new Error("Cannot save the data."); }
             location.reload();
@@ -72,15 +81,35 @@ export default class App extends React.Component {
         }
         return "";
     }
+
     render () {
         const options = PHASES.map((c, i) => <option key={i} value={c[1]}>{c[0]}</option>);
+        const universitiesStartDates = []
+        let index = -1;
+        forEach(window._pageData.settings.universities, (univ, name) => {
+            univ.start_date = moment(new Date(univ.start_date));
+            universitiesStartDates.push(
+                <div className="uni-start-date" key={++index} >
+                    <strong>{name}</strong>: <input data-university={name} type="date" defaultValue={univ.start_date.format("YYYY-MM-DD")} />
+                </div>
+            )
+        });
+
         return (
             <div className="admin-view">
+                <h4>Select Phase</h4>
+                <p>Select the project phase and then click the save button.</p>
                 <div className="phase-select-wrapper">
                     <select value={this.state.phase} id="contest-phase" className="phase-select" onChange={this.onPhaseChange.bind(this)}>
                         {options}
                     </select>
                 </div>
+                <h4>Start Dates</h4>
+                <p><strong>Tip:</strong> Use a past date to force starting of the contest.</p>
+                {universitiesStartDates}
+
+                <h1>Users</h1>
+                <p>You can update the scores and then click the save button. The custom score, if provided, will override the total.</p>
                 {this.renderLoader()}
                 <AdminUniversities phase={this.state.phase} universities={this.state.Universities} />
                 <button onClick={this.saveUsers.bind(this)} className="save-btn btn btn-big full-width">Save</button>
