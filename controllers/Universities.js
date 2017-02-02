@@ -1,7 +1,6 @@
-//const FIFTEENTH_OF_MARCH = new Date(2017, 2, 15);
-const FIFTEENTH_OF_MARCH = new Date(2017, 0, 31, 19, 38);
 const unique = require("unique-random-range");
 const forEach = require("iterate-object");
+const Settings = require("./Settings");
 
 const UNIVERSITIES = {
     // Gold
@@ -17,7 +16,7 @@ const UNIVERSITIES = {
         survey: "https://purdue.qualtrics.com/jfe/form/SV_2b1fTpmPhtyMRAV"
       , label: "Bogota"
       , hackatons: [ {}, {}, {} ]
-      , start_date: FIFTEENTH_OF_MARCH
+      , start_date: null
     }
 
     // Green
@@ -25,16 +24,22 @@ const UNIVERSITIES = {
         survey: "https://purdue.qualtrics.com/jfe/form/SV_4ZoALAMqPjrTUlT"
       , label: "Platzi"
       , hackatons: [ {}, {}, {} ]
-      , start_date: FIFTEENTH_OF_MARCH
+      , start_date: null
     }
 };
 
+const update = () => {
+    Settings.get((err, doc) => {
+        forEach(doc.settings.universities, (uni, name) => {
+            UNIVERSITIES[name].start_date = uni.start_date;
+        });
+    });
+};
+Settings.model.schema.post("save", update);
+update();
 
 forEach(UNIVERSITIES, c => {
     c.getHackId = unique(0, c.hackatons.length - 1);
 });
 
-
-
 module.exports = UNIVERSITIES;
-

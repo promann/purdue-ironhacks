@@ -1,41 +1,19 @@
-const slug = require("slug");
-const User = require("./User");
-const Comment = require("./Comment");
-const deffy = require("deffy");
+const Bloggify = require("bloggify")
+    , slug = require("slug")
+    , User = require("./User")
+    , Comment = require("./Comment")
+    , deffy = require("deffy")
+    ;
 
 const USER_FIELDS = {
     password: 0
 };
 
-let TopicModel = null;
-setTimeout(function() {
-    TopicModel = Bloggify.models.Topic
-    TopicModel.schema.pre("save", function (next) {
-        this.set("title", deffy(this.title, "").trim());
-        this.set("body", deffy(this.body, "").trim());
-        if (!this.title.length) {
-            return next(new Error("Topic title cannot be empty."));
-        }
-        if (!this.body.length) {
-            return next(new Error("Topic body cannot be empty."));
-        }
-        this.wasNew = this.isNew;
-        next();
-    });
-    TopicModel.schema.post("save", topic => {
-        if (topic.wasNew) {
-            module.exports.emitTopicCreated(topic._id);
-        } else {
-            module.exports.emitTopicUpdated(topic._id);
-        }
-    });
-}, 1000);
-
-module.exports = class Topic {
+class Topic {
     static create (data, cb) {
         data.slug = slug(data.title, { lower: true });
         data.sticky = !!data.sticky;
-        return new TopicModel(data).save(cb);
+        return new Topic.model(data).save(cb);
     }
 
     static populate (item, options) {
@@ -91,7 +69,7 @@ module.exports = class Topic {
     }
 
     static get (filters, cb) {
-        return TopicModel.findOne(filters, (err, topic) => {
+        return Topic.model.findOne(filters, (err, topic) => {
             if (!err && !topic) {
                 err = new Error("There is no such topic.");
             }
@@ -107,7 +85,7 @@ module.exports = class Topic {
         opts = opts || {};
         //opts.limit = opts.limit || 5;
         let topics = [];
-        return TopicModel.find(opts.filters, opts.fields).limit(opts.limit).sort({
+        return Topic.model.find(opts.filters, opts.fields).limit(opts.limit).sort({
             created_at: -1
         }).then(data => {
             topics = data.map(c => c.toObject());
@@ -196,3 +174,27 @@ module.exports = class Topic {
         });
     }
 };
+
+Topic.model = Bloggify.models.Topic
+Topic.model.schema.pre("save", function (next) {
+    this.set("title", deffy(this.title, "").trim());
+    this.set("body", deffy(this.body, "").trim());
+    if (!this.title.length) {
+        return next(new Error("Topic title cannot be empty."));
+    }
+    if (!this.body.length) {
+        return next(new Error("Topic body cannot be empty."));
+    }
+    this.wasNew = this.isNew;
+    next();
+});
+
+Topic.model.schema.post("save", topic => {
+    if (topic.wasNew) {
+        module.exports.emitTopicCreated(topic._id);
+    } else {
+        module.exports.emitTopicUpdated(topic._id);
+    }
+});
+
+module.exports = Topic;

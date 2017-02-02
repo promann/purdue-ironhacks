@@ -7,10 +7,12 @@ module.exports = conf({
     "title": "Bloggify Discussions",
     "description": "A forum application.",
     "domain": "http://bloggify-forum.com",
+    "corePlugins": [
+        "bloggify-mongoose",
+    ],
     "plugins": [
         "bloggify-sendgrid",
         "bloggify-custom-assets",
-        "bloggify-mongoose",
         "bloggify-github-login"
     ],
     "router": "bloggify-flexible-router",

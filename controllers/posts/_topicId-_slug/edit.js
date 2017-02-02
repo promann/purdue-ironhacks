@@ -25,7 +25,6 @@ exports.post = (lien, cb) => {
       _id: lien.params.topicId
     , author: user._id
    }, lien.data, (err, topic) => {
-       debugger
        if (err) {
            return cb(null, {
                err: err

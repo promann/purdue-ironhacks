@@ -29,7 +29,6 @@ exports.get = (lien, cb) => {
         const uni = UNIVERSITIES[user.profile.university];
         user.profile.hack_id = uni.getHackId();
         return User.create(user, (err, newUser) => {
-            debugger
             if (err) { return lien.redirect("/"); }
             Bloggify.emit("user:registered", newUser);
             lien.setSessionData({

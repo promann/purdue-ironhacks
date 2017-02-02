@@ -1,9 +1,13 @@
-const ul = require("ul")
-const ID = "0".repeat(24);
+const Bloggify = require("bloggify")
+    , ul = require("ul")
+    ;
 
-module.exports = class Settings {
+const ID = "0".repeat(24);
+const FIFTEENTH_OF_MARCH = new Date(new Date().getFullYear(), 0, 31, 19, 38);
+
+class Settings {
     static set (data, cb) {
-        SettingsModel.findOne({ _id: ID }, (err, settings) => {
+        Settings.model.findOne({ _id: ID }, (err, settings) => {
             if (err) { return cb(err); }
             settings.set({
                 settings: ul.deepMerge(data, settings.toObject().settings)
@@ -12,15 +16,20 @@ module.exports = class Settings {
         });
     }
     static get (cb) {
-        return SettingsModel.findOne({ _id: ID }, cb);
+        return Settings.model.findOne({ _id: ID }, cb);
     }
     static ensure () {
-        module.exports.get().then(settings => {
+        Settings.get().then(settings => {
             if (!settings) {
-                new SettingsModel({
+                new Settings.model({
                     _id: ID
                   , settings: {
                         phase: "phase1"
+                      , universities: {
+                            purdue: { start_date: null }
+                          , bogota: { start_date: FIFTEENTH_OF_MARCH }
+                          , platzi: { start_date: FIFTEENTH_OF_MARCH }
+                        }
                     }
                 }).save()
             }
@@ -28,8 +37,7 @@ module.exports = class Settings {
     }
 };
 
-let SettingsModel = null;
-setTimeout(function() {
-    module.exports.model = SettingsModel = Bloggify.models.Settings
-    module.exports.ensure();
-}, 1000);
+Settings.model = Bloggify.models.Settings
+Settings.ensure();
+
+module.exports = Settings;

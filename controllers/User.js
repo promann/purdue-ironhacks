@@ -1,4 +1,5 @@
-const ul = require("ul")
+const Bloggify = require("bloggify")
+    , ul = require("ul")
     , regexEscape = require("regex-escape")
     , deffy = require("deffy")
     ;
@@ -24,7 +25,7 @@ class User {
 
     static get (data, cb) {
         if (data.filters) {
-            return UserModel.findOne(data.filters, data.fields, cb);
+            return User.model.findOne(data.filters, data.fields, cb);
         }
         const $or = [];
         if (data.email) {
@@ -33,13 +34,13 @@ class User {
         if (data.username) {
             $or.push({ username: new RegExp("^" + regexEscape(data.username) + "$", "i") });
         }
-        return UserModel.findOne({
+        return User.model.findOne({
             $or: $or
         }, cb);
     }
 
     static create (data, cb) {
-        UserModel.count({
+        User.model.count({
             $or: [
                 { username: data.username },
                 { email: data.email }
@@ -49,16 +50,15 @@ class User {
             if (exists) {
                 return cb(new Error("Email/username is already registered."));
             }
-            new UserModel(data).save(cb);
+            new User.model(data).save(cb);
         });
     }
 
     static update (filters, data, cb) {
-        return UserModel.findOne(filters).then(user => {
+        return User.model.findOne(filters).then(user => {
             if (!user) {
                 throw new Error("User not found.");
             }
-            if (user.username === "IonicaBizau") debugger
             let update = ul.deepMerge(data, user.toObject());
             delete update._id;
             user.set(update);
@@ -72,30 +72,26 @@ class User {
     }
 }
 
-let UserModel = null;
-setTimeout(function() {
-    User.model = UserModel = Bloggify.models.User
-    UserModel.schema.pre("save", function (next) {
-        const phases = ["phase1", "phase2", "phase3", "phase4"];
-        phases.forEach(cPhase => {
-            const phaseObj = Object(this.profile[cPhase]);
-            this.set(`profile.${cPhase}.project_url`, deffy(phaseObj.project_url, ""));
-            this.set(`profile.${cPhase}.github_repo_url`, deffy(phaseObj.github_repo_url, ""));
-            this.set(`profile.${cPhase}.score_technical`, deffy(phaseObj.score_technical, 0));
-            this.set(`profile.${cPhase}.score_info_viz`, deffy(phaseObj.score_info_viz, 0));
-            this.set(`profile.${cPhase}.score_novelty`, deffy(phaseObj.score_novelty, 0));
+User.model = Bloggify.models.User
+User.model.schema.pre("save", function (next) {
+    const phases = ["phase1", "phase2", "phase3", "phase4"];
+    phases.forEach(cPhase => {
+        const phaseObj = Object(this.profile[cPhase]);
+        this.set(`profile.${cPhase}.project_url`, deffy(phaseObj.project_url, ""));
+        this.set(`profile.${cPhase}.github_repo_url`, deffy(phaseObj.github_repo_url, ""));
+        this.set(`profile.${cPhase}.score_technical`, deffy(phaseObj.score_technical, 0));
+        this.set(`profile.${cPhase}.score_info_viz`, deffy(phaseObj.score_info_viz, 0));
+        this.set(`profile.${cPhase}.score_novelty`, deffy(phaseObj.score_novelty, 0));
 
-            if (this.username === "IonicaBizau") debugger
-            if (phaseObj.score_custom) {
-                total = phaseObj.score_custom;
-            } else {
-                total = phaseObj.score_technical + phaseObj.score_info_viz + phaseObj.score_novelty
-            }
+        if (phaseObj.score_custom) {
+            total = phaseObj.score_custom;
+        } else {
+            total = phaseObj.score_technical + phaseObj.score_info_viz + phaseObj.score_novelty
+        }
 
-            this.set(`profile.${cPhase}.score_total`, total);
-        });
-        next();
+        this.set(`profile.${cPhase}.score_total`, total);
     });
-}, 1000);
+    next();
+});
 
 module.exports = User;

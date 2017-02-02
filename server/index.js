@@ -1,4 +1,5 @@
-const Topic = require("../controllers/Topic")
+const Bloggify = require("bloggify")
+    , Topic = require("../controllers/Topic")
     , Session = require("../controllers/Session")
     , Stats = require("../controllers/Stats")
     , Universities = require("../controllers/Universities")
@@ -109,7 +110,6 @@ module.exports = bloggify => {
     setTimeout(function() {
         const GitHub = Bloggify.require("github-login");
         GitHub.on("login-success", (token, user, lien) => {
-            console.log(user);
             User.get({
                 username: user.login
             }, (err, existingUser) => {
