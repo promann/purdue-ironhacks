@@ -1,4 +1,5 @@
 import moment from "moment";
+import "whatwg-fetch";
 
 export default {
     normalizeTopic (topic) {
