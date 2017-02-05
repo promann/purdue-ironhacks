@@ -3,6 +3,7 @@ const Bloggify = require("bloggify")
     , User = require("./User")
     , Comment = require("./Comment")
     , deffy = require("deffy")
+    , Session = require("./Session");
     ;
 
 const USER_FIELDS = {
@@ -14,6 +15,10 @@ class Topic {
         data.slug = slug(data.title, { lower: true });
         data.sticky = !!data.sticky;
         return new Topic.model(data).save(cb);
+    }
+
+    static remove (filters, cb) {
+        Topic.model.remove(filters, cb);
     }
 
     static populate (item, options) {
@@ -139,11 +144,16 @@ class Topic {
     }
 
     static toggleVote (data, cb) {
-        Topic.get({
-            _id: data.topic,
-            "metadata.university": data.user.profile.university,
-            "metadata.hack_id": data.user.profile.hack_id
-        }, (err, topic) => {
+        const filters = {
+            _id: data.topic
+        };
+
+        if (!Session.isAdmin(data.user)) {
+            filters["metadata.university"] = data.user.profile.university;
+            filters["metadata.hack_id"] = data.user.profile.hack_id;
+        }
+
+        Topic.get(filters, (err, topic) => {
             if (err) { return cb(err); }
             const votes = topic.toObject().votes;
             if (votes.includes(data.user._id)) {

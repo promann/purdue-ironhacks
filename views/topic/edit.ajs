@@ -9,7 +9,8 @@
             component: "edit-topic",
             user: <%- stringify(user) %>,
             topic: <%- stringify(f("topic") ? topic : f("post_data") ? post_data : {}) %>,
-            csrfToken: "<%= lien.csrfToken %>"
+            csrfToken: "<%= lien.csrfToken %>",
+            isAdmin: <%- Bloggify.controllers.Session.isAdmin(user) %>
         };
     </script>
     <h1><%= lien.pathname === "/new" ? "New topic" : "Edit topic" %></h1>

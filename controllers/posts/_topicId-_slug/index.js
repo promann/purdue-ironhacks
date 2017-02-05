@@ -3,19 +3,25 @@ const Session = require("../../Session");
 
 module.exports = (lien, cb) => {
     const user = Session.getUser(lien);
-   if (!user) {
-       return lien.next();
-   }
-   Topic.get({
-      _id: lien.params.topicId
-    , "metadata.university": user.profile.university
-    , "metadata.hack_id": user.profile.hack_id
-   }, (err, topic) => {
+    if (!user) {
+        return lien.next();
+    }
+
+    const filters = {
+        _id: lien.params.topicId
+    };
+
+    if (!Session.isAdmin(user)) {
+        filters["metadata.university"] = user.profile.university;
+        filters["metadata.hack_id"] = user.profile.hack_id;
+    }
+
+    Topic.get(filters, (err, topic) => {
        if (err && err.name === "CastError") {
            err = null;
            topic = null;
        }
-       if (err) { return cb(err); }
+       if (err) { return cb(null, { err: err, topic: {} }); }
        if (!topic) {
             return lien.next();
        }

@@ -22,9 +22,23 @@ exports.post = (lien, cb) => {
     lien.data.author = user._id;
     lien.data.created_at = new Date();
     lien.data.votes = [];
+
+    let universitySlug = user.profile.university
+      , hackId = user.profile.hack_id
+      ;
+
+    if (Session.isAdmin(user)) {
+        if (lien.data.hackId) {
+            hackId = lien.data.hackId;
+        }
+        if (lien.data.university) {
+            universitySlug = lien.data.university;
+        }
+    }
+
     lien.data.metadata = {
-        university: user.profile.university,
-        hack_id: user.profile.hack_id
+        university: universitySlug,
+        hack_id: +hackId
     };
 
     User.createTopic(lien.data, (err, topic) => {

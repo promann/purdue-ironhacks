@@ -33,8 +33,10 @@ module.exports = bloggify => {
             return lien.next();
         }
 
-        lien.query["metadata.university"] = user.profile.university;
-        lien.query["metadata.hack_id"] = user.profile.hack_id;
+        if (!Session.isAdmin(user)) {
+            lien.query["metadata.university"] = user.profile.university;
+            lien.query["metadata.hack_id"] = user.profile.hack_id;
+        }
 
         Topic.getMore({
             filters: lien.query

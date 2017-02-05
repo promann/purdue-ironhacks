@@ -11,7 +11,7 @@ exports.get = (lien, cb) => {
     }
     getTopic(lien, (err, data) => {
         if (err) { return cb(err); }
-        if (data.topic.author._id.toString() === user._id) {
+        if (data.topic.author._id.toString() === user._id || Session.isAdmin(user)) {
             return cb(null, data);
         }
         lien.next();
@@ -21,10 +21,13 @@ exports.get = (lien, cb) => {
 exports.post = (lien, cb) => {
    const user = Session.getUser(lien);
    if (!user) { return lien.next(); }
-   Topic.update({
+   const filters = {
       _id: lien.params.topicId
-    , author: user._id
-   }, lien.data, (err, topic) => {
+   };
+   if (!Session.isAdmin(user)) {
+        filters.author = user._id;
+   }
+   Topic.update(filters, lien.data, (err, topic) => {
        if (err) {
            return cb(null, {
                err: err

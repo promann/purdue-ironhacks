@@ -11,6 +11,24 @@ export default class TopicEditor extends React.Component {
         };
     }
 
+    renderAdminFields () {
+        if (!_pageData.isAdmin) {
+            return;
+        }
+        return <div className="form-section">
+            <h3>University</h3>
+            <select name="university">
+                <option value="purdue">Purdue</option>
+                <option value="bogota">Bogota</option>
+                <option value="platzi">Platzi</option>
+            </select>
+
+            <h3>Hack ID</h3>
+            <p>This should be <code>0</code> for Purdue, and 0, 1 or 2 for the others.</p>
+            <input name="hackId" type="number" placeholder="Hack Id" defaultValue="0" min="0" max="2"/>
+        </div>
+    }
+
     render () {
         const actionUrl = this.state.topic.url ? `${this.state.topic.url}/edit` : "/new";
         return (
@@ -20,6 +38,7 @@ export default class TopicEditor extends React.Component {
                 <div className="form-section">
                     <input className="full-width" ref="title" name="title" type="text" placeholder="Topic title" defaultValue={this.state.topic.title} autoFocus />
                 </div>
+                {this.renderAdminFields()}
                 <div className="form-section">
                     <p>Write the topic content below.  Styling with Markdown is supported.</p>
                     <Editor value={this.state.topic.body} onChange={this.updateBody.bind(this)} />

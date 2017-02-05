@@ -21,6 +21,10 @@
     }
 }
 
+footer .bag {
+    position: relative;
+}
+
 .bloggify-logo {
     font-size: 2em;
     position: absolute;
