@@ -31,7 +31,7 @@ export default class ScoreItem extends React.Component {
         });
     }
     renderViewButton () {
-        const btn = <button onClick={this.toggleScores.bind(this)}>
+        const btn = <button className="btn btn-small" onClick={this.toggleScores.bind(this)}>
             {(this.state.opened ? "Hide" : "View") +  " scores"}
         </button>;
         return <td>{btn}</td>
@@ -39,21 +39,21 @@ export default class ScoreItem extends React.Component {
     render () {
 
         const scoreColumns = [
-            this.props.hacker.score_technical
-          , this.props.hacker.score_info_viz
-          , this.props.hacker.score_novelty
-          , this.props.hacker.score_total
+            [this.props.hacker.score_technical, "Score Technical"]
+          , [this.props.hacker.score_info_viz, "Score Info Viz"]
+          , [this.props.hacker.score_novelty, "Score Novelty"]
+          , [this.props.hacker.score_total, "Score Total"]
         ].map((c, i) => {
-            return <td key={i}>{this.state.opened ? c : ""}</td>
+            return <td key={i} data-label={`${c[1]}: `}>{this.state.opened ? `${(c[0] || 0).toFixed(2)}%` : ""}</td>
         });
 
         const projectLinks = [
-            this.props.hacker.project_url
-          , this.props.hacker.github_repo_url
+            [this.props.hacker.project_url, "Project"]
+          , [this.props.hacker.github_repo_url, "GitHub"]
         ].map((c, i) => {
-            if (!c) { return <td key={i} />; }
-            return <td key={i}>
-                <a target="_blank" href={c} data-event={i ? "click-github-repo-url" : "click-project-url"} onClick={this.onLinkClick.bind(this)}>
+            if (!c[0]) { return <td key={i} />; }
+            return <td key={i} data-label={`${c[1]}: `}>
+                <a target="_blank" href={c[0]} data-event={i ? "click-github-repo-url" : "click-project-url"} onClick={this.onLinkClick.bind(this)} data-label={c[1]}>
                     Click
                 </a>
             </td>
@@ -61,7 +61,7 @@ export default class ScoreItem extends React.Component {
 
         return (
             <tr className="score-item">
-                <td className="username">{this.props.hacker.username}</td>
+                <td data-label="Username: " className="username">{this.props.hacker.username}</td>
                 {this.renderViewButton()}
                 {scoreColumns}
                 {projectLinks}

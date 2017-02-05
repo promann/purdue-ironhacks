@@ -1,5 +1,6 @@
 <% include("../user-data") %>
 <% include("../header", { title: title }) %>
+<% include("../container/start") %>
 <% var user = lien.user %>
 <div class="box">
     <% include("../error-box") %>
@@ -11,6 +12,8 @@
             csrfToken: "<%= lien.csrfToken %>"
         };
     </script>
+    <h1><%= lien.pathname === "/new" ? "New topic" : "Edit topic" %></h1>
     <div id="app"></div>
 </div>
+<% include("../container/end") %>
 <% include("../footer") %>

@@ -54,6 +54,7 @@ exports.post = (lien, cb) => {
     if (!university) {
         return cb(null, {
             err: "Please select an option."
+          , uniOptions: UNI_OPTIONS
         });
     }
 
@@ -61,6 +62,7 @@ exports.post = (lien, cb) => {
     if (!selectedUni) {
         return cb(null, {
             err: "Please select a valid option."
+          , uniOptions: UNI_OPTIONS
         });
     }
 

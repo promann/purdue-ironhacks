@@ -8,21 +8,22 @@ export default class UpvoteTopicItem extends React.Component {
 
     render () {
         return (
-            <span className="upvote-topic">
+            <div className="upvote-topic">
                 {this.renderUpvoteBtn()}
-            </span>
+            </div>
         )
     }
 
     renderUpvoteBtn () {
-        return <button onClick={this.toggleVote.bind(this)}>
-            { this.upvoted ? "Remove upvote" : "Upvote" }
-        </button>
+        return <a href="#" className={this.upvoted ? "upvoted" : "not-upvoted"} onClick={this.toggleVote.bind(this)}>
+            <i className="fa fa-chevron-up" aria-hidden="true"></i>
+        </a>;
     }
 
-    toggleVote () {
+    toggleVote (e) {
         util.post(`${this.props.url}/toggle-vote`, {
             topic: this.props._id
-        })
+        });
+        e.preventDefault();
     }
 }

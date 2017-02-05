@@ -41,7 +41,9 @@ export default class App extends React.Component {
                 <TopicsListItem
                     {...this.state.topic}
                 />
-                <ReactMarkdown source={this.state.topic.body} escapeHtml={true}/>
+                <ReactMarkdown className="topic-body-markdown" source={this.state.topic.body} escapeHtml={true}/>
+                <hr />
+                <h4>Comments</h4>
                 <TopicComments comments={this.state.topic.comments} />
                 {this.renderCommentForm()}
             </div>

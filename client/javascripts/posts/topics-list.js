@@ -7,6 +7,7 @@ export default class TopicsList extends React.Component {
             return (
                 <TopicsListItem
                     key={index}
+                    itemNumber={index + 1}
                     {...c}
                     id={index}
                 />

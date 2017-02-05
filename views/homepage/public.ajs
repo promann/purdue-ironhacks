@@ -1,4 +1,6 @@
 <div class="text-center">
-    <p>Welcome!</p>
-    <a class="btn btn-big" href="/login">Login</a>
+    <h1 class="text-center">Welcome</h1>
+    <a class="btn btn-big" href="/login">
+        <span class="fa fa-github"></span> Login with GitHub
+    </a>
 </div>

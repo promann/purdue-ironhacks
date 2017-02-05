@@ -28,7 +28,6 @@
     <a href="http://purduehackers.com/" target="_blank">
 	<img src="<%= _public("/images/partners/hackers.png") %>" alt="Purdue Hackers">
     </a>
-    <h1 class="text-center">BlackIronHack</h1>
 </div>
 
 <% if (user) { %>

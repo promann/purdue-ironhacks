@@ -1,5 +1,16 @@
 <nav>
-    <span class="site-title"><a href="/"><strong>Bloggify</strong> Discussions</a></span>
+    <span class="auth-buttons float-left">
+        <% if (user) { %>
+            <a href="/scores">Scores</a>
+        <% } %>
+    </span>
+    <span class="site-title">
+        <a href="/">
+            <span class="hide-xs">
+                IronHack
+            </span>
+        </a>
+    </span>
     <span class="auth-buttons float-right">
         <% if (user) { %>
             <% include("user-controls") %>

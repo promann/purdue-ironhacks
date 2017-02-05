@@ -190,6 +190,7 @@ Topic.model.schema.pre("save", function (next) {
 });
 
 Topic.model.schema.post("save", topic => {
+    debugger
     if (topic.wasNew) {
         Topic.emitTopicCreated(topic._id);
     } else {

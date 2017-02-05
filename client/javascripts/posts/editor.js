@@ -16,20 +16,19 @@ export default class TopicEditor extends React.Component {
         return (
             <form className="edit-topic" method="post" action={actionUrl}>
                 <CsrfInput />
-                <div>
-                    <input ref="title" name="title" type="text" defaultValue={this.state.topic.title} />
+                <textarea ref="body" name="body" hidden defaultValue={this.state.topic.body}></textarea>
+                <div className="form-section">
+                    <input className="full-width" ref="title" name="title" type="text" placeholder="Topic title" defaultValue={this.state.topic.title} autoFocus />
                 </div>
-                <div>
-                    <label><input ref="sticky" name="sticky" type="checkbox" defaultChecked={this.state.topic.sticky} /> Sticky post</label>
-                </div>
-                <div>
-                    <textarea ref="body" name="body" hidden defaultValue={this.state.topic.body}></textarea>
-                </div>
-                <div>
+                <div className="form-section">
+                    <p>Write the topic content below.  Styling with Markdown is supported.</p>
                     <Editor value={this.state.topic.body} onChange={this.updateBody.bind(this)} />
                 </div>
-                <div>
-                    <button>Submit</button>
+                <div className="form-section">
+                    <label><input ref="sticky" name="sticky" type="checkbox" defaultChecked={this.state.topic.sticky} /> Make this a sticky post. Stiky posts appear on the top of the page.</label>
+                </div>
+                <div className="form-section">
+                    <button className="btn">Submit</button>
                 </div>
             </form>
         );
