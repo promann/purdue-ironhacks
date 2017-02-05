@@ -6,7 +6,7 @@ const DB_URI = conf.isProduction ? "mongodb://bloggify:keh69T3d1QGlu=M@ds129179.
 module.exports = conf({
     "title": "Bloggify Discussions",
     "description": "A forum application.",
-    "domain": "http://bloggify-forum.com",
+    "domain": "http://ironhackplatform.herokuapp.com",
     "corePlugins": [
         "bloggify-mongoose",
     ],
@@ -39,8 +39,8 @@ module.exports = conf({
             }
         },
         "bloggify-github-login": {
-            "githubClient": "c26d485f95fb06c9002d",
-            "githubSecret": "22cb7e7b89a41b2e65338e4382909a504aa0ca0d"
+            "githubClient": "45168d125a3ba1f26fe7",
+            "githubSecret": "1f4b54ed8fd52dacd84daa8a8a5e81129e858d62"
         },
         "bloggify-mongoose": {
             "db": DB_URI,
