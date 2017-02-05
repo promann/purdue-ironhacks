@@ -15,14 +15,18 @@ const PHASES = [
 ];
 
 export default class App extends React.Component {
+
     constructor (props) {
         super(props);
+
         const users = window._pageData.users;
         const univs = {};
+
         users.forEach(c => {
             const cUniv = setOrGet(univs, c.profile.university, {});
             setOrGet(cUniv, c.profile.hack_id, []).push(c);
         });
+
         this.state = {
             user: window._pageData.user
           , users: users
@@ -48,6 +52,7 @@ export default class App extends React.Component {
                   , score_info_viz: $("[name='score_info_viz']", c).value
                   , score_novelty: $("[name='score_novelty']", c).value
                   , score_custom: $("[name='score_custom']", c).value
+                  , role: $("[name='role']", c).value
                 }
             };
         });
@@ -90,21 +95,21 @@ export default class App extends React.Component {
             univ.start_date = moment(new Date(univ.start_date));
             universitiesStartDates.push(
                 <div className="uni-start-date" key={++index} >
-                    <strong>{name}</strong>: <input data-university={name} type="date" defaultValue={univ.start_date.format("YYYY-MM-DD")} />
+                    <strong>{name}</strong>: <br/><input data-university={name} type="date" defaultValue={univ.start_date.format("YYYY-MM-DD")} />
                 </div>
-            )
+            );
         });
 
         return (
             <div className="admin-view">
-                <h4>Select Phase</h4>
+                <h2>Select Phase</h2>
                 <p>Select the project phase and then click the save button.</p>
                 <div className="phase-select-wrapper">
                     <select value={this.state.phase} id="contest-phase" className="phase-select" onChange={this.onPhaseChange.bind(this)}>
                         {options}
                     </select>
                 </div>
-                <h4>Start Dates</h4>
+                <h2>Start Dates</h2>
                 <p><strong>Tip:</strong> Use a past date to force starting of the contest.</p>
                 {universitiesStartDates}
 

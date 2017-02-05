@@ -16,7 +16,7 @@ export default class AdminUniversityItem extends React.Component {
     render () {
         return (
             <div>
-                <h2>University: {this.props.university.name}</h2>
+                <h2>University: <span className="university-name">{this.props.university.name}</span></h2>
                 {this.renderItems()}
             </div>
         );

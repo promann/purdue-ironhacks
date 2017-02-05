@@ -1,25 +1,46 @@
 <% include("../../../views/header", { title: profile.username }) %>
-<h1><%= profile.username %></h1>
-<% if (profile._id.toString() === user._id.toString()) { %>
-    <a href="<%= profile.url %>/edit">Edit</a>
-    <% include("../../../views/logout") %>
-<% } %>
-<% profileInfo = profile.profile || {} %>
-<% if (profileInfo.picture) { %>
-    <img src="<%= profileInfo.picture %>">
-<% } %>
-<% if (profileInfo.twitter) { %>
-    <p>Twitter: <a target="_blank" href="https://twitter.com/<%= profileInfo.twitter %>"><%= profileInfo.twitter %></a></p>
-<% } %>
-<% if (profileInfo.bio) { %>
-    <p>
-        <%= profileInfo.bio %>
-    </p>
-<% } %>
-<% if (profileInfo.website) { %>
-    <p>
-        Website:
-        <a target="_blank" href="<%= profileInfo.website %>"><%= profileInfo.website %></a>
-    </p>
-<% } %>
+<% include("../../../views/container/start") %>
+<div class="row">
+    <div class="col">
+        <% profileInfo = profile.profile || {} %>
+        <h1>
+            <%= profile.username %>
+        </h1>
+        <% if (profile._id.toString() === user._id.toString()) { %>
+            <div class="user-profile-controls">
+                <% include("../../../views/logout") %>
+                <a href="<%= profile.url %>/edit">Edit profile</a>
+            </div>
+        <% } %>
+        <div class="social-links">
+            <% if (profileInfo.github_username) { %>
+                <span>
+                    GitHub:
+                    <a target="_blank" href="https://twitter.com/<%= profileInfo.github_username %>"><i class="fa fa-github" aria-hidden="true"></i> <%= profileInfo.github_username %></a>
+                </span>
+            <% } %>
+            <% if (profileInfo.twitter) { %>
+                | <span>
+                    Twitter:
+                    <a target="_blank" href="https://twitter.com/<%= profileInfo.twitter %>">
+                        <i class="fa fa-twitter" aria-hidden="true"></i> <%= profileInfo.twitter %>
+                    </a>
+                </span>
+            <% } %>
+        </div>
+        <% if (profileInfo.bio) { %>
+            <p>
+                <i>
+                    <%= profileInfo.bio %>
+                </i>
+            </p>
+        <% } %>
+    </div>
+    <div class="col">
+        <% if (profileInfo.picture) { %>
+            <img src="<%= profileInfo.picture %>">
+        <% } %>
+    </div>
+</div>
+<% include("../../../views/container/end") %>
 <% include("../../../views/footer") %>

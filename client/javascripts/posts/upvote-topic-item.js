@@ -1,10 +1,6 @@
 import React from "react";
-import util from "../util";
 
 export default class UpvoteTopicItem extends React.Component {
-    get upvoted () {
-        return this.props.votes.includes(this.props.user._id)
-    }
 
     render () {
         return (
@@ -15,15 +11,8 @@ export default class UpvoteTopicItem extends React.Component {
     }
 
     renderUpvoteBtn () {
-        return <a href="#" className={this.upvoted ? "upvoted" : "not-upvoted"} onClick={this.toggleVote.bind(this)}>
+        return <a href="#" className={this.props.upvoted ? "upvoted" : "not-upvoted"} onClick={this.props.toggleVote}>
             <i className="fa fa-chevron-up" aria-hidden="true"></i>
         </a>;
-    }
-
-    toggleVote (e) {
-        util.post(`${this.props.url}/toggle-vote`, {
-            topic: this.props._id
-        });
-        e.preventDefault();
     }
 }

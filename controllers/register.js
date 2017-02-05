@@ -74,7 +74,6 @@ exports.post = (lien, cb) => {
         }
     });
 
-
     let surveyLink = selectedUni.survey;
     const qsParams = qs.stringify({
         redirect_to: `${Bloggify.options.metadata.domain}/register?uid=${user.password}`

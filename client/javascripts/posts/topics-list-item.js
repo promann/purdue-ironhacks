@@ -1,13 +1,31 @@
 import React from "react";
+import util from "../util";
 import UpvoteTopicItem from "./upvote-topic-item";
 
 export default class TopicsListItem extends React.Component {
+    constructor (props) {
+        super(props);
+        this.state = {
+            user: _pageData.user
+        };
+    }
     renderUpvote () {
         const user = _pageData.user;
         if (!user) {
             return "";
         }
-        return <UpvoteTopicItem {...this.props} user={user}/>
+        return <UpvoteTopicItem upvoted={this.upvoted} toggleVote={this.toggleVote.bind(this)} {...this.props} user={user}/>
+    }
+
+    get upvoted () {
+        return this.props.votes.includes(this.state.user._id)
+    }
+
+    toggleVote (e) {
+        util.post(`${this.props.url}/toggle-vote`, {
+            topic: this.props._id
+        });
+        e.preventDefault();
     }
 
     renderEdit () {
@@ -22,41 +40,39 @@ export default class TopicsListItem extends React.Component {
     render () {
         let itemNumber = this.props.itemNumber ? <div className="item-number">{this.props.itemNumber}</div> : "";
         let commentsCount = this.props.comments.length;
-        return (
-            <div className={`post-item ${this.props.sticky ? "topic-sticky" : "topic-not-sticky"}`}>
-                {itemNumber}
-                {this.renderUpvote()}
-                <div className="topic-content">
-                    <a href={this.props.url} className="post-item-title">
-                        <h2>
-                            {this.props.title}
-                        </h2>
-                    </a>
-                    <div className="post-info">
-                        <span className="post-info-section">
-                            <a href={`/users/${this.props.author.username}`}>
-                                <strong>{this.props.author.username}</strong>
-                            </a>
-                        </span>
-                        <span className="post-info-section">
-                            {this.props.votes.length} <i className="fa fa-heart" aria-hidden="true"></i>
-                        </span>
-			{" | "}
-                        <span className="post-info-section">
-                            {this.props.created_at.fromNow()}
-                        </span>
-			{" | "}
-                        <span className="post-info-section">
-                            {commentsCount} Comment{commentsCount!== 1 ? "s" : ""}
-                        </span>
-                        {this.renderEdit()}
-                        <div className="comments-count">
-                            <i className="fa fa-comment-o" aria-hidden="true"></i>
-                            <span className="comments-number">{commentsCount}</span>
-                        </div>
+        return <div className={`post-item ${this.props.sticky ? "topic-sticky" : "topic-not-sticky"}`}>
+            {itemNumber}
+            {this.renderUpvote()}
+            <div className="topic-content">
+                <a href={this.props.url} className="post-item-title">
+                    <h2>
+                        {this.props.title}
+                    </h2>
+                </a>
+                <div className="post-info">
+                    <span className="post-info-section">
+                        <a href={`/users/${this.props.author.username}`}>
+                            <strong>{this.props.author.username}</strong>
+                        </a>
+                    </span>
+                    <span className="post-info-section">
+                        <span className={this.upvoted ? "post-upvoted" : "post-not-upvoted"} onClick={this.toggleVote.bind(this)}>{this.props.votes.length} <i className="fa fa-heart" aria-hidden="true"></i></span>
+                    </span>
+                    {" | "}
+                    <span className="post-info-section">
+                        {this.props.created_at.fromNow()}
+                    </span>
+                    {" | "}
+                    <span className="post-info-section">
+                        {commentsCount} Comment{commentsCount!== 1 ? "s" : ""}
+                    </span>
+                    {this.renderEdit()}
+                    <div className="comments-count">
+                        <i className="fa fa-comment-o" aria-hidden="true"></i>
+                        <span className="comments-number">{commentsCount}</span>
                     </div>
                 </div>
             </div>
-        )
+        </div>;
     }
 }

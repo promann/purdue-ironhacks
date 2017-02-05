@@ -26,15 +26,16 @@ class Comment {
 };
 
 Comment.model = Bloggify.models.Comment
-Comment.model.schema.pre("save", function (next) {
+Comment.model.addHook("pre", "save", function (next) {
     this.wasNew = this.isNew;
     next();
 });
 
-Comment.model.schema.post("save", function (comment) {
+Comment.model.addHook("post", "save", function (next) {
     if (this.wasNew) {
-        Bloggify.emit("comment:created", comment);
+        Bloggify.emit("comment:created", this);
     }
+    next();
 });
 
 module.exports = Comment;

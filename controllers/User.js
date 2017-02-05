@@ -73,7 +73,7 @@ class User {
 }
 
 User.model = Bloggify.models.User
-User.model.schema.pre("save", function (next) {
+User.model.addHook("pre", "save", function (next) {
     const phases = ["phase1", "phase2", "phase3", "phase4"];
     phases.forEach(cPhase => {
         const phaseObj = Object(this.profile[cPhase]);

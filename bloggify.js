@@ -49,7 +49,8 @@ module.exports = conf({
                     "username": "string",
                     "email": "string",
                     "password": "string",
-                    "profile": "object"
+                    "profile": "object",
+                    "role": "string"
                 },
                 "Topic": {
                     "author": "string",

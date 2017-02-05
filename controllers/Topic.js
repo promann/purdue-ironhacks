@@ -176,7 +176,7 @@ class Topic {
 };
 
 Topic.model = Bloggify.models.Topic;
-Topic.model.schema.pre("save", function (next) {
+Topic.model.addHook("pre", "save", function (next) {
     this.set("title", deffy(this.title, "").trim());
     this.set("body", deffy(this.body, "").trim());
     if (!this.title.length) {
@@ -189,13 +189,14 @@ Topic.model.schema.pre("save", function (next) {
     next();
 });
 
-Topic.model.schema.post("save", topic => {
-    debugger
+Topic.model.addHook("post", "save", function (next) {
+    const topic = this;
     if (topic.wasNew) {
         Topic.emitTopicCreated(topic._id);
     } else {
         Topic.emitTopicUpdated(topic._id);
     }
+    next();
 });
 
 module.exports = Topic;

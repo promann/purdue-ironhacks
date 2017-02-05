@@ -30,7 +30,7 @@ const UNIVERSITIES = {
     }
 };
 
-const update = () => {
+const update = cb => {
     Settings.get((err, doc) => {
         if (err) {
             return Bloggify.log(err);
@@ -43,8 +43,10 @@ const update = () => {
             UNIVERSITIES[name].start_date = uni.start_date;
         });
     });
+    cb && cb();
 };
-Settings.model.schema.post("save", update);
+
+Settings.model.addHook("post", "save", update);
 update();
 
 forEach(UNIVERSITIES, c => {

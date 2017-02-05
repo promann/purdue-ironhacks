@@ -1,5 +1,6 @@
 @import "react-md-editor/dist/react-md-editor.css";
 @import "codemirror/lib/codemirror.css";
+@import "gridly";
 
 span.user-label {
     display: inline-block;
@@ -267,3 +268,13 @@ h1, h2, h3, h4, h5, h6, h7 {
     margin-bottom: 0;
 }
 
+.user-profile-controls form {
+    display: inline-block;
+}
+
+span.post-upvoted {
+    color: #e74c3c;
+}
+span.post-upvoted, span.post-not-upvoted {
+    cursor: pointer;
+}

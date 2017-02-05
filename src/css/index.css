@@ -208,7 +208,12 @@ span.site-title {position: absolute;left: 50%;transform: translateX(-50%);}
     border-radius: 4px;
 }
 
-input[type="text"], input[type="email"] {
+textarea {
+    resize: vertical;
+    min-height: 200px;
+}
+
+select, input[type="date"], input[type="number"], input[type="text"], input[type="email"], input[type="url"], textarea {
     padding: 8px 10px;
     font-size: 21px;
     border-radius: 4px;
@@ -265,4 +270,9 @@ pre {
         padding: 10px;
         text-align: center;
     }
+}
+
+.uni-start-date strong,
+.university-name {
+    text-transform: capitalize;
 }
