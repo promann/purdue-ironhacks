@@ -1,0 +1,22 @@
+<% include("../../../views/header", { title: "Edit Profile" }) %>
+<h1><%= profile.username %></h1>
+<% profileInfo = profile.profile || {} %>
+<form method="post">
+    <%- lien.csrfInput %>
+    <div>
+    Twitter Username: <input type="text" name="twitter" value="<%= profileInfo.twitter || "" %>">
+    </div>
+    <div>
+    Bio:
+    </div>
+    <div>
+    <textarea name="bio"><%= profileInfo.bio || ""%></textarea>
+    </div>
+    <div>
+    Website: <input type="url" name="website" value="<%= profileInfo.website || "" %>">
+    </div>
+    <div>
+    <button>Submit</button>
+    </div>
+</form>
+<% include("../../../views/footer") %>

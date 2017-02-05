@@ -1,0 +1,40 @@
+<% include("../views/header", { title: "Home" }) %>
+<% include("../views/container/start") %>
+<div class="partners-list">
+    <a href="https://www.redhat.com/en" target="_blank">
+	<img src="<%= _public("/images/partners/redhat.png") %>" alt="redhat">
+    </a>
+    <a href="http://www.westlafayette.in.gov/" target="_blank">
+	<img src="<%= _public("/images/partners/citywl.png") %>" alt="City of West Lafayette">
+    </a>
+    <a href="https://socrata.com/" target="_blank">
+	<img src="<%= _public("/images/partners/socrata.png") %>" alt="Socrata">
+    </a>
+    <a href="http://www.10inhouse.com/#10-in-house" target="_blank">
+	<img src="<%= _public("/images/partners/inhouse.png") %>" alt="10 in House">
+    </a>
+    <a href="http://matchboxstudio.org/" target="_blank">
+	<img src="<%= _public("/images/partners/matchbox.png") %>" alt="Match Box">
+    </a>
+    <a href="https://datascience.nih.gov/bd2k" target="_blank">
+	<img src="<%= _public("/images/partners/nih.png") %>" alt="NIH">
+    </a>
+    <a href="http://www.nsf.gov/" target="_blank">
+	<img src="<%= _public("/images/partners/nsf.png") %>" alt="NSF">
+    </a>
+    <a href="http://www.in.gov/isac/" target="_blank">
+	<img src="<%= _public("/images/partners/iac.png") %>" alt="Indiana Arts Commission">
+    </a>
+    <a href="http://purduehackers.com/" target="_blank">
+	<img src="<%= _public("/images/partners/hackers.png") %>" alt="Purdue Hackers">
+    </a>
+</div>
+
+<% if (user) { %>
+    <% include("../views/homepage/auth") %>
+<% } else { %>
+    <% include("../views/homepage/public") %>
+<% } %>
+
+<% include("../views/container/end") %>
+<% include("../views/footer") %>

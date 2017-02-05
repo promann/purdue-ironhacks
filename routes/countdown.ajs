@@ -1,0 +1,16 @@
+<% include("../views/header", { title: "Countdown" }) %>
+<% include("../views/container/start") %>
+
+<script>
+    window._pageData = {
+        component: "countdown",
+        user: <%- stringify(user) %>,
+        end_time: <%- stringify(university.start_date) %>,
+        current_time: new Date()
+    };
+</script>
+
+<div id="app"></div>
+
+<% include("../views/container/end") %>
+<% include("../views/footer") %>

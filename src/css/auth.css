@@ -1,0 +1,269 @@
+@import "react-md-editor/dist/react-md-editor.css";
+@import "codemirror/lib/codemirror.css";
+
+span.user-label {
+    display: inline-block;
+    min-width: 180px;
+    font-weight: bold;
+}
+
+.user-item {
+    background: white;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.admin-view {
+    position: relative;
+}
+
+.loader-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: white;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+    text-align: center;
+    z-index: 9999;
+}
+
+.loader {
+    font-size: 3em;
+    position: fixed;
+    z-index: 99999;
+    bottom: 80px;
+}
+
+.CodeMirror.cm-s-default {
+    font-family: Monaco, monospace;
+}
+
+body.university-bogota nav,
+body.university-platzi nav,
+body.university-bogota footer,
+body.university-platzi footer,
+body.university-bogota .btn,
+body.university-platzi .btn {
+    background: #111;
+}
+
+body.university-bogota h1,
+body.university-platzi h1,
+body.university-bogota h2,
+body.university-platzi h2,
+body.university-bogota h3,
+body.university-platzi h3,
+body.university-bogota h4,
+body.university-platzi h4 {
+    color: #111;
+}
+
+body.university-purdue nav,
+body.university-purdue footer {
+    background: #f39c12;
+}
+
+body.university-purdue .btn {
+    background: #e67e22;
+}
+
+body.university-purdue h1,
+body.university-purdue h2,
+body.university-purdue h3,
+body.university-purdue h4 {
+    color: #f39c12;
+}
+
+.post-item {
+    position: relative;
+}
+
+.item-number {
+    position: absolute;
+    left: -30px;
+    top: 30px;
+    color: #ccc;
+}
+
+.upvote-comment,
+.upvote-topic {
+    width: 40px;
+    display: inline-block;
+    float: left;
+    padding: 10px 0;
+}
+
+.comment-content,
+.topic-content {
+    display: inline-block;
+    display: inline-block;
+    width: calc(100% - 100px);
+}
+
+.upvote-comment > a,
+.upvote-topic > a {
+    color: #444;
+    display: inline-block;
+    padding: 2px 5px;
+    border-radius: 100%;
+    border: 1px solid;
+    height: 27px;
+    line-height: 0;
+    width: 27px;
+    text-align: center;
+    transition: 300ms transform ease;
+}
+
+
+.upvote-comment > a.upvoted,
+.upvote-topic > a.upvoted {
+    color: #f39c12;
+    transform: scale(1.2);
+}
+
+.post-info {
+    color: #888;
+}
+
+span.post-info-section {
+    margin: 0 5px;
+}
+
+span.post-info-section:first-of-type {
+    margin-left: 0;
+}
+
+span.post-info-section:last-of-type {
+    margin-right: 0;
+}
+
+a {
+    color: #f39c12;
+}
+
+.post-item:first-of-type {
+    border-radius: 4px 4px 0 0
+}
+
+
+.topic-single .post-item,
+.post-item:last-of-type {
+    border-radius: 0 0 4px 4px;
+    border-bottom: none;
+}
+
+
+.post-item {
+    background: rgba(0, 0, 0, 0.01);
+}
+
+.comments-count {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: -5px;
+}
+
+.comments-count i.fa.fa-comment-o {
+    font-size: 36px;
+}
+
+.comments-count > span.comments-number {
+    position: absolute;
+    right: 50%;
+    top: 7px;
+    transform: translateX(50%);
+}
+
+.topic-single a.post-item-title h2 {
+    font-size: 20px;
+}
+
+.topic-body-markdown {
+    font-size: 16px;
+}
+
+.topic-single .CodeMirror {
+  border: 1px solid #eee;
+  height: auto;
+  min-height: 60px;
+}
+
+.topic-single .MDEditor_toolbar {transform: scale(0.6);transform-origin: left;}
+
+.topic-single .MDEditor_editor {
+    width: calc(100% - 60px);
+    float: left;
+    margin-right: 8px;
+}
+
+hr {
+    border-color: rgba(204, 204, 204, 0.27);
+    border-width: 1px;
+    border-bottom: none;
+}
+
+.topic-single .MDEditor_toolbar {
+    margin-bottom: -5px;
+}
+
+.topic-single .post-item {
+    left: -60px;
+    width: calc(100% + 60px);
+}
+
+.topic-comment-item {
+    position: relative;
+    background: #fdfdfd;
+    padding: 13px;
+    margin-bottom: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+}
+
+a.comment-profile-link {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+}
+
+a.comment-profile-link img {
+    width: 50px;
+}
+
+a.comment-profile-link img {
+    border-radius: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+}
+
+span.comment-votes-count {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #e74c3c;
+}
+
+span.upvote-comment {
+    position: relative;
+    width: 29px;
+    margin-right: 15px;
+}
+
+.post-comment-form-wrapper {
+    margin-bottom: 50px;
+}
+
+.post-comment-form-wrapper h3 {
+    margin-top: 30px;
+}
+
+h1, h2, h3, h4, h5, h6, h7 {
+    margin-bottom: 0;
+}
+

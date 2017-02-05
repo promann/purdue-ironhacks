@@ -1,0 +1,16 @@
+<% include("../views/header", { title: "Scores" }) %>
+<% include("../views/container/start") %>
+
+<h1>Scores (<%= phase %>)</h1>
+<div id="app"></div>
+<script>
+    window._pageData = {
+        component: "scores",
+        user: <%- stringify(lien.user) %>,
+        hackers: <%- stringify(users) %>,
+        csrfToken: <%- stringify(lien.csrfToken) %>
+    };
+</script>
+
+<% include("../views/container/end") %>
+<% include("../views/footer") %>
