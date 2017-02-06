@@ -3,9 +3,7 @@ git checkout -B heroku-deploy
 git merge master
 npm run bundle
 
-echo "*
-!public
-!.gitignore" > .bloggify/.gitignore
+echo "bundle-cache/" > .bloggify/.gitignore
 
 git add . -A
 git commit -m 'Bundle and deploy' .
