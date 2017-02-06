@@ -1,7 +1,11 @@
 <nav>
     <span class="auth-buttons float-left">
+        <a href="/" class="show-xs">Home</a>
         <% if (user) { %>
-            <a href="/scores">Scores</a>
+            | <a href="/scores">Scores</a>
+            <% if (Bloggify.controllers.Session.isAdmin(lien)) { %>
+                | <a href="/admin">Admin</a>
+            <% } %>
         <% } %>
     </span>
     <span class="site-title">

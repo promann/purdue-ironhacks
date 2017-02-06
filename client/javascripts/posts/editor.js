@@ -12,21 +12,26 @@ export default class TopicEditor extends React.Component {
     }
 
     renderAdminFields () {
-        if (location.pathname !== "/new" || _pageData.isAdmin) {
-            return;
+        if (location.pathname === "/new" && _pageData.isAdmin) {
+            return <div className="form-section">
+                <div className="row">
+                    <div className="col">
+                        <h3>University</h3>
+                        <p>Choose the university. Without changing these, you will post the topic on the forum you belong to.</p>
+                        <select name="university" defaultValue={_pageData.user.profile.university}>
+                            <option value="purdue">Purdue</option>
+                            <option value="bogota">Bogota</option>
+                            <option value="platzi">Platzi</option>
+                        </select>
+                    </div>
+                    <div className="col">
+                        <h3>Hack ID</h3>
+                        <p>This should be <code>0</code> for Purdue, and 0, 1 or 2 for the others.</p>
+                        <input name="hackId" type="number" placeholder="Hack Id" defaultValue="0" min="0" max="2" defaultValue={_pageData.user.profile.hack_id} />
+                    </div>
+                </div>
+            </div>
         }
-        return <div className="form-section">
-            <h3>University</h3>
-            <select name="university">
-                <option value="purdue">Purdue</option>
-                <option value="bogota">Bogota</option>
-                <option value="platzi">Platzi</option>
-            </select>
-
-            <h3>Hack ID</h3>
-            <p>This should be <code>0</code> for Purdue, and 0, 1 or 2 for the others.</p>
-            <input name="hackId" type="number" placeholder="Hack Id" defaultValue="0" min="0" max="2"/>
-        </div>
     }
 
     render () {

@@ -43,6 +43,7 @@ exports.topicCreated = topic => {
         email: 1
     }, (err, docs) => {
         const emails = docs.map(c => c.email);
+        debugger
         const authorEmail = topic.author.email;
         uniq(emails);
         const authorIndex = emails.indexOf(authorEmail);

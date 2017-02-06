@@ -62,6 +62,8 @@ module.exports = bloggify => {
             metadata: lien.data.metadata || {}
         };
 
+        ev.metadata.user_agent = lien.header("user-agent");
+
         Settings.get((err, settings) => {
             if (settings) {
                 ev.metadata.phase = settings.settings.phase;

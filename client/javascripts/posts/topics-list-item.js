@@ -28,8 +28,16 @@ export default class TopicsListItem extends React.Component {
         e.preventDefault();
     }
 
+    renderAdminInfo () {
+        if (window._pageData.isAdmin) {
+            return <span className="post-info-section">
+                University: <span className="university-name">{this.props.metadata.university}</span> <span>{this.props.metadata.hack_id}</span>
+            </span>
+        }
+    }
+
     renderEdit () {
-        if (this.props.author._id === window._pageData.user._id) {
+        if (window._pageData.isAdmin || this.props.author._id === window._pageData.user._id) {
             return <span className="post-info-section">
                 <a href={`${this.props.url}/edit`}>Edit</a>
             </span>;
@@ -69,6 +77,7 @@ export default class TopicsListItem extends React.Component {
                     </span>
                     </span>
                     {this.renderEdit()}
+                    {this.renderAdminInfo()}
                     <div className="comments-count">
                         <i className="fa fa-comment-o" aria-hidden="true"></i>
                         <span className="comments-number">{commentsCount}</span>

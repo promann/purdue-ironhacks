@@ -281,3 +281,8 @@ pre {
 }
 
 .hide { display: none; }
+
+.text-right { text-align: right; }
+.col {
+    padding: 10px;
+}
