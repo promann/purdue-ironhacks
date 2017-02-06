@@ -49,7 +49,7 @@ export default class TopicEditor extends React.Component {
                     <Editor value={this.state.topic.body} onChange={this.updateBody.bind(this)} />
                 </div>
                 <div className="form-section">
-                    <label><input ref="sticky" name="sticky" type="checkbox" defaultChecked={this.state.topic.sticky} /> Make this a sticky post. Stiky posts appear on the top of the page.</label>
+                    <label><input ref="sticky" name="sticky" type="checkbox" defaultChecked={this.state.topic.sticky} /> Make this a sticky post. Sticky posts appear on the top of the page.</label>
                 </div>
                 <div className="form-section">
                     <button className="btn">Submit</button>
