@@ -8,7 +8,8 @@
     "start": "NODE_ENV=production bloggify start --no-bundle",
     "start:dev": "bloggify start --no-bundle",
     "bundle": "bloggify start --exit-after-bundle",
-    "start:debug": "node debug `which bloggify` start"
+    "start:debug": "node debug `which bloggify` start",
+    "deploy": "./scripts/heroku-deploy.sh"
   },
   "author": "Ionică Bizău <bizauionica@gmail.com> (http://ionicabizau.net)",
   "license": "MIT",
