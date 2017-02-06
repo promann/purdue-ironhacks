@@ -212,11 +212,6 @@ hr {
     margin-bottom: -5px;
 }
 
-.topic-single .post-item {
-    left: -60px;
-    width: calc(100% + 60px);
-}
-
 .topic-comment-item {
     position: relative;
     background: #fdfdfd;

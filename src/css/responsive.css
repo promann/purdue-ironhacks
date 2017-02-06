@@ -20,6 +20,13 @@
         margin-left: -40px;
     }
 }
+@media (min-width: 400px) {
+    .topic-single .post-item {
+        left: -60px;
+        width: calc(100% + 60px);
+    }
+}
+
 
 footer .bag {
     position: relative;

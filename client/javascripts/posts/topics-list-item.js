@@ -62,9 +62,11 @@ export default class TopicsListItem extends React.Component {
                     <span className="post-info-section">
                         {this.props.created_at.fromNow()}
                     </span>
+                    <span className="hide-xs">
                     {" | "}
                     <span className="post-info-section">
                         {commentsCount} Comment{commentsCount!== 1 ? "s" : ""}
+                    </span>
                     </span>
                     {this.renderEdit()}
                     <div className="comments-count">
