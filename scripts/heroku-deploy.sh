@@ -1,6 +1,7 @@
 echo "Create the heroku-deploy"
 git checkout -B heroku-deploy
 git merge master
+rm -rf .bloggify/bundle-cache
 npm run bundle
 
 echo "bundle-cache/" > .bloggify/.gitignore
