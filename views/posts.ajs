@@ -3,7 +3,7 @@
         component: "topics",
         user: <%- stringify(user) %>,
         csrfToken: <%- stringify(lien.csrfToken) %>,
-        isAdmin: <%- Bloggify.controllers.Session.isAdmin(user) %>
+        isAdmin: <%- stringify(Bloggify.controllers.Session.isAdmin(user)) %>
     };
 </script>
 <div id="app"></div>

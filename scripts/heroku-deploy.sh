@@ -9,4 +9,4 @@ echo "*
 git add . -A
 git commit -m 'Bundle and deploy' .
 
-git push heroku heroku-deploy:master
+git push heroku heroku-deploy:master -f
