@@ -4,8 +4,8 @@ const conf = require("bloggify-config");
 const DB_URI = conf.isProduction ? "mongodb://bloggify:keh69T3d1QGlu=M@ds129179.mlab.com:29179/heroku_4h3bmd1g" :  "mongodb://localhost/bloggify-forum";
 
 module.exports = conf({
-    "title": "Bloggify Discussions",
-    "description": "A forum application.",
+    "title": "IronHack",
+    "description": "",
     "domain": "http://ironhackplatform.herokuapp.com",
     "corePlugins": [
         "bloggify-mongoose",

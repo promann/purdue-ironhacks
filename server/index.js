@@ -6,6 +6,7 @@ const Bloggify = require("bloggify")
     , SocketIO = require("socket.io")
     , idy = require("idy")
     , Settings = require("../controllers/Settings")
+    , CSVEndpoints = require("./csv")
     ;
 
 module.exports = bloggify => {
@@ -26,6 +27,7 @@ module.exports = bloggify => {
         }
         cb();
     });
+    CSVEndpoints.init();
 
     Bloggify.server.addPage("/api/posts", lien => {
         const user = Session.getUser(lien);

@@ -102,16 +102,26 @@ export default class App extends React.Component {
 
         return (
             <div className="admin-view">
-                <h2>Select Phase</h2>
-                <p>Select the project phase and then click the save button.</p>
-                <div className="phase-select-wrapper">
-                    <select value={this.state.phase} id="contest-phase" className="phase-select" onChange={this.onPhaseChange.bind(this)}>
-                        {options}
-                    </select>
+                <div className="row">
+                    <div className="col">
+                        <h2>Select Phase</h2>
+                        <p>Select the project phase and then click the save button.</p>
+                        <div className="phase-select-wrapper">
+                            <select value={this.state.phase} id="contest-phase" className="phase-select" onChange={this.onPhaseChange.bind(this)}>
+                                {options}
+                            </select>
+                        </div>
+                        <h2>Start Dates</h2>
+                        <p><strong>Tip:</strong> Use a past date to force starting of the contest.</p>
+                        {universitiesStartDates}
+                    </div>
+                    <div className="col">
+                        <h2>Download CSV Stats</h2>
+                        <a className="btn" href="/admin/csv/topics">Topics</a>
+                        {" "}
+                        <a className="btn" href="/admin/csv/scores">Scores</a>
+                    </div>
                 </div>
-                <h2>Start Dates</h2>
-                <p><strong>Tip:</strong> Use a past date to force starting of the contest.</p>
-                {universitiesStartDates}
 
                 <h1>Users</h1>
                 <p>You can update the scores and then click the save button. The custom score, if provided, will override the total.</p>

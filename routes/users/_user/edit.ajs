@@ -16,7 +16,7 @@
             <textarea name="bio"><%= profileInfo.bio || ""%></textarea>
         </label>
     </div>
-    <div class="form-section">
+    <div class="form-section hide">
         <label>
             <strong>Website</strong>:<br>
             <input type="url" name="website" value="<%= profileInfo.website || "" %>">

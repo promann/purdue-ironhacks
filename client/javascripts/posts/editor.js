@@ -12,7 +12,7 @@ export default class TopicEditor extends React.Component {
     }
 
     renderAdminFields () {
-        if (!_pageData.isAdmin) {
+        if (location.pathname !== "/new" || _pageData.isAdmin) {
             return;
         }
         return <div className="form-section">
