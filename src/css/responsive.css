@@ -15,11 +15,6 @@
     }
 }
 
-@media (max-width: 570px) {
-    .site-title {
-        margin-left: -40px;
-    }
-}
 @media (min-width: 400px) {
     .topic-single .post-item {
         left: -60px;

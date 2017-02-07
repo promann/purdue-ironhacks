@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=production bloggify start --no-bundle",
-    "start:dev": "bloggify start --no-bundle",
+    "start:dev": "bloggify start",
     "bundle": "NODE_ENV=production bloggify start --exit-after-bundle",
     "start:debug": "node debug `which bloggify` start",
     "deploy": "./scripts/heroku-deploy.sh"
@@ -28,6 +28,7 @@
     "fast-csv": "^2.3.1",
     "gridly": "^1.4.8",
     "moment": "^2.17.1",
+    "moment-timezone": "^0.5.11",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-markdown": "^2.4.4",

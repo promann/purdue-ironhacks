@@ -45,10 +45,12 @@ exports.topics = function () {
                 csvStream.write({
                     click_date: doc.created_at.format("YYYY-MM-DD"),
                     click_time: doc.created_at.format("hh:mm a"),
-                    url: `/posts/${topic._id}-${topic.slug}`,
+                    url: `${Bloggify.options.metadata.domain}/posts/${topic._id}-${topic.slug}`,
+                    phase: doc.metadata.phase,
                     post_title: topic.title,
                     post_author: author.username,
-                    clicker_user: actor._id,
+                    post_author_email: author.email,
+                    clicker_username: actor.username,
                     clicker_email: actor.email
                 });
             }
@@ -93,8 +95,10 @@ exports.scores = function () {
                 click_time: doc.created_at.format("hh:mm a"),
                 url: doc.metadata.url,
                 phase: doc.metadata.phase,
+                hacker_username: hacker.username,
                 hacker_email: hacker.email,
-                clicker_username: actor.email
+                clicker_username: actor.username,
+                clicker_email: actor.email
             });
             readStream.resume();
         }).catch(e => {
