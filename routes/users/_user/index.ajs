@@ -16,7 +16,7 @@
             <% if (profileInfo.github_username) { %>
                 <span>
                     GitHub:
-                    <a target="_blank" href="https://twitter.com/<%= profileInfo.github_username %>"><i class="fa fa-github" aria-hidden="true"></i> <%= profileInfo.github_username %></a>
+                    <a target="_blank" href="https://github.com/<%= profileInfo.github_username %>"><i class="fa fa-github" aria-hidden="true"></i> <%= profileInfo.github_username %></a>
                 </span>
             <% } %>
             <% if (profileInfo.twitter) { %>
