@@ -8,9 +8,7 @@ exports.get = (lien, cb) => {
     }
     User.get({
         filters: {
-            username: lien.params.user,
-            "profile.university": authUser.profile.university,
-            "profile.hack_id": authUser.profile.hack_id
+            username: lien.params.user
         }
       , fields: {
             password: 0
