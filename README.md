@@ -1,11 +1,7 @@
 # IronHack Platform
 The IronHack Platform built on Bloggify.
 
-### Deployment
-
-```sh
-git push heroku master
-```
+### About
 
 App url: http://ironhackplatform.herokuapp.com/
 
