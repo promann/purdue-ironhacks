@@ -94,6 +94,7 @@ exports.scores = function () {
             csvStream.write({
                 click_date: doc.created_at.format("YYYY-MM-DD"),
                 click_time: doc.created_at.format("hh:mm a"),
+                event_type: doc.event,
                 url: doc.metadata.url || "",
                 phase: doc.metadata.phase,
                 hacker_username: hacker.username,
