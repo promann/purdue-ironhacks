@@ -74,11 +74,12 @@ exports.scores = function () {
             event: "click-github-repo-url",
         }, {
             event: "click-project-url"
+        }, {
+            event: "score-click"
         }]
     }).stream();
 
     readStream.on("data", doc => {
-        debugger
         doc = doc.toObject()
         doc.created_at = moment(doc.created_at)
         readStream.pause();
@@ -93,7 +94,7 @@ exports.scores = function () {
             csvStream.write({
                 click_date: doc.created_at.format("YYYY-MM-DD"),
                 click_time: doc.created_at.format("hh:mm a"),
-                url: doc.metadata.url,
+                url: doc.metadata.url || "",
                 phase: doc.metadata.phase,
                 hacker_username: hacker.username,
                 hacker_email: hacker.email,
