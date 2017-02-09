@@ -9,7 +9,7 @@
         <% if (profile._id.toString() === user._id.toString()) { %>
             <div class="user-profile-controls">
                 <% include("../../../views/logout") %>
-                <a href="<%= profile.url %>/edit">Edit profile</a>
+                <a class="hide" href="<%= profile.url %>/edit">Edit profile</a>
             </div>
         <% } %>
         <div class="social-links">

@@ -8,9 +8,9 @@
             <% } %>
         <% } %>
     </span>
-    <span class="site-title">
+    <span class="site-title hide-sm">
         <a href="/">
-            <span class="hide-xs">
+            <span>
                 IronHack
             </span>
         </a>
