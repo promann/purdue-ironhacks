@@ -12,6 +12,9 @@ const EMAIL_TEMPLATES = {
 
 const log = (err, data) => {
     if (err) { return Bloggify.log(err); }
+    if (process.env.NODE_ENV !== "production") {
+        console.log(data);
+    }
 };
 
 exports.commentPosted = comment => {
@@ -30,9 +33,11 @@ exports.commentPosted = comment => {
       , subject: "A new comment was posted on ‘" + comment.topic.title + "’"
       , template_id: EMAIL_TEMPLATES.NEW_COMMENT
       , substitutions: {
-            "-message-": `
-<a href="${Bloggify.options.metadata.domain}/users/${comment.author.username}">@${comment.author.username}</a> posted a new comment on ‘<a href="${Bloggify.options.metadata.domain}${comment.topic.url}">${comment.topic.title}</a>’:<br>
-<blockquote>${comment.body}</blockquote>`
+            "-message-": comment.body,
+            "-commentAuthorUsername-": comment.author.username,
+            "-commentAuthorUrl-": `${Bloggify.options.metadata.domain}/users/${comment.author.username}`,
+            "-topicUrl-": `${Bloggify.options.metadata.domain}${comment.topic.url}`,
+            "-topicTitle-": comment.topic.title
         }
     }, log);
 };
@@ -60,7 +65,8 @@ exports.topicCreated = topic => {
           , subject: "A new topic was posted: ‘" + topic.title + "’"
           , template_id: EMAIL_TEMPLATES.NEW_TOPIC
           , substitutions: {
-                "-message-": `<a href="${Bloggify.options.metadata.domain}/users/${topic.author.username}">@${topic.author.username}</a> posted a new topic: ‘<a href="${Bloggify.options.metadata.domain}/${topic.url}-">${topic.title}</a>’.`
+                "-topicUrl-": `${Bloggify.options.metadata.domain}/${topic.url}`,
+                "-topicTitle-": topic.title
             }
         }, log);
     });
