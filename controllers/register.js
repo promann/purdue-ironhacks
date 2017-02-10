@@ -27,14 +27,16 @@ exports.get = (lien, cb) => {
 
     if (userId === qsuid) {
         const uni = UNIVERSITIES[user.profile.university];
-        user.profile.hack_id = uni.getHackId();
-        return User.create(user, (err, newUser) => {
-            if (err) { return lien.redirect("/"); }
-            Bloggify.emit("user:registered", newUser);
-            lien.setSessionData({
-                user: newUser.toObject()
+        return uni.getHackId(id => {
+            user.profile.hack_id = id;
+            User.create(user, (err, newUser) => {
+                if (err) { return lien.redirect("/"); }
+                Bloggify.emit("user:registered", newUser);
+                lien.setSessionData({
+                    user: newUser.toObject()
+                });
+                lien.redirect("/");
             });
-            lien.redirect("/");
         });
     }
 
