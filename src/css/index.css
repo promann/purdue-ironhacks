@@ -28,9 +28,11 @@ html, body {
 body {
     background: #fff;
     color: #444;
-    font-family: 'Source Sans Pro', sans-serif;
     color: #4a4444;
     margin: 0;
+}
+body, input, button {
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 img { max-width: 100%; }

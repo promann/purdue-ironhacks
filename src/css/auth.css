@@ -273,3 +273,11 @@ span.post-upvoted {
 span.post-upvoted, span.post-not-upvoted {
     cursor: pointer;
 }
+
+span.logout-wrapper input {
+    font-weight: bold;
+}
+
+span.logout-wrapper {
+    float: right;
+}

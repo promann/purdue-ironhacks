@@ -4,6 +4,7 @@ const Session = require("../../Session")
     ;
 
 exports.get = (lien, cb) => {
+    return lien.next();
     const user = Session.getUser(lien);
     if (!user) { return lien.next(); }
     userIndex.get(lien, (err, data) => {
@@ -19,6 +20,7 @@ exports.get = (lien, cb) => {
 };
 
 exports.post = (lien, cb) => {
+    return lien.next();
     const user = Session.getUser(lien);
     if (!user) {
         return lien.next();

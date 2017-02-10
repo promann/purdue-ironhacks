@@ -1,17 +1,29 @@
 @media (min-width: 501px) {
-    .hide-lg { display: none; }
+    .hide-lg { display: none !important; }
 }
 
 @media (max-width: 500px) {
-    .hide-sm { display: none; }
+    .hide-sm { display: none !important; }
 }
 
 @media (max-width: 400px) {
-    .hide-xs { display: none; }
+    .hide-xs { display: none !important; }
     .MDEditor_toolbarButton {
         width: 38px;
         height: 30px;
         padding: 6px 3px;
+    }
+    a.profile-link {
+        padding: 0;
+    }
+
+    .btn.btn-small {
+        padding: 5px 2px !important;
+    }
+
+    span.auth-buttons.float-left {
+        font-size: 12px;
+        margin-top: 3px;
     }
 }
 
