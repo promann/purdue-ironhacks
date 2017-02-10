@@ -2,7 +2,8 @@ const Email = Bloggify.require("sendgrid", true);
 const uniq = require("array-unique");
 const User = require("../controllers/User");
 
-const FROM_EMAIL = "noreply@bloggify.org";
+const FROM_EMAIL = "noreply@ironhacks.com";
+const FROM_NAME = "IronHacks";
 
 const EMAIL_TEMPLATES = {
     NEW_COMMENT: "7d42ff32-0196-40d2-a444-71a5d3635810",
@@ -25,6 +26,7 @@ exports.commentPosted = comment => {
     Email.send({
         to_email: emails
       , from_email: FROM_EMAIL
+      , from_name: FROM_NAME
       , subject: "A new comment was posted on ‘" + comment.topic.title + "’"
       , template_id: EMAIL_TEMPLATES.NEW_COMMENT
       , substitutions: {
@@ -43,7 +45,6 @@ exports.topicCreated = topic => {
         email: 1
     }, (err, docs) => {
         const emails = docs.map(c => c.email);
-        debugger
         const authorEmail = topic.author.email;
         uniq(emails);
         const authorIndex = emails.indexOf(authorEmail);
@@ -55,6 +56,7 @@ exports.topicCreated = topic => {
         Email.send({
             to_email: emails
           , from_email: FROM_EMAIL
+          , from_name: FROM_NAME
           , subject: "A new topic was posted: ‘" + topic.title + "’"
           , template_id: EMAIL_TEMPLATES.NEW_TOPIC
           , substitutions: {
