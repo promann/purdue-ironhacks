@@ -2,6 +2,7 @@ const Bloggify = require("bloggify")
     , unique = require("unique-random-range")
     , forEach = require("iterate-object")
     , Settings = require("./Settings")
+    , User = require("./User")
     ;
 
 const UNIVERSITIES = {
@@ -49,8 +50,47 @@ const update = cb => {
 Settings.model.addHook("post", "save", update);
 update();
 
-forEach(UNIVERSITIES, c => {
-    c.getHackId = unique(0, c.hackatons.length - 1);
+function generateGetHackId(uni, name) {
+    return cb => {
+        switch (name) {
+            // For Purdue we have just one hack id
+            case "purdue":
+                return cb(0);
+            default:
+                User.model.aggregate([{
+                    $match: { "profile.university": name }
+                }, {
+                    $group: {
+                        _id: "$profile.hack_id",
+                        total: { $sum: 1 }
+                    }
+                }], (err, docs) => {
+                    if (err) { return cb(0); }
+                    const ids = [
+                        0,
+                        0,
+                        0
+                    ]
+                    docs.forEach(c => {
+                        ids[c._id] = c.total;
+                    });
+                    let minId = 0;
+                    let min = ids[minId];
+                    ids.forEach((count, index) => {
+                        if (count < min) {
+                            minId = index;
+                            min = ids[minId];
+                        }
+                    });
+                    cb(minId);
+                });
+                break;
+        }
+    };
+}
+
+forEach(UNIVERSITIES, (c, name) => {
+    c.getHackId = generateGetHackId(c, name);
 });
 
 module.exports = UNIVERSITIES;
