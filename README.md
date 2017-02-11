@@ -148,6 +148,16 @@ At this moment, we start a session on the server side, but we don't write any da
 
 After the the user completes the survey, they are redirected back, and the user account is created.
 
+To redirect the users to the survey, we send the `Location` header from the server to the client. Additional data is added in the url parameters to track the user:
+
+ - `email`: The email of the user
+ - `user_id`: The user id
+ - `redirect_to`: The redirection url where they will arrive after answering the survey.
+
+Using a JavaScript snippet in the survey page we store the email and the user id in the survey answer and we detect when the survey is done and redirect the users back to the app.
+
+When they finish the survey, they are redirect to the main app and the account is created.
+
 When creating a user account, we assign a `hack_id` to the user. The `hack_id` is a number between `0` and `2` based on which we create multiple forums inside of the same university.
 
 For Purdue, we have one forume (the `hack_id` will be always `0`) and for `Bogota` and `Platzi` we have three forums for each (the `hack_id` can be `0`, `1` or `2`).
