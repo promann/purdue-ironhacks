@@ -281,3 +281,13 @@ span.logout-wrapper input {
 span.logout-wrapper {
     float: right;
 }
+
+button.circle-save-btn.btn.btn-big {
+    padding: 24px 30px;
+    font-size: 3em;
+    border-radius: 100%;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    right: 10px;
+    bottom: 70px;
+}

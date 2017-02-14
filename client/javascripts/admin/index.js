@@ -128,6 +128,7 @@ export default class App extends React.Component {
                 {this.renderLoader()}
                 <AdminUniversities phase={this.state.phase} universities={this.state.Universities} />
                 <button onClick={this.saveUsers.bind(this)} className="save-btn btn btn-big full-width">Save</button>
+                <button onClick={this.saveUsers.bind(this)} className="circle-save-btn btn btn-big" title="Save changes"><i className="fa fa-check" aria-hidden="true"></i></button>
             </div>
         );
     }
