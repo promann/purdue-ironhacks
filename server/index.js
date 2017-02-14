@@ -25,6 +25,16 @@ module.exports = bloggify => {
         if (user && Universities[user.profile.university].start_date > new Date()) {
             return lien.redirect("/countdown");
         }
+        if (user) {
+            return User.get(user, (err, user) => {
+                if (err) {
+                    Bloggify.log(err);
+                    return lien.redirect("/500");
+                }
+                lien.req.session._sessionData.user = user
+                cb();
+            });
+        }
         cb();
     });
     CSVEndpoints.init();

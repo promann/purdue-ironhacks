@@ -21,9 +21,18 @@ module.exports = (lien, cb) => {
         }
 
         if (lien.method === "post") {
+            let foundInvalidDate = false;
             forEach(lien.data.universities, uni => {
                 uni.start_date = new Date(uni.start_date);
+                if (isNaN(uni.start_date)) {
+                    foundInvalidDate = true;
+                }
             });
+
+            if (foundInvalidDate) {
+                return lien.apiError("Invalid date. Make sure the format is correct.");
+            }
+
             Settings.set({
                 phase: lien.data.phase
               , universities: lien.data.universities

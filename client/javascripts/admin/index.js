@@ -63,6 +63,11 @@ export default class App extends React.Component {
             universities[input.dataset.university] = { start_date: input.value };
         });
 
+        $$(".uni-subgroup").forEach(c => {
+            let input = $("input", c);
+            universities[input.dataset.university].subforums_count = (input.value - 1) || 0;
+        });
+
         this.setState({ loading: true });
         util.post(location.pathname, {
             users,
@@ -90,12 +95,21 @@ export default class App extends React.Component {
     render () {
         const options = PHASES.map((c, i) => <option key={i} value={c[1]}>{c[0]}</option>);
         const universitiesStartDates = []
+        const universitiesSubforums = []
         let index = -1;
+
         forEach(window._pageData.settings.universities, (univ, name) => {
             univ.start_date = moment(new Date(univ.start_date));
+            univ.subforums_count = univ.subforums_count || 0;
             universitiesStartDates.push(
                 <div className="uni-start-date" key={++index} >
-                    <strong>{name}</strong>: <br/><input data-university={name} type="date" defaultValue={univ.start_date.format("YYYY-MM-DD")} />
+                    <strong>{name}</strong>: <br/><input data-university={name} type="text" defaultValue={univ.start_date.format("YYYY-MM-DD HH:mm:ss")} />
+                </div>
+            );
+            universitiesSubforums.push(
+                <div className="uni-subgroup" key={index} >
+                    <strong className="university-name">{name}</strong> ({_pageData.users.filter(c => c.profile.university === name).length} students): <br/>
+                    <input data-university={name} type="number" defaultValue={univ.subforums_count + 1} />
                 </div>
             );
         });
@@ -114,6 +128,9 @@ export default class App extends React.Component {
                         <h2>Start Dates</h2>
                         <p><strong>Tip:</strong> Use a past date to force starting of the contest.</p>
                         {universitiesStartDates}
+                        <h2>Forum subgroups</h2>
+                        <p>Decide how many subforums you want for each university.</p>
+                        {universitiesSubforums}
                     </div>
                     <div className="col">
                         <h2>Download CSV Stats</h2>

@@ -50,7 +50,22 @@ class User {
             if (exists) {
                 return cb(new Error("Email/username is already registered."));
             }
-            new User.model(data).save(cb);
+
+            const UNIVERSITIES = require("./Universities")
+                , now = new Date()
+                , uni = UNIVERSITIES[data.profile.university]
+                , create = () => new User.model(data).save(cb)
+                ;
+
+            if (now > uni.start_date) {
+                uni.getHackId(id => {
+                    data.profile.hack_id = id;
+                    create();
+                });
+            } else {
+                data.profile.hack_id = null;
+                create();
+            }
         });
     }
 

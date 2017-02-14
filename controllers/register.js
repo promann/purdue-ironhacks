@@ -27,13 +27,10 @@ exports.get = (lien, cb) => {
 
     if (userId === qsuid) {
         const uni = UNIVERSITIES[user.profile.university];
-        return uni.getHackId(id => {
-            user.profile.hack_id = id;
-            User.create(user, (err, newUser) => {
-                if (err) { return lien.redirect("/"); }
-                Bloggify.emit("user:registered", newUser);
-                Session.loginUser(newUser, lien);
-            });
+        return User.create(user, (err, newUser) => {
+            if (err) { return lien.redirect("/"); }
+            Bloggify.emit("user:registered", newUser);
+            Session.loginUser(newUser, lien);
         });
     }
 
@@ -74,8 +71,12 @@ exports.post = (lien, cb) => {
     });
 
     let surveyLink = selectedUni.survey;
+    const redirectTo =  `${Bloggify.options.metadata.domain}/register?uid=${user.password}`;
+    if (process.argv.includes("--bypass-survey")) {
+        return lien.redirect(redirectTo);
+    }
     const qsParams = qs.stringify({
-        redirect_to: `${Bloggify.options.metadata.domain}/register?uid=${user.password}`
+        redirect_to: redirectTo
       , user_email: user.email
       , user_id: user._id
     });
@@ -84,17 +85,3 @@ exports.post = (lien, cb) => {
         `${surveyLink}?${qsParams}`
     );
 };
-
-//exports.post = (lien, cb) => {
-//    if (Session.isAuthenticated(lien)) {
-//        return lien.redirect("/");
-//    }
-//    User.create(lien.data, (err, data) => {
-//        if (err) {
-//            return cb(null, {
-//                err: err
-//            })
-//        }
-//        lien.redirect("/login");
-//    });
-//};

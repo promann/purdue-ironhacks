@@ -26,9 +26,9 @@ class Settings {
                   , settings: {
                         phase: "phase1"
                       , universities: {
-                            purdue: { start_date: null }
-                          , bogota: { start_date: FIFTEENTH_OF_MARCH }
-                          , platzi: { start_date: FIFTEENTH_OF_MARCH }
+                            purdue: { subforums_count: 0, start_date: null }
+                          , bogota: { subforums_count: 0, start_date: FIFTEENTH_OF_MARCH }
+                          , platzi: { subforums_count: 0, start_date: FIFTEENTH_OF_MARCH }
                         }
                     }
                 }).save()
