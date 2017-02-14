@@ -48,9 +48,9 @@ export default class ScoreItem extends React.Component {
         });
 
         const projectLinks = [
-            [this.props.hacker.project_url, "Project"]
-          , [this.props.hacker.github_repo_url, "GitHub"]
-        ].map((c, i) => {
+            this.props.showProjectColumn ? [this.props.hacker.project_url, "Project"] : null
+          , this.props.showGitHubRepoColumn ? [this.props.hacker.github_repo_url, "GitHub"] : null
+        ].filter(Boolean).map((c, i) => {
             if (!c[0]) { return <td key={i} />; }
             return <td key={i} data-label={`${c[1]}: `}>
                 <a target="_blank" href={c[0]} data-event={i ? "click-github-repo-url" : "click-project-url"} onClick={this.onLinkClick.bind(this)} data-label={c[1]}>
