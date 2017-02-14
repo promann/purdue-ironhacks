@@ -13,6 +13,16 @@ class Session {
         }
         return !!(user && (user.role === "admin" || user.username === process.env.ADMIN_USERNAME));
     }
+    static loginUser (user, lien) {
+        lien.setSessionData({
+            user: user.toObject()
+        });
+        const returnTo = lien.getSessionData("return_to");
+        if (returnTo) {
+            return lien.redirect(returnTo);
+        }
+        lien.redirect("/");
+    }
 };
 
 Bloggify.controllers = Bloggify.controllers || {};

@@ -32,10 +32,7 @@ exports.get = (lien, cb) => {
             User.create(user, (err, newUser) => {
                 if (err) { return lien.redirect("/"); }
                 Bloggify.emit("user:registered", newUser);
-                lien.setSessionData({
-                    user: newUser.toObject()
-                });
-                lien.redirect("/");
+                Session.loginUser(newUser, lien);
             });
         });
     }

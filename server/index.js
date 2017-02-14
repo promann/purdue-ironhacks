@@ -127,10 +127,7 @@ module.exports = bloggify => {
                 }
 
                 if (existingUser) {
-                    lien.startSession({
-                        user: existingUser.toObject()
-                    });
-                    return lien.redirect("/");
+                    return Session.loginUser(existingUser, lien);
                 }
 
                 const newUser = new Bloggify.models.User({

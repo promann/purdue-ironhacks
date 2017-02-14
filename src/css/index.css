@@ -96,6 +96,7 @@ footer a {
     color: #fff;
     font-size: 21px;
     text-decoration: none;
+    margin-right: 4px;
     border-radius: 3px;
     border: none;
 }
