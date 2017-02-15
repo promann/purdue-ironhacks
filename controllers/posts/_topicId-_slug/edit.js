@@ -24,10 +24,14 @@ exports.post = (lien, cb) => {
    const filters = {
       _id: lien.params.topicId
    };
+
    if (!Session.isAdmin(user)) {
         filters.author = user._id;
         delete lien.data.sticky;
+   } else {
+        lien.data.sticky = !!lien.data.sticky;
    }
+
    Topic.update(filters, lien.data, (err, topic) => {
        if (err) {
            return cb(null, {
