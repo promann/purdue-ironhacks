@@ -307,3 +307,22 @@ button.btn.btn-small.btn-delete {
     position: relative;
     bottom: 1px;
 }
+
+span.comment-controls > span {
+    margin-left: 6px;
+}
+
+span.comment-controls {
+    border-left: 1px solid rgba(0, 0, 0, 0.22);
+    margin-left: 7px;
+}
+
+.form-buttons {
+    position: relative;
+    top: 7px;
+    padding-bottom: 12px;
+}
+
+.btn-cancel {
+    opacity: 0.6;
+}

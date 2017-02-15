@@ -6,6 +6,12 @@ export default {
         topic.created_at = moment(topic.created_at);
         return topic;
     }
+  , topicUrl (topicId) {
+        if (topicId._id) {
+            topicId = topicId._id;
+        }
+        return `/posts/${topicId}-topic`;
+    }
   , post (url, data) {
         data._csrf = data._csrf || _pageData.csrfToken;
         return fetch(url, {

@@ -48,7 +48,7 @@ export default class TopicsListItem extends React.Component {
 
     onDeleteIntent (e) {
         if (!confirm('Are you sure you wish to delete?')) {
-            e.preventDefault();
+            return e.preventDefault();
         }
     }
 

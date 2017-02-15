@@ -14,6 +14,7 @@ export default class CommentForm extends React.Component {
             </form>
         </div>
     }
+
     updateCommentBody (comment) {
         this.refs.commentBody.value = comment;
     }

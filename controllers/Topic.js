@@ -168,6 +168,23 @@ class Topic {
         });
     }
 
+    static updateComment (filters, commentBody, cb) {
+        commentBody = deffy(commentBody, "").trim();
+        if (!commentBody) {
+            return cb(new Error("The comment body cannot be blank."));
+        }
+        Comment.get(filters, (err, comment) => {
+            if (err) { return cb(err); }
+            comment.set("body", commentBody);
+            comment.save(cb).then(c => {
+                Topic.emitTopicUpdated(comment.topic);
+            });
+        });
+    }
+    static deleteComment (filters, cb) {
+        Comment.model.remove(filters, cb);
+    }
+
     static toggleCommentVote (data, cb) {
         Comment.get({
             _id: data.comment

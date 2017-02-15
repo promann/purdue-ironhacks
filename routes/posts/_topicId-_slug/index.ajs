@@ -7,7 +7,8 @@
         component: "topic-page",
         user: <%- stringify(user) %>,
         topic: <%- stringify(topic) %>,
-        csrfToken: "<%= lien.csrfToken %>"
+        csrfToken: "<%= lien.csrfToken %>",
+        isAdmin: <%- stringify(Bloggify.controllers.Session.isAdmin(user)) %>
     };
 </script>
 
@@ -15,11 +16,5 @@
 
 <hr>
 
-<% if (Bloggify.controllers.Session.isAdmin(user)) { %>
-    <h2>Admin tools</h2>
-    <div class="admin-controls">
-        <a href="<%= topic.url %>/edit" class="btn-small btn">Edit</a>
-    </div>
-<% } %>
 <% include("../../../views/container/end") %>
 <% include("../../../views/footer") %>
