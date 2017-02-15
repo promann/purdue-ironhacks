@@ -2,9 +2,10 @@
 <% include("../views/container/start") %>
 <h1>Search</h1>
 <form>
-    <input type="text" name="query" value="" placeholder="Search for something..." />
+    <input type="text" name="search" value="" placeholder="Search for something..." />
 </form>
 <div class="search-results">
+    <div class=
 </div>
 <% include("../views/container/end") %>
 <% include("../views/footer") %>

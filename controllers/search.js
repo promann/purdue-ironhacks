@@ -6,11 +6,16 @@ exports.get = (lien, cb) => {
     if (!Session.isAuthenticated(lien)) {
         return lien.redirect("/");
     }
-    if (lien.params.query) {
-        // TODO
-        cb(null, [
-            { url: "" }
-        ]);
+    if (lien.query.search) {
+        Topic.getMore({
+            filters: {
+                $text: { $search: lien.query.search }
+            }
+        }, (err, data) => {
+            cb(null, {
+                results: data
+            });
+        });
     }
     cb();
 };

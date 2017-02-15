@@ -205,6 +205,7 @@ class Topic {
 };
 
 Topic.model = Bloggify.models.Topic;
+
 Topic.model.addHook("pre", "save", function (next) {
     this.set("title", deffy(this.title, "").trim());
     this.set("body", deffy(this.body, "").trim());

@@ -54,9 +54,15 @@ module.exports = conf({
                 },
                 "Topic": {
                     "author": "string",
-                    "title": "string",
+                    "title": {
+                        type: String,
+                        text: true
+                    },
                     "slug": "string",
-                    "body": "string",
+                    "body": {
+                        type: String,
+                        text: true
+                    },
                     "created_at": "date",
                     "votes": ["string"],
                     "sticky": "boolean",
