@@ -31,6 +31,7 @@ export default class ScoreItem extends React.Component {
         });
     }
     renderViewButton () {
+        if (!this.props.showScores) { return null; }
         const btn = <button className="btn btn-small" onClick={this.toggleScores.bind(this)}>
             {(this.state.opened ? "Hide" : "View") +  " scores"}
         </button>;
@@ -44,6 +45,7 @@ export default class ScoreItem extends React.Component {
           , [this.props.hacker.score_novelty, "Score Novelty"]
           , [this.props.hacker.score_total, "Score Total"]
         ].map((c, i) => {
+            if (!this.props.showScores) { return null; }
             return <td key={i} data-label={`${c[1]}: `}>{this.state.opened ? `${(c[0] || 0).toFixed(2)}%` : ""}</td>
         });
 

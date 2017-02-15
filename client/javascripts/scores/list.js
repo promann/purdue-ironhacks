@@ -4,14 +4,16 @@ import Item from "./item";
 export default class ScoreList extends React.Component {
     constructor (props) {
         super(props);
+
         this.state = {
             showProjectColumn: this.props.hackers.some(c => (c.project_url || "").trim())
           , showGitHubRepoColumn: this.props.hackers.some(c => (c.github_repo_url || "").trim())
+          , showScores: this.props.hackers.some(c => c.score_total)
         };
     }
     renderItems () {
         return this.props.hackers.map((c, i) => {
-            return <Item hacker={c} user={this.props.user} key={i} showProjectColumn={this.state.showProjectColumn} showGitHubRepoColumn={this.state.showGitHubRepoColumn} />
+            return <Item hacker={c} user={this.props.user} key={i} showProjectColumn={this.state.showProjectColumn} showGitHubRepoColumn={this.state.showGitHubRepoColumn} showScoresColumn={this.state.showScores} />
         });
     }
     renderTheadRow () {
@@ -22,11 +24,11 @@ export default class ScoreList extends React.Component {
 
         return <tr>
             <td>Name</td>
-            <td>Toggle Scores</td>
-            <td>Technical Score</td>
-            <td>Info Viz Score</td>
-            <td>Novelty Score</td>
-            <td>Total Score</td>
+            { this.state.showScores ? <td>Toggle Scores</td> : null }
+            { this.state.showScores ? <td>Technical Score</td> : null }
+            { this.state.showScores ? <td>Info Viz Score</td> : null }
+            { this.state.showScores ? <td>Novelty Score</td> : null }
+            { this.state.showScores ? <td>Total Score</td> : null }
             {projectTd}
             {githubTd}
         </tr>
