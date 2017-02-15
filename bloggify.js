@@ -82,7 +82,7 @@ module.exports = conf({
             }
         },
         "bloggify-sendgrid": {
-            "key": "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"
+            "key": "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"
         }
     }
 }, {
