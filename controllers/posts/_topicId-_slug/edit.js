@@ -26,6 +26,7 @@ exports.post = (lien, cb) => {
    };
    if (!Session.isAdmin(user)) {
         filters.author = user._id;
+        delete lien.data.sticky;
    }
    Topic.update(filters, lien.data, (err, topic) => {
        if (err) {

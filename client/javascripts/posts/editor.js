@@ -12,8 +12,19 @@ export default class TopicEditor extends React.Component {
     }
 
     renderAdminFields () {
-        if (location.pathname === "/new" && _pageData.isAdmin) {
-            return <div className="form-section">
+
+        if (!_pageData.isAdmin) {
+            return null;
+        }
+
+        let formSectionSticky = <div className="form-section">
+            <label><input ref="sticky" name="sticky" type="checkbox" defaultChecked={this.state.topic.sticky} /> Make this a sticky post. Sticky posts appear on the top of the page.</label>
+        </div>;
+
+        let formSectionTarget = null;
+
+        if (location.pathname === "/new") {
+            formSectionTarget = <div className="form-section">
                 <div className="row">
                     <div className="col">
                         <h3>University</h3>
@@ -32,6 +43,12 @@ export default class TopicEditor extends React.Component {
                 </div>
             </div>
         }
+
+        return <div className="admin-area">
+            <h3>Admin tools</h3>
+            {formSectionTarget}
+            {formSectionSticky}
+        </div>
     }
 
     render () {
@@ -47,9 +64,6 @@ export default class TopicEditor extends React.Component {
                 <div className="form-section">
                     <p>Write the topic content below.  Styling with Markdown is supported.</p>
                     <Editor value={this.state.topic.body} onChange={this.updateBody.bind(this)} />
-                </div>
-                <div className="form-section">
-                    <label><input ref="sticky" name="sticky" type="checkbox" defaultChecked={this.state.topic.sticky} /> Make this a sticky post. Sticky posts appear on the top of the page.</label>
                 </div>
                 <div className="form-section">
                     <button className="btn">Submit</button>

@@ -24,7 +24,6 @@ module.exports = (lien, cb) => {
            err = null;
            topic = null;
        }
-       if (err) { return cb(null, { err: err, topic: {} }); }
        if (!topic) {
             return lien.next();
        }

@@ -19,10 +19,6 @@
     <h2>Admin tools</h2>
     <div class="admin-controls">
         <a href="<%= topic.url %>/edit" class="btn-small btn">Edit</a>
-        <form action="<%= topic.url %>/delete" method="post" class="inline-block">
-            <%- lien.csrfInput %>
-            <button class="btn-small btn btn-red">Delete</button>
-        </form>
     </div>
 <% } %>
 <% include("../../../views/container/end") %>

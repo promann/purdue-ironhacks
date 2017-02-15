@@ -68,7 +68,9 @@ class Topic {
     static update (filters, data, cb) {
         Topic.get(filters, (err, topic) => {
             if (err) { return cb(err); }
-            data.sticky = !!data.sticky;
+            if (data.sticky === undefined) {
+                data.sticky = topic.sticky;
+            }
             topic.set(data).save(cb);
         });
     }

@@ -34,6 +34,8 @@ exports.post = (lien, cb) => {
         if (lien.data.university) {
             universitySlug = lien.data.university;
         }
+    } else {
+        delete lien.data.sticky;
     }
 
     lien.data.metadata = {

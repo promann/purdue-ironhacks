@@ -1,5 +1,6 @@
 import React from "react";
 import util from "../util";
+import CsrfInput from "../util/csrf-input";
 import UpvoteTopicItem from "./upvote-topic-item";
 
 export default class TopicsListItem extends React.Component {
@@ -45,6 +46,22 @@ export default class TopicsListItem extends React.Component {
         return "";
     }
 
+    onDeleteIntent (e) {
+        if (!confirm('Are you sure you wish to delete?')) {
+            e.preventDefault();
+        }
+    }
+
+    renderDelete () {
+        if (window._pageData.isAdmin || this.props.author._id === window._pageData.user._id) {
+            return  <form onSubmit={this.onDeleteIntent} action={`${this.props.url}/delete`} method="post" className="inline-block">
+                <CsrfInput />
+                <button className="btn btn-small btn-delete">Delete</button>
+            </form>
+        }
+        return "";
+    }
+
     render () {
         let itemNumber = this.props.itemNumber ? <div className="item-number">{this.props.itemNumber}</div> : "";
         let commentsCount = this.props.comments.length;
@@ -77,6 +94,7 @@ export default class TopicsListItem extends React.Component {
                     </span>
                     </span>
                     {this.renderEdit()}
+                    {this.renderDelete()}
                     {this.renderAdminInfo()}
                     <div className="comments-count">
                         <i className="fa fa-comment-o" aria-hidden="true"></i>

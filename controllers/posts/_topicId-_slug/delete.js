@@ -3,12 +3,20 @@ const Topic = require("../../Topic")
     ;
 
 exports.post = (lien, cb) => {
-    if (!Session.isAdmin(lien)) {
-        return lien.apiError("Forbidden", 403);
+    const user = Session.getUser(lien);
+    if (!user) {
+        return lien.next();
     }
-    Topic.remove({
+
+    const filters = {
         _id: lien.params.topicId
-    }, (err, count) => {
+    };
+
+    if (!Session.isAdmin(user)) {
+         filters.author = user._id;
+    }
+
+    Topic.remove(filters, (err, count) => {
         if (err) { return lien.apiError(err); }
         lien.redirect("/");
     })
