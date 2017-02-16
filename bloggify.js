@@ -70,7 +70,10 @@ module.exports = conf({
                 },
                 "Comment": {
                     "author": "string",
-                    "body": "string",
+                    "body": {
+                        type: String,
+                        text: true
+                    },
                     "created_at": "date",
                     "topic": "string",
                     "votes": ["string"]

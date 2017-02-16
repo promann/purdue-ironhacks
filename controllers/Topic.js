@@ -12,7 +12,6 @@ const USER_FIELDS = {
 
 class Topic {
     static create (data, cb) {
-        data.slug = slug(data.title, { lower: true });
         data.sticky = !!data.sticky;
         return new Topic.model(data).save(cb);
     }
@@ -215,6 +214,7 @@ Topic.model.addHook("pre", "save", function (next) {
     if (!this.body.length) {
         return next(new Error("Topic body cannot be empty."));
     }
+    this.set("slug", slug(this.title, { lower: true }));
     this.wasNew = this.isNew;
     next();
 });

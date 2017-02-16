@@ -326,3 +326,7 @@ span.comment-controls {
 .btn-cancel {
     opacity: 0.6;
 }
+
+.search-form input {
+    font-size: 17px;
+}

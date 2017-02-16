@@ -58,6 +58,9 @@ export default class App extends React.Component {
         return (
             <div>
                 <a className="full-width btn-big bgn-green text-center bold btn" href="/new">Post a new topic</a>
+                <form action="/search" method="get" className="search-form text-center">
+                    <input type="text" name="search" placeholder="Search for something..." />
+                </form>
                 <TopicsList topics={this.state.topics} />
             </div>
         );
