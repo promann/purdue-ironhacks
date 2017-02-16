@@ -1,9 +1,23 @@
 import React from "react";
 import TopicsListItem from "./topics-list-item";
+import AdminTopicFilters from "./admin-topic-filters";
 
 export default class TopicsList extends React.Component {
+
+    constructor (props) {
+        super(props);
+        this.state = {
+            topics: this.props.topics
+        };
+    }
+
+    updateTopics (topics) {
+        this.setState({ topics });
+    }
+
     renderItems () {
-        return this.props.topics.map((c, index) => {
+        const topics = this.state.topics || this.props.topics || [];
+        return topics.map((c, index) => {
             return (
                 <TopicsListItem
                     key={index}
@@ -14,6 +28,7 @@ export default class TopicsList extends React.Component {
             )
         });
     }
+
     render () {
         if (!this.props.topics) {
             return <p>Loading...</p>;
@@ -23,7 +38,10 @@ export default class TopicsList extends React.Component {
         }
         return (
             <div className="posts-list">
-                <h1>Latest posts</h1>
+                <h1>
+                    Latest posts
+                    { _pageData.isAdmin ? <AdminTopicFilters topics={this.props.topics} updateTopics={this.updateTopics.bind(this)} /> : null }
+                </h1>
                 {this.renderItems()}
             </div>
         )
