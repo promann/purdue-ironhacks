@@ -1,7 +1,10 @@
 "use strict";
 
 const conf = require("bloggify-config");
-const DB_URI = conf.isProduction ? "mongodb://bloggify:keh69T3d1QGlu=M@ds129179.mlab.com:29179/heroku_4h3bmd1g" :  "mongodb://localhost/bloggify-forum";
+const DB_URI = conf.isProduction
+             ? "mongodb://bloggify:keh69T3d1QGlu=M@ds129179.mlab.com:29179/heroku_4h3bmd1g"
+             : "mongodb://localhost/bloggify-forum"
+             ;
 
 module.exports = conf({
     "title": "IronHack",
