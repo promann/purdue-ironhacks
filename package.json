@@ -64,38 +64,22 @@
     "bundles": {
       "auth": {
         "scripts": [
-          "client/javascripts/private-router.js"
+          "app/assets/javascripts/private-router.js"
         ],
         "styles": [
-          "src/css/auth.css"
+          "app/assets/stylesheets/auth.css"
         ]
       },
       "notAuth": {
         "scripts": [
-          "client/javascripts/public-router.js"
+          "app/assets/javascripts/public-router.js"
         ]
       },
       "main": {
         "scripts": [
-          "client/javascripts/common-router.js"
+          "app/assets/javascripts/common-router.js"
         ]
       }
-    }
-  },
-  "blah": {
-    "title": "Bloggify Custom App",
-    "installation_command": {
-      "content": [
-        "# Clone this repository",
-        "git clone https://github.com/BloggifyTutorials/custom-app",
-        "",
-        "# Install the dependencies",
-        "cd custom-app && npm i",
-        "",
-        "# Start the app in dev mode",
-        "npm run start:dev"
-      ],
-      "language": "bash"
     }
   }
 }

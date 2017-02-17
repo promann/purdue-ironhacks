@@ -26,13 +26,15 @@ module.exports = conf({
     "config": {
         "bloggify-custom-assets": {
             "styles": [
-                "src/css/index.css"
+                "app/assets/stylesheets/index.css"
             ],
             "server": [
-                "server/index.js"
+                "app/server/index.js"
             ]
         },
         "bloggify-flexible-router": {
+            "controllers_dir": "app/controllers",
+            "routes_dir": "app/routes",
             "errorPages": {
                 "404": "404.ajs",
                 "500": "500.ajs"
@@ -44,51 +46,7 @@ module.exports = conf({
         },
         "bloggify-mongoose": {
             "db": DB_URI,
-            "models": {
-                "User": {
-                    "username": "string",
-                    "email": "string",
-                    "password": "string",
-                    "profile": "object",
-                    "role": "string"
-                },
-                "Topic": {
-                    "author": "string",
-                    "title": {
-                        type: String,
-                        text: true
-                    },
-                    "slug": "string",
-                    "body": {
-                        type: String,
-                        text: true
-                    },
-                    "created_at": "date",
-                    "votes": ["string"],
-                    "sticky": "boolean",
-                    "metadata": "object"
-                },
-                "Comment": {
-                    "author": "string",
-                    "body": {
-                        type: String,
-                        text: true
-                    },
-                    "created_at": "date",
-                    "topic": "string",
-                    "votes": ["string"]
-                },
-                "Stats": {
-                    "actor": "string",
-                    "metadata": "object",
-                    "event": "string",
-                    "created_at": "date",
-                },
-                "Settings": {
-                    "settings": "object"
-                }
-
-            }
+            "models_dir": "app/models"
         },
         "bloggify-sendgrid": {
             "key": "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"
