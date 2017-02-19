@@ -13,7 +13,7 @@ export default class ScoreList extends React.Component {
     }
     renderItems () {
         return this.props.hackers.map((c, i) => {
-            return <Item hacker={c} user={this.props.user} key={i} showProjectColumn={this.state.showProjectColumn} showGitHubRepoColumn={this.state.showGitHubRepoColumn} showScoresColumn={this.state.showScores} />
+            return <Item hacker={c} user={this.props.user} key={i} showProjectColumn={this.state.showProjectColumn} showGitHubRepoColumn={this.state.showGitHubRepoColumn} showScores={this.state.showScores} />
         });
     }
     renderTheadRow () {
