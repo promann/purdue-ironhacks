@@ -33,7 +33,7 @@ module.exports = (lien, cb) => {
         if (err) { return cb(err); }
         Settings.get((err, options) => {
             if (err) { return cb(err); }
-            const phase = options.settings.phase;
+            const phase = options.settings.universities[user.profile.university].phase;
             users = users.map((u, i) => {
                 u = u.toObject();
                 u.username = `Hacker ${i + 1}`;

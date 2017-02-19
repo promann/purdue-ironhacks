@@ -2,9 +2,10 @@ import React from "react";
 
 export default class UserItem extends React.Component {
     render () {
-        const phaseData = this.props.user.profile[this.props.phase] || {};
+        const phaseData = this.props.user.profile[this.props.phases[this.props.user.profile.university]] || {};
         return (
             <div className="user-item" data-id={this.props.user._id}>
+                <input name="user-university" type="hidden" value={this.props.user.profile.university} />
                 <div className="username">
                     <span className="user-label">Username:</span> {this.props.user.username}
                 </div>

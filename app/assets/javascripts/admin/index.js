@@ -27,17 +27,23 @@ export default class App extends React.Component {
             setOrGet(cUniv, c.profile.hack_id, []).push(c);
         });
 
+        const phases = {};
+        forEach(_pageData.settings.universities, (uni, name) => {
+            phases[name] = uni.phase;
+        });
+
         this.state = {
             user: window._pageData.user
           , users: users
           , Universities: univs
-          , phase: _pageData.settings.phase
+          , phases: phases
         };
     }
 
-    onPhaseChange () {
+    onPhaseChange (e) {
+        this.state.phases[e.target.dataset.university] = e.target.value;
         this.setState({
-            phase: document.getElementById("contest-phase").value
+            phases: this.state.phases
         });
     }
 
@@ -45,6 +51,7 @@ export default class App extends React.Component {
         const users = $$(".user-item").map(c => {
             return {
                 _id: c.dataset.id
+              , university: $("[name='user-university']", c).value
               , update: {
                     project_url: $("[name='project_url']", c).value
                   , github_repo_url: $("[name='github_repo_url']", c).value
@@ -60,7 +67,7 @@ export default class App extends React.Component {
         const universities = {};
         $$(".uni-start-date").forEach(c => {
             let input = $("input", c);
-            universities[input.dataset.university] = { start_date: input.value };
+            universities[input.dataset.university] = {start_date: input.value };
         });
 
         $$(".uni-subgroup").forEach(c => {
@@ -68,10 +75,14 @@ export default class App extends React.Component {
             universities[input.dataset.university].subforums_count = (input.value - 1) || 0;
         });
 
+        $$(".uni-phase-selector").forEach(c => {
+            const select = $("select", c);
+            universities[select.dataset.university].phase = select.value;
+        });
+
         this.setState({ loading: true });
         util.post(location.pathname, {
             users,
-            phase: document.getElementById("contest-phase").value,
             universities
         }).then(c => {
             if (c.status > 400) { throw new Error("Cannot save the data."); }
@@ -92,8 +103,28 @@ export default class App extends React.Component {
         return "";
     }
 
+    renderPhaseSelector () {
+        const hackTypes = [];
+        let index = -1;
+
+        forEach(window._pageData.settings.universities, (univ, name) => {
+            const options = PHASES.map((c, i) => <option key={i} value={c[1]}>{c[0]}</option>);
+            hackTypes.push(
+                <div className="uni-phase-selector" key={++index} >
+                    <strong className="university-name">{name}</strong>: <br/>
+                    <div className="phase-select-wrapper">
+                        <select data-university={name} value={this.state.phases[name]} className="phase-select" onChange={this.onPhaseChange.bind(this)}>
+                            {options}
+                        </select>
+                    </div>
+                </div>
+            );
+        });
+
+        return hackTypes;
+    }
+
     render () {
-        const options = PHASES.map((c, i) => <option key={i} value={c[1]}>{c[0]}</option>);
         const universitiesStartDates = []
         const universitiesSubforums = []
         let index = -1;
@@ -119,12 +150,8 @@ export default class App extends React.Component {
                 <div className="row">
                     <div className="col">
                         <h2>Select Phase</h2>
-                        <p>Select the project phase and then click the save button.</p>
-                        <div className="phase-select-wrapper">
-                            <select value={this.state.phase} id="contest-phase" className="phase-select" onChange={this.onPhaseChange.bind(this)}>
-                                {options}
-                            </select>
-                        </div>
+                        <p>Select the phase for each hack type and then click the save button.</p>
+                        {this.renderPhaseSelector()}
                         <h2>Start Dates</h2>
                         <p><strong>Tip:</strong> Use a past date to force starting of the contest.</p>
                         {universitiesStartDates}
@@ -143,7 +170,7 @@ export default class App extends React.Component {
                 <h1>Users</h1>
                 <p>You can update the scores and then click the save button. The custom score, if provided, will override the total.</p>
                 {this.renderLoader()}
-                <AdminUniversities phase={this.state.phase} universities={this.state.Universities} />
+                <AdminUniversities phases={this.state.phases} universities={this.state.Universities} />
                 <button onClick={this.saveUsers.bind(this)} className="save-btn btn btn-big full-width">Save</button>
                 <button onClick={this.saveUsers.bind(this)} className="circle-save-btn btn btn-big" title="Save changes"><i className="fa fa-check" aria-hidden="true"></i></button>
             </div>

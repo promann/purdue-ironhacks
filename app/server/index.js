@@ -76,7 +76,7 @@ module.exports = bloggify => {
 
         Settings.get((err, settings) => {
             if (settings) {
-                ev.metadata.phase = settings.settings.phase;
+                ev.metadata.phase = settings.settings.universities[user.profile.university].phase;
             }
             Stats.record(ev, (err, data) => {
                 if (err) {

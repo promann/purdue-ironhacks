@@ -9,7 +9,7 @@ export default class AdminUniversities extends React.Component {
         let index = -1;
         forEach(this.props.universities, (uni, name) => {
             uni.name = name;
-            items.push(<AdminUniversityItem university={uni} key={++index} phase={this.props.phase} />);
+            items.push(<AdminUniversityItem university={uni} key={++index} phases={this.props.phases} />);
         });
         return items;
     }

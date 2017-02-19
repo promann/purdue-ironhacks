@@ -10,12 +10,13 @@ module.exports = (lien, cb) => {
         return lien.redirect("/");
     }
 
-    User.get({
-        filters: {
-            _id: user._id
-        }
-    }, (err, dbUser) => {
-        if (err) { return cb(err); }
+    const dbUser = user;
+    // User.get({
+    //     filters: {
+    //         _id: user._id
+    //     }
+    // }, (err, dbUser) => {
+    //  if (err) { return cb(err); }
         if (dbUser.role !== "admin" && dbUser.username !== process.env.ADMIN_USERNAME) {
             return lien.redirect("/");
         }
@@ -34,8 +35,7 @@ module.exports = (lien, cb) => {
             }
 
             Settings.set({
-                phase: lien.data.phase
-              , universities: lien.data.universities
+                universities: lien.data.universities
             });
 
             Promise.all(lien.data.users.map(c => {
@@ -46,7 +46,7 @@ module.exports = (lien, cb) => {
                 }, {
                     role: roleValue,
                     profile: {
-                        [lien.data.phase]: {
+                        [lien.data.universities[c.university].phase]: {
                             "project_url": c.update.project_url
                           , "github_repo_url": c.update.github_repo_url
                           , "score_technical": +c.update.score_technical || 0
@@ -76,5 +76,5 @@ module.exports = (lien, cb) => {
                 });
             });
         }
-    });
+    // });
 };
