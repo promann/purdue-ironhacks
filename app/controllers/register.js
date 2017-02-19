@@ -17,21 +17,37 @@ exports.get = (lien, cb) => {
         return lien.redirect("/");
     }
 
-    if (!Session.isAuthenticated(lien) && !lien.getSessionData("new_user")) {
-        return lien.redirect("/login");
-    }
-
     const user = lien.getSessionData("new_user");
-    const userId = user.password;
-    const qsuid = lien.query.uid;
+    if (user) {
+        const userId = user.password;
+        const qsuid = lien.query.uid;
 
-    if (userId === qsuid) {
-        const uni = UNIVERSITIES[user.profile.university];
-        return User.create(user, (err, newUser) => {
-            if (err) { return lien.redirect("/"); }
-            Bloggify.emit("user:registered", newUser);
-            Session.loginUser(newUser, lien);
-        });
+        if (userId === qsuid) {
+            const uni = UNIVERSITIES[user.profile.university];
+            return User.create(user, (err, newUser) => {
+                if (err) { return lien.redirect("/"); }
+                Bloggify.emit("user:registered", newUser);
+                Session.loginUser(newUser, lien);
+            });
+        }
+
+        const surveyLink = lien.getSessionData("surveyLink");
+        if (user.username && surveyLink) {
+            const redirectTo =  `${Bloggify.options.metadata.domain}/register?uid=${user.password}`;
+            if (process.argv.includes("--bypass-survey")) {
+                return lien.redirect(redirectTo);
+            }
+            const qsParams = qs.stringify({
+                redirect_to: redirectTo
+              , user_email: user.email
+              , user_id: user._id
+            });
+
+            lien.redirect(
+                `${surveyLink}?${qsParams}`
+            );
+            return;
+        }
     }
 
     cb(null, {
@@ -40,11 +56,11 @@ exports.get = (lien, cb) => {
 };
 
 exports.post = (lien, cb) => {
-    const user = lien.getSessionData("new_user");
-
-    if (!user) {
-        return lien.redirect("/login");
+    if (Session.isAuthenticated(lien)) {
+        return lien.redirect("/");
     }
+
+    const user = lien.getSessionData("new_user");
 
     let university = lien.data.university;
     if (!university) {
@@ -62,26 +78,17 @@ exports.post = (lien, cb) => {
         });
     }
 
+
+    debugger
+    let surveyLink = selectedUni.survey;
     lien.setSessionData({
         new_user: {
             profile: {
                 university: university
             }
         }
+      , surveyLink: surveyLink
     });
 
-    let surveyLink = selectedUni.survey;
-    const redirectTo =  `${Bloggify.options.metadata.domain}/register?uid=${user.password}`;
-    if (process.argv.includes("--bypass-survey")) {
-        return lien.redirect(redirectTo);
-    }
-    const qsParams = qs.stringify({
-        redirect_to: redirectTo
-      , user_email: user.email
-      , user_id: user._id
-    });
-
-    lien.redirect(
-        `${surveyLink}?${qsParams}`
-    );
+    lien.redirect("/login");
 };

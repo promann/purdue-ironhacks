@@ -117,14 +117,14 @@
                                                 <h2>makes your dost</h2>
                                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel volutpat felis, eu condimentum massa. Pellentesque mollis eros vel mattis tempor. Aliquam eu efficitur enim, vitae fermentum orci. Sed et feugiat nulla. </p>
                                                 <div class="button-set">
-                                                    <a class="button active" href="/signin">
+                                                    <a class="button active" href="/login">
                                                         <i class="zmdi zmdi-sign-in"></i>
                                                         <span>
                                                             If you <strong>have an account</strong>
                                                             <span class="large-text">Sign in</span>
                                                         </span>
                                                     </a>
-                                                    <a class="button btn-mobile" href="/signup">
+                                                    <a class="button btn-mobile" href="/register">
                                                         <i class="zmdi zmdi-account-add"></i>
                                                         <span>
                                                             If you <strong>do not have an account</strong>
