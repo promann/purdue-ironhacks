@@ -280,8 +280,8 @@ pre {
     }
 }
 
-.uni-start-date strong,
-.university-name {
+.hack-type-start-date strong,
+.hack-type-name {
     text-transform: capitalize;
 }
 .inline-block {

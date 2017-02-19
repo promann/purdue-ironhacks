@@ -24,7 +24,7 @@ class Settings {
                 new Settings.model({
                     _id: ID
                   , settings: {
-                        universities: {
+                        hack_types: {
                             purdue: { phase: "phase1", subforums_count: 0, start_date: null }
                           , bogota: { phase: "phase1", subforums_count: 0, start_date: FIFTEENTH_OF_MARCH }
                           , platzi: { phase: "phase1", subforums_count: 0, start_date: FIFTEENTH_OF_MARCH }

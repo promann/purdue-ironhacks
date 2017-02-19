@@ -1,13 +1,13 @@
 <h1 class="text-center">
-    <% var uni = lien.user.profile.university; %>
-    <% var uniName = uni.charAt(0).toUpperCase() + uni.slice(1); %>
-    <% if (uni === "purdue") { %>
+    <% var hType = lien.user.profile.hack_type; %>
+    <% var hTypeName = hType.charAt(0).toUpperCase() + hType.slice(1); %>
+    <% if (hType === "purdue") { %>
         GoldIronHack
     <% } else { %>
         BlackIronHack
     <% } %>
     <% var now = new Date() %>
     <%= now.getFullYear() %>
-    — <%= uniName %>
+    — <%= hTypeName %>
 </h1>
 <% include("../posts") %>

@@ -1,5 +1,5 @@
 const Session = require("./Session");
-const Universities = require("./Universities");
+const HackTypes = require("./HackTypes");
 
 module.exports = (lien, cb) => {
     const user = Session.getUser(lien);
@@ -8,6 +8,6 @@ module.exports = (lien, cb) => {
     }
     cb(null, {
         user: user,
-        university: Universities[user.profile.university]
+        hackType: HackTypes[user.profile.hack_type]
     });
 };

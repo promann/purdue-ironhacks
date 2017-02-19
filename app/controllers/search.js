@@ -30,15 +30,11 @@ exports.get = (lien, cb) => {
                 return Topic.model.findOne({ _id: cComment.topic });
             }));
         }).then(topics => {
-            //results.comments.forEach((c, i) => {
-            //    c.topic = topics[i].toObject();
-            //});
-
             let uniqueTopics = {};
             results.topics.concat(topics).forEach(c => {
                 if (!c) { return; }
                 if (!isAdmin) {
-                    if (c.metadata.university !== user.profile.university ||
+                    if (c.metadata.hack_type !== user.profile.hack_type ||
                         c.metadata.hack_id !== user.profile.hack_id) {
                         return;
                     }

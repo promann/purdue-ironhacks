@@ -15,7 +15,7 @@ module.exports = (lien, cb) => {
     };
 
     if (!Session.isAdmin(user)) {
-        filters["metadata.university"] = user.profile.university;
+        filters["metadata.hack_type"] = user.profile.hack_type;
         filters["metadata.hack_id"] = user.profile.hack_id;
     }
 

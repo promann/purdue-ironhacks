@@ -32,7 +32,7 @@ export default class TopicsListItem extends React.Component {
     renderAdminInfo () {
         if (window._pageData.isAdmin) {
             return <span className="post-info-section">
-                University: <span className="university-name">{this.props.metadata.university}</span> <span>{this.props.metadata.hack_id}</span>
+                HackType: <span className="hack-type-name">{this.props.metadata.hack_type}</span> <span>{this.props.metadata.hack_id}</span>
             </span>
         }
     }

@@ -6,9 +6,9 @@
     <h1>Register</h1>
     <p>Please tell us where you're coming from:</p>
     <div class="form-section">
-        <% uniOptions.forEach(function (uni) { %>
+        <% hTypeOptions.forEach(function (hType) { %>
             <label>
-                <input type="radio" name="university" value="<%= uni.value %>"><span><%= uni.label %></span>
+                <input type="radio" name="hack_type" value="<%= hType.value %>"><span><%= hType.label %></span>
             </label><br>
         <% }); %>
     </div>

@@ -1,14 +1,14 @@
 const User = require("./User");
 const Session = require("./Session");
 const qs = require("querystring");
-const UNIVERSITIES = require("./Universities");
+const HACK_TYPES = require("./HackTypes");
 
-const UNI_OPTIONS = Object.keys(UNIVERSITIES).map(c => {
-    let uni = UNIVERSITIES[c];
+const HACK_TYPE_OPTIONS = Object.keys(HACK_TYPES).map(c => {
+    let hType = HACK_TYPES[c];
     return {
         value: c
-      , label: uni.label
-      , survey: uni.survey
+      , label: hType.label
+      , survey: hType.survey
     };
 });
 
@@ -23,7 +23,7 @@ exports.get = (lien, cb) => {
         const qsuid = lien.query.uid;
 
         if (userId === qsuid) {
-            const uni = UNIVERSITIES[user.profile.university];
+            const hType = HACK_TYPES[user.profile.hack_types];
             return User.create(user, (err, newUser) => {
                 if (err) { return lien.redirect("/"); }
                 Bloggify.emit("user:registered", newUser);
@@ -51,7 +51,7 @@ exports.get = (lien, cb) => {
     }
 
     cb(null, {
-        uniOptions: UNI_OPTIONS
+        hTypeOptions: HACK_TYPE_OPTIONS
     });
 };
 
@@ -62,29 +62,28 @@ exports.post = (lien, cb) => {
 
     const user = lien.getSessionData("new_user");
 
-    let university = lien.data.university;
-    if (!university) {
+    let hackType = lien.data.hack_type;
+    if (!hackType) {
         return cb(null, {
             err: "Please select an option."
-          , uniOptions: UNI_OPTIONS
+          , hTypeOptions: HACK_TYPE_OPTIONS
         });
     }
 
-    let selectedUni = UNIVERSITIES[university];
-    if (!selectedUni) {
+    let selectedHackType = HACK_TYPES[hackType];
+    if (!selectedHackType) {
         return cb(null, {
             err: "Please select a valid option."
-          , uniOptions: UNI_OPTIONS
+          , hTypeOptions: HACK_TYPE_OPTIONS
         });
     }
 
 
-    debugger
-    let surveyLink = selectedUni.survey;
+    let surveyLink = selectedHackType.survey;
     lien.setSessionData({
         new_user: {
             profile: {
-                university: university
+                hack_type: hackType
             }
         }
       , surveyLink: surveyLink

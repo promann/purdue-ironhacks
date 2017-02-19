@@ -42,39 +42,39 @@ span.user-label {
     font-family: Monaco, monospace;
 }
 
-body.university-bogota nav,
-body.university-platzi nav,
-body.university-bogota footer,
-body.university-platzi footer,
-body.university-bogota .btn,
-body.university-platzi .btn {
+body.hack-type-bogota nav,
+body.hack-type-platzi nav,
+body.hack-type-bogota footer,
+body.hack-type-platzi footer,
+body.hack-type-bogota .btn,
+body.hack-type-platzi .btn {
     background: #111;
 }
 
-body.university-bogota h1,
-body.university-platzi h1,
-body.university-bogota h2,
-body.university-platzi h2,
-body.university-bogota h3,
-body.university-platzi h3,
-body.university-bogota h4,
-body.university-platzi h4 {
+body.hack-type-bogota h1,
+body.hack-type-platzi h1,
+body.hack-type-bogota h2,
+body.hack-type-platzi h2,
+body.hack-type-bogota h3,
+body.hack-type-platzi h3,
+body.hack-type-bogota h4,
+body.hack-type-platzi h4 {
     color: #111;
 }
 
-body.university-purdue nav,
-body.university-purdue footer {
+body.hack-type-purdue nav,
+body.hack-type-purdue footer {
     background: #f39c12;
 }
 
-body.university-purdue .btn {
+body.hack-type-purdue .btn {
     background: #e67e22;
 }
 
-body.university-purdue h1,
-body.university-purdue h2,
-body.university-purdue h3,
-body.university-purdue h4 {
+body.hack-type-purdue h1,
+body.hack-type-purdue h2,
+body.hack-type-purdue h3,
+body.hack-type-purdue h4 {
     color: #f39c12;
 }
 

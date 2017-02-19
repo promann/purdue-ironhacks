@@ -1,7 +1,7 @@
 import React from "react";
 import util from "../util";
 import setOrGet from "set-or-get";
-import AdminUniversities from "./universities";
+import AdminHackTypes from "./hack-types";
 import $ from "elly";
 import { $$ } from "elly";
 import forEach from "iterate-object";
@@ -21,28 +21,28 @@ export default class App extends React.Component {
         super(props);
 
         const users = window._pageData.users;
-        const univs = {};
+        const hackTypes = {};
 
         users.forEach(c => {
-            const cUniv = setOrGet(univs, c.profile.university, {});
-            setOrGet(cUniv, c.profile.hack_id, []).push(c);
+            const cHackType = setOrGet(hackTypes, c.profile.hack_type, {});
+            setOrGet(cHackType, c.profile.hack_id, []).push(c);
         });
 
         const phases = {};
-        forEach(_pageData.settings.universities, (uni, name) => {
-            phases[name] = uni.phase;
+        forEach(_pageData.settings.hack_types, (hType, name) => {
+            phases[name] = hType.phase;
         });
 
         this.state = {
             user: window._pageData.user
           , users: users
-          , Universities: univs
+          , HackTypes: hackTypes
           , phases: phases
         };
     }
 
     onPhaseChange (e) {
-        this.state.phases[e.target.dataset.university] = e.target.value;
+        this.state.phases[e.target.dataset.hackType] = e.target.value;
         this.setState({
             phases: this.state.phases
         });
@@ -52,7 +52,7 @@ export default class App extends React.Component {
         const users = $$(".user-item").map(c => {
             return {
                 _id: c.dataset.id
-              , university: $("[name='user-university']", c).value
+              , hack_type: $("[name='user-hack-type']", c).value
               , update: {
                     project_url: $("[name='project_url']", c).value
                   , github_repo_url: $("[name='github_repo_url']", c).value
@@ -65,26 +65,26 @@ export default class App extends React.Component {
             };
         });
 
-        const universities = {};
-        $$(".uni-start-date").forEach(c => {
+        const hackTypes = {};
+        $$(".hack-type-start-date").forEach(c => {
             let input = $("input", c);
-            universities[input.dataset.university] = {start_date: input.value };
+            hackTypes[input.dataset.hackType] = {start_date: input.value };
         });
 
-        $$(".uni-subgroup").forEach(c => {
+        $$(".hack-type-subgroup").forEach(c => {
             let input = $("input", c);
-            universities[input.dataset.university].subforums_count = (input.value - 1) || 0;
+            hackTypes[input.dataset.hackType].subforums_count = (input.value - 1) || 0;
         });
 
-        $$(".uni-phase-selector").forEach(c => {
+        $$(".hack-type-phase-selector").forEach(c => {
             const select = $("select", c);
-            universities[select.dataset.university].phase = select.value;
+            hackTypes[select.dataset.hackType].phase = select.value;
         });
 
         this.setState({ loading: true });
         util.post(location.pathname, {
             users,
-            universities
+            hack_types: hackTypes
         }).then(c => {
             if (c.status > 400) { throw new Error("Cannot save the data."); }
             location.reload();
@@ -108,13 +108,13 @@ export default class App extends React.Component {
         const hackTypes = [];
         let index = -1;
 
-        forEach(window._pageData.settings.universities, (univ, name) => {
+        forEach(window._pageData.settings.hack_types, (hackType, name) => {
             const options = PHASES.map((c, i) => <option key={i} value={c[1]}>{c[0]}</option>);
             hackTypes.push(
-                <div className="uni-phase-selector" key={++index} >
-                    <strong className="university-name">{name}</strong>: <br/>
+                <div className="hack-type-phase-selector" key={++index} >
+                    <strong className="hack-type-name">{name}</strong>: <br/>
                     <div className="phase-select-wrapper">
-                        <select data-university={name} value={this.state.phases[name]} className="phase-select" onChange={this.onPhaseChange.bind(this)}>
+                        <select data-hack-type={name} value={this.state.phases[name]} className="phase-select" onChange={this.onPhaseChange.bind(this)}>
                             {options}
                         </select>
                     </div>
@@ -126,22 +126,22 @@ export default class App extends React.Component {
     }
 
     render () {
-        const universitiesStartDates = []
-        const universitiesSubforums = []
+        const hackTypesStartDates = []
+        const hackTypesSubforums = []
         let index = -1;
 
-        forEach(window._pageData.settings.universities, (univ, name) => {
-            univ.start_date = moment(new Date(univ.start_date));
-            univ.subforums_count = univ.subforums_count || 0;
-            universitiesStartDates.push(
-                <div className="uni-start-date" key={++index} >
-                    <strong>{name}</strong>: <br/><input data-university={name} type="text" defaultValue={univ.start_date.format("YYYY-MM-DD HH:mm:ss")} />
+        forEach(window._pageData.settings.hack_types, (hackType, name) => {
+            hackType.start_date = moment(new Date(hackType.start_date));
+            hackType.subforums_count = hackType.subforums_count || 0;
+            hackTypesStartDates.push(
+                <div className="hack-type-start-date" key={++index} >
+                    <strong>{name}</strong>: <br/><input data-hack-type={name} type="text" defaultValue={hackType.start_date.format("YYYY-MM-DD HH:mm:ss")} />
                 </div>
             );
-            universitiesSubforums.push(
-                <div className="uni-subgroup" key={index} >
-                    <strong className="university-name">{name}</strong> ({_pageData.users.filter(c => c.profile.university === name).length} students): <br/>
-                    <input data-university={name} type="number" defaultValue={univ.subforums_count + 1} />
+            hackTypesSubforums.push(
+                <div className="hack-type-subgroup" key={index} >
+                    <strong className="hack-type-name">{name}</strong> ({_pageData.users.filter(c => c.profile.hack_type === name).length} students): <br/>
+                    <input data-hack-type={name} type="number" defaultValue={hackType.subforums_count + 1} />
                 </div>
             );
         });
@@ -155,10 +155,10 @@ export default class App extends React.Component {
                         {this.renderPhaseSelector()}
                         <h2>Start Dates</h2>
                         <p><strong>Tip:</strong> Use a past date to force starting of the contest.</p>
-                        {universitiesStartDates}
+                        {hackTypesStartDates}
                         <h2>Forum subgroups</h2>
-                        <p>Decide how many subforums you want for each university.</p>
-                        {universitiesSubforums}
+                        <p>Decide how many subforums you want for each hack type.</p>
+                        {hackTypesSubforums}
                     </div>
                     <div className="col">
                         <h2>Download CSV Stats</h2>
@@ -176,7 +176,7 @@ export default class App extends React.Component {
                 <h1>Users</h1>
                 <p>You can update the scores and then click the save button. The custom score, if provided, will override the total.</p>
                 {this.renderLoader()}
-                <AdminUniversities phases={this.state.phases} universities={this.state.Universities} />
+                <AdminHackTypes phases={this.state.phases} hackTypes={this.state.HackTypes} />
                 <button onClick={this.saveUsers.bind(this)} className="save-btn btn btn-big full-width">Save</button>
                 <button onClick={this.saveUsers.bind(this)} className="circle-save-btn btn btn-big" title="Save changes"><i className="fa fa-check" aria-hidden="true"></i></button>
             </div>

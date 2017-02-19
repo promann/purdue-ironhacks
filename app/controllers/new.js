@@ -23,7 +23,7 @@ exports.post = (lien, cb) => {
     lien.data.created_at = new Date();
     lien.data.votes = [];
 
-    let universitySlug = user.profile.university
+    let hackTypeSlug = user.profile.hack_type
       , hackId = user.profile.hack_id
       ;
 
@@ -31,15 +31,15 @@ exports.post = (lien, cb) => {
         if (lien.data.hackId) {
             hackId = lien.data.hackId;
         }
-        if (lien.data.university) {
-            universitySlug = lien.data.university;
+        if (lien.data.hack_type) {
+            hackTypeSlug = lien.data.hack_type;
         }
     } else {
         delete lien.data.sticky;
     }
 
     lien.data.metadata = {
-        university: universitySlug,
+        hack_type: hackTypeSlug,
         hack_id: +hackId
     };
 

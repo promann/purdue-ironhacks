@@ -2,20 +2,20 @@ import React from "react";
 
 export default class HackTypeAndIdSelector extends React.Component {
     render () {
-        let universityOptions = ["All"]
+        let hackTypeOptions = ["All"]
           , hackIdOptions = ["All"]
           ;
 
         this.props.users.forEach(user => {
-            if (!universityOptions.includes(user.profile.university)) {
-                universityOptions.push(user.profile.university);
+            if (!hackTypeOptions.includes(user.profile.hack_type)) {
+                hackTypeOptions.push(user.profile.hack_type);
             }
             if (!hackIdOptions.includes(+user.profile.hack_id)) {
                 hackIdOptions.push(+user.profile.hack_id);
             }
         });
 
-        universityOptions = universityOptions.map((c, i) => {
+        hackTypeOptions = hackTypeOptions.map((c, i) => {
             return <option key={i} value={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</option>
         });
 
@@ -23,8 +23,8 @@ export default class HackTypeAndIdSelector extends React.Component {
             return <option key={i} value={c}>{c}</option>
         });
 
-        const universitySelect = <select defaultValue="All" name="hackType">
-            {universityOptions}
+        const hackTypeSelect = <select defaultValue="All" name="hackType">
+            {hackTypeOptions}
         </select>;
 
         const hackIdSelect = <select defaultValue="All" name="hackId">
@@ -32,7 +32,7 @@ export default class HackTypeAndIdSelector extends React.Component {
         </select>;
 
         return <span>
-            {universitySelect}
+            {hackTypeSelect}
             {hackIdSelect}
         </span>;
     }

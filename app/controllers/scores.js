@@ -27,13 +27,13 @@ module.exports = (lien, cb) => {
         return lien.redirect("/");
     }
     User.model.find({
-        "profile.university": user.profile.university,
+        "profile.hack_type": user.profile.hack_type,
         "profile.hack_id": user.profile.hack_id
     }, (err, users) => {
         if (err) { return cb(err); }
         Settings.get((err, options) => {
             if (err) { return cb(err); }
-            const phase = options.settings.universities[user.profile.university].phase;
+            const phase = options.settings.hack_types[user.profile.hack_type].phase;
             users = users.map((u, i) => {
                 u = u.toObject();
                 u.username = `Hacker ${i + 1}`;

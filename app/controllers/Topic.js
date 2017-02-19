@@ -150,7 +150,7 @@ class Topic {
         };
 
         if (!Session.isAdmin(data.user)) {
-            filters["metadata.university"] = data.user.profile.university;
+            filters["metadata.hack_type"] = data.user.profile.hack_type;
             filters["metadata.hack_id"] = data.user.profile.hack_id;
         }
 

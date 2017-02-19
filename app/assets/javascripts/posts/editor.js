@@ -27,9 +27,9 @@ export default class TopicEditor extends React.Component {
             formSectionTarget = <div className="form-section">
                 <div className="row">
                     <div className="col">
-                        <h3>University</h3>
-                        <p>Choose the university. Without changing these, you will post the topic on the forum you belong to.</p>
-                        <select name="university" defaultValue={_pageData.user.profile.university}>
+                        <h3>HackType</h3>
+                        <p>Choose the hack type. Without changing these, you will post the topic on the forum you belong to.</p>
+                        <select name="hack_type" defaultValue={_pageData.user.profile.hack_type}>
                             <option value="purdue">Purdue</option>
                             <option value="bogota">Bogota</option>
                             <option value="platzi">Platzi</option>

@@ -2,7 +2,7 @@ const Bloggify = require("bloggify")
     , Topic = require("../controllers/Topic")
     , Session = require("../controllers/Session")
     , Stats = require("../controllers/Stats")
-    , Universities = require("../controllers/Universities")
+    , HackTypes = require("../controllers/HackTypes")
     , SocketIO = require("socket.io")
     , idy = require("idy")
     , Settings = require("../controllers/Settings")
@@ -22,7 +22,8 @@ module.exports = bloggify => {
         "/scores",
     ], (lien, cb) => {
         const user = Session.getUser(lien);
-        if (user && Universities[user.profile.university].start_date > new Date()) {
+        debugger
+        if (user && HackTypes[user.profile.hack_type].start_date > new Date()) {
             return lien.redirect("/countdown");
         }
         if (user) {
@@ -46,7 +47,7 @@ module.exports = bloggify => {
         }
 
         if (!Session.isAdmin(user)) {
-            lien.query["metadata.university"] = user.profile.university;
+            lien.query["metadata.hack_type"] = user.profile.hack_type;
             lien.query["metadata.hack_id"] = user.profile.hack_id;
         }
 
@@ -76,7 +77,7 @@ module.exports = bloggify => {
 
         Settings.get((err, settings) => {
             if (settings) {
-                ev.metadata.phase = settings.settings.universities[user.profile.university].phase;
+                ev.metadata.phase = settings.settings.hack_types[user.profile.hack_type].phase;
             }
             Stats.record(ev, (err, data) => {
                 if (err) {

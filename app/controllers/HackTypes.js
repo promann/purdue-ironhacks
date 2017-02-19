@@ -1,12 +1,11 @@
 const Bloggify = require("bloggify")
-    , unique = require("unique-random-range")
     , forEach = require("iterate-object")
     , Settings = require("./Settings")
     , User = require("./User")
     , schedule = require("node-schedule")
     ;
 
-const UNIVERSITIES = {
+const HACK_TYPES = {
     // Gold
     purdue: {
         survey: "https://purdue.qualtrics.com/jfe/form/SV_brTBahMpVU9CFYV"
@@ -35,19 +34,19 @@ const UNIVERSITIES = {
     }
 };
 
-forEach(UNIVERSITIES, (c, name) => {
+forEach(HACK_TYPES, (c, name) => {
     c.name = name;
 });
 
-const assignHackIdsToUsers = uni => {
+const assignHackIdsToUsers = hType => {
     const usersCursor = User.model.find({
         "profile.hack_id": null,
-        "profile.university": uni.name
+        "profile.hack_type": hType.name
     }).cursor();
 
     usersCursor.on("data", cDoc => {
         usersCursor.pause();
-        uni.getHackId(uHackId => {
+        hType.getHackId(uHackId => {
             User.update({
                 _id: cDoc._id
             }, {
@@ -66,7 +65,7 @@ const assignHackIdsToUsers = uni => {
     });
 
     usersCursor.on("end", cDoc => {
-        Bloggify.log(`Grouped the studends from ${uni.name}.`);
+        Bloggify.log(`Grouped the studends from ${hType.name}.`);
     });
 };
 
@@ -79,10 +78,11 @@ const update = cb => {
             Bloggify.log("Settings not found. Trying again in a second.");
             return setTimeout(update, 1000);
         }
-        forEach(doc.settings.universities, (uni, name) => {
-            let thisHackType = UNIVERSITIES[name];
-            thisHackType.start_date = uni.start_date;
-            thisHackType.subforums_count = uni.subforums_count;
+        forEach(doc.settings.hack_types, (hType, name) => {
+            let thisHackType = HACK_TYPES[name];
+            debugger
+            thisHackType.start_date = hType.start_date;
+            thisHackType.subforums_count = hType.subforums_count;
             if (new Date() > thisHackType.start_date) {
                 if (thisHackType.startSchedule) {
                     thisHackType.startSchedule.cancel();
@@ -101,7 +101,7 @@ const setScheduleForHackType = name => {
         name = name.name;
     }
 
-    let hackTypeObj = UNIVERSITIES[name];
+    let hackTypeObj = HACK_TYPES[name];
     if (hackTypeObj.startSchedule) {
         hackTypeObj.startSchedule.cancel();
     }
@@ -114,12 +114,12 @@ const setScheduleForHackType = name => {
 Settings.model.addHook("post", "save", update);
 update();
 
-function generateGetHackId(uni, name) {
+function generateGetHackId(hType, name) {
     return cb => {
         User.model.aggregate([{
             $match: {
                 "profile.hack_id": { $ne: null },
-                "profile.university": name
+                "profile.hack_type": name
             }
         }, {
             $group: {
@@ -128,7 +128,7 @@ function generateGetHackId(uni, name) {
             }
         }], (err, docs) => {
             if (err) { return cb(0); }
-            const ids = Array(uni.subforums_count + 1).fill(0);
+            const ids = Array(hType.subforums_count + 1).fill(0);
             docs.forEach(c => {
                 ids[c._id] = c.total;
             });
@@ -145,8 +145,8 @@ function generateGetHackId(uni, name) {
     };
 }
 
-forEach(UNIVERSITIES, (c, name) => {
+forEach(HACK_TYPES, (c, name) => {
     c.getHackId = generateGetHackId(c, name);
 });
 
-module.exports = UNIVERSITIES;
+module.exports = HACK_TYPES;

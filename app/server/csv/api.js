@@ -121,7 +121,7 @@ exports.users = filters => {
     const query = {};
 
     if (filters.hackType && filters.hackType !== "All") {
-        query["profile.university"] = filters.hackType;
+        query["profile.hack_type"] = filters.hackType;
     }
 
     if (filters.hackId && filters.hackId !== "All") {

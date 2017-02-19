@@ -51,14 +51,14 @@ class User {
                 return cb(new Error("Email/username is already registered."));
             }
 
-            const UNIVERSITIES = require("./Universities")
+            const HACK_TYPES = require("./HackTypes")
                 , now = new Date()
-                , uni = UNIVERSITIES[data.profile.university]
+                , hType = HACK_TYPES[data.profile.hack_type]
                 , create = () => new User.model(data).save(cb)
                 ;
 
-            if (now > uni.start_date) {
-                uni.getHackId(id => {
+            if (now > hType.start_date) {
+                hType.getHackId(id => {
                     data.profile.hack_id = id;
                     create();
                 });

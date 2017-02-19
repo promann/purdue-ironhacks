@@ -5,7 +5,7 @@
     window._pageData = {
         component: "countdown",
         user: <%- stringify(user) %>,
-        end_time: <%- stringify(university.start_date) %>,
+        end_time: <%- stringify(hackType.start_date) %>,
         current_time: new Date()
     };
 </script>

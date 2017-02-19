@@ -31,7 +31,7 @@ export default class App extends React.Component {
         this.socket.on("created", topic => {
             const topics = this.state.topics;
             util.normalizeTopic(topic)
-            if ([topic.metadata.university, topic.metadata.hack_id].join(":") !== [_pageData.user.profile.university, _pageData.user.profile.hack_id].join(":")) {
+            if ([topic.metadata.hack_type, topic.metadata.hack_id].join(":") !== [_pageData.user.profile.hack_type, _pageData.user.profile.hack_id].join(":")) {
                 return;
             }
             topics.unshift(topic);

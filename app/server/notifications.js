@@ -44,7 +44,7 @@ exports.commentPosted = comment => {
 
 exports.topicCreated = topic => {
     User.model.find({
-        "profile.university": topic.metadata.university
+        "profile.hack_type": topic.metadata.hack_type
       , "profile.hack_id": topic.metadata.hack_id
     }, {
         email: 1
