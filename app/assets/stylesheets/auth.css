@@ -330,3 +330,12 @@ span.comment-controls {
 .search-form input {
     font-size: 17px;
 }
+
+span.admin-filters {
+    margin-left: 10px;
+}
+
+.elm-centered {
+    margin-left: auto;
+    margin-right: auto;
+}

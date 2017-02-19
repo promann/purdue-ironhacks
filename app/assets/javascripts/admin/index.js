@@ -6,6 +6,7 @@ import $ from "elly";
 import { $$ } from "elly";
 import forEach from "iterate-object";
 import moment from "moment";
+import HackTypeAndIdSelector from "./hack-type-and-id-selector";
 
 const PHASES = [
     ["Phase 1", "phase1"]
@@ -164,6 +165,11 @@ export default class App extends React.Component {
                         <a className="btn" href="/admin/csv/topics">Topics</a>
                         {" "}
                         <a className="btn" href="/admin/csv/scores">Scores</a>
+                        <h2>Export users</h2>
+                        <form action="/admin/csv/export-users">
+                            <HackTypeAndIdSelector users={this.state.users}/> <br />
+                            <button className="btn" type="submit">Export</button>
+                        </form>
                     </div>
                 </div>
 

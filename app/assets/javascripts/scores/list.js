@@ -23,7 +23,7 @@ export default class ScoreList extends React.Component {
             ;
 
         return <tr>
-            <td>Name</td>
+           <td>Name</td>
             { this.state.showScores ? <td>Toggle Scores</td> : null }
             { this.state.showScores ? <td>Technical Score</td> : null }
             { this.state.showScores ? <td>Info Viz Score</td> : null }
@@ -34,9 +34,18 @@ export default class ScoreList extends React.Component {
         </tr>
     }
     render () {
+
+        if (!this.props.hackers.length) {
+            return <div>
+                <div className="error-box text-center">
+                    There are no scores to display yet.
+                </div>
+            </div>
+        }
+
         return (
             <div>
-                <table>
+                <table className="elm-centered">
                     <thead>
                         {this.renderTheadRow()}
                     </thead>

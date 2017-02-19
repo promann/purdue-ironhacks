@@ -10,9 +10,12 @@ export default class App extends React.Component {
         };
     }
     render () {
+        const hackers = this.state.hackers.filter(c => {
+            return c.score_total || c.github_repo_url || c.project_url
+        });
         return (
             <div>
-                <List hackers={this.state.hackers} user={this.state.user} />
+                <List hackers={hackers} user={this.state.user} />
             </div>
         );
     }

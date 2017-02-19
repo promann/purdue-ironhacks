@@ -1,6 +1,7 @@
 const Bloggify = require("bloggify");
 const csv = require("fast-csv");
 const moment = require("moment");
+const flatten = require("obj-flatten");
 
 let Stats = null;
 let Topic = null;
@@ -18,7 +19,7 @@ if (!Bloggify) {
     User = { model: Bloggify.models.User };
 }
 
-exports.topics = function () {
+exports.topics = () => {
     const csvStream = csv.format({
         headers: true
     });
@@ -64,7 +65,7 @@ exports.topics = function () {
     return csvStream;
 };
 
-exports.scores = function () {
+exports.scores = () => {
     const csvStream = csv.format({
         headers: true
     });
@@ -107,6 +108,43 @@ exports.scores = function () {
             console.error(e.stack);
         });
     }).on("close", () => {
+        csvStream.end();
+    });
+    return csvStream;
+};
+
+exports.users = filters => {
+    const csvStream = csv.format({
+        headers: true
+    });
+
+    const query = {};
+
+    if (filters.hackType && filters.hackType !== "All") {
+        query["profile.university"] = filters.hackType;
+    }
+
+    if (filters.hackId && filters.hackId !== "All") {
+        query["profile.hack_id"] = filters.hackId;
+    }
+
+    const readStream = User.model.find(query, {
+        password: 0,
+        "profile.bio": 0,
+        "profile.github_username": 0,
+        "profile.full_name": 0,
+        "profile.picture": 0,
+        "profile.website": 0,
+        "role": 0,
+    }).stream();
+
+    readStream.on("data", doc => {
+        doc = doc.toObject()
+        delete doc.__v;
+        debugger
+        csvStream.write(flatten(doc));
+    }).on("close", () => {
+        debugger
         csvStream.end();
     });
     return csvStream;

@@ -30,4 +30,25 @@ exports.init = () => {
         });
         csv.scores().pipe(lien.res);
     });
+
+    // Download scores
+    Bloggify.server.addPage("/admin/csv/export-users", lien => {
+        if (!Session.isAdmin(lien)) {
+            return lien.redirect("/");
+        }
+
+        const hackType = lien.query.hackType
+            , hackId = lien.query.hackId
+            ;
+
+        lien.header({
+            "Content-Disposition": `attachment; filename=users-${moment().format(DATE_FORMAT)}${hackType ? "-" + hackType : ""}${hackId ? "-" + hackId : hackId}.csv`,
+            "Content-Type": "text/csv"
+        });
+
+        csv.users({
+            hackType: hackType
+          , hackId: hackId
+        }).pipe(lien.res);
+    });
 };

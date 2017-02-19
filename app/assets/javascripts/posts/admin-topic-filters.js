@@ -42,7 +42,7 @@ export default class TopicFilters extends React.Component {
             {hackIdOptions}
         </select>;
 
-        return <span>
+        return <span className="admin-filters">
             {universitySelect}
             {hackIdSelect}
         </span>;

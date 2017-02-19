@@ -104,7 +104,7 @@ User.model.addHook("pre", "save", function (next) {
             total = phaseObj.score_technical + phaseObj.score_info_viz + phaseObj.score_novelty
         }
 
-        this.set(`profile.${cPhase}.score_total`, total);
+        this.set(`profile.${cPhase}.score_total`, total || 0);
     });
     next();
 });
