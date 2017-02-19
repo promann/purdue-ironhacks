@@ -14,6 +14,13 @@ module.exports = bloggify => {
     const User = require("../controllers/User");
     const Notifications = require("./notifications");
 
+    Bloggify.server.hook("before", "/login", (lien, cb) => {
+        const user = Session.getUser(lien);
+        const newUser = lien.getSessionData("new_user");
+        if (newUser || user) { return cb(); }
+        return lien.redirect("/signin");
+    });
+
     Bloggify.server.hook("before", [
         "/",
         "/posts",
