@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Apptech</title>
+        <title>IronHacks</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -102,6 +102,7 @@
                     </div>
                 </div>
             </header>
+
             <!-- Home Area
             ============================================ -->
             <div id="home-area" class="height-100vh bg-oapcity-40 bg-overly bg-img-1 sm-height-none">
@@ -113,9 +114,9 @@
                                     <div class="col-md-8 col-sm-8">
                                         <div class="top-text pt-60">
                                             <div class="slider-text">
-                                                <h1>apptech</h1>
-                                                <h2>makes your dost</h2>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel volutpat felis, eu condimentum massa. Pellentesque mollis eros vel mattis tempor. Aliquam eu efficitur enim, vitae fermentum orci. Sed et feugiat nulla. </p>
+                                                <h1>Purdue IronHacks</h1>
+                                                <h2>is all about</h2>
+                                                <p>IS ALL ABOUT: Using open data to create innovative digital apps with social impact!</p>
                                                 <div class="button-set">
                                                     <a class="button active" href="/login">
                                                         <i class="zmdi zmdi-sign-in"></i>
@@ -188,25 +189,17 @@
                 <div class="container">
                     <div class="row">
                         <div class="home-slider2 clearfix">
-                            <div class="col-md-7 col-sm-6">
+                            <div class="col-md-8 col-md-offset-2">
                                 <div class="about-bottom-left clearfix pt-120">
-                                    <h1>about <span>Apptech</span></h1>
-                                    <h3>Lorem ipsum dolor sit amet </h3>
-                                    <p class="about-pb">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquet dolor libero, eget venenatis mauris finibus dictum. Vestibulum quis elit eget neque porttitor congue non sit amet dolor. Proin pretium purus a lorem ornare </p>
-                                    <p>sed lobortis pulvinar. Integer laoreet mi id eros porta euismod. Suspendisse potenti. Nulla eros mauris, convallis et sem tempus, viverra hendrerit sapien</p>
+                                    <h1>About <span>IronHacks</span></h1>
+                                    <p class="about-pb"></p>
+                                    <p><strong>Innovate with open data</strong>: Create a novel, cool, and performative mash-up embedded in a website that helps users to solve their problem.</p>
+                                    <p><strong>Outperform others and learn from others</strong>: IronHacks is about competition but you get also feedback and learn from others’ work.</p>
+                                    <p><strong>Hack virtually but also meet physically</strong>: We offer a training on open data, using the required API, and learning about the programming tools.</p>
+                                    <p><strong>Gain &amp; fame in multiple ways</strong>: Improve your score on the way, gain reputation,  learn (GitHub, JSSFIDDLE, etc.) and win cool prizes ($$$, internship, or a ticket to present at a conference in a hot place.</p>
                                     <div class="about-icon">
-                                        <ul>
-                                            <li><a href="#"><i class="zmdi zmdi-facebook"></i></a></li>
-                                            <li><a href="#"><i class="zmdi zmdi-twitter"></i></a></li>
-                                            <li><a href="#"><i class="zmdi zmdi-pinterest"></i></a></li>
-                                            <li><a href="#"><i class="zmdi zmdi-linkedin"></i></a></li>
-                                        </ul>
+                                        <br>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md-5 col-sm-6">
-                                <div class="about-bottom-img">
-                                    <img src="<%= _public("/img/mobile/2.png") %>" alt="">
                                 </div>
                             </div>
                         </div>
@@ -220,7 +213,7 @@
                    <div class="row">
                        <div class="col-md-12 text-center">
                             <div class="feature-title title-style title-pb">
-                                <h1>awesome <span>features</span> </h1>
+                                <h1>Resources</h1>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel volutpat felis, eu condimentum massa. Pellentesque mollis eros vel mattis tempor. Aliquam </p>
                             </div>
                        </div>
@@ -312,67 +305,11 @@
             </div>
             <!-- Video Area
             ============================================ -->
-            <div id="video" class="video-area overlay ptb-220 bg-img-2">
+            <div id="video" class="ptb-220 bg-img-2 overlay overlay-white">
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12 text-center">
-                            <a href="https://www.youtube.com/watch?v=ZdJ7zga2yGg" class="video-popup"><i class="zmdi zmdi-play"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="choose-area pt-120 pb-40">
-                <div class="container">
-                    <div class="row">
-                       <div class="col-md-12 text-center">
-                            <div class="title-style title-pb">
-                                <h1>why <span>choose us?</span> </h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel volutpat felis, eu condimentum massa. Pellentesque mollis eros vel mattis tempor. Aliquam </p>
-                            </div>
-                       </div>
-                   </div>
-                    <div class="row">
-                        <div class="col-lg-7 col-md-12 col-xs-12">
-                            <div class="choose-img">
-                                <img src="<%= _public("/img/bg-img/3.png") %>" alt="">
-                            </div>
-                        </div>
-                        <div class="col-lg-5 col-md-12 col-xs-12">
-                            <div class="feature-list">
-                                <div class="single-features-list2 mb-52">
-                                    <div class="feature-list-icon2">
-                                        <i class="zmdi zmdi-collection-text"></i>
-                                    </div>
-                                    <div class="feature-list-text2">
-                                        <h3>Unlimited Features</h3>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel volutpat felis, eu condimentum ma Pellentesque mollis eros vel.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="single-features-list2 mb-52">
-                                    <div class="feature-list-icon2">
-                                        <i class="zmdi zmdi-sun"></i>
-                                    </div>
-                                    <div class="feature-list-text2">
-                                        <h3>High Resolution</h3>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel volutpat felis, eu condimentum ma Pellentesque mollis eros vel.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="single-features-list2 mrn-nn mb-52">
-                                    <div class="feature-list-icon2">
-                                        <i class="zmdi zmdi-brush"></i>
-                                    </div>
-                                    <div class="feature-list-text2">
-                                        <h3>Modern Design</h3>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel volutpat felis, eu condimentum ma Pellentesque mollis eros vel.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                            <img src="<%= _public("/img/logo/2.png") %>">
                         </div>
                     </div>
                 </div>

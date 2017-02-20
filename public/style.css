@@ -601,7 +601,7 @@ p.about-pb {
 ------------------------*/
 
 .bg-img-2 {
-    background: rgba(0, 0, 0, 0) url("img/video/1.jpg") no-repeat scroll center center / cover;
+    background: rgba(0, 0, 0, 0) url("img/video/1.png") no-repeat scroll center center / cover;
 }
 .video-popup {
     border: 5px solid #ffffff;
@@ -629,6 +629,9 @@ p.about-pb {
     right: 0;
     top: 0;
     z-index: -1;
+}
+.overlay-white::before {
+    background-color: #fff;
 }
 .overlay {
     position: relative;
