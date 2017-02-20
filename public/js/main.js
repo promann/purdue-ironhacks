@@ -1,7 +1,7 @@
 (function ($) {
  "use strict";
- 
-    
+
+
     /*--
     Mobile Menu
     ------------------------*/
@@ -10,7 +10,7 @@
         meanMenuContainer: ".mobile-menu",
         onePage: true,
     });
-    
+
     /*--
     Magnific Popup
     ------------------------*/
@@ -23,8 +23,8 @@
             enabled: true,
         }
     });
-    
-    
+
+
     /*--
     slick slider
     ------------------------*/
@@ -57,8 +57,8 @@
           }
         }
       ]
-    }); 
-    
+    });
+
     /*--
     slick slider
     ------------------------*/
@@ -82,32 +82,32 @@
           }
         }
       ]
-    }); 
-    
+    });
+
     /*--------------------------
     counterUp
-    ---------------------------- */	
+    ---------------------------- */
      $('.timer').counterUp({
         delay: 10,
         time: 5000
-    });   
-    
+    });
+
     /*----------------------------
     owl active brand-logo
-    ------------------------------ */  
+    ------------------------------ */
     $('.item_all').owlCarousel({
-        autoPlay: false, 
+        autoPlay: false,
         slideSpeed:2000,
         pagination:false,
-        navigation:false,	  
-        items : 6,
+        navigation:false,
+        items : 9,
         /* transitionStyle : "fade", */    /* [This code for animation ] */
         itemsDesktop : [1199,4],
         itemsDesktopSmall : [980,4],
         itemsTablet: [767,2],
         itemsMobile : [479,2],
     });
-    
+
     /*--
     Menu Stick
     -----------------------------------*/
@@ -138,7 +138,7 @@
             }
         });
     };
-    
+
     /*--
     One Page Nav
     -----------------------------------*/
@@ -147,7 +147,7 @@
         currentClass: 'active',
         scrollOffset: top_offset,
     });
-    
+
     /*--
     Smooth Scroll
     -----------------------------------*/
@@ -159,10 +159,10 @@
           scrollTarget: link.hash
         });
     });
-    
+
     /*--------------------------
     scrollUp
-    ---------------------------- */	
+    ---------------------------- */
     $(window).on('scroll',function () {
         if($(window).scrollTop()>200) {
             $("#toTop").fadeIn();
@@ -174,9 +174,9 @@
         $("html,body").animate({
             scrollTop:0
         }, 500)
-    });   
-    
-    
+    });
+
+
     /*--
      MailChimp
     ------------------------*/
@@ -192,17 +192,17 @@
       $('.mailchimp-error').fadeOut(400);
      } else if(resp.result === 'error') {
       $('.mailchimp-error').html('' + resp.msg).fadeIn(900);
-     }  
+     }
     }
-    
+
     /*----------------------------
         home-slider
-    ------------------------------ */  
+    ------------------------------ */
     $(".slider-active").owlCarousel({
-        autoPlay: false, 
+        autoPlay: false,
         slideSpeed:2000,
         pagination:false,
-        navigation:true,	  
+        navigation:true,
         items : 1,
         /* transitionStyle : "fade", */    /* [This code for animation ] */
         navigationText:["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
@@ -211,10 +211,10 @@
         itemsTablet: [767,1],
         itemsMobile : [479,1],
     });
-    
+
     /*----------------------------
         text-animation
-    ------------------------------ */  
+    ------------------------------ */
     $('.tlt1').textillate({
       loop: true,
       in: {
@@ -224,10 +224,10 @@
         effect: 'flip',
       },
     });
-    
+
     /*----------------------------
         text-animation
-    ------------------------------ */  
+    ------------------------------ */
     $('.tlt').textillate({
       loop: true,
       in: {
@@ -237,10 +237,10 @@
         effect: 'fadeOutLeft',
       },
     });
-    
+
     /*----------------------------
     video
-    ------------------------------ */      
+    ------------------------------ */
     $('.video-bg').vide({
       mp4: 'video/iphone7',
       webm: 'video/iphone7',
@@ -248,61 +248,61 @@
     }, {
         posterType: 'jpg',
         className: 'video-container'
-    });    
- 
+    });
+
     /*----------------------------
     kenburne
-    ------------------------------ */   
+    ------------------------------ */
     $('.slide-kenburne').kenburnsy({
       fullscreen: true
     });
-    
+
     /*----------------------------
     youtube video
-    ------------------------------ */     
+    ------------------------------ */
     $('.youtube-bg').YTPlayer({
         videoURL:"r4dD-WYzrMs",
         containment:'.youtube-bg',
         autoPlay:true,
         loop:true,
-    });    
+    });
 
     /*----------------------------
     owl active brand-logo
-    ------------------------------ */  
+    ------------------------------ */
     $('.slider-img').owlCarousel({
-        autoPlay: false, 
+        autoPlay: false,
         slideSpeed:2000,
         pagination:true,
-        navigation:false,	  
+        navigation:false,
         items : 1,
         /* transitionStyle : "fade", */    /* [This code for animation ] */
         itemsDesktop : [1199,1],
         itemsDesktopSmall : [980,1],
         itemsTablet: [767,1],
         itemsMobile : [479,1],
-    });    
-    
+    });
 
-    
-    
-    
+
+
+
+
     //venbox start
     $('.venobox').venobox({
         numeratio: true,
         titleattr: 'data-title'
     })
     //venbox end
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
- 
-})(jQuery); 
+
+
+
+
+
+
+
+
+
+
+
+})(jQuery);
 

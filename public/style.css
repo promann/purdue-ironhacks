@@ -1147,6 +1147,10 @@ span.timer {
     margin-top: 10px;
     padding: 43px 20px;
     transition: all .3s ease 0s;
+    background: white;
+}
+.single-item2 > a img:not(:hover) {
+    filter: grayscale(1);
 }
 .single-item2 > a img:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
