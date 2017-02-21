@@ -22,7 +22,6 @@ module.exports = bloggify => {
         "/scores",
     ], (lien, cb) => {
         const user = Session.getUser(lien);
-        debugger
         if (user && HackTypes[user.profile.hack_type].start_date > new Date()) {
             return lien.redirect("/countdown");
         }

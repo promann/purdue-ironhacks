@@ -80,7 +80,6 @@ const update = cb => {
         }
         forEach(doc.settings.hack_types, (hType, name) => {
             let thisHackType = HACK_TYPES[name];
-            debugger
             thisHackType.start_date = hType.start_date;
             thisHackType.subforums_count = hType.subforums_count;
             if (new Date() > thisHackType.start_date) {

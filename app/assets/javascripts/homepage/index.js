@@ -1,6 +1,10 @@
-(function ($) {
- "use strict";
+const $ = window.jQuery = window.$ = require("jquery");
 
+$(function () {
+    require("./vendor/modernizr-2.8.3.min.js");
+    require("./bootstrap.min");
+    require("./ajax-mail");
+    require("./plugins");
 
     /*--
     Mobile Menu
@@ -293,16 +297,4 @@
         titleattr: 'data-title'
     })
     //venbox end
-
-
-
-
-
-
-
-
-
-
-
-})(jQuery);
-
+});

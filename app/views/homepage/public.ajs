@@ -7,51 +7,8 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Bootstrap CSS
-        ============================================ -->
-        <link rel="stylesheet" href="<%= _public("/css/bootstrap.min.css") %>">
-        <!-- font-awesome CSS
-        ============================================ -->
-        <link rel="stylesheet" href="<%= _public("/css/font-awesome.min.css") %>">
-        <!-- material-design CSS
-        ============================================ -->
-        <link rel="stylesheet" href="<%= _public("/css/material-design-iconic-font.min.css") %>">
-        <!-- magnific-popup CSS
-        ============================================ -->
-        <link rel="stylesheet" href="<%= _public("/css/magnific-popup.css") %>">
-        <!-- venobox CSS
-        ============================================ -->
-        <link rel="stylesheet" href="<%= _public("/css/venobox.css") %>">
-        <!-- meanmenu CSS
-        ============================================ -->
-        <link rel="stylesheet" href="<%= _public("/css/meanmenu.min.css") %>">
-        <!-- slick CSS
-        ============================================ -->
-        <link rel="stylesheet" href="<%= _public("/css/slick.css") %>">
-        <!-- owl.carousel CSS
-        ============================================ -->
-        <link rel="stylesheet" href="<%= _public("/css/owl.carousel.css") %>">
-        <link rel="stylesheet" href="<%= _public("/css/owl.theme.css") %>">
-        <link rel="stylesheet" href="<%= _public("/css/owl.transitions.css") %>">
-        <!-- animate CSS
-        ============================================ -->
-        <link rel="stylesheet" href="<%= _public("/css/animate.css") %>">
-        <!-- normalize CSS
-        ============================================ -->
-        <link rel="stylesheet" href="<%= _public("/css/normalize.css") %>">
-        <!-- main CSS
-        ============================================ -->
-        <link rel="stylesheet" href="<%= _public("/css/main.css") %>">
-        <!-- style CSS
-        ============================================ -->
-        <link rel="stylesheet" href="<%= _public("/style.css") %>">
-        <!-- responsive CSS
-        ============================================ -->
-        <link rel="stylesheet" href="<%= _public("/css/responsive.css") %>">
 
-        <!-- modernizr JS
-        ============================================ -->
-        <script src="<%= _public("/js/vendor/modernizr-2.8.3.min.js") %>"></script>
+        <%- Bloggify.bundles.publicHomepage.cssHtml() %>
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -664,20 +621,6 @@
             </div>
         </div>
 
-        <!-- jquery
-        ============================================ -->
-        <script src="<%= _public("/js/vendor/jquery-1.11.3.min.js") %>"></script>
-        <!-- bootstrap JS
-        ============================================ -->
-        <script src="<%= _public("/js/bootstrap.min.js") %>"></script>
-        <!-- ajax mails JS
-        ============================================ -->
-        <script src="<%= _public("/js/ajax-mail.js") %>"></script>
-        <!-- plugins JS
-        ============================================ -->
-        <script src="<%= _public("/js/plugins.js") %>"></script>
-        <!-- main JS
-        ============================================ -->
-        <script src="<%= _public("/js/main.js") %>"></script>
+        <%- Bloggify.bundles.publicHomepage.jsHtml() %>
     </body>
 </html>

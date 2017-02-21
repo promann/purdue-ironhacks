@@ -27,6 +27,8 @@
     "elly": "^1.1.3",
     "fast-csv": "^2.3.1",
     "gridly": "^1.4.8",
+    "jquery": "^2.2.4",
+    "modernizr": "^3.3.1",
     "moment": "^2.17.1",
     "moment-timezone": "^0.5.11",
     "node-schedule": "^1.2.0",
@@ -63,6 +65,14 @@
   "homepage": "https://github.com/BloggifyTutorials/custom-app#readme",
   "bloggify": {
     "bundles": {
+      "publicHomepage": {
+        "scripts": [
+          "app/assets/javascripts/homepage/index.js"
+        ],
+        "styles": [
+          "app/assets/stylesheets/homepage/index.css"
+        ]
+      },
       "auth": {
         "scripts": [
           "app/assets/javascripts/private-router.js"
