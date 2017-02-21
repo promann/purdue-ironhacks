@@ -9,7 +9,9 @@
     "start:dev": "bloggify start",
     "bundle": "PORT=8081 NODE_ENV=production bloggify start --exit-after-bundle",
     "start:debug": "node debug `which bloggify` start",
-    "deploy": "./scripts/heroku-deploy.sh"
+    "deploy": "./scripts/heroku-deploy.sh",
+    "enable-heroku-cache": "heroku config:unset NODE_MODULES_CACHE",
+    "disable-heroku-cache": "heroku config:set NODE_MODULES_CACHE=false"
   },
   "author": "Ionică Bizău <bizauionica@gmail.com> (http://ionicabizau.net)",
   "license": "MIT",
