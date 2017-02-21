@@ -38,7 +38,7 @@ It's using a free dyno, therefore it's slower and it goes to
 
    1. Heroku is going to complain if we do it on their servers because it's a
       very resource-consuming process (it's using RAM memory, eventually
-      excdeeding it).
+      exceeding it).
 
       Doing it on our machines is much better because we have enough RAM.
 
@@ -105,17 +105,17 @@ much faster (1-3 seconds).
 
 ### Forum structure
 
-There is one forum for Purdue, and three forums for Bogota, and three forums for Plazi.
+There is one forum for Purdue, and three forums for Bogota, and three forums for Platzi.
 
-The posts and discussions from one forum are *not* visible by the users from the other forums.
+The posts and discussions from one forum are *not* visible to the users from the other forums.
 
 ```
-+--------------------+-------------+--------------+
-|       Purdue       |   Bogota    |     Plazi    |
-+--------------------+-------------+--------------+
-|         0          |  0  | 1 | 2 |  0  | 1 | 2  |
-+--------------------+-------------+--------------+
-|                    |     |   |   |     |   |    |
++--------------------+-----------+-----------+
+|       Purdue       |  Bogota   |   Plazi   |
++--------------------+-----------+-----------+
+|         0          | 0 | 1 | 2 | 0 | 1 | 2 |
++--------------------+-----------+-----------+
+|                    |   |   |   |   |   |   |
 ...
 ```
 
@@ -123,7 +123,10 @@ The posts and discussions from one forum are *not* visible by the users from the
 
 #### Login / Register Process
 
-The main page displays a login button when the user is not authenticated. When this button is clicked, the `/login` url is opened.
+When the user is not authenticated, the main page displays two buttons:
+a login button and a <kbd>Sign up</kbd> button.
+
+When the login button is clicked, the `/login` url is opened.
 The login url redirects to the GitHub authentication workflow (OAuth2) where the user should accept access of our GitHub app in their GitHub account.
 
 
@@ -142,11 +145,22 @@ IronHack Platform                             GitHub.com
 /                <------------------------------------------------/
 ```
 
-In the `controllers/register.js` file, we create a new user or authenticate an existing user.
-For the first-time users, we display the selection of the University: Purdue, Bogota and Platzi, and then redirect to the survey.
-At this moment, we start a session on the server side, but we don't write any data in the users database yet.
+The difference between the <kbd>Sign in</kbd> and <kbd>Sign up</kbd> buttons is that for the sign in,
+we assume that the user already has an account, therefore we make the redirection
+to GitHub APIs and authenticate them with their GitHub account. In case they do
+*not* have an account on the site, they will have to choose the hack type *after*
+the GitHub authentication.
 
-After the the user completes the survey, they are redirected back, and the user account is created.
+In <kbd>Sign up</kbd> case we will assume that the user doesn't have an account yet, therefore
+we ask them to choose the hack type and only then the GitHub authentication is
+made. Still, if an existing user clicks the <kbd>Sign up</kbd> button, they will log in
+into their account anyways.
+
+In the `controllers/register.js` file, we create a new user or authenticate an existing user.
+For the first-time users, we display the selection of the hack type: Purdue, Bogota and Platzi, and then redirect to the survey.
+At this moment, we start a session on the server side, but we don't write any data in the users' database yet.
+
+After the user completes the survey, they are redirected back, and the user account is created.
 
 To redirect the users to the survey, we send the `Location` header from the server to the client. Additional data is added in the url parameters to track the user:
 
@@ -156,11 +170,13 @@ To redirect the users to the survey, we send the `Location` header from the serv
 
 Using a JavaScript snippet in the survey page we store the email and the user id in the survey answer and we detect when the survey is done and redirect the users back to the app.
 
-When they finish the survey, they are redirect to the main app and the account is created.
+When they finish the survey, they are redirected to the main app and the account is created.
 
-When creating a user account, we assign a `hack_id` to the user. The `hack_id` is a number between `0` and `2` based on which we create multiple forums inside of the same university.
+When creating a user account, we do *not* assign a `hack_id` to the user but we wait until the contest is started.
+The `hack_id` is a number between `0` and `2` based on which we create multiple forums inside of the same hack type.
+The range can be configured in the admin dashboard.
 
-For Purdue, we have one forume (the `hack_id` will be always `0`) and for `Bogota` and `Platzi` we have three forums for each (the `hack_id` can be `0`, `1` or `2`).
+For Purdue, we have one forum (the `hack_id` will be always `0`) and for `Bogota` and `Platzi`, we have three forums for each (the `hack_id` can be `0`, `1` or `2`).
 
 ```
 +--------------------+-------------+--------------+
@@ -174,6 +190,131 @@ For Purdue, we have one forume (the `hack_id` will be always `0`) and for `Bogot
 
 If the user is already registered, they are authenticated based on the existing data.
 
+The `hack_id` values are assigned either when the user signs up, *after* the contest started.
+The default value for `hack_id` is `null`. This is changed automatically when the contest starts.
+
+The algorithm which assigns the hack ids is designed to create groups of an equal number of users.
+Specifically, the user will join in the hack id with the fewest users at that moment.
+
+The database query is: find how many users we have in each hack id, for a given hack type.
+Then, join the current user in the hack id with the fewest users.
+
+```js
+function generateGetHackId(hType, name) {
+    return cb => {
+        User.model.aggregate([{
+            $match: {
+                "profile.hack_id": { $ne: null },
+                "profile.hack_type": name
+            }
+        }, {
+            $group: {
+                _id: "$profile.hack_id",
+                total: { $sum: 1 }
+            }
+        }], (err, docs) => {
+            if (err) { return cb(0); }
+            const ids = Array(hType.subforums_count + 1).fill(0);
+            docs.forEach(c => {
+                ids[c._id] = c.total;
+            });
+            let minId = 0;
+            let min = ids[minId];
+            ids.forEach((count, index) => {
+                if (count < min) {
+                    minId = index;
+                    min = ids[minId];
+                }
+            });
+            cb(minId);
+        });
+    };
+}
+
+
+forEach(HACK_TYPES, (c, name) => {
+    c.getHackId = generateGetHackId(c, name);
+});
+```
+
+The function which assigns the hack id values to the users is in the `HackTypes` controller (`app/controllers/HackTypes.js`).
+
+This function receives as input a hack type object and groups the user inside of the hack type.
+
+```js
+const assignHackIdsToUsers = hType => {
+    const usersCursor = User.model.find({
+        "profile.hack_id": null,
+        "profile.hack_type": hType.name
+    }).cursor();
+
+    usersCursor.on("data", cDoc => {
+        usersCursor.pause();
+        hType.getHackId(uHackId => {
+            User.update({
+                _id: cDoc._id
+            }, {
+                profile: {
+                    hack_id: uHackId
+                }
+            }, (err, data) => {
+                if (err) { Bloggify.log(err); }
+                usersCursor.resume();
+            });
+        });
+    });
+
+    usersCursor.on("error", err => {
+        Bloggify.log(err);
+    });
+
+    usersCursor.on("end", cDoc => {
+        Bloggify.log(`Grouped the studends from ${hType.name}.`);
+    });
+};
+```
+
+The function above is called when the countdown finishes, being triggered by a 
+scheduler:
+
+```js
+const setScheduleForHackType = name => {
+    if (name.name) {
+        name = name.name;
+    }
+
+    let hackTypeObj = HACK_TYPES[name];
+    if (hackTypeObj.startSchedule) {
+        hackTypeObj.startSchedule.cancel();
+    }
+
+    hackTypeObj.startSchedule = schedule.scheduleJob(hackTypeObj.start_date, () => {
+        assignHackIdsToUsers(hackTypeObj);
+    });
+};
+```
+
+Or, it may be triggered when we make changes in the admin dashboard, changing the
+start of the contest.
+
+```js
+if (new Date() > thisHackType.start_date) {
+    if (thisHackType.startSchedule) {
+        thisHackType.startSchedule.cancel();
+    }
+    assignHackIdsToUsers(thisHackType);
+} else {
+    setScheduleForHackType(thisHackType);
+}
+```
+
+To catch the `save` event, we add a hook using the `addHook` method defined
+by the [`bloggify-mongoose`](https://github.com/Bloggify/bloggify-mongoose) plugin.
+
+```js
+Settings.model.addHook("post", "save", update);
+```
+
 #### Posts Page
 
 For authenticated users, we display the posts on the first page, ordered by the date, but the sticky posts are always the first ones.
@@ -184,6 +325,13 @@ Here, the users from a specific forum can see and upvote the posts from the same
 The single post pages are accessible by authenticated users only. They display the post title, body, votes and comments.
 
 In case somebody comments, the comments are updated in real-time, the votes too.
+
+When a user opens a topic page, we collect stats about that event:
+
+ - `actor`: the user id who clicked the button
+ - `topic_id`: the topic id
+ - `phase`: the phase of the project
+ - `created_at`: the timestamp
 
 #### Posting a new topic
 
@@ -206,16 +354,16 @@ Similar things happen when one clicks the Project url or the GitHub repository u
 
 #### Admin interface
 
-An admin can access additional functionality (such as deleting and editing any post). They have access in the dashboard (`/admin`) where they can make other users admins.
+An admin can access additional functionality (such as deleting and editing any post). They have access to the dashboard (`/admin`) where they can make other users admins.
 If nobody is admin (say there are no users), we can make somebody an admin (even if they don't exist in the database) by setting the `ADMIN_USERNAME` environment variable.
 
-The `ADMIN_USERNAME` environment variable represents the GitHub username of the user which should be admin. When they are going to log in, they will be authenticated as admin.
+The `ADMIN_USERNAME` environment variable represents the GitHub username of the user which should be an admin. When they are going to log in, they will be authenticated as admin.
 
 In the admin interface, the admin can:
 
  1. Change the Phase.
  2. Download the CSV stats.
- 3. Set the start dates for each university.
+ 3. Set the start dates for each hack type.
  4. See all the users and update the scores for each and eventually make them admins.
 
 In case another user is made admin, they should log out (if they are authenticated) and log in back.
@@ -227,7 +375,7 @@ The main thing which powers the entire application is [Bloggify](https://bloggif
 
 #### Application structure
 
-In the `routes` folder we have the page templates which are linked to the controllers from the `controllers` folder.
+In the `routes` folder, we have the page templates which are linked to the controllers from the `controllers` folder.
 
 ```
 routes/
@@ -239,13 +387,13 @@ routes/
 ├── logout.ajs
 ├── new.ajs
 ├── posts
-│   ├── _topicId-_slug
-│   │   ├── comments.ajs
-│   │   ├── delete.ajs
-│   │   ├── edit.ajs
-│   │   ├── index.ajs
-│   │   └── toggle-vote.ajs
-│   └── index.ajs
+│   ├── _topicId-_slug
+│   │   ├── comments.ajs
+│   │   ├── delete.ajs
+│   │   ├── edit.ajs
+│   │   ├── index.ajs
+│   │   └── toggle-vote.ajs
+│   └── index.ajs
 ├── register.ajs
 ├── scores.ajs
 └── users
@@ -315,6 +463,177 @@ Used to store the stats we collect.
     "event": "string",
     "created_at": "date",
 }
+```
+
+We collect stats when the user:
+
+ - clicks the <kbd>View scores</kbd> button
+ - opens a topic page
+
+The stats are collected by making HTTP requests to the server, using the
+`fetch` technology (it's a new browser API, similar to `XHRHttpRequest`).
+
+The code snippets that take care of this is located in `app/assets/javascripts/util/index.js`:
+
+```js
+...
+    /**
+     * post
+     * Posts the data to the server.
+     *
+     * @name post
+     * @function
+     * @param {String} url The endpoint url.
+     * @param {Object} data The post data.
+     * @returns {Promise} The `fetch` promise.
+     */
+  , post (url, data) {
+        data._csrf = data._csrf || _pageData.csrfToken;
+        return fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "same-origin",
+            body: JSON.stringify(data)
+        });
+    }
+
+    /**
+     * getJSON
+     * Fetches from the server JSON data.
+     *
+     * @name getJSON
+     * @function
+     * @param {String} url The endpoint url.
+     * @returns {Promise} The `fetch` promise.
+     */
+  , getJSON (url) {
+        return fetch(url, {
+            credentials: "same-origin"
+        }).then(c => c.json())
+    }
+...
+```
+
+That's the low-level side of sending/receiving any data to/from the server using
+`fetch`. Note: some browsers don't have the `fetch` technology, therefore we use
+a [polyfill created by GitHub](https://github.com/github/fetch) to ensure the function is there.
+
+We collect three types of stats:
+
+ 1. `view-topic`
+    
+    Emitted when the user opens a topic.
+
+    Metadata:
+    
+     - `topic_id`: The topic id.
+     - `topic_author`: The user id of the topic author.
+    
+    Code snippet:
+    
+    ```js
+    util.post("/api/stats", {
+        event: "view-topic",
+        metadata: {
+            topic_id: topic._id,
+            topic_author: topic.author._id
+        }
+    });
+    ```
+        
+ 2. `score-click`
+ 
+    Emitted when the user clicks the <kbd>View scores</kbd> button.
+
+    Metadata:
+    
+      - `hacker_id`: The user that *was clicked*.
+
+    Code snippet:
+
+    ```js
+    util.post("/api/stats", {
+        event: "score-click",
+        metadata: {
+            hacker_id: this.props.hacker._id
+        }
+    });
+    ```
+    
+ 3. Clicks on the urls.
+ 
+    The following events are emitted:
+
+     - `click-project-url`: When clicking the project url.
+     - `click-github-repo-url`: When clicking the GitHub repository url.
+     
+    Metadata:
+            
+     - `hacker_id`: The hacker id from the table.
+     - `url`: The clicked url.
+        
+    Code snippet:
+    
+    ```js
+    util.post("/api/stats", {
+        event: e.target.dataset.event,
+        metadata: {
+            hacker_id: this.props.hacker._id,
+            url: e.target.href
+        }
+    });    
+    ```
+
+**The stats functionality on the server**:
+
+On the server, we create a custom endpoint at `/api/stats` which expects `POST`
+data. We do not collect any stats from unauthenticated users.
+
+Along with the metadata we receive from the client side (see above) we add in the
+stat object the following information:
+
+ - `actor`: The current authenticated user id.
+ - `event`: The event name.
+ - `user_agent`: The user agent: this contains device and browser information.
+ - `phase`: The phase of the contest.
+
+The `actor` is the authenticated user id, and it will always be appended in the
+event object because we know there is an authenticated user.
+
+After we build the stats object, we call the `Stats.record` which will record
+the event in the database. The `record` method is not anything more than just
+a create query, after appending the `created_at` field in the event object.
+
+```js
+Bloggify.server.addPage("/api/stats", "post", lien => {
+    const user = Session.getUser(lien);
+    
+    if (!user) {
+        return lien.next();
+    }
+
+    const ev = {
+        actor: user._id,
+        event: lien.data.event,
+        metadata: lien.data.metadata || {}
+    };
+
+    ev.metadata.user_agent = lien.header("user-agent");
+
+    Settings.get((err, settings) => {
+        if (settings) {
+            ev.metadata.phase = settings.settings.hack_types[user.profile.hack_type].phase;
+        }
+        Stats.record(ev, (err, data) => {
+            if (err) {
+                return lien.apiError(err);
+            }
+            lien.apiMsg("success");
+        });
+    });
+});
 ```
 
 ###### `Settings`
