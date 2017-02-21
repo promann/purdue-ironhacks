@@ -20,6 +20,7 @@ module.exports = bloggify => {
         "/posts/:postId-:postSlug",
         "/new",
         "/scores",
+        "/quizes",
     ], (lien, cb) => {
         const user = Session.getUser(lien);
         if (user && HackTypes[user.profile.hack_type].start_date > new Date()) {
