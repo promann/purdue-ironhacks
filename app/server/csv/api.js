@@ -141,10 +141,8 @@ exports.users = filters => {
     readStream.on("data", doc => {
         doc = doc.toObject()
         delete doc.__v;
-        debugger
         csvStream.write(flatten(doc));
     }).on("close", () => {
-        debugger
         csvStream.end();
     });
     return csvStream;

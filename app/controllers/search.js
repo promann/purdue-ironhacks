@@ -23,7 +23,6 @@ exports.get = (lien, cb) => {
             Topic.model.find(filters)
           , Comment.model.find(filters)
         ]).then(data => {
-            debugger
             results.topics = data[0];
             results.comments = data[1].map(c => c.toObject());
             return Promise.all(results.comments.map(cComment => {
