@@ -72,8 +72,7 @@
                                         <div class="top-text pt-60">
                                             <div class="slider-text">
                                                 <h1><span class="text-weight-light">Purdue</span> IronHacks</h1>
-                                                <h2>is all about</h2>
-                                                <p>IS ALL ABOUT: Using open data to create innovative digital apps with social impact!</p>
+                                                <h2>Hack for inovation and join the open data movement.</h2>
                                                 <div class="button-set">
                                                     <a class="button active" href="/login">
                                                         <i class="zmdi zmdi-sign-in"></i>
@@ -95,7 +94,7 @@
                                     </div>
                                     <div class="col-md-4 col-sm-4">
                                         <div class="slider-img">
-                                            <img src="<%= _public("/img/mobile/1.png") %>" alt="" >
+                                            <img src="<%= _public("/img/svg/bulb.svg") %>" alt="" >
                                         </div>
                                     </div>
                                 </div>

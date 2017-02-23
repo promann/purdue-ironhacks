@@ -328,10 +328,9 @@ i {
 }
 .slider-text h2 {
     color: #ffffff;
-    font-size: 72px;
+    font-size: 30px;
     font-weight: normal;
     margin: 0 0 21px;
-    text-transform: uppercase;
 }
 .slider-text p {
     color: #ffffff;
