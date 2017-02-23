@@ -1642,12 +1642,21 @@ input.submit:hover {
   z-index: 9999999;
 }
 
+/* custom */
+span.text-weight-light {
+    font-weight: 100;
+}
 
+#home-area h1, #home-area h2, #home-area p, #home-area a, #home-area a i, #home-area a span, .main-menu li a {
+    color: #000;
+    border-color: #000;
+}
 
+.main-menu nav ul li a::before,
+.main-menu nav ul li a::after {
+    background: #000;
+}
 
-
-
-
-
-
-
+.mean-container a.meanmenu-reveal span {
+    background: black;
+}
