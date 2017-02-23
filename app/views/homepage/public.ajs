@@ -606,7 +606,9 @@
                             </div>
                             <div class="footer-text">
                                 <span>
-                                    Copyright © 2016 Purdue IronHacks | Powered by
+                                    <% var now = new Date(); %>
+                                    <% var thisYear = now.getFullYear(); %>
+                                    Copyright © <%= thisYear %> Purdue IronHacks | Powered by
                                     <a href="http://bootexperts.com/" target="_blank">Bloggify</a>
                                 </span>
                             </div>
