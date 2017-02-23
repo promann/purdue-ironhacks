@@ -2,7 +2,7 @@
 
 const conf = require("bloggify-config");
 const DB_URI = conf.isProduction
-             ? "mongodb://bloggify:keh69T3d1QGlu=M@ds129179.mlab.com:29179/heroku_4h3bmd1g"
+             ? "mongodb://bloggify:JwRsdG28yZUCVLRBU3IHfGGKlfXyhci3rVo1K0z4h4xjZ1Zf1eC3ZCXiItyMRM8i@ds163758.mlab.com:63758/heroku_l6lb4k6w"
              : "mongodb://localhost/bloggify-forum"
              ;
 
