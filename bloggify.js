@@ -9,7 +9,7 @@ const DB_URI = conf.isProduction
 module.exports = conf({
     "title": "IronHack",
     "description": "",
-    "domain": "http://ironhackplatform.herokuapp.com",
+    "domain": "http://ironhacks.com",
     "corePlugins": [
         "bloggify-mongoose",
     ],
