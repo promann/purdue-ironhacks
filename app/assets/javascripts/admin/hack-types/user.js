@@ -1,6 +1,12 @@
 import React from "react";
+import CsrfInput from "../../util/csrf-input";
 
 export default class UserItem extends React.Component {
+    onUserDelete (e) {
+        if (!confirm("Do you really want to delete this user?")) {
+            return e.preventDefault()
+        }
+    }
     render () {
         const phaseData = this.props.user.profile[this.props.phases[this.props.user.profile.hack_type]] || {};
         return (
@@ -39,6 +45,14 @@ export default class UserItem extends React.Component {
                         <option value="user">User</option>
                         <option value="admin">Admin</option>
                     </select>
+                </div>
+                <div className="user-delete">
+                    <span className="user-label">User delete:</span>
+                    <form action="/admin" method="POST" className="inline-block" onSubmit={this.onUserDelete.bind(this)}>
+                        <CsrfInput />
+                        <input type="hidden" name="delete-user-id" value={this.props.user._id} />
+                        <input type="submit" value="Delete user" className="btn btn-small" />
+                    </form>
                 </div>
             </div>
         );

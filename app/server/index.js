@@ -128,10 +128,12 @@ module.exports = bloggify => {
     setTimeout(function() {
         const GitHub = Bloggify.require("github-login");
         GitHub.on("login-success", (token, user, lien) => {
+            debugger
             User.get({
                 username: user.login
             }, (err, existingUser) => {
 
+            debugger
                 if (err) {
                     Bloggify.log(err);
                     return lien.redirect("/");

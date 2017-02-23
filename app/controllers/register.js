@@ -27,6 +27,10 @@ exports.get = (lien, cb) => {
             return User.create(user, (err, newUser) => {
                 if (err) { return lien.redirect("/"); }
                 Bloggify.emit("user:registered", newUser);
+                lien.setSessionData({
+                    new_user: null
+                  , surveyLink: null
+                });
                 Session.loginUser(newUser, lien);
             });
         }

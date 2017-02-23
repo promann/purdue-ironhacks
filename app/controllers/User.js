@@ -85,6 +85,33 @@ class User {
         const Topic = require("./Topic");
         Topic.create(data, cb);
     }
+
+    static remove (userId, cb) {
+        userId = deffy(userId, "");
+        if (!userId) { return cb(new Error("Invalid user id.")); }
+
+        // Delete user
+        User.model.remove({
+            _id: userId
+        }, err => {
+            if (err) { return Bloggify.log(err); }
+
+            // Delete comments
+            Bloggify.models.Topic.remove({
+                author: userId
+            }, err => {
+                if (err) { return Bloggify.log(err); }
+
+                // Delete posts
+                Bloggify.models.Comment.remove({
+                    author: userId
+                }, err => {
+                    if (err) { return Bloggify.log(err); }
+                    cb();
+                });
+            })
+        });
+    }
 }
 
 User.model = Bloggify.models.User

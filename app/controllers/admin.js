@@ -16,6 +16,17 @@ module.exports = (lien, cb) => {
     }
 
     if (lien.method === "post") {
+        const deleteUserId = lien.data["delete-user-id"];
+        if (deleteUserId) {
+            User.remove(deleteUserId, err => {
+                lien.redirect("/admin");
+            });
+            return;
+        }
+        if (!lien.data.hack_types) {
+            return lien.redirect("/admin");
+        }
+
         let foundInvalidDate = false;
         forEach(lien.data.hack_types, hType => {
             hType.start_date = new Date(hType.start_date);
