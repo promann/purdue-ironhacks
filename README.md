@@ -1,17 +1,18 @@
-# IronHack Platform
-The IronHack Platform built on Bloggify.
+# IronHacks Platform
+Hack for inovation and join the open data movement.
 
 ### About
 
-App url: http://ironhackplatform.herokuapp.com/
+This application is powered by [Bloggify](https://bloggify.org)–a Node.js powered platform to build modular applications.
 
-It's using a free dyno, therefore it's slower and it goes to
+When deployed to Heroku, the application url is `https://<app-name>.herokuapp.com` (unless it's using a custom domain).
+**Note:** When using a free dyno, it's working fine, but with some limitations:
 
+ - it's slower
+ - it's going to sleep if it's innactive for a certain period of time.
+ - has bandwidth limits, but pretty liberal
 
-App url: http://ironhackplatform.herokuapp.com/
-
-It's using a free dyno, therefore it's slower and it goes to
-
+The app configuration is stored in the `bloggify.js` file.
 
 ### Installation
 
@@ -120,6 +121,134 @@ The posts and discussions from one forum are *not* visible to the users from the
 ```
 
 ### Workflow and functionality
+
+Being a Bloggify application, the application configuration is kept in a file: `bloggify.js`. This contains (see the inline comments):
+
+```js
+"use strict";
+
+const conf = require("bloggify-config");
+
+// Set the right MongoDB URI (depending on the environment).
+const DB_URI = conf.isProduction
+             ? "mongodb://..."
+             : "mongodb://localhost/bloggify-forum"
+             ;
+
+module.exports = conf({
+    // Application metadata
+    "title": "IronHacks",
+    "description": "",
+
+    // The production domain
+    "domain": "http://www.ironhacks.com",
+
+    // Core plugins (which are initialized before the others)
+    "corePlugins": [
+        "bloggify-mongoose",
+    ],
+
+    // Application plugins
+    "plugins": [
+        "bloggify-sendgrid",
+        "bloggify-custom-assets",
+        "bloggify-github-login"
+    ],
+
+    // The application router
+    "router": "bloggify-flexible-router",
+
+    // We do not have a blog page, so we do not need a Bloggify viewer at all
+    "viewer": null,
+
+    // Plugins config in development
+    "devConfig": {
+        "bloggify-github-login": {
+            "githubClient": "...",
+            "githubSecret": "..."
+        }
+    },
+
+    // Plugins configuration
+    "config": {
+
+        // Custom application assets
+        "bloggify-custom-assets": {
+            "styles": [
+                "app/assets/stylesheets/index.css"
+            ],
+            "server": [
+                "app/server/index.js"
+            ]
+        },
+
+        // The application router
+        "bloggify-flexible-router": {
+            "controllers_dir": "app/controllers",
+            "routes_dir": "app/routes",
+            "errorPages": {
+                "404": "404.ajs",
+                "500": "500.ajs"
+            }
+        },
+
+        // Login with GitHub
+        "bloggify-github-login": {
+            "githubClient": "...",
+            "githubSecret": "..."
+        },
+
+        // Connect to the MongoDB database
+        "bloggify-mongoose": {
+            "db": DB_URI,
+            "models_dir": "app/models"
+        },
+
+        // Send emails
+        "bloggify-sendgrid": {
+            "key": "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"
+        }
+    }
+}, {
+    // Session information
+    server: {
+        session: {
+            storeOptions: {
+                url: DB_URI
+            }
+        }
+    }
+});
+```
+
+The way how this Bloggify application is structured is explained below:
+
+ - the `app` directory contains the application files
+
+The application routes (urls) are:
+
+```sh
+GET         /
+GET         /404
+GET         /500
+GET/POST    /admin
+GET         /countdown
+GET/POST    /logout
+GET/POST    /new
+POST        /posts/topicId-_slug/comments
+POST        /posts/topicId-_slug/delete
+GET/POST    /posts/topicId-_slug/edit
+GET         /posts/topicId-_slug/
+POST        /posts/topicId-_slug/toggle-vote
+GET/POST    /register
+GET         /scores
+GET/POST    /users/_user/edit
+GET         /users/_user
+```
+
+The `GET` method means that we fetch information from the server, while the `POST` means we post information to the server side.
+
+The routes may have associated controllers which are located in the `app/controllers` directory.
 
 #### Login / Register Process
 
@@ -274,7 +403,7 @@ const assignHackIdsToUsers = hType => {
 };
 ```
 
-The function above is called when the countdown finishes, being triggered by a 
+The function above is called when the countdown finishes, being triggered by a
 scheduler:
 
 ```js
@@ -317,7 +446,7 @@ Settings.model.addHook("post", "save", update);
 
 #### Posts Page
 
-For authenticated users, we display the posts on the first page, ordered by the date, but the sticky posts are always the first ones.
+For authenticated users, we display the posts on the first page, ordered by the date, but the sticky posts are always the first ones. Only the admin users can make create sticky posts (or edit a post and make it sticky).
 
 Here, the users from a specific forum can see and upvote the posts from the same forum. They can click on the post urls and post comments.
 
@@ -352,6 +481,69 @@ When the user clicks on the <kbd>View scores</kbd> button, we collect stats:
 
 Similar things happen when one clicks the Project url or the GitHub repository url. We know what was clicked and who did it.
 
+In the scores controller (the `controllers/scores.js` file) a query to fetch the users from a certain forum is made. Then we get the active scores and urls for the current phase of the contest and create an array which is passed to the scores view.
+To keep the users semi-anonymous, we change the usernames into `Hacker {1-...}`. Then the users array is shuffled.
+
+This is the code snippet which fetches the users, modifies the usernames and shuffles the array.
+
+```js
+User.model.find({
+    "profile.hack_type": user.profile.hack_type,
+    "profile.hack_id": user.profile.hack_iand usls for the current phase of the contest and create an array which is passed to the scores view.
+}, (err, users) => {
+    if (err) { return cb(err); }
+    Settings.get((err, options) => {
+        if (err) { return cb(err); }
+        const phase = options.settings.hack_types[user.profile.hack_type].phase;
+        users = users.map((u, i) => {
+            u = u.toObject();
+            u.username = `Hacker ${i + 1}`;
+            const phaseObj = Object(u.profile[phase]);
+            return {
+                _id: u._id,
+                username: u.username,
+                score_technical: phaseObj.score_technical,
+                score_info_viz: phaseObj.score_info_viz,
+                score_novelty: phaseObj.score_novelty,
+                score_total: phaseObj.score_total,
+                project_url: phaseObj.project_url,
+                github_repo_url: phaseObj.github_repo_url
+            };
+        });
+
+        shuffle(users);
+
+        cb(null, {
+            users: users,
+            phase: phase
+        });
+    });
+});
+```
+
+The `shuffle` function is a basic algorithm of shuffling the elements from a given array:
+
+```js
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+```
+
 #### Admin interface
 
 An admin can access additional functionality (such as deleting and editing any post). They have access to the dashboard (`/admin`) where they can make other users admins.
@@ -367,10 +559,6 @@ In the admin interface, the admin can:
  4. See all the users and update the scores for each and eventually make them admins.
 
 In case another user is made admin, they should log out (if they are authenticated) and log in back.
-
-### How was this built?
-
-The main thing which powers the entire application is [Bloggify](https://bloggify.org). This is a Node.js powered platform to build modular applications. The app configuration is stored in the `bloggify.js` file.
 
 
 #### Application structure
@@ -523,16 +711,16 @@ a [polyfill created by GitHub](https://github.com/github/fetch) to ensure the fu
 We collect three types of stats:
 
  1. `view-topic`
-    
+
     Emitted when the user opens a topic.
 
     Metadata:
-    
+
      - `topic_id`: The topic id.
      - `topic_author`: The user id of the topic author.
-    
+
     Code snippet:
-    
+
     ```js
     util.post("/api/stats", {
         event: "view-topic",
@@ -542,13 +730,13 @@ We collect three types of stats:
         }
     });
     ```
-        
+
  2. `score-click`
- 
+
     Emitted when the user clicks the <kbd>View scores</kbd> button.
 
     Metadata:
-    
+
       - `hacker_id`: The user that *was clicked*.
 
     Code snippet:
@@ -561,21 +749,21 @@ We collect three types of stats:
         }
     });
     ```
-    
+
  3. Clicks on the urls.
- 
+
     The following events are emitted:
 
      - `click-project-url`: When clicking the project url.
      - `click-github-repo-url`: When clicking the GitHub repository url.
-     
+
     Metadata:
-            
+
      - `hacker_id`: The hacker id from the table.
      - `url`: The clicked url.
-        
+
     Code snippet:
-    
+
     ```js
     util.post("/api/stats", {
         event: e.target.dataset.event,
@@ -583,7 +771,7 @@ We collect three types of stats:
             hacker_id: this.props.hacker._id,
             url: e.target.href
         }
-    });    
+    });
     ```
 
 **The stats functionality on the server**:
@@ -609,7 +797,7 @@ a create query, after appending the `created_at` field in the event object.
 ```js
 Bloggify.server.addPage("/api/stats", "post", lien => {
     const user = Session.getUser(lien);
-    
+
     if (!user) {
         return lien.next();
     }
