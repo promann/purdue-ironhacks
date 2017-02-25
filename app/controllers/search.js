@@ -3,7 +3,7 @@ const Session = require("./Session")
     , Comment = require("./Comment")
     ;
 
-exports.get = (lien, cb) => {
+module.exports = (lien, cb) => {
 
     const user = Session.getUser(lien);
     if (!user) {
@@ -12,13 +12,18 @@ exports.get = (lien, cb) => {
 
     const isAdmin = Session.isAdmin(user);
 
+    // Perform the search query
     if (lien.query.search) {
+
+        // Use the $text index to search
         const filters = {
             $text: {
                 $search: lien.query.search
             }
         };
         let results = {};
+
+        // Search in the topics and comments
         Promise.all([
             Topic.model.find(filters)
           , Comment.model.find(filters)
@@ -32,6 +37,8 @@ exports.get = (lien, cb) => {
             let uniqueTopics = {};
             results.topics.concat(topics).forEach(c => {
                 if (!c) { return; }
+
+                // Let the admin see all the posts/comments in all the forums
                 if (!isAdmin) {
                     if (c.metadata.hack_type !== user.profile.hack_type ||
                         c.metadata.hack_id !== user.profile.hack_id) {

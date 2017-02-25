@@ -106,7 +106,9 @@ much faster (1-3 seconds).
 
 ### Forum structure
 
-There is one forum for Purdue, and three forums for Bogota, and three forums for Platzi.
+There is one forum for Purdue, and three forums for Bogota, and three forums for
+Platzi. In each hack type we can extend the number of forums from the admin
+interface.
 
 The posts and discussions from one forum are *not* visible to the users from the other forums.
 
@@ -235,13 +237,16 @@ GET/POST    /admin
 GET         /countdown
 GET/POST    /logout
 GET/POST    /new
+GET/POST    /register
+GET         /login
+GET         /scores
+GET         /search
+GET         /quizes
+GET/POST    /posts/topicId-_slug/
 POST        /posts/topicId-_slug/comments
 POST        /posts/topicId-_slug/delete
 GET/POST    /posts/topicId-_slug/edit
-GET         /posts/topicId-_slug/
 POST        /posts/topicId-_slug/toggle-vote
-GET/POST    /register
-GET         /scores
 GET/POST    /users/_user/edit
 GET         /users/_user
 ```
@@ -249,6 +254,19 @@ GET         /users/_user
 The `GET` method means that we fetch information from the server, while the `POST` means we post information to the server side.
 
 The routes may have associated controllers which are located in the `app/controllers` directory.
+
+#### Qualtrics integration
+
+All the quizes created on the Qualtrics platform have a snippet of JavaScript which stores the user data in the response (as known as *Embedded data*).
+
+We store the `user_email` and the `user_id` which are sent in the url.
+
+
+The code in the Qualtrics quizes is set in the last block, last question (which may happen to be an empty question, used for tracking):
+
+TODO
+
+This approach is being used for all the quizes: the sign up survey and the other technical quizes.
 
 #### Login / Register Process
 
@@ -285,6 +303,10 @@ we ask them to choose the hack type and only then the GitHub authentication is
 made. Still, if an existing user clicks the <kbd>Sign up</kbd> button, they will log in
 into their account anyways.
 
+This is the authentication workflow:
+
+![](http://i.imgur.com/b0RRhc6.png)
+
 In the `controllers/register.js` file, we create a new user or authenticate an existing user.
 For the first-time users, we display the selection of the hack type: Purdue, Bogota and Platzi, and then redirect to the survey.
 At this moment, we start a session on the server side, but we don't write any data in the users' database yet.
@@ -319,7 +341,7 @@ For Purdue, we have one forum (the `hack_id` will be always `0`) and for `Bogota
 
 If the user is already registered, they are authenticated based on the existing data.
 
-The `hack_id` values are assigned either when the user signs up, *after* the contest started.
+The `hack_id` values are assigned either when the user signs up (if the contest is already started) or when the contest starts.
 The default value for `hack_id` is `null`. This is changed automatically when the contest starts.
 
 The algorithm which assigns the hack ids is designed to create groups of an equal number of users.
@@ -368,7 +390,7 @@ forEach(HACK_TYPES, (c, name) => {
 
 The function which assigns the hack id values to the users is in the `HackTypes` controller (`app/controllers/HackTypes.js`).
 
-This function receives as input a hack type object and groups the user inside of the hack type.
+This function receives as input a hack type object and groups the users inside of the hack type.
 
 ```js
 const assignHackIdsToUsers = hType => {
@@ -444,6 +466,234 @@ by the [`bloggify-mongoose`](https://github.com/Bloggify/bloggify-mongoose) plug
 Settings.model.addHook("post", "save", update);
 ```
 
+#### Quizes
+
+The quizes page displays the quizes that can be taken by the user. The user may answer the same quiz multiple times.
+
+In the view file (`app/routes/quizes.ajs`) we have the part which renders the links to each quiz:
+
+```erb
+<% include("../views/header", { title: "Quizes" }) %>
+<% include("../views/container/start") %>
+<h1>Quizes</h1>
+
+<% quizes.forEach(function (quiz) { %>
+    <a class="btn" href="<%= quiz.url %>"><%= quiz.label %></a>
+<% }); %>
+
+<% include("../views/container/end") %>
+<% include("../views/footer") %>
+```
+
+The data associated with this view is storred in the controller (`app/controllers/quizes.js`)–see below. The user can click the generated link which contains information about the user (the email address and the user id)–which are storred in the Qualtrics quiz responses as embedded data, and also the redirect url.
+When the user finishes the quiz, they are redirected back the application, on the `/quizes` page and the application marks the quiz complete internally. Even the quiz was completed, the user can take it again.
+
+```js
+const Bloggify = require("bloggify")
+    , Session = require("./Session")
+    , User = require("./User")
+    , findValue = require("find-value")
+    ;
+
+// Define the quizes list
+const quizes = [
+    ["d3.js", "https://purdue.qualtrics.com/jfe/form/SV_71xEzp5vQ7rC817", "d3"]
+  , ["HTML & CSS", "https://purdue.qualtrics.com/jfe/form/SV_do6Sc9VJsAMmOih", "html_css"]
+  , ["JavaScript & jQuery", "https://purdue.qualtrics.com/jfe/form/SV_b8zyxX8wozQfNul", "javascript_jquery"]
+];
+
+// Map the quizes labels to the data
+const validQuizes = {};
+quizes.forEach(c => {
+    validQuizes[c[2]] = c;
+});
+
+module.exports = (lien, cb) => {
+    const user = Session.getUser(lien);
+    if (!user) { return lien.redirect("/"); }
+
+    // Set the quiz complete
+    const completed = lien.query.markComplete;
+    if (completed && validQuizes[completed]) {
+        return User.update({
+            _id: user._id
+        }, {
+            profile: {
+                surveys: {
+                    [completed]: {
+                        ended_at: new Date()
+                    }
+                }
+            }
+        }, (err, _user) => {
+            lien.redirect("/quizes");
+        })
+    }
+
+    // Generate the redirect links
+    const completedSurveys = findValue(user, "profile.surveys") || {};
+    const userQuizes = quizes.map(c => {
+        const redirectTo =  encodeURIComponent(`${Bloggify.options.metadata.domain}/quizes?markComplete=${c[2]}`);
+        return {
+            label: c[0]
+          , url: `${c[1]}?redirect_to=${redirectTo}&user_email=${user.email}&user_id=${user._id}`
+          , is_complete: !!completedSurveys[c[2]]
+        };
+    });
+
+    // Send the quizes array to the view
+    cb(null, {
+        quizes: userQuizes
+    });
+};
+```
+
+
+#### Search
+
+On the search page (`/search`) we can search for content which appears either in the post data or in the comments.
+
+The view associated with this page is storred in the `app/routes/search.ajs` and it looks like this:
+
+```erb
+<% include("../views/header", { title: "Search" }) %>
+<% include("../views/container/start") %>
+<h1>Search</h1>
+<div class="search-form-wrapper">
+    <% include("../views/search-form") %>
+</div>
+<% if (f("results")) { %>
+    <p class="search-results-text">Search results for <em>‘<%= lien.query.search %>’</em></p>
+    <div class="search-results">
+        <% if (results.length) { %>
+            <% results.forEach(function (cResult) { %>
+                <div class="seach-result-item">
+                    <h2>
+                        <a href="<%= cResult.url %>">
+                            <%= cResult.title %>
+                        </a>
+                    </h2>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <div class="no-search-results">
+                There are no results. Maybe try a different query.
+            </div>
+        <% } %>
+    </div>
+<% } %>
+<% include("../views/container/end") %>
+<% include("../views/footer") %>
+```
+
+This file requires the `search-form` which appears in the `app/views/search-form.ajs` file, representing the search form itself:
+
+```erb
+<form>
+    <input type="text" name="search" value="<%= lien.query.search || "" %>" placeholder="Search for something..." />
+</form>
+```
+
+When the user submits the query, the `?search=<query>` querystring parameter is added in the url, triggering the search functionality in the controller (located in `app/controllers/search.js`). To increase the search results accuracy we used the internal MongoDB text search indexes like this: we created text indexes for the topic title and content and comment content, using the `text: true` in the model configuration:
+
+**`app/models/Topic.js`**:
+
+```js
+module.exports = {
+    ...
+    title: {
+        type: String,
+        text: true
+    },
+    ...
+    body: {
+        type: String,
+        text: true
+    },
+    ...
+};
+```
+
+**`app/models/Comment.js`**:
+
+```js
+module.exports = {
+    ...
+    body: {
+        type: String,
+        text: true
+    },
+    ...
+};
+```
+
+**Note**: The admin users will see the search results from all the forums, while the simple users will see the search results from the forum they belong to.
+
+The controller which takes care of searching looks like this:
+
+```js
+const Session = require("./Session")
+    , Topic = require("./Topic")
+    , Comment = require("./Comment")
+    ;
+
+module.exports = (lien, cb) => {
+
+    const user = Session.getUser(lien);
+    if (!user) {
+        return lien.redirect("/");
+    }
+
+    const isAdmin = Session.isAdmin(user);
+
+    // Perform the search query
+    if (lien.query.search) {
+
+        // Use the $text index to search
+        const filters = {
+            $text: {
+                $search: lien.query.search
+            }
+        };
+        let results = {};
+
+        // Search in the topics and comments
+        Promise.all([
+            Topic.model.find(filters)
+          , Comment.model.find(filters)
+        ]).then(data => {
+            results.topics = data[0];
+            results.comments = data[1].map(c => c.toObject());
+            return Promise.all(results.comments.map(cComment => {
+                return Topic.model.findOne({ _id: cComment.topic });
+            }));
+        }).then(topics => {
+            let uniqueTopics = {};
+            results.topics.concat(topics).forEach(c => {
+                if (!c) { return; }
+
+                // Let the admin see all the posts/comments in all the forums
+                if (!isAdmin) {
+                    if (c.metadata.hack_type !== user.profile.hack_type ||
+                        c.metadata.hack_id !== user.profile.hack_id) {
+                        return;
+                    }
+                }
+                uniqueTopics[c._id] = c;
+                c.url = Topic.getUrl(c);
+            });
+
+            cb(null, { results: Object.keys(uniqueTopics).map(k => uniqueTopics[k]) });
+        }).catch(e => {
+            cb(e);
+        });
+    } else {
+        cb();
+    }
+};
+```
+
+
 #### Posts Page
 
 For authenticated users, we display the posts on the first page, ordered by the date, but the sticky posts are always the first ones. Only the admin users can make create sticky posts (or edit a post and make it sticky).
@@ -471,6 +721,8 @@ The topic content can be styled with Markdown specific styles (bold, italic etc)
 #### The scores page
 
 We display the scores of the users, on the `/scores` page. The users see the anonymous name of the users in the table. The displayed items in the table are shuffled each time.
+
+If in the admin interface the scores are not provided, the scores collumns will not appear in the scores. In a similar way it happens for the urls: if we don't enter the urls, the urls collumns will not appear in the scores page.
 
 When the user clicks on the <kbd>View scores</kbd> button, we collect stats:
 
@@ -546,10 +798,36 @@ function shuffle(array) {
 
 #### Admin interface
 
-An admin can access additional functionality (such as deleting and editing any post). They have access to the dashboard (`/admin`) where they can make other users admins.
-If nobody is admin (say there are no users), we can make somebody an admin (even if they don't exist in the database) by setting the `ADMIN_USERNAME` environment variable.
+An admin can access additional functionality (such as deleting and editing any post).
+They have access to the dashboard (`/admin`) where they can make other users admins.
+If nobody is admin (say there are no users), we can make somebody an admin (even if
+they don't exist *yet* in the database) by assiging the GitHub username of an eventual
+user to the environment variable called `ADMIN_USERNAME`.
 
-The `ADMIN_USERNAME` environment variable represents the GitHub username of the user which should be an admin. When they are going to log in, they will be authenticated as admin.
+The `ADMIN_USERNAME` environment variable represents the GitHub username of the user
+which should be an admin (this user cannot be a simple user anymore, nobody being
+able to remove the admin rights from them). When they are going to log in,
+they will be authenticated as admin.
+
+To set the `ADMIN_USERNAME` variable, there are multiple ways, but the easiest ones are:
+
+ - If the application runs in a Heroku environment, the variable can be set from the
+   browser interface: `https://dashboard.heroku.com/apps/<app-name>/settings`, by
+   clicking the `Reveal Config Vars` button or in the command line using:
+
+    ```sh
+    heroku config:set ADMIN_USERNAME=hackpurdue
+    ```
+
+    Note: after setting an enviroment variable on Heroku (either from the
+    command line) or from the browser interface, the application will be
+    restarted automatically.
+
+ - When running locally, the environment variable can be set when starting the app:
+
+    ```sh
+    ADMIN_USERNAME=hackpurdue npm run start:dev
+    ```
 
 In the admin interface, the admin can:
 
@@ -560,6 +838,50 @@ In the admin interface, the admin can:
 
 In case another user is made admin, they should log out (if they are authenticated) and log in back.
 
+###### Custom database Filters for admin
+
+For simple users, the database queries include the `author`, being the current authenticated user.
+When the user has admin permissions, we do not append anymore the `author` the queries, therefore making the queries more liberal, giving more power to the admin.
+
+For instance, when deleting a post, the user will create the following query:
+
+*delete the post with `_id`=... and `author=...`*
+
+Therefore, if the user tries to delete another post, having the id, that post will not be found because it is not created by the authenticated user.
+
+Tho, if the user is an admin, the query is simpler, lacking the `author` field (we want to give them the power to delete any post):
+
+
+*delete the post with `_id=...` *
+
+
+This is happening in the `app/controllers/posts/_topicId-_slug/delete.js` controller:
+
+```js
+const Topic = require("../../Topic")
+    , Session = require("../../Session")
+    ;
+
+exports.post = (lien, cb) => {
+    const user = Session.getUser(lien);
+    if (!user) {
+        return lien.next();
+    }
+
+    const filters = {
+        _id: lien.params.topicId
+    };
+
+    if (!Session.isAdmin(user)) {
+         filters.author = user._id;
+    }
+
+    Topic.remove(filters, (err, count) => {
+        if (err) { return lien.apiError(err); }
+        lien.redirect("/");
+    })
+};
+```
 
 #### Application structure
 
@@ -575,15 +897,17 @@ routes/
 ├── logout.ajs
 ├── new.ajs
 ├── posts
-│   ├── _topicId-_slug
-│   │   ├── comments.ajs
-│   │   ├── delete.ajs
-│   │   ├── edit.ajs
-│   │   ├── index.ajs
-│   │   └── toggle-vote.ajs
-│   └── index.ajs
+│   ├── index.ajs
+│   └── _topicId-_slug
+│       ├── comments.ajs
+│       ├── delete.ajs
+│       ├── edit.ajs
+│       ├── index.ajs
+│       └── toggle-vote.ajs
+├── quizes.ajs
 ├── register.ajs
 ├── scores.ajs
+├── search.ajs
 └── users
     └── _user
         ├── edit.ajs
@@ -592,66 +916,153 @@ routes/
 
 The `_` character marks a dynamic route (such as a topic id/slug, or user).
 
+The controllers are:
+
+```
+controllers/
+├── admin.js
+├── Comment.js
+├── countdown.js
+├── HackTypes.js
+├── index.js
+├── login.js
+├── logout.js
+├── new.js
+├── posts
+│   └── _topicId-_slug
+│       ├── comments.js
+│       ├── delete.js
+│       ├── edit.js
+│       ├── index.js
+│       └── toggle-vote.js
+├── quizes.js
+├── register.js
+├── scores.js
+├── search.js
+├── Session.js
+├── Settings.js
+├── Stats.js
+├── Topic.js
+├── User.js
+└── users
+    └── _user
+        ├── edit.js
+        └── index.js
+```
+
 #### Modules
 
 In this application we use the following main modules:
 
 ##### Database Connection
-To connect with the database the [`bloggify-mongoose`](http://npmjs.com/bloggify-mongoose) module was used. The models we interact with are:
+To connect with the database the [`bloggify-mongoose`](https://github.com/Bloggify/bloggify-mongoose) module was used.
+The database models are stored in the `app/models` directory:
 
-###### `User`
-Stores the users in the `users` collection.
-
-```js
-{
-    "username": "string",
-    "email": "string",
-    "password": "string",
-    "profile": "object",
-    "role": "string"
-}
+```
+models/
+├── Comment.js
+├── Settings.js
+├── Stats.js
+├── Topic.js
+└── User.js
 ```
 
-###### `Topic`
-Stores the topics in the `topics` collection.
+To see the raw database collections and documents, we can connect directly using the MongoDB CLI:
 
-```js
-{
-    "author": "string",
-    "title": "string",
-    "slug": "string",
-    "body": "string",
-    "created_at": "date",
-    "votes": ["string"],
-    "sticky": "boolean",
-    "metadata": "object"
-}
+```sh
+mongo ....mlab.com:63758/heroku_... -u <dbuser> -p <dbpassword>
 ```
+
+or we can see that in the browser:
+
+ 1. Open the application *Overview*  page `https://dashboard.heroku.com/apps/ironhackplatform`
+ 2. Clik the `mLab MongoDB`. This will redirect to an url like this:
+
+    ```
+    https://www.mlab.com/databases/heroku_...
+    ```
+ 3. On this page, we can see the collections and eventually the documents and edit them.
+
+The models we interact with are:
 
 ###### `Comment`
 Stores the comments in the `comments` collection.
 
 ```js
-{
-    "author": "string",
-    "body": "string",
-    "created_at": "date",
-    "topic": "string",
-    "votes": ["string"]
-}
+module.exports = {
+    author: "string",
+    body: {
+        type: String,
+        text: true
+    },
+    created_at: "date",
+    topic: "string",
+    votes: ["string"]
+};
+```
+
+###### `Settings`
+
+Stores the application settings.
+
+```sh
+module.exports = {
+    settings: "object"
+};
 ```
 
 ###### `Stats`
 Used to store the stats we collect.
 
 ```js
-{
-    "actor": "string",
-    "metadata": "object",
-    "event": "string",
-    "created_at": "date",
-}
+module.exports = {
+    actor: "string",
+    metadata: "object",
+    event: "string",
+    created_at: "date"
+};
 ```
+
+In this collection we save the user events. See below what stats we collect.
+
+###### `Topic`
+Stores the topics in the `topics` collection.
+
+```js
+module.exports = {
+    author: "string",
+    title: {
+        type: String,
+        text: true
+    },
+    slug: "string",
+    body: {
+        type: String,
+        text: true
+    },
+    created_at: "date",
+    votes: ["string"],
+    sticky: "boolean",
+    metadata: "object"
+};
+```
+
+
+###### `User`
+Stores the users in the `users` collection.
+
+```js
+module.exports = {
+    username: "string",
+    email: "string",
+    password: "string",
+    profile: "object",
+    role: "string"
+};
+```
+
+
+##### What stats we collect
 
 We collect stats when the user:
 
@@ -824,18 +1235,9 @@ Bloggify.server.addPage("/api/stats", "post", lien => {
 });
 ```
 
-###### `Settings`
-This contains the app settings which are editable by the admins.
-
-```js
-{
-    "settings": "object"
-}
-```
-
 ##### GitHub Login
 
-We used [`bloggify-github-login`](https://www.npmjs.com/package/bloggify-github-login) to handle the GitHub authentication.
+We used [`bloggify-github-login`](https://github.com/Bloggify/github-login) to handle the GitHub authentication.
 
 By providing the GitHub application credentials, this module handles the OAuth2 workflow.
 
@@ -848,7 +1250,7 @@ By providing the GitHub application credentials, this module handles the OAuth2 
 
 ##### Email Notifications
 
-To send emails, we use [`bloggify-sendgrid`](https://www.npmjs.com/package/bloggify-sendgrid).
+To send emails, we use [`bloggify-sendgrid`](https://github.com/Bloggify/bloggify-sendgrid).
 
 ```js
 {
