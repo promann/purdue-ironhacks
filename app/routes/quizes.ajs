@@ -3,7 +3,7 @@
 <h1>Quizes</h1>
 
 <% quizes.forEach(function (quiz) { %>
-    <a class="btn <%= quiz.is_complete ? "disabled" : "" %>" href="<%= quiz.url %>"><%= quiz.label %></a>
+    <a class="btn" href="<%= quiz.url %>"><%= quiz.label %></a>
 <% }); %>
 
 <% include("../views/container/end") %>
