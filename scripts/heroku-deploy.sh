@@ -3,6 +3,7 @@ git checkout -B heroku-deploy
 git merge master
 rm -rf .bloggify/bundle-cache
 npm run bundle
+npm run purify:homepage
 
 echo "bundle-cache/" > .bloggify/.gitignore
 
