@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <title><%= title %> | <%= siteMetadata.title %></title>
         <% var user = lien.user = lien.getSessionData("user") %>
+        <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
         <%- Bloggify.assets.html() %>
         <% ____test = 42 %>
         <% if (user) { %>
