@@ -4,6 +4,34 @@
 
 @media (max-width: 500px) {
     .hide-sm { display: none !important; }
+    a.profile-link {
+	padding: 0;
+    }
+
+    nav {
+	padding: 20px 5px;
+
+    }
+
+    nav a.btn.btn-small.btn-red {
+	top: -16px;
+    }
+
+    h1 {
+	font-size: 1.2em;
+    }
+
+    form.search-form input {
+	width: 100%;
+    }
+
+    input[type=date], input[type=number], input[type=text], input[type=email], input[type=url], select, textarea {
+	padding: 2px 4px;
+    }
+
+    .post-item {
+	padding: 0;
+    }
 }
 
 @media (max-width: 400px) {

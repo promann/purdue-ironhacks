@@ -2,9 +2,11 @@
 <% include("../views/container/start") %>
 <h1>Quizes</h1>
 
+<div class="row">
 <% quizes.forEach(function (quiz) { %>
-    <a class="btn" href="<%= quiz.url %>"><%= quiz.label %></a>
+    <a class="btn col" href="<%= quiz.url %>"><%= quiz.label %></a>
 <% }); %>
+</div>
 
 <% include("../views/container/end") %>
 <% include("../views/footer") %>

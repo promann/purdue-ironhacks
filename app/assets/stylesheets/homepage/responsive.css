@@ -17,7 +17,7 @@
     .feature-img > img {
         width: 180px;
     }
-    .feature-list .sfl-lsft:first-child, 
+    .feature-list .sfl-lsft:first-child,
     .feature-list .sfl-lsft:last-child {
         margin-left: -80px;
         padding-right: 0;
@@ -139,7 +139,7 @@
         right: 100%;
     }
     /* customizer box-layout */
-    
+
     .boxed-layout .wrapper {
         width: 970px;
     }
@@ -195,7 +195,7 @@
         padding-top: 30px;
     }
     /* box-layout */
-    
+
     .wrapper-box {
         width: 970px;
     }
@@ -389,7 +389,7 @@
         right: 98%;
     }
     /* mobile-menu */
-    
+
     .mobile-menu .mean-nav ul li a,
     .mobile-menu .mean-nav ul li.mean-last a {
         border-bottom: 1px solid rgba(255, 255, 255, 0.6);
@@ -399,7 +399,7 @@
         width: 100%;
     }
     .mobile-menu .mean-nav {
-        background: #1879fd none repeat scroll 0 0;
+        background: #000 none repeat scroll 0 0;
     }
     .logo img {
         position: relative;
@@ -433,12 +433,12 @@
         display: none;
     }
     /* mobile-menu end */
-    
+
     .slider-text p {
         padding-right: 0;
     }
     /* customizer box-layout */
-    
+
     .boxed-layout .wrapper {
         width: 750px;
     }
@@ -494,7 +494,7 @@
         font-size: 40px;
     }
     /* box-layout */
-    
+
     .wrapper-box.wrapper {
         width: 750px;
     }
@@ -789,7 +789,7 @@
         padding: 120px 0;
     }
     /* mobile-menu */
-    
+
     .mobile-menu .mean-nav ul li a,
     .mobile-menu .mean-nav ul li.mean-last a {
         border-bottom: 1px solid rgba(255, 255, 255, 0.6);
@@ -799,7 +799,7 @@
         width: 100%;
     }
     .mobile-menu .mean-nav {
-        background: #1879fd none repeat scroll 0 0;
+        background: #000 none repeat scroll 0 0;
     }
     .logo img {
         position: relative;
@@ -833,12 +833,12 @@
         display: none;
     }
     /* mobile-menu end */
-    
+
     .slider-text p {
         padding-right: 0;
     }
     /* customizer box-layout */
-    
+
     .boxed-layout .wrapper {
         width: 300px;
     }
@@ -912,7 +912,7 @@
         padding-top: 43px;
     }
     /* box-layout */
-    
+
     .wrapper-box {
         width: 300px;
     }
@@ -988,7 +988,7 @@
     .download-links a .text {
         padding: 25px 30px 25px 7px;
     }
-    
+
 }
 /* Large Mobile :480px. */
 
@@ -1008,4 +1008,24 @@
         margin: auto;
         width: 450px;
     }
+}
+
+@media (max-width: 768px) {
+    .logo.float-left {
+        padding-right: 30px;
+        padding-top: 5px;
+    }
+
+    a.button {
+        height: auto;
+        padding-bottom: 10px;
+    }
+
+    .single-features-list2 {
+        text-align: center;
+    }
+}
+
+a.button {
+    margin-bottom: 5px;
 }
