@@ -287,9 +287,6 @@ i {
 .main-menu nav ul li a:hover::after {
     transform: scale(1);
 }
-.bg-img-1 {
-    background: url("../../../../public/img/bg-img/bg-1.jpg") no-repeat scroll center bottom / cover;
-}
 .bg-oapcity-40 {
     position: relative;
 }
@@ -647,7 +644,6 @@ p.about-pb {
 ------------------------*/
 
 .bg-img-3 {
-    background: rgba(0, 0, 0, 0) url("../../../../public/img/bg-img/bg-2.jpg") no-repeat scroll center bottom / cover;
 }
 .download-area.bg-oapcity-40::before {
     background: #000000 none repeat scroll 0 0;
