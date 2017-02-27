@@ -23,7 +23,7 @@ div.style-customizer {
 }
 
 .style-customizer a.button:hover {
-    color:#2395ec !important; 
+    color:#2395ec !important;
 }
 
 .style-customizer.closed {
@@ -257,40 +257,40 @@ div.style-customizer .color-8 {
     background: #9C27B0;
 }
 div.style-customizer .color-9 {
-    background: #673AB7; 
+    background: #673AB7;
 }
 div.style-customizer .color-10 {
-    background: #3F51B5; 
+    background: #3F51B5;
 }
 div.style-customizer .color-11 {
-    background: #009688; 
+    background: #009688;
 }
 div.style-customizer .color-12 {
-    background: #4CAF50; 
+    background: #4CAF50;
 }
 div.style-customizer .color-13 {
-    background: #8BC34A; 
+    background: #8BC34A;
 }
 div.style-customizer .color-14 {
-    background: #CDDC39; 
+    background: #CDDC39;
 }
 div.style-customizer .color-15 {
-    background: #FFEB3B; 
+    background: #FFEB3B;
 }
 div.style-customizer .color-16 {
-    background: #FFC107; 
+    background: #FFC107;
 }
 div.style-customizer .color-17 {
-    background: #FF9800; 
+    background: #FF9800;
 }
 div.style-customizer .color-18 {
-    background: #FF5722; 
+    background: #FF5722;
 }
 div.style-customizer .color-19 {
-    background: #795548; 
+    background: #795548;
 }
 div.style-customizer .color-20 {
-    background: #607D8B; 
+    background: #607D8B;
 }
 
 
@@ -556,20 +556,61 @@ div.style-customizer .color-20 {
   margin-bottom: 20px;
 }
 
+span.text-weight-light {
+    font-weight: 100;
+}
 
+#home-area h1, #home-area h2, #home-area p, #home-area a, #home-area a i, #home-area a span, .main-menu li a {
+    color: #000;
+    border-color: #000;
+}
 
+.main-menu nav ul li a::before,
+.main-menu nav ul li a::after {
+    background: #000;
+}
 
+.mean-container a.meanmenu-reveal span {
+    background: black;
+}
 
+a.button.button-square {
+    padding: 22px 20px 15px 20px;
+    height: auto;
+    border-radius: 0;
+    border-width: 3px;
+    padding-top: 22px;
+}
 
+.caps {
+    text-transform: uppercase;
+}
 
+.about-bottom-left {
+    padding-bottom: 80px;
+}
 
+.price-list > ul {
+    text-align: left;
+    padding: 10px 40px;
+    list-style: initial;
+}
 
+.single-price-package {
+    margin-top: 30px;
+}
 
+.team-image {
+    padding: 35px 40px;
+}
 
+.team-image > i {
+    font-size: 4em;
+}
+.contact-text {
+    display: block;
+}
 
-
-
-
-
-
-
+.contact-icon {
+    margin-right: 0;
+}

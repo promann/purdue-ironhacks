@@ -949,7 +949,7 @@ p.about-pb {
     transition: all 0.3s ease 0s;
 }
 .price {
-    background: #e8e8e8 url("img/icon-img/price.png") no-repeat scroll left center;
+    background: #e8e8e8 url("../../../../public/img/icon-img/price.png") no-repeat scroll left center;
     padding: 25px 0 37px;
     position: relative;
     transition: all 0.3s ease 0s;
@@ -1621,21 +1621,3 @@ input.submit:hover {
   z-index: 9999999;
 }
 
-/* custom */
-span.text-weight-light {
-    font-weight: 100;
-}
-
-#home-area h1, #home-area h2, #home-area p, #home-area a, #home-area a i, #home-area a span, .main-menu li a {
-    color: #000;
-    border-color: #000;
-}
-
-.main-menu nav ul li a::before,
-.main-menu nav ul li a::after {
-    background: #000;
-}
-
-.mean-container a.meanmenu-reveal span {
-    background: black;
-}

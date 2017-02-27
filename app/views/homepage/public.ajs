@@ -27,32 +27,12 @@
                                     <a href="/"><img src="<%= _public("/img/logo/logo.png") %>" alt="logo" /></a>
                                 </div>
                                 <div class="main-menu float-right">
-                                    <nav>
-                                        <ul>
-                                            <li class="active"><a href="#home-area">HOME</a></li>
-                                            <li><a href="#about-area">About   </a></li>
-                                            <li><a href="#features-area">FEATURES</a></li>
-                                            <li><a href="#screenshort-area">screenshots </a></li>
-                                            <li><a href="#review-area">reviews</a></li>
-                                            <li><a href="#pricing-area">pricing </a></li>
-                                            <li><a href="#support-area">support</a></li>
-                                        </ul>
-                                    </nav>
+                                    <% include("public-menu") %>
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 hidden-lg hidden-md">
                                 <div class="mobile-menu">
-                                    <nav>
-                                        <ul>
-                                            <li class="active"><a href="#home-area">HOME</a></li>
-                                            <li><a href="#about-area">About   </a></li>
-                                            <li><a href="#features-area">FEATURES</a></li>
-                                            <li><a href="#screenshort-area">screenshots </a></li>
-                                            <li><a href="#review-area">reviews</a></li>
-                                            <li><a href="#pricing-area">pricing </a></li>
-                                            <li><a href="#support-area">support</a></li>
-                                        </ul>
-                                    </nav>
+                                    <% include("public-menu") %>
                                 </div>
                             </div>
                         </div>
@@ -74,18 +54,14 @@
                                                 <h1><span class="text-weight-light">Purdue</span> IronHacks</h1>
                                                 <h2>Hack for inovation and join the open data movement.</h2>
                                                 <div class="button-set">
-                                                    <a class="button active" href="/login">
-                                                        <i class="zmdi zmdi-sign-in"></i>
+                                                    <a class="button button-square scroll-down" href="#upcoming-hacks-area">
                                                         <span>
-                                                            If you <strong>have an account</strong>
-                                                            <span class="large-text">Sign in</span>
+                                                            <span class="large-text caps">Sign up here now</span>
                                                         </span>
                                                     </a>
-                                                    <a class="button btn-mobile" href="/register">
-                                                        <i class="zmdi zmdi-account-add"></i>
+                                                    <a class="button button-square" href="/login">
                                                         <span>
-                                                            If you <strong>do not have an account</strong>
-                                                            <span class="large-text">Sign up</span>
+                                                            <span class="large-text caps">Sign in</span>
                                                         </span>
                                                     </a>
                                                 </div>
@@ -114,8 +90,8 @@
                                     <div class="single-item-icon">
                                         <i class="zmdi zmdi-settings"></i>
                                     </div>
-                                    <h4 class="ht-pt">What is an IronHack?</h4>
-                                    <p>IronHacks is a unique, 21-day, 4-stage hacking initiative for hackers who want to create impact through innovation. Participation is free, and you will receive feedback from experts and future app users. You will have the chance to learn from other hackers in the community, gain experience, and turn your ideas into something real!</p>
+                                    <h4 class="ht-pt">WHAT’S IRONHACKS.</h4>
+                                    <p>An Ironhack is a unique 21-day, 4-stage innovative hacking initiative for individuals who want to create impact from open data. Participation is free, and you will receive feedback from experts and future app users. You will have the chance to learn from others in the community, gain experience, and turn your ideas into something real!</p>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-4">
@@ -123,8 +99,8 @@
                                     <div class="single-item-icon">
                                         <i class="zmdi zmdi-comments"></i>
                                     </div>
-                                    <h4 class="ht-pt">Why Purdue IronHacks?</h4>
-                                    <p>Today, governments, organizations, and corporations around the world are beginning to participate in the open data movement. Terabytes upon terabytes of open data are available and ready to be mashed up into useful applications by creative individuals like YOU.</p>
+                                    <h4 class="ht-pt">WHY SHOULD I PARTICIPATE.</h4>
+                                    <p>In IronHacks you learn new skills, win prizes ($$$), get exposed to  global tech companies, win internships, and free memberships for Platzi.com. But most importantly you become part of a global movement of open data to make an impact in areas such as safety, health, or travel.</p>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-4">
@@ -133,8 +109,8 @@
                                         <i class="zmdi zmdi-accounts"></i>
 
                                     </div>
-                                    <h4 class="ht-pt">How can I get involved?</h4>
-                                    <p>We are looking for judges/app reviewers and hackers/developers. If you are interested in being a judge, please reach out to us via email. If you would like to sign up for one of the Fall IronHack competitions as a hacker/developer, please see the upcoming hacks listed above for signup instructions.</p>
+                                    <h4 class="ht-pt">HOW CAN I GET INVOLVED.</h4>
+                                    <p>There are many ways but the most obvious one: Check out our upcoming hacks and sign-up for a contest in areas such as food, travel, and safety. If do not feel ready to sign-up, just contact us. We always look for open data enthusiasts, UX experts, or partners that want to help us in defining future challenges.</p>
                                 </div>
                             </div>
                         </div>
@@ -154,96 +130,11 @@
                                     <p><strong>Hack virtually but also meet physically</strong>: We offer a training on open data, using the required API, and learning about the programming tools.</p>
                                     <p><strong>Gain &amp; fame in multiple ways</strong>: Improve your score on the way, gain reputation,  learn (GitHub, JSSFIDDLE, etc.) and win cool prizes ($$$, internship, or a ticket to present at a conference in a hot place.</p>
                                     <div class="about-icon">
-                                        <br>
+                                        <ul>
+                                            <li><a href="https://www.facebook.com/OpenDigitalPurdue"><i class="zmdi zmdi-facebook"></i></a></li>
+                                            <li><a href="https://twitter.com/Purdue_RCODI"><i class="zmdi zmdi-twitter"></i></a></li>
+                                        </ul>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-             <!-- Home Area
-            ============================================ -->
-            <div id="features-area" class=" ptb-120 fix">
-                <div class="container">
-                   <div class="row">
-                       <div class="col-md-12 text-center">
-                            <div class="feature-title title-style title-pb">
-                                <h1>Resources</h1>
-                            </div>
-                       </div>
-                   </div>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="single-features-list2 sfl-lsft normal-device">
-                                <div class="feature-list-icon2">
-                                    <i class="zmdi zmdi-collection-text"></i>
-                                </div>
-                                <div class="feature-list-text2 res1">
-                                    <h3>Community</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel volutpat felis, eu condimentum ma Pellentesque mollis eros vel.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="single-features-list2 sfl-lsft normal-device">
-                                <div class="feature-list-icon2">
-                                    <i class="zmdi zmdi-collection-text"></i>
-                                </div>
-                                <div class="feature-list-text2 res1">
-                                    <h3>API'S</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel volutpat felis, eu condimentum ma Pellentesque mollis eros vel.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="single-features-list2 sfl-lsft normal-device">
-                                <div class="feature-list-icon2">
-                                    <i class="zmdi zmdi-collection-text"></i>
-                                </div>
-                                <div class="feature-list-text2 res1">
-                                    <h3>Development Technologies</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel volutpat felis, eu condimentum ma Pellentesque mollis eros vel.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="single-features-list2 sfl-lsft normal-device">
-                                <div class="feature-list-icon2">
-                                    <i class="zmdi zmdi-collection-text"></i>
-                                </div>
-                                <div class="feature-list-text2 res1">
-                                    <h3>Datasets</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel volutpat felis, eu condimentum ma Pellentesque mollis eros vel.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="single-features-list2 sfl-lsft normal-device">
-                                <div class="feature-list-icon2">
-                                    <i class="zmdi zmdi-collection-text"></i>
-                                </div>
-                                <div class="feature-list-text2 res1">
-                                    <h3>Tutorials</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel volutpat felis, eu condimentum ma Pellentesque mollis eros vel.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="single-features-list2 sfl-lsft normal-device">
-                                <div class="feature-list-icon2">
-                                    <i class="zmdi zmdi-collection-text"></i>
-                                </div>
-                                <div class="feature-list-text2 res1">
-                                    <h3>Technical Support</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel volutpat felis, eu condimentum ma Pellentesque mollis eros vel.
-                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -261,77 +152,195 @@
                     </div>
                 </div>
             </div>
-            <div id="prizes-section" class="gray-bg">
-                <div class="pt-100 pb-120">
-                    <div class="feature-title title-style title-pb text-center">
-                        <h1>Prizes</h1>
-                    </div>
-                    <div class="container">
-                        <div class="row text-center">
-                            <div class="col-sm-12 col-md-4">
-                                <div class="single-item res-sm text-center">
-                                    <h4 class="ht-pt">
-                                        Best Solution<br>
-                                        ($500 Amazon Gift Card)
-                                    </h4>
-                                    <p>The best solution was evaluated based on the submission we received in the final round. 4 equally weighed criteria: Technology, User Requirements, Usability, and Novelty applied. The highest aggregate score won.</p>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-4">
-                                <div class="single-item res-sm res-xs text-center">
-                                    <h4 class="ht-pt">
-                                        Winning Spirit<br>
-                                        ($250 Amazon Gift Card)
-                                    </h4>
-                                    <p>Those who were among the top 25% in each of the three hacking phases qualified for this award: Among those who met these criteria we ranked them in terms of number of GitHub submissions with significant changes (changes related to all categories).</p>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-4">
-                                <div class="single-item text-center">
-                                    <h4 class="ht-pt">
-                                        Community Spirit<br>
-                                        ($150 Amazon Gift Card)
-                                    </h4>
-                                    <p>Those who made the most valuable contributions to the discussion qualified for this award (number of posts, number of other people that found that comment useful, and expert judgment).</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="download-area bg-oapcity-40 ptb-120 bg-img-3">
+            <% include("../register") %>
+            <div id="prizes-area" class="ptb-120">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <div class="title-style title-pb2">
-                                <h1>Sign up <span>here</span> </h1>
-                                <p>If you don't have an account click the sign up button. If you already logged in previously, click the sign in button.</p>
+                            <div class="title-style title-pb4">
+                                <h1>Prizes</h1>
+                                <p>There are range of great prizes to win. We award winners in three categories: Best solution, winning spirit, and community spirit. In addition, there are a range of additional prizes and awards.</p>
                             </div>
-                            <div class="download-links">
-                                <a class="res-xs" href="/signup">
-                                    <i class="zmdi zmdi-sign-in"></i>
-                                    <div class="text fix">
-                                        <h4>Sign up</h4>
+                        </div>
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="slider-2">
+                                <div class="single-team text-center">
+                                    <div class="team-image">
+                                        <i class="zmdi zmdi-card-giftcard"></i>
                                     </div>
-                                </a>
-                                <a href="/login">
-                                    <i class="zmdi zmdi-account-add"></i>
-                                    <div class="text fix">
-                                        <h4>Sign in</h4>
+                                    <div class="team-details">
+                                        <h3>Best Solution ($500 Amazon Gift Card plus free mbembership at <a href="https://platzi.com">www.platzi.com</a>):</h3>
+                                        <div class="team-social fix">
+                                            <p>The best solution was evaluated based on the submission we received in the final round. 4 equally weighed criteria: Technology, User Requirements, Usability, and Novelty applied. The highest aggregate score won (In the Purdue-Platzi Hack our winners will also get a free membership for ONE YEAR at <a href="https://platzi.com">www.platzi.com</a>).</p>
+                                        </div>
                                     </div>
-                                </a>
+                                </div>
+                                <div class="single-team text-center">
+                                    <div class="team-image">
+                                        <i class="zmdi zmdi-card-giftcard"></i>
+                                    </div>
+                                    <div class="team-details">
+                                        <h3>Winning Spirit ($250 Amazon Gift Card plus free mbembership at <a href="https://platzi.com">www.platzi.com</a>)</h3>
+                                        <div class="team-social fix">
+                                            <p>Those who were among the top 25% in each of the three hacking phases qualified for this award: Among those who met these criteria we ranked them in terms of number of GitHub submissions with significant changes (changes related to all categories).  (In the Purdue-Platzi Hack our winners will also get a free membership for ONE YEAR at <a href="https://platzi.com">www.platzi.com</a>)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-team text-center">
+                                    <div class="team-image">
+                                        <i class="zmdi zmdi-card-giftcard"></i>
+                                    </div>
+                                    <div class="team-details">
+                                        <h3>Community Spirit ($150 Amazon Gift Card plus free mbembership at <a href="https://platzi.com">www.platzi.com</a>)</h3>
+                                        <div class="team-social fix">
+                                            <p>Those who made the most valuable contributions to the discussion qualified for this award (number of posts, number of other people that found that comment useful, and expert judgment). (In the Purdue-Platzi Hack our winners will also get a free membership for ONE YEAR at <a href="https://platzi.com">www.platzi.com</a>.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-team text-center">
+                                    <div class="team-image">
+                                        <i class="zmdi zmdi-card-giftcard"></i>
+                                    </div>
+                                    <div class="team-details">
+                                        <h3>Additional great opportunities</h3>
+                                        <div class="team-social fix">
+                                            <p>Each participants will receive a signed certificate, the three winners will be invited for interviews by  companies driving the open data movement (see our sponsors), for the Purdue Platzi Hack we offer some additional great wards: you will get a free membership at <a href="https://platzi.com">www.platzi.com</a> for one month if you successfully participate  in all four stages of the hack (plus a 30$ dollar discount for a yearly membership) And most importantly, you will build your portfolio and gain reputation in the open data community!</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="question-area ptb-120">
+            <div id="rules-area" class=" ptb-120 fix">
+                <div class="container">
+                   <div class="row">
+                       <div class="col-md-12 text-center">
+                            <div class="feature-title title-style title-pb">
+                                <h1>Rules</h1>
+                                <p>Purdue IronHacks has a unique process. Please find the process below. You will go through a series of sprints, and then you can breeze while our experts evaluate your application.</p>
+                            </div>
+                       </div>
+                   </div>
+                </div>
+                <div class="container-fulwidth fix">
+                    <div class="col-lg-4 col-md-12">
+                        <div class="feature-list">
+                            <div class="single-features-list normal-device">
+                                <div class="feature-list-icon">
+                                    <i class="zmdi zmdi-assignment-account"></i>
+                                </div>
+                                <div class="feature-list-text text-right">
+                                    <h3>One hack per participant</h3>
+                                    <p>To make this a fair competition, we allow only one hack per participant in Spring 2017.</p>
+                                    <p>&nbsp;</p>
+                                </div>
+                            </div>
+                            <div class="single-features-list normal-device">
+                                <div class="feature-list-icon">
+                                    <i class="zmdi zmdi-file-text"></i>
+                                </div>
+                                <div class="feature-list-text text-right">
+                                    <h3>Code of conduct</h3>
+                                    <p>To qualify for the award, you need to be originator of the code. Even though we allow you reusing.</p>
+                                    <p>&nbsp;</p>
+                                    <p>&nbsp;</p>
+                                </div>
+                            </div>
+                            <div class="single-features-list mrn-nn normal-device">
+                                <div class="feature-list-icon">
+                                    <i class="zmdi zmdi-mood"></i>
+                                </div>
+                                <div class="feature-list-text text-right">
+                                    <h3>Creativity</h3>
+                                    <p>
+                                        Use your creativity for the best.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 text-center">
+                        <div class="feature-top">
+                            <div class="feature-img">
+                                <img src="<%= _public("/img/svg/bulb.svg") %>" alt="" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="feature-list res2">
+                            <div class="single-features-list2 sfl-lsft normal-device">
+                                <div class="feature-list-icon2">
+                                    <i class="zmdi zmdi-calendar"></i>
+                                </div>
+                                <div class="feature-list-text2 res1">
+                                    <h3>Follow the process</h3>
+                                    <p>
+                                        Our process has 4 hacking and 4 evaluation phases. To qualify for the award you have to submit in all four rounds. You can benefit from it
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="single-features-list2 sfl-lsft normal-device">
+                                <div class="feature-list-icon2">
+                                    <i class="zmdi zmdi-puzzle-piece"></i>
+                                </div>
+                                <div class="feature-list-text2">
+                                    <h3>Technical requirements</h3>
+                                    <p>For each hack, you should follow our technical requirements. The application should include at least 2 open data sets. Your app should be (mostly) written in javascript, for visualizations we ask you to use libaries like D3.js, etc.</p>
+                                </div>
+                            </div>
+                            <div class="single-features-list2 mrn-nn sfl-lsft normal-device">
+                                <div class="feature-list-icon2">
+                                    <i class="zmdi zmdi-memory"></i>
+                                </div>
+                                <div class="feature-list-text2 res1">
+                                    <h3>Evaluation in 4 categories</h3>
+                                    <p>Our experts judge your app in four categories: technology, user requirements, information visualization, and novelity. Stand out from the crowd.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+	    <div id="prior-hacks-area" class=" ptb-120 fix">
+                <div class="container">
+                   <div class="row">
+                       <div class="col-md-12 text-center">
+                            <div class="feature-title title-style title-pb">
+                                <h1>Prior Hacks</h1>
+                                <p>Check out what prior participants experienced</p>
+                            </div>
+                       </div>
+                   </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="embed-responsive embed-responsive-4by3">
+                                <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/188211462" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="embed-responsive embed-responsive-4by3">
+                                <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/187095271" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="embed-responsive embed-responsive-4by3">
+                                <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/185403671" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="faqs-area" class="question-area ptb-120">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <div class="title-style title-pb">
-                                <h1><span>FAQ</span> About THe Purdue IronHacks</h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel volutpat felis, eu condimentum massa. Pellentesque mollis eros vel mattis tempor. Aliquam </p>
+                                <h1><span>FAQ</span> About The Purdue IronHacks</h1>
+                                <p>Still having some  questions or doubts? Here you find some answers.</p>
                             </div>
                         </div>
                     </div>
@@ -342,14 +351,15 @@
                                     <div class="panel sauget-accordion">
                                         <div class="panel-heading" role="tab" id="headingOne">
                                             <h4 class="panel-title">
+
                                                 <a data-toggle="collapse" data-parent="#accordion" href="#checkoutMethod" aria-expanded="true" aria-controls="checkoutMethod">
-                                                    How it work?
+                                                    Do I have to be an expert in programming?
                                                 </a>
                                             </h4>
                                         </div>
                                         <div id="checkoutMethod" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                             <div class="panel-body">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel volutpat felis, eu condimentum massa. Pellentesque mollis eros vel mattis tempor. Aliquam </p>
+                                                <p>Purdue IronHacks has allowed people with no programming experience to succeed in the hack, and learn a great deal about how to turn open data into useful apps. So it is for everybody with willingness to come up with something cool.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -357,13 +367,13 @@
                                         <div class="panel-heading" role="tab" id="headingTwo">
                                             <h4 class="panel-title">
                                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#billingInformation" aria-expanded="false" aria-controls="billingInformation">
-                                                    Do I can use tutorial?
+                                                    Do I have to attend in person (physical presence)?
                                                 </a>
                                             </h4>
                                         </div>
                                         <div id="billingInformation" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                             <div class="panel-body">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel volutpat felis, eu condimentum massa. Pellentesque mollis eros vel mattis tempor. Aliquam </p>
+                                                <p>No. all our training material is availble via github. We offer virtual meetings 3 weeks prior to the hacks. Once you have signed-up you will receive a google hangout invitation with bi-weekly meeting information. All hacking activities are online.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -371,13 +381,13 @@
                                         <div class="panel-heading" role="tab" id="headingThree">
                                             <h4 class="panel-title">
                                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#shippingMethod" aria-expanded="false" aria-controls="shippingMethod">
-                                                    Do I can use video chat?
+                                                    Do I have to submit in all phases?
                                                 </a>
                                             </h4>
                                         </div>
                                         <div id="shippingMethod" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                                             <div class="panel-body">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel volutpat felis, eu condimentum massa. Pellentesque mollis eros vel mattis tempor. Aliquam </p>
+                                                <p>Yes, you must submit at least one application for each of the 4 hacking phases. Otherwise you will not be eligible for the award. You will also have to fill in the surveys. This project is sponsored by NSF.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -385,13 +395,13 @@
                                         <div class="panel-heading" role="tab" id="headingFour">
                                             <h4 class="panel-title">
                                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#paymentInformation" aria-expanded="false" aria-controls="paymentInformation">
-                                                    How I can pay a application?
+                                                    Will there be help if I have a problem?
                                                 </a>
                                             </h4>
                                         </div>
                                         <div id="paymentInformation" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
                                             <div class="panel-body">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel volutpat felis, eu condimentum massa. Pellentesque mollis eros vel mattis tempor. Aliquam </p>
+                                                <p>During hack, you have support from the community. The IronHacks forum provides immediate access to question regarding rules, technologies to be used. Our experts will respond to questions within less than a few hours.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -400,27 +410,13 @@
                         </div>
                         <div class="col-md-6">
                             <div class="question-img">
-                                <!-- <img src="<%= _public("/img/bg-img/app4.png") %>" alt=""> -->
+                                <img src="<%= _public("/img/svg/bulb.svg") %>" alt="" >
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="purdue-timeline">
-                <div class="container">
-                    <div class="row">
-                        <div class="home-slider2 clearfix">
-                            <div class="col-md-12">
-                                <div class="about-bottom-left clearfix pt-120">
-                                    <h1 class="text-center">Purdue IronHacks <span>Timeline</span></h1>
-                                    <img src="<%= _public("/img/timeline.png") %>" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="counter-area text-center ptb-120 fix">
+            <div id="partners-area" class="counter-area text-center ptb-120 fix">
                 <div class="col-sm-6 col-md-6 col-lg-3 col-xs-12 counter-res">
                     <div class="counter">
                         <div class="icon-coun">
@@ -428,7 +424,7 @@
                         </div>
                         <div class="icon-text">
                             <span class="timer">200</span>
-                            <p>Purdue IronHackers</p>
+                            <p>IronHackers</p>
                         </div>
                     </div>
                 </div>
@@ -519,24 +515,13 @@
                     </div>
                 </div>
             </div>
-            <div id="support-area" class="contact-area gray-bg pt-120 hide">
+            <div id="contact-area" class="contact-area gray-bg pt-120">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <div class="title-style title-pb">
-                                <h1>get in<span> touch</span></h1>
-                                <p></p>
-                            </div>
-                        </div>
-                        <div class="col-md-offset-2 col-md-8 text-center">
-                            <div class="contact-from">
-                                <form id="contact-form" action="mail.php" method="post">
-                                    <input name="name" type="text" placeholder="Name">
-                                    <input name="email" type="text" placeholder="Email">
-                                    <textarea name="message" placeholder="Your message"></textarea>
-                                    <input class="submit" type="submit" value="SUBMIT">
-                                </form>
-                                <p class="form-messege"></p>
+                                <h1>Get in<span> Touch</span></h1>
+                                <p>You can connect with us via phone, email, or just come to the <strong>Research Center for Open Digital Innovation</strong>, West-Lafayette, IN.</p>
                             </div>
                         </div>
                     </div>
@@ -549,9 +534,7 @@
                                     </div>
                                     <div class="contact-text">
                                         <span>
-                                            +012 345 678 102
-                                            <br>
-                                            +012 345 678 102
+                                            +1 765.494.2885
                                         </span>
                                     </div>
                                 </div>
@@ -563,9 +546,7 @@
                                     </div>
                                     <div class="contact-text">
                                         <span>
-                                            <a href="#">urname@email.com </a>
-                                                <br>
-                                            <a href="#">urwebsitenaem.com</a>
+                                            <a href="mailto:opendigital@purdue.edu">opendigital@purdue.edu</a>
                                         </span>
                                     </div>
                                 </div>
@@ -577,9 +558,8 @@
                                     </div>
                                     <div class="contact-text">
                                         <span>
-                                            ur address goes here,
-                                            <br>
-                                            street,Crossroad123.
+                                            Seng-Liang Wang Hall,<br>
+                                            516 Northwestern Ave, West Lafayette, IN 47906
                                         </span>
                                     </div>
                                 </div>

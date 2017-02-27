@@ -2,7 +2,7 @@ const $ = window.jQuery = window.$ = require("jquery");
 
 $(function () {
     require("./vendor/modernizr-2.8.3.min.js");
-    //require("./bootstrap.min");
+    require("./bootstrap.min");
     //require("./ajax-mail");
     require("./plugins");
 

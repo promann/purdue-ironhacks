@@ -1,0 +1,101 @@
+<div id="upcoming-hacks-area" class="pricing-area gray-bg ptb-120">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="title-style title-pb2">
+                    <h1>Upcoming Hacks <span>Hacks Spring 2017</span></h1>
+                    <p>Currently, we are running 3 IronHacks in Spring 2017. Please sign-up below. You can only sign-up for one hack.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="single-price-package">
+                    <div class="price-title">
+                        <h3>Purdue Gold<br>IronHacks Spring2017</h3>
+                    </div>
+                    <div class="price">
+                        <p>
+                            <span class="text-bottom">
+                                Start of training March 7th<br>
+                                Start of Contest March 28th
+                            </span>
+                        </p>
+                    </div>
+                    <div class="price-list">
+                        <ul>
+                            <li>This is hack for students at Purdue Polytechnic in the classes  (CGT 370, Interactive Data Visualization, CNIT599 Data Warehousing, TECH581-Open Data Hacking)</li>
+                            <li>Professors: Sabine Brunswicker, Victor Chen, John Springer</li>
+                            <li>Challenge topic: Food location</li>
+                        </ul>
+                        <div class="price-btn">
+                            <form method="POST" action="/register">
+                                <%- lien.csrfInput %>
+                                <input name="hack_type" value="purdue" type="hidden" />
+                                <input class="button" type="submit" value="Sign up" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="single-price-package">
+                    <div class="price-title">
+                        <h3>Purdue-UNAL Gold<br>IronHacks 2017</h3>
+                    </div>
+                    <div class="price">
+                        <p>
+                            <span class="text-bottom">
+                                Start of training March 7th<br>
+                                Start of Contest March 28th
+                            </span>
+                        </p>
+                    </div>
+                    <div class="price-list">
+                        <ul>
+                            <li>This is hack for students at Universidad Nacional De Colombia, Bogota in the School of Engineering</li>
+                            <li>Professors: Jairo Aponte, David Camilo Delgado</li>
+                            <li>Challenge topic: Housing and Safety<br><br><br></li>
+                        </ul>
+                        <div class="price-btn">
+                            <form method="POST" action="/register">
+                                <%- lien.csrfInput %>
+                                <input name="hack_type" value="bogota" type="hidden" />
+                                <input class="button" type="submit" value="Sign up" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="single-price-package">
+                    <div class="price-title">
+                        <h3>Purdue-PLATZI Black<br>IronHacks 2017</h3>
+                    </div>
+                    <div class="price">
+                        <p>
+                            <span class="text-bottom">
+                                Start of training March 28th<br>
+                                Start of Contest April 18th
+                            </span>
+                        </p>
+                    </div>
+                    <div class="price-list">
+                        <ul>
+                            <li>This is an open hack, open for all innovators that are not enrolled in the other classes</li>
+                            <li>Challenge topic: Housing and Renting</li>
+                            <li>This hack is performed in collaboration with Platzi-com, leading online education platform</li>
+                        </ul>
+                        <div class="price-btn">
+                            <form method="POST" action="/register">
+                                <%- lien.csrfInput %>
+                                <input name="hack_type" value="platzi" type="hidden" />
+                                <input class="button" type="submit" value="Sign up" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
