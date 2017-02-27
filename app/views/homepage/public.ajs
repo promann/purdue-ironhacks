@@ -576,11 +576,8 @@
                             </div>
                             <div class="footer-icon">
                                 <ul>
-                                    <li><a href="#"><i class="zmdi zmdi-facebook"></i></a></li>
-                                    <li><a href="#"><i class="zmdi zmdi-twitter"></i></a></li>
-                                    <li><a href="#"><i class="zmdi zmdi-google-plus"></i></a></li>
-                                    <li><a href="#"><i class="zmdi zmdi-pinterest"></i></a></li>
-                                    <li><a href="#"><i class="zmdi zmdi-linkedin"></i></a></li>
+                                    <li><a href="https://www.facebook.com/OpenDigitalPurdue"><i class="zmdi zmdi-facebook"></i></a></li>
+                                    <li><a href="https://twitter.com/Purdue_RCODI"><i class="zmdi zmdi-twitter"></i></a></li>
                                 </ul>
                             </div>
                             <div class="footer-text">
@@ -588,7 +585,7 @@
                                     <% var now = new Date(); %>
                                     <% var thisYear = now.getFullYear(); %>
                                     Copyright © <%= thisYear %> Purdue IronHacks | Powered by
-                                    <a href="http://bootexperts.com/" target="_blank">Bloggify</a>
+                                    <a href="https://bloggify.org/" target="_blank">Bloggify</a>
                                 </span>
                             </div>
                         </div>
