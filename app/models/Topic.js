@@ -1,16 +1,22 @@
 module.exports = {
-    author: "string",
+    author: {
+        type: String,
+        index: true
+    },
     title: {
         type: String,
         text: true
     },
-    slug: "string",
+    slug: {
+        type: String,
+        index: true
+    },
     body: {
         type: String,
         text: true
     },
-    created_at: "date",
-    votes: ["string"],
+    created_at: Date,
+    votes: [String],
     sticky: "boolean",
-    metadata: "object"
+    metadata: Object
 };

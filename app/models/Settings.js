@@ -1,3 +1,3 @@
 module.exports = {
-    settings: "object"
+    settings: Object
 };

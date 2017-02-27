@@ -1,6 +1,6 @@
 module.exports = {
-    actor: "string",
-    metadata: "object",
-    event: "string",
-    created_at: "date"
+    actor: String,
+    metadata: Object,
+    event: String,
+    created_at: Date
 };

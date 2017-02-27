@@ -1,10 +1,19 @@
 module.exports = {
-    author: "string",
+    author: {
+        type: String,
+        index: true
+    },
     body: {
         type: String,
         text: true
     },
-    created_at: "date",
-    topic: "string",
-    votes: ["string"]
+    created_at: {
+        type: Date,
+        index: true
+    },
+    topic: {
+        type: String,
+        index: true
+    },
+    votes: [String]
 };
