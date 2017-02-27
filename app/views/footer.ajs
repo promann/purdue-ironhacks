@@ -2,7 +2,7 @@
         <footer>
             <div class="bag fixed">
                 <div class="text-center">
-                    IronHack | Powered by <a href="https://bloggify.org"><span class="icon-bloggify-logo"></span></a>
+                    IronHacks | Powered by <a href="https://bloggify.org"><span class="icon-bloggify-logo"></span></a>
                 </div>
                 <div class="float-right bloggify-logo hide-xs">
                     <a href="https://bloggify.org"><span class="icon-bloggify-mark"></span></a>

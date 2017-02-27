@@ -2,10 +2,11 @@
     <% var hType = lien.user.profile.hack_type; %>
     <% var hTypeName = hType.charAt(0).toUpperCase() + hType.slice(1); %>
     <% if (hType === "purdue") { %>
-        GoldIronHack
+        Gold
     <% } else { %>
-        BlackIronHack
+        Black
     <% } %>
+    IronHacks
     <% var now = new Date() %>
     <%= now.getFullYear() %>
     — <%= hTypeName %>

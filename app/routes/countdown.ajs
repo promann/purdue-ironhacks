@@ -1,3 +1,4 @@
+<% lien.displayNavigationPages = false; %>
 <% include("../views/header", { title: "Countdown" }) %>
 <% include("../views/container/start") %>
 
