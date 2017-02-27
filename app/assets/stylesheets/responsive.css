@@ -2,7 +2,7 @@
     .hide-lg { display: none !important; }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
     .hide-sm { display: none !important; }
     a.profile-link {
 	padding: 0;
@@ -49,9 +49,19 @@
         padding: 5px 2px !important;
     }
 
+}
+@media (max-width: 460px) {
     span.auth-buttons.float-left {
         font-size: 12px;
         margin-top: 3px;
+    }
+    .btn.btn-small {
+        font-size: 10px;
+    }
+
+    .btn.btn-small {
+        position: relative;
+        top: 3px;
     }
 }
 
