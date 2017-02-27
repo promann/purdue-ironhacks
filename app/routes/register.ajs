@@ -1,6 +1,6 @@
 <% include("../views/header", { title: "Register" }) %>
 <style>
-    @import url("/!/bloggify/core/development-bundles/publicHomepage/stylesheets-publicHomepage.css");
+    @import url("/!/bloggify/core/<%= Bloggify.production ? "production" : "development" %>-bundles/publicHomepage/stylesheets-publicHomepage.css");
     body {
         background: #f1f1f1;
     }
