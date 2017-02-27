@@ -8,7 +8,7 @@
     "start": "NODE_ENV=production bloggify start --no-bundle",
     "start:dev": "bloggify start",
     "bundle": "PORT=8081 NODE_ENV=production bloggify start --exit-after-bundle",
-    "purify:homepage": "purifycss .bloggify/public/production-bundles/publicHomepage/stylesheets-publicHomepage.css .bloggify/public/production-bundles/publicHomepage/scripts-publicHomepage.js app/views/homepage/public.ajs --min --info --out .bloggify/public/production-bundles/publicHomepage/stylesheets-publicHomepage.css",
+    "purify:homepage": "purifycss .bloggify/public/production-bundles/publicHomepage/stylesheets-publicHomepage.css .bloggify/public/production-bundles/publicHomepage/scripts-publicHomepage.js app/views/homepage/public.ajs app/views/register.ajs --min --info --out .bloggify/public/production-bundles/publicHomepage/stylesheets-publicHomepage.css",
     "start:debug": "node debug `which bloggify` start",
     "deploy": "./scripts/heroku-deploy.sh",
     "enable-heroku-cache": "heroku config:unset NODE_MODULES_CACHE",
