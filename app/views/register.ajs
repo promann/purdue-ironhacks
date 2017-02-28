@@ -17,14 +17,14 @@
                     <div class="price">
                         <p>
                             <span class="text-bottom">
-                                Start of training March 7th<br>
-                                Start of Contest March 28th
+                                Start of training: March 7th<br>
+                                Start of contest: March 28th
                             </span>
                         </p>
                     </div>
                     <div class="price-list">
                         <ul>
-                            <li>This is hack for students at Purdue Polytechnic in the classes  (CGT 370, Interactive Data Visualization, CNIT599 Data Warehousing, TECH581-Open Data Hacking)</li>
+                            <li>This is a hack for students at Purdue Polytechnic in the classes  (CGT 370, Interactive Data Visualization, CNIT599 Data Warehousing, TECH581-Open Data Hacking)</li>
                             <li>Professors: Sabine Brunswicker, Victor Chen, John Springer</li>
                             <li>Challenge topic: Food location</li>
                         </ul>
@@ -46,8 +46,8 @@
                     <div class="price">
                         <p>
                             <span class="text-bottom">
-                                Start of training March 7th<br>
-                                Start of Contest March 28th
+                                Start of training: March 7th<br>
+                                Start of contest: March 28th
                             </span>
                         </p>
                     </div>
@@ -75,8 +75,8 @@
                     <div class="price">
                         <p>
                             <span class="text-bottom">
-                                Start of training March 28th<br>
-                                Start of Contest April 18th
+                                Start of training: March 28th<br>
+                                Start of contest: April 18th
                             </span>
                         </p>
                     </div>
@@ -84,7 +84,7 @@
                         <ul>
                             <li>This is an open hack, open for all innovators that are not enrolled in the other classes</li>
                             <li>Challenge topic: Housing and Renting</li>
-                            <li>This hack is performed in collaboration with Platzi-com, leading online education platform</li>
+                            <li>This hack is performed in collaboration with <a href="https://platzi.com">Platzi-com<a/>, a leading online education platform</li>
                         </ul>
                         <div class="price-btn">
                             <form method="POST" action="/register">

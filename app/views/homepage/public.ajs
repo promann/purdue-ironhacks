@@ -52,7 +52,7 @@
                                         <div class="top-text pt-60">
                                             <div class="slider-text">
                                                 <h1><span class="text-weight-light">Purdue</span> IronHacks</h1>
-                                                <h2>Hack for inovation and join the open data movement.</h2>
+                                                <h2>Hack for innovation and join the open data movement.</h2>
                                                 <div class="button-set">
                                                     <a class="button button-square scroll-down" href="#upcoming-hacks-area">
                                                         <span>
@@ -90,7 +90,7 @@
                                     <div class="single-item-icon">
                                         <i class="zmdi zmdi-settings"></i>
                                     </div>
-                                    <h4 class="ht-pt">WHAT’S IRONHACKS.</h4>
+                                    <h4 class="ht-pt">WHAT IS IRONHACKS?</h4>
                                     <p>An Ironhack is a unique 21-day, 4-stage innovative hacking initiative for individuals who want to create impact from open data. Participation is free, and you will receive feedback from experts and future app users. You will have the chance to learn from others in the community, gain experience, and turn your ideas into something real!</p>
                                 </div>
                             </div>
@@ -99,8 +99,8 @@
                                     <div class="single-item-icon">
                                         <i class="zmdi zmdi-comments"></i>
                                     </div>
-                                    <h4 class="ht-pt">WHY SHOULD I PARTICIPATE.</h4>
-                                    <p>In IronHacks you learn new skills, win prizes ($$$), get exposed to  global tech companies, win internships, and free memberships for Platzi.com. But most importantly you become part of a global movement of open data to make an impact in areas such as safety, health, or travel.</p>
+                                    <h4 class="ht-pt">WHY SHOULD I PARTICIPATE?</h4>
+                                    <p>In IronHacks you learn new skills, win prizes ($$$), get exposed to global tech companies, win internships, and free memberships for Platzi.com. But most importantly you become part of a global movement of open data to make an impact in areas such as safety, health, or travel.</p>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-4">
@@ -109,8 +109,8 @@
                                         <i class="zmdi zmdi-accounts"></i>
 
                                     </div>
-                                    <h4 class="ht-pt">HOW CAN I GET INVOLVED.</h4>
-                                    <p>There are many ways but the most obvious one: Check out our upcoming hacks and sign-up for a contest in areas such as food, travel, and safety. If do not feel ready to sign-up, just contact us. We always look for open data enthusiasts, UX experts, or partners that want to help us in defining future challenges.</p>
+                                    <h4 class="ht-pt">HOW CAN I GET INVOLVED?</h4>
+                                    <p>There are many ways but the most obvious one: Check out our upcoming hacks and sign-up for a contest in areas such as food, travel, and safety. If you do not feel ready to sign-up, just contact us. We always look for open data enthusiasts, UX experts, or partners that want to help us in defining future challenges.</p>
                                 </div>
                             </div>
                         </div>
@@ -124,11 +124,13 @@
                             <div class="col-md-8 col-md-offset-2">
                                 <div class="about-bottom-left clearfix pt-120">
                                     <h1>About <span>IronHacks</span></h1>
-                                    <p class="about-pb"></p>
+                                    <p class="about-pb">
+                                        Gold vs Black IronHacks: The Gold IronHacks is a closed hack for the students of Purdue or UNAL While the Black IronHacks is open to anyone.
+                                    </p>
                                     <p><strong>Innovate with open data</strong>: Create a novel, cool, and performative mash-up embedded in a website that helps users to solve their problem.</p>
                                     <p><strong>Outperform others and learn from others</strong>: IronHacks is about competition but you get also feedback and learn from others’ work.</p>
                                     <p><strong>Hack virtually but also meet physically</strong>: We offer a training on open data, using the required API, and learning about the programming tools.</p>
-                                    <p><strong>Gain &amp; fame in multiple ways</strong>: Improve your score on the way, gain reputation,  learn (GitHub, JSSFIDDLE, etc.) and win cool prizes ($$$, internship, or a ticket to present at a conference in a hot place.</p>
+                                    <p><strong>Gain &amp; fame in multiple ways</strong>: Improve your score on the way, gain reputation, learn (GitHub, JavaScript etc.) and win cool prizes ($$$, internships,  giftcards, free memberships for <a href="https://platzi.com">platzi.com</a>)</p>
                                     <div class="about-icon">
                                         <ul>
                                             <li><a href="https://www.facebook.com/OpenDigitalPurdue"><i class="zmdi zmdi-facebook"></i></a></li>
@@ -159,7 +161,7 @@
                         <div class="col-md-12 text-center">
                             <div class="title-style title-pb4">
                                 <h1>Prizes</h1>
-                                <p>There are range of great prizes to win. We award winners in three categories: Best solution, winning spirit, and community spirit. In addition, there are a range of additional prizes and awards.</p>
+                                <p>There are range of great prizes to win. We award winners in three categories: Best solution, winning spirit, and community spirit. In addition, there are a range of other additional prizes and awards.</p>
                             </div>
                         </div>
                         <div class="col-md-8 col-md-offset-2">
@@ -171,7 +173,7 @@
                                     <div class="team-details">
                                         <h3>Best Solution ($500 Amazon Gift Card plus free mbembership at <a href="https://platzi.com">www.platzi.com</a>):</h3>
                                         <div class="team-social fix">
-                                            <p>The best solution was evaluated based on the submission we received in the final round. 4 equally weighed criteria: Technology, User Requirements, Usability, and Novelty applied. The highest aggregate score won (In the Purdue-Platzi Hack our winners will also get a free membership for ONE YEAR at <a href="https://platzi.com">www.platzi.com</a>).</p>
+                                            <p>The best solution is evaluated based on the submission we receive in the final round. 4 equally weighed criteria: Technology, User Requirements, Usability, and Novelty applied. The highest aggregate score wins (In the Purdue-Platzi Hack our winners will also get a free membership for ONE YEAR at <a href="https://platzi.com">www.platzi.com</a>).</p>
                                         </div>
                                     </div>
                                 </div>
@@ -182,7 +184,7 @@
                                     <div class="team-details">
                                         <h3>Winning Spirit ($250 Amazon Gift Card plus free mbembership at <a href="https://platzi.com">www.platzi.com</a>)</h3>
                                         <div class="team-social fix">
-                                            <p>Those who were among the top 25% in each of the three hacking phases qualified for this award: Among those who met these criteria we ranked them in terms of number of GitHub submissions with significant changes (changes related to all categories).  (In the Purdue-Platzi Hack our winners will also get a free membership for ONE YEAR at <a href="https://platzi.com">www.platzi.com</a>)</p>
+                                            <p>Those who are among the top 25% in each of the three hacking phases qualify for this award: Among those who meet these criteria we rank them in terms of number of GitHub submissions with significant changes (changes related to all categories). (In the Purdue-Platzi Hack our winners will also get a free membership for ONE YEAR at <a href="https://platzi.com">www.platzi.com</a>)</p>
                                         </div>
                                     </div>
                                 </div>
@@ -193,7 +195,7 @@
                                     <div class="team-details">
                                         <h3>Community Spirit ($150 Amazon Gift Card plus free mbembership at <a href="https://platzi.com">www.platzi.com</a>)</h3>
                                         <div class="team-social fix">
-                                            <p>Those who made the most valuable contributions to the discussion qualified for this award (number of posts, number of other people that found that comment useful, and expert judgment). (In the Purdue-Platzi Hack our winners will also get a free membership for ONE YEAR at <a href="https://platzi.com">www.platzi.com</a>.</p>
+                                            <p>Those who maake the most valuable contributions to the discussion qualify for this award (number of posts, number of other people that found that comment useful, and expert judgment). (In the Purdue-Platzi Hack our winners will also get a free membership for ONE YEAR at <a href="https://platzi.com">www.platzi.com</a>.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -243,7 +245,7 @@
                                 </div>
                                 <div class="feature-list-text text-right">
                                     <h3>Code of conduct</h3>
-                                    <p>To qualify for the award, you need to be originator of the code. Even though we allow you reusing.</p>
+                                    <p>Even though we allow reusing some ideas from others code, you must be the originator of your code. </p>
                                     <p>&nbsp;</p>
                                     <p>&nbsp;</p>
                                 </div>
@@ -276,9 +278,7 @@
                                 </div>
                                 <div class="feature-list-text2 res1">
                                     <h3>Follow the process</h3>
-                                    <p>
-                                        Our process has 4 hacking and 4 evaluation phases. To qualify for the award you have to submit in all four rounds. You can benefit from it
-                                    </p>
+                                    <p>Our process has four hacking and  four evaluation phases. To qualify for the award you must  submit in all four rounds. </p>
                                 </div>
                             </div>
                             <div class="single-features-list2 sfl-lsft normal-device">
@@ -287,7 +287,7 @@
                                 </div>
                                 <div class="feature-list-text2">
                                     <h3>Technical requirements</h3>
-                                    <p>For each hack, you should follow our technical requirements. The application should include at least 2 open data sets. Your app should be (mostly) written in javascript, for visualizations we ask you to use libaries like D3.js, etc.</p>
+                                    <p>In each hack, the application should include at least 2 open data sets. Your application should be (mostly) written in JavaScript. For visualizations we ask you to use libraries like D3.js, etc.</p>
                                 </div>
                             </div>
                             <div class="single-features-list2 mrn-nn sfl-lsft normal-device">
@@ -295,8 +295,8 @@
                                     <i class="zmdi zmdi-memory"></i>
                                 </div>
                                 <div class="feature-list-text2 res1">
-                                    <h3>Evaluation in 4 categories</h3>
-                                    <p>Our experts judge your app in four categories: technology, user requirements, information visualization, and novelity. Stand out from the crowd.</p>
+                                    <h3>Evaluation in four categories</h3>
+                                    <p>Our experts judge your application in four categories: technology, user requirements, information visualization, and novelty. Stand out from the crowd.</p>
                                 </div>
                             </div>
                         </div>
@@ -340,7 +340,7 @@
                         <div class="col-md-12 text-center">
                             <div class="title-style title-pb">
                                 <h1><span>FAQ</span> About The Purdue IronHacks</h1>
-                                <p>Still having some  questions or doubts? Here you find some answers.</p>
+                                <p>Still have some questions or doubts? Here you will find some answers.</p>
                             </div>
                         </div>
                     </div>
@@ -359,7 +359,7 @@
                                         </div>
                                         <div id="checkoutMethod" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                             <div class="panel-body">
-                                                <p>Purdue IronHacks has allowed people with no programming experience to succeed in the hack, and learn a great deal about how to turn open data into useful apps. So it is for everybody with willingness to come up with something cool.</p>
+                                                <p>Purdue IronHacks has allowed people with no prior programming experience to succeed in the hack, and learn a great deal about how to turn open data into useful apps. So it is for everybody with a willingness to come up with something cool.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -373,7 +373,7 @@
                                         </div>
                                         <div id="billingInformation" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                             <div class="panel-body">
-                                                <p>No. all our training material is availble via github. We offer virtual meetings 3 weeks prior to the hacks. Once you have signed-up you will receive a google hangout invitation with bi-weekly meeting information. All hacking activities are online.</p>
+                                                <p>No. All our training material is available via GitHub. We offer virtual meetings 3 weeks prior to the hacks. Once you have signed-up you will receive a google hangout invitation with bi-weekly meeting information. All hacking activities are online.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -387,7 +387,7 @@
                                         </div>
                                         <div id="shippingMethod" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                                             <div class="panel-body">
-                                                <p>Yes, you must submit at least one application for each of the 4 hacking phases. Otherwise you will not be eligible for the award. You will also have to fill in the surveys. This project is sponsored by NSF.</p>
+                                                <p>Yes, you must submit at least one application for each of the 4 hacking phases, otherwise you will not be eligible for the award. You will also have to fill in the surveys. This project is sponsored by NSF.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -401,7 +401,7 @@
                                         </div>
                                         <div id="paymentInformation" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
                                             <div class="panel-body">
-                                                <p>During hack, you have support from the community. The IronHacks forum provides immediate access to question regarding rules, technologies to be used. Our experts will respond to questions within less than a few hours.</p>
+                                                <p>During the hack, you have support from the community. The IronHacks forum provides immediate access to questions regarding rules and technologies to be used. Our experts will respond to questions within a few hours.</p>
                                             </div>
                                         </div>
                                     </div>
