@@ -84,7 +84,7 @@
                         <ul>
                             <li>This is an open hack, open for all innovators that are not enrolled in the other classes</li>
                             <li>Challenge topic: Housing and Renting</li>
-                            <li>This hack is performed in collaboration with <a href="https://platzi.com">Platzi-com<a/>, a leading online education platform</li>
+                            <li>This hack is performed in collaboration with <a href="https://platzi.com">Platzi-com</a>, a leading online education platform</li>
                         </ul>
                         <div class="price-btn">
                             <form method="POST" action="/register">
