@@ -59,9 +59,10 @@ module.exports = conf({
         "bloggify-flexible-router": {
             "controllers_dir": "app/controllers",
             "routes_dir": "app/routes",
-            "errorPages": {
+            "error_pages": {
                 "404": "404.ajs",
-                "500": "500.ajs"
+                "500": "500.ajs",
+                "bad_csrf": "422.ajs"
             }
         },
 
