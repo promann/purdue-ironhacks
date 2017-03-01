@@ -91,7 +91,7 @@
                                         <i class="zmdi zmdi-settings"></i>
                                     </div>
                                     <h4 class="ht-pt">WHAT IS IRONHACKS?</h4>
-                                    <p>An Ironhack is a unique 21-day, 4-stage innovative hacking initiative for individuals who want to create impact from open data. Participation is free, and you will receive feedback from experts and future app users. You will have the chance to learn from others in the community, gain experience, and turn your ideas into something real!</p>
+                                    <p>An Ironhack is a unique 21-day, 4-stage innovative hacking program for individuals who want to create impact from open data.<br>Participation is free. During our iterative hacking process, you will  learn new skills, have the chance to learn from others and receive feedback from our experts! Turn your ideas into web apps that make data actionable and useful! </p>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-4">
@@ -127,10 +127,10 @@
                                     <p class="about-pb">
                                         Gold vs Black IronHacks: The Gold IronHacks is a closed hack for the students of Purdue or UNAL While the Black IronHacks is open to anyone.
                                     </p>
-                                    <p><strong>Innovate with open data</strong>: Create a novel, cool, and performative mash-up embedded in a website that helps users to solve their problem.</p>
+                                    <p><strong>Innovate with open data</strong>: reate a novel and useful web app with an interactive mashup that combines several (at least 2) open data sets into interactive visualizations.</p>
                                     <p><strong>Outperform others and learn from others</strong>: IronHacks is about competition but you get also feedback and learn from others’ work.</p>
-                                    <p><strong>Hack virtually but also meet physically</strong>: We offer a training on open data, using the required API, and learning about the programming tools.</p>
-                                    <p><strong>Gain &amp; fame in multiple ways</strong>: Improve your score on the way, gain reputation, learn (GitHub, JavaScript etc.) and win cool prizes ($$$, internships,  giftcards, free memberships for <a href="https://platzi.com">platzi.com</a>)</p>
+                                    <p><strong>Hack and learn virtually.</strong> During the contest you have access to an online forum where you can ask questions and access all the information (including your own scores at each hacking round). No physical presence is needed. 3 weeks prior to hack, we offer free on-the-job tutorials on key (from basics like CSS to D3.js, or using the required APIs).</p>
+                                    <p><strong>Gain &amp; fame in multiple ways</strong>: Improve your score on the way, gain reputation among other hackers and our sponsors, and win cool prizes ($$$). Every participant will receive a signed certificate confirming successful participation in IronHacks.</p>
                                     <div class="about-icon">
                                         <ul>
                                             <li><a href="https://www.facebook.com/OpenDigitalPurdue"><i class="zmdi zmdi-facebook"></i></a></li>
@@ -223,7 +223,7 @@
                        <div class="col-md-12 text-center">
                             <div class="feature-title title-style title-pb">
                                 <h1>Rules</h1>
-                                <p>Purdue IronHacks has a unique process. Please find the process below. You will go through a series of sprints, and then you can breeze while our experts evaluate your application.</p>
+                                <p>Our IronHacks follow a unique 4-staged process. In order to win a prize and qualify for a certificate there are few rules and guidelines to keep in mind! We are all about openness and community-think! Be part of it.</p>
                             </div>
                        </div>
                    </div>
@@ -247,7 +247,7 @@
                                 </div>
                                 <div class="feature-list-text text-right">
                                     <h3>Code of conduct</h3>
-                                    <p>Even though we allow reusing some ideas from others code, you must be the originator of your code. </p>
+                                    <p>To qualify for the award, you need to be originator & submitter of your app. Even though we allow you reuse others’ code, your code should be written by yourself. Further, we follow the idea of openness and open source (you will learn more about it during the hack).</p>
                                     <p>&nbsp;</p>
                                 </div>
                             </div>
@@ -256,9 +256,9 @@
                                     <i class="zmdi zmdi-mood"></i>
                                 </div>
                                 <div class="feature-list-text text-right">
-                                    <h3>Creativity</h3>
+                                    <h3>Iteration encouraged</h3>
                                     <p>
-                                        Use your creativity for the best.
+                                        Your first of four submissions does not have to be a shiny app. It is about getting started.  A rough working prototype is fine to start off. The feedback from experts will help you to improve.
                                     </p>
                                 </div>
                             </div>
@@ -279,7 +279,7 @@
                                 </div>
                                 <div class="feature-list-text2 res1">
                                     <h3>Follow the process</h3>
-                                    <p>Our process has four hacking and  four evaluation phases. To qualify for the award you must  submit in all four rounds. </p>
+                                    <p>Our process has 4 hacking and 4 evaluation phases. To qualify for the award you have to submit in all four rounds. You can benefit from it.</p>
                                 </div>
                             </div>
                             <div class="single-features-list2 sfl-lsft normal-device">
