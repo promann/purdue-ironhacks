@@ -339,3 +339,12 @@ span.admin-filters {
     margin-left: auto;
     margin-right: auto;
 }
+
+.partners-list > a {
+    width: 8%;
+    display: table-cell;
+    vertical-align: middle;
+}
+.partners-list > a img {
+    width: 100%;
+}

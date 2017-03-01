@@ -3,31 +3,43 @@
     <% include("../views/container/start") %>
     <div class="partners-list">
         <a href="https://www.redhat.com/en" target="_blank">
-            <img src="<%= _public("/images/partners/redhat.png") %>" alt="redhat">
+            <img src="<%= _public("/images/partners/red-hat.jpg") %>" />
         </a>
         <a href="http://www.westlafayette.in.gov/" target="_blank">
-            <img src="<%= _public("/images/partners/citywl.png") %>" alt="City of West Lafayette">
+            <img src="<%= _public("/images/partners/city-of-west-lafayette.png") %>" />
         </a>
         <a href="https://socrata.com/" target="_blank">
-            <img src="<%= _public("/images/partners/socrata.png") %>" alt="Socrata">
+            <img src="<%= _public("/images/partners/socrata.png") %>" />
         </a>
+
         <a href="http://www.10inhouse.com/#10-in-house" target="_blank">
-            <img src="<%= _public("/images/partners/inhouse.png") %>" alt="10 in House">
+            <img src="<%= _public("/images/partners/10-in-house.png") %>" />
         </a>
+
+        <a href="https://github.com" target="_blank">
+            <img src="<%= _public("/images/partners/github.jpg") %>" />
+        </a>
+
         <a href="http://matchboxstudio.org/" target="_blank">
-            <img src="<%= _public("/images/partners/matchbox.png") %>" alt="Match Box">
-        </a>
-        <a href="https://datascience.nih.gov/bd2k" target="_blank">
-            <img src="<%= _public("/images/partners/nih.png") %>" alt="NIH">
+            <img src="<%= _public("/images/partners/match-box.png") %>" />
         </a>
         <a href="http://www.nsf.gov/" target="_blank">
-            <img src="<%= _public("/images/partners/nsf.png") %>" alt="NSF">
+            <img src="<%= _public("/images/partners/nsf.jpg") %>" />
         </a>
         <a href="http://www.in.gov/isac/" target="_blank">
-            <img src="<%= _public("/images/partners/iac.png") %>" alt="Indiana Arts Commission">
+            <img src="<%= _public("/images/partners/iac-logo.png") %>" />
         </a>
         <a href="http://purduehackers.com/" target="_blank">
-            <img src="<%= _public("/images/partners/hackers.png") %>" alt="Purdue Hackers">
+            <img src="<%= _public("/images/partners/purdue-hackers.jpg") %>" />
+        </a>
+        <a href="https://www.purdue.edu/" target="_blank">
+            <img src="<%= _public("/images/partners/purdue-sig-black-gold.png") %>" />
+        </a>
+        <a href="https://www.platzi.com/" target="_blank">
+            <img src="<%= _public("/images/partners/platzi.png") %>" />
+        </a>
+        <a href="http://unal.edu.co/" target="_blank">
+            <img src="<%= _public("/images/partners/universidad-nacional-de-colombia.png") %>" />
         </a>
     </div>
 
@@ -37,3 +49,4 @@
 <% } else { %>
     <% include("../views/homepage/public") %>
 <% } %>
+

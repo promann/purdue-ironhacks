@@ -7,14 +7,6 @@ hr {
     border-top: 1px solid #111;
 }
 
-.partners-list > a img {
-    width: 10%;
-}
-
-.partners-list > a:last-of-type img {
-    width: 12%;
-}
-
 html, body {
     height: 100%;
 }
@@ -33,14 +25,6 @@ img { max-width: 100%; }
 
 hr {
     border-top: 1px solid #111;
-}
-
-.partners-list > a img {
-    width: 10%;
-}
-
-.partners-list > a:last-of-type img {
-    width: 12%;
 }
 
 nav {

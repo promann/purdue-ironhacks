@@ -1,9 +1,7 @@
 const $ = window.jQuery = window.$ = require("jquery");
 
 $(function () {
-    require("./vendor/modernizr-2.8.3.min.js");
     require("./bootstrap.min");
-    //require("./ajax-mail");
     require("./plugins");
 
     /*--
@@ -13,54 +11,6 @@ $(function () {
         meanScreenWidth: "990",
         meanMenuContainer: ".mobile-menu",
         onePage: true,
-    });
-
-    /*--
-    Magnific Popup
-    ------------------------*/
-    $('.video-popup').magnificPopup({
-        type: 'iframe',
-        mainClass: 'mfp-fade',
-        removalDelay: 160,
-        preloader: false,
-        zoom: {
-            enabled: true,
-        }
-    });
-
-
-    /*--
-    slick slider
-    ------------------------*/
-    $('.screenshot-slider').slick({
-      centerMode: true,
-      dots: true,
-      focusOnSelect: true,
-      swipeToSlide: true,
-      touchMove: false,
-      centerPadding: '0',
-      slidesToShow: 5,
-      arrows: false,
-      responsive: [
-        {
-          breakpoint: 1100,
-          settings: {
-            slidesToShow: 3,
-          }
-        },
-        {
-          breakpoint: 970,
-          settings: {
-            slidesToShow: 3,
-          }
-        },
-        {
-          breakpoint: 767,
-          settings: {
-            slidesToShow: 3,
-          }
-        }
-      ]
     });
 
     /*--
@@ -105,7 +55,6 @@ $(function () {
         pagination:false,
         navigation:false,
         items : 9,
-        /* transitionStyle : "fade", */    /* [This code for animation ] */
         itemsDesktop : [1199,4],
         itemsDesktopSmall : [980,4],
         itemsTablet: [767,2],
@@ -181,96 +130,6 @@ $(function () {
     });
 
 
-    /*--
-     MailChimp
-    ------------------------*/
-    $('#mc-form').ajaxChimp({
-     language: 'en',
-     callback: mailChimpResponse,
-     // ADD YOUR MAILCHIMP URL BELOW HERE!
-     url: 'http://themeshaven.us8.list-manage.com/subscribe/post?u=759ce8a8f4f1037e021ba2922&amp;id=a2452237f8'
-    });
-    function mailChimpResponse(resp) {
-     if (resp.result === 'success') {
-      $('.mailchimp-success').html('' + resp.msg).fadeIn(900);
-      $('.mailchimp-error').fadeOut(400);
-     } else if(resp.result === 'error') {
-      $('.mailchimp-error').html('' + resp.msg).fadeIn(900);
-     }
-    }
-
-    /*----------------------------
-        home-slider
-    ------------------------------ */
-    $(".slider-active").owlCarousel({
-        autoPlay: false,
-        slideSpeed:2000,
-        pagination:false,
-        navigation:true,
-        items : 1,
-        /* transitionStyle : "fade", */    /* [This code for animation ] */
-        navigationText:["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
-        itemsDesktop : [1199,1],
-        itemsDesktopSmall : [980,1],
-        itemsTablet: [767,1],
-        itemsMobile : [479,1],
-    });
-
-    /*----------------------------
-        text-animation
-    ------------------------------ */
-    $('.tlt1').textillate({
-      loop: true,
-      in: {
-        effect: 'fadeInDown',
-      },
-      out: {
-        effect: 'flip',
-      },
-    });
-
-    /*----------------------------
-        text-animation
-    ------------------------------ */
-    $('.tlt').textillate({
-      loop: true,
-      in: {
-        effect: 'fadeInRight',
-      },
-      out: {
-        effect: 'fadeOutLeft',
-      },
-    });
-
-    /*----------------------------
-    video
-    ------------------------------ */
-    $('.video-bg').vide({
-      mp4: 'video/iphone7',
-      webm: 'video/iphone7',
-      poster: 'video/banner',
-    }, {
-        posterType: 'jpg',
-        className: 'video-container'
-    });
-
-    /*----------------------------
-    kenburne
-    ------------------------------ */
-    $('.slide-kenburne').kenburnsy({
-      fullscreen: true
-    });
-
-    /*----------------------------
-    youtube video
-    ------------------------------ */
-    $('.youtube-bg').YTPlayer({
-        videoURL:"r4dD-WYzrMs",
-        containment:'.youtube-bg',
-        autoPlay:true,
-        loop:true,
-    });
-
     /*----------------------------
     owl active brand-logo
     ------------------------------ */
@@ -286,15 +145,4 @@ $(function () {
         itemsTablet: [767,1],
         itemsMobile : [479,1],
     });
-
-
-
-
-
-    //venbox start
-    $('.venobox').venobox({
-        numeratio: true,
-        titleattr: 'data-title'
-    })
-    //venbox end
 });
