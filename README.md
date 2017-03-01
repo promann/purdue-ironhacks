@@ -241,7 +241,7 @@ GET/POST    /register
 GET         /login
 GET         /scores
 GET         /search
-GET         /quizes
+GET         /quizzes
 GET/POST    /posts/topicId-_slug/
 POST        /posts/topicId-_slug/comments
 POST        /posts/topicId-_slug/delete
@@ -257,16 +257,16 @@ The routes may have associated controllers which are located in the `app/control
 
 #### Qualtrics integration
 
-All the quizes created on the Qualtrics platform have a snippet of JavaScript which stores the user data in the response (as known as *Embedded data*).
+All the quizzes created on the Qualtrics platform have a snippet of JavaScript which stores the user data in the response (as known as *Embedded data*).
 
 We store the `user_email` and the `user_id` which are sent in the url.
 
 
-The code in the Qualtrics quizes is set in the last block, last question (which may happen to be an empty question, used for tracking):
+The code in the Qualtrics quizzes is set in the last block, last question (which may happen to be an empty question, used for tracking):
 
 TODO
 
-This approach is being used for all the quizes: the sign up survey and the other technical quizes.
+This approach is being used for all the quizzes: the sign up survey and the other technical quizzes.
 
 #### Login / Register Process
 
@@ -466,18 +466,18 @@ by the [`bloggify-mongoose`](https://github.com/Bloggify/bloggify-mongoose) plug
 Settings.model.addHook("post", "save", update);
 ```
 
-#### Quizes
+#### Quizzes
 
-The quizes page displays the quizes that can be taken by the user. The user may answer the same quiz multiple times.
+The quizzes page displays the quizzes that can be taken by the user. The user may answer the same quiz multiple times.
 
-In the view file (`app/routes/quizes.ajs`) we have the part which renders the links to each quiz:
+In the view file (`app/routes/quizzes.ajs`) we have the part which renders the links to each quiz:
 
 ```erb
-<% include("../views/header", { title: "Quizes" }) %>
+<% include("../views/header", { title: "Quizzes" }) %>
 <% include("../views/container/start") %>
-<h1>Quizes</h1>
+<h1>Quizzes</h1>
 
-<% quizes.forEach(function (quiz) { %>
+<% quizzes.forEach(function (quiz) { %>
     <a class="btn" href="<%= quiz.url %>"><%= quiz.label %></a>
 <% }); %>
 
@@ -485,8 +485,8 @@ In the view file (`app/routes/quizes.ajs`) we have the part which renders the li
 <% include("../views/footer") %>
 ```
 
-The data associated with this view is storred in the controller (`app/controllers/quizes.js`)–see below. The user can click the generated link which contains information about the user (the email address and the user id)–which are storred in the Qualtrics quiz responses as embedded data, and also the redirect url.
-When the user finishes the quiz, they are redirected back the application, on the `/quizes` page and the application marks the quiz complete internally. Even the quiz was completed, the user can take it again.
+The data associated with this view is storred in the controller (`app/controllers/quizzes.js`)–see below. The user can click the generated link which contains information about the user (the email address and the user id)–which are storred in the Qualtrics quiz responses as embedded data, and also the redirect url.
+When the user finishes the quiz, they are redirected back the application, on the `/quizzes` page and the application marks the quiz complete internally. Even the quiz was completed, the user can take it again.
 
 ```js
 const Bloggify = require("bloggify")
@@ -495,17 +495,17 @@ const Bloggify = require("bloggify")
     , findValue = require("find-value")
     ;
 
-// Define the quizes list
-const quizes = [
+// Define the quizzes list
+const quizzes = [
     ["d3.js", "https://purdue.qualtrics.com/jfe/form/SV_71xEzp5vQ7rC817", "d3"]
   , ["HTML & CSS", "https://purdue.qualtrics.com/jfe/form/SV_do6Sc9VJsAMmOih", "html_css"]
   , ["JavaScript & jQuery", "https://purdue.qualtrics.com/jfe/form/SV_b8zyxX8wozQfNul", "javascript_jquery"]
 ];
 
-// Map the quizes labels to the data
-const validQuizes = {};
-quizes.forEach(c => {
-    validQuizes[c[2]] = c;
+// Map the quizzes labels to the data
+const validQuizzes = {};
+quizzes.forEach(c => {
+    validQuizzes[c[2]] = c;
 });
 
 module.exports = (lien, cb) => {
@@ -514,7 +514,7 @@ module.exports = (lien, cb) => {
 
     // Set the quiz complete
     const completed = lien.query.markComplete;
-    if (completed && validQuizes[completed]) {
+    if (completed && validQuizzes[completed]) {
         return User.update({
             _id: user._id
         }, {
@@ -526,14 +526,14 @@ module.exports = (lien, cb) => {
                 }
             }
         }, (err, _user) => {
-            lien.redirect("/quizes");
+            lien.redirect("/quizzes");
         })
     }
 
     // Generate the redirect links
     const completedSurveys = findValue(user, "profile.surveys") || {};
-    const userQuizes = quizes.map(c => {
-        const redirectTo =  encodeURIComponent(`${Bloggify.options.metadata.domain}/quizes?markComplete=${c[2]}`);
+    const userQuizzes = quizzes.map(c => {
+        const redirectTo =  encodeURIComponent(`${Bloggify.options.metadata.domain}/quizzes?markComplete=${c[2]}`);
         return {
             label: c[0]
           , url: `${c[1]}?redirect_to=${redirectTo}&user_email=${user.email}&user_id=${user._id}`
@@ -541,9 +541,9 @@ module.exports = (lien, cb) => {
         };
     });
 
-    // Send the quizes array to the view
+    // Send the quizzes array to the view
     cb(null, {
-        quizes: userQuizes
+        quizzes: userQuizzes
     });
 };
 ```
@@ -904,7 +904,7 @@ routes/
 │       ├── edit.ajs
 │       ├── index.ajs
 │       └── toggle-vote.ajs
-├── quizes.ajs
+├── quizzes.ajs
 ├── register.ajs
 ├── scores.ajs
 ├── search.ajs
@@ -935,7 +935,7 @@ controllers/
 │       ├── edit.js
 │       ├── index.js
 │       └── toggle-vote.js
-├── quizes.js
+├── quizzes.js
 ├── register.js
 ├── scores.js
 ├── search.js

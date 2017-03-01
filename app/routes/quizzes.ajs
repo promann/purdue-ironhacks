@@ -1,9 +1,9 @@
-<% include("../views/header", { title: "Quizes" }) %>
+<% include("../views/header", { title: "Quizzes" }) %>
 <% include("../views/container/start") %>
-<h1>Quizes</h1>
+<h1>Quizzes</h1>
 
 <div class="row">
-<% quizes.forEach(function (quiz) { %>
+<% quizzes.forEach(function (quiz) { %>
     <a class="btn col" href="<%= quiz.url %>"><%= quiz.label %></a>
 <% }); %>
 </div>

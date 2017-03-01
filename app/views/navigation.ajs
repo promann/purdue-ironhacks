@@ -4,7 +4,7 @@
             <a href="/" class="show-xs">Home</a>
             <% if (user) { %>
                 | <a href="/scores">Scores</a>
-                | <a href="/quizes">Quizes</a>
+                | <a href="/quizzes">Quizzes</a>
                 <% var tutorialLink = "" %>
                 <% if (user.profile.hack_type === "bogota") { %>
                     <% tutorialLink = "https://github.com/blackironhack/2017-Bogota-Ironhack-Tutorials"; %>
