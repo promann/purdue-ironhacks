@@ -6,7 +6,7 @@
         <title>IronHacks</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <link rel="icon" href="<%= _public("/img/favicon.png") %>">
 
         <%- Bloggify.bundles.publicHomepage.cssHtml() %>
     </head>
@@ -161,7 +161,7 @@
                         <div class="col-md-12 text-center">
                             <div class="title-style title-pb4">
                                 <h1>Prizes</h1>
-                                <p>There are range of great prizes to win. We award winners in three categories: Best solution, winning spirit, and community spirit. In addition, there are a range of other additional prizes and awards.</p>
+                                <p>There is a range of great prizes to win. We award winners in three categories: Best solution, winning spirit, and community spirit. In addition, there is a range of other additional prizes and awards.</p>
                             </div>
                         </div>
                         <div class="col-md-8 col-md-offset-2">
@@ -184,8 +184,8 @@
                                     <div class="team-details">
                                         <h3>Winning Spirit ($250 Amazon Gift Card plus free  membership at <a href="https://platzi.com">www.platzi.com</a>)</h3>
                                         <div class="team-social fix">
-                                            <p>Those who are  among the top 25% in each of the three hacking phases qualify  for this award.:
-                                            Those who meet this criteria will be ranked in terms if number if GitHub submissions with significant changes (changes related to all categories).
+                                            <p>Those who are  among the top 25% in each of the three hacking phases qualify  for this award.
+                                            Those who meet these criteria will be ranked in terms of the number of GitHub submissions with significant changes (changes related to all categories).
                                             (In the Purdue-Platzi Hack our winners will also get a free membership for ONE YEAR at <a href="https://platzi.com">www.platzi.com</a>)</p>
                                         </div>
                                     </div>
@@ -208,7 +208,7 @@
                                     <div class="team-details">
                                         <h3>Additional great opportunities</h3>
                                         <div class="team-social fix">
-                                            <p>Each participants will receive a signed certificate. The three winners will be invited for internship interviews by companies driving the open data movement (see our sponsors). For the Purdue Platzi Hack we offer some additional great rewards: you will get a free membership at <a href="https://platzi.com">www.platzi.com</a> for one month if you successfully participate in all four stages of the hack (plus a 30$ dollar discount for a yearly membership) and most importantly, you will build your portfolio and gain reputation in the open data community!</p>
+                                            <p>Each participant will receive a signed certificate. The three winners will be invited for internship interviews by companies driving the open data movement (see our sponsors). For the Purdue Platzi Hack we offer some additional great rewards: you will get a free membership at <a href="https://platzi.com">www.platzi.com</a> for one month if you successfully participate in all four stages of the hack (plus a 30$ dollar discount for a yearly membership) and most importantly, you will build your portfolio and gain reputation in the open data community!</p>
                                         </div>
                                     </div>
                                 </div>
