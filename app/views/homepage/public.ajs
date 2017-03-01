@@ -127,7 +127,7 @@
                                     <p class="about-pb">
                                         Gold vs Black IronHacks: The Gold IronHacks is a closed hack for the students of Purdue or UNAL While the Black IronHacks is open to anyone.
                                     </p>
-                                    <p><strong>Innovate with open data</strong>: reate a novel and useful web app with an interactive mashup that combines several (at least 2) open data sets into interactive visualizations.</p>
+                                    <p><strong>Innovate with open data</strong>: Create a novel and useful web app with an interactive <a href="https://techterms.com/definition/mashup">mashup</a> that combines several (at least 2) open data sets into interactive visualizations.</p>
                                     <p><strong>Outperform others and learn from others</strong>: IronHacks is about competition but you get also feedback and learn from others’ work.</p>
                                     <p><strong>Hack and learn virtually.</strong> During the contest you have access to an online forum where you can ask questions and access all the information (including your own scores at each hacking round). No physical presence is needed. 3 weeks prior to hack, we offer free on-the-job tutorials on key (from basics like CSS to D3.js, or using the required APIs).</p>
                                     <p><strong>Gain &amp; fame in multiple ways</strong>: Improve your score on the way, gain reputation among other hackers and our sponsors, and win cool prizes ($$$). Every participant will receive a signed certificate confirming successful participation in IronHacks.</p>
@@ -515,6 +515,11 @@
                             <div class="col-md-12 single-item2">
                                 <a href="https://www.purdue.edu/" target="_blank">
                                     <img src="<%= _public("/images/partners/purdue-sig-black-gold.png") %>" />
+                                </a>
+                            </div>
+                            <div class="col-md-12 single-item2 hide">
+                                <a href="https://polytechnic.purdue.edu/" target="_blank">
+                                    <img src="<%= _public("/images/partners/polytechnic-black-gold.png") %>" />
                                 </a>
                             </div>
                             <div class="col-md-12 single-item2">

@@ -1,22 +1,20 @@
 <nav>
     <span class="auth-buttons float-left">
-        <% if (lien.displayNavigationPages !== false) { %>
-            <a href="/" class="show-xs">Home</a>
-            <% if (user) { %>
-                | <a href="/scores">Scores</a>
-                | <a href="/quizzes">Quizzes</a>
-                <% var tutorialLink = "" %>
-                <% if (user.profile.hack_type === "bogota") { %>
-                    <% tutorialLink = "https://github.com/blackironhack/2017-Bogota-Ironhack-Tutorials"; %>
-                <% } else if (user.profile.hack_type === "purdue") { %>
-                    <% tutorialLink = "https://github.com/goldironhack/2017-Purdue-Ironhack-Tutorials"; %>
-                <% } %>
-                <% if (tutorialLink) { %>
-                    | <a href="<%= tutorialLink %>">Tutorial</a>
-                <% } %>
-                <% if (Bloggify.controllers.Session.isAdmin(lien)) { %>
-                    | <a href="/admin">Admin</a>
-                <% } %>
+        <a href="/" class="show-xs">Home</a>
+        <% if (user) { %>
+            | <a href="/scores">Scores</a>
+            | <a href="/quizzes">Quizzes</a>
+            <% var tutorialLink = "" %>
+            <% if (user.profile.hack_type === "bogota") { %>
+                <% tutorialLink = "https://github.com/blackironhack/2017-Bogota-Ironhack-Tutorials"; %>
+            <% } else if (user.profile.hack_type === "purdue") { %>
+                <% tutorialLink = "https://github.com/goldironhack/2017-Purdue-Ironhack-Tutorials"; %>
+            <% } %>
+            <% if (tutorialLink) { %>
+                | <a href="<%= tutorialLink %>">Tutorial</a>
+            <% } %>
+            <% if (Bloggify.controllers.Session.isAdmin(lien)) { %>
+                | <a href="/admin">Admin</a>
             <% } %>
         <% } %>
     </span>

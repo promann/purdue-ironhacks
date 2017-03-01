@@ -267,7 +267,7 @@ pre {
     display: inline-block;
 }
 
-.hide { display: none; }
+.hide { display: none !important; }
 
 .text-right { text-align: right; }
 .col {

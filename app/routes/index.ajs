@@ -35,6 +35,9 @@
         <a href="https://www.purdue.edu/" target="_blank">
             <img src="<%= _public("/images/partners/purdue-sig-black-gold.png") %>" />
         </a>
+        <a href="https://polytechnic.purdue.edu/" target="_blank" class="hide">
+            <img src="<%= _public("/images/partners/polytechnic-black-gold.png") %>" />
+        </a>
         <a href="https://www.platzi.com/" target="_blank">
             <img src="<%= _public("/images/partners/platzi.png") %>" />
         </a>
