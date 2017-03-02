@@ -5,7 +5,7 @@
                 <div class="title-style title-pb2">
                     <h1>Upcoming Hacks <span>Hacks Spring 2017</span></h1>
                     <p>There are 3 hacks coming up. Please sign-up below. You can only sign-up for one hack.</p>
-                    <p>Gold IronHacks are only for students enrolled in classes at Purdue or at our partner universities. Black IronHacks are open for everybody! Before you can enter the online forum, you will have fill in a brief survey. There will be a training period of 3 weeks when you can get familiar with the key technologies.</p>
+                    <p>Gold IronHacks are only for students enrolled in classes at Purdue or at our partner universities. Black IronHacks are open for everybody! Before you can enter the online forum, you will have to fill in a brief survey. There will be a training period of 3 weeks where you can get familiar with the key technologies.</p>
                 </div>
             </div>
         </div>
@@ -26,7 +26,7 @@
                     <div class="price-list">
                         <ul>
                             <li>This hack is for students at Purdue Polytechnic ONLY</li>
-                            <li>If you are enrolled in the following classes are invited to sign-up:  CGT 370, Interactive Data Visualization, CNIT599 Data Warehousing, TECH581-Open Data Hacking</li>
+                            <li>If you are enrolled in the following classes, you are invited to sign-up:  CGT 370: Interactive Data Visualization, CNIT599: Data Warehousing, TECH581: Open Data Hacking</li>
                             <li>Professors: Sabine Brunswicker, Victor Chen, John Springer</li>
                             <li>Challenge topic: Food location</li>
                         </ul>
@@ -55,9 +55,9 @@
                     </div>
                     <div class="price-list">
                         <ul>
-                            <li>This is hack for students at Universidad Nacional de Colombia</li>
-                            <li>If you are enrolled in one of the following classes you are invited to signup: Ingeniería de software I, Group 1 & 2, Ingeniería de software II, Group 1 & 2. </li>
-                            <li>Professors ONLY: Jairo Aponte, David Camilo Delgado, Yury Niño</li>
+                            <li>This is hack for students at Universidad Nacional de Colombia ONLY</li>
+                            <li>If you are enrolled in one of the following classes you are invited to sign-up: Ingeniería de software I: Group 1 & 2, Ingeniería de software II: Group 1 & 2. </li>
+                            <li>Professors: Jairo Aponte, David Camilo Delgado, Yury Niño</li>
                             <li>Challenge topic: Housing and Safety</li>
                         </ul>
                         <div class="price-btn">
@@ -87,8 +87,8 @@
                         <ul>
                             <li>This is an open hack, open for everybody.</li>
                             <li>This hack is performed in collaboration with <a href="https://platzi.com">Platzi.com</a>, a unique online education platform. </li>
-                            <li>Challenge topic: will be revealed soon!</li>
-                            <li>Please sign-up to enter the tutorials and the information you need to get ready for the hack. </li>
+                            <li>Challenge topic: Will be revealed soon!</li>
+                            <li>Please sign-up to get access to the tutorials and the information you need to get ready for the hack. </li>
                         </ul>
                         <div class="price-btn">
                             <form method="POST" action="/register">
