@@ -23,6 +23,7 @@
     "bloggify-custom-assets": "^1.0.2",
     "bloggify-flexible-router": "^1.0.8",
     "bloggify-github-login": "^1.0.0",
+    "bloggify-icons": "^1.0.0",
     "bloggify-mongoose": "^1.0.2",
     "bloggify-router": "^1.0.7",
     "bloggify-sendgrid": "^1.1.0",
