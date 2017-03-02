@@ -21,7 +21,7 @@ module.exports = bloggify => {
         "/scores",
     ], (lien, cb) => {
         const user = Session.getUser(lien);
-        if (user && HackTypes[user.profile.hack_type].start_date > new Date()) {
+        if (user && HackTypes[user.profile.hack_type].start_date > new Date() && !Session.isAdmin(user)) {
             return lien.redirect("/countdown");
         }
         if (user) {
