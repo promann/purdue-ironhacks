@@ -10,7 +10,6 @@ const Bloggify = require("bloggify")
     ;
 
 module.exports = bloggify => {
-    global.Bloggify = bloggify;
     const User = require("../controllers/User");
     const Notifications = require("./notifications");
 
@@ -124,8 +123,21 @@ module.exports = bloggify => {
         topic: Bloggify.websocket.of("/topic")
     };
 
-    setTimeout(function() {
-        const GitHub = Bloggify.require("github-login");
+    Bloggify.wsNamespaces.topic.use((socket, next) => {
+        Bloggify.server.session(socket.handshake, {}, next);
+    });
+
+    Bloggify.wsNamespaces.topic.use((socket, next) => {
+        if (!Object(socket.handshake.session._sessionData).user) {
+            return next(new Error("You are not authenticated."));
+        }
+        next();
+    });
+
+    Bloggify.require("github-login", GitHub => {
+        GitHub.on("login-error", (err, lien) => {
+            lien.redirect("/");
+        });
         GitHub.on("login-success", (token, user, lien) => {
             User.get({
                 username: user.login
@@ -158,5 +170,5 @@ module.exports = bloggify => {
                 lien.redirect("/register");
             });
         });
-    }, 1000);
+    });
 };

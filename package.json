@@ -21,7 +21,7 @@
     "bloggify-cli": "^1.1.1",
     "bloggify-config": "^1.0.6",
     "bloggify-custom-assets": "^1.0.2",
-    "bloggify-flexible-router": "^1.0.7",
+    "bloggify-flexible-router": "^1.0.8",
     "bloggify-github-login": "^1.0.0",
     "bloggify-mongoose": "^1.0.2",
     "bloggify-router": "^1.0.7",
@@ -44,6 +44,7 @@
     "regex-escape": "^3.4.4",
     "socket.io": "^1.7.2",
     "socket.io-client": "^1.7.2",
+    "uc-first": "^1.0.4",
     "unique-random-range": "^1.0.1",
     "whatwg-fetch": "^2.0.2"
   },

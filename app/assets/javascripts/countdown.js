@@ -1,4 +1,5 @@
 import React from "react";
+import ucFirst from "uc-first";
 
 export default class App extends React.Component {
 
@@ -43,11 +44,31 @@ export default class App extends React.Component {
     }
 
     render () {
+        const tutorialLink = _pageData.tutorial_link;
+        let timelineTitle = ucFirst(_pageData.user.profile.hack_type);
+        if (timelineTitle === "Bogota") {
+            timelineTitle = `Purdue UNAL ${timelineTitle}`;
+        }
+
+        let tutorialButton = null;
+        if (tutorialLink) {
+            tutorialButton = <p><a href={tutorialLink} className="btn">Please start the tutorial here</a></p>;
+        }
+
+        let timelineContainer = null;
+        if (_pageData.timeline_img) {
+            timelineContainer = <div>
+                <h3>Timeline for <strong>{timelineTitle}</strong></h3>
+                <img src={_pageData.timeline_img} />
+            </div>;
+        }
+
         return (
             <div className="text-center">
                 <h1>Welcome!</h1>
-                <p>You cannot post anything until the contest will start. In the meantime, check the this tutorial</p>
+                {tutorialButton}
                 <span className="countdown">{this.state.countdown_value}</span>
+                {timelineContainer}
             </div>
         );
     }

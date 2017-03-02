@@ -2,6 +2,7 @@ const User = require("./User");
 const Session = require("./Session");
 const qs = require("querystring");
 const HACK_TYPES = require("./HackTypes");
+const Bloggify = require("bloggify");
 
 const HACK_TYPE_OPTIONS = Object.keys(HACK_TYPES).map(c => {
     let hType = HACK_TYPES[c];

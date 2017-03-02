@@ -1,3 +1,4 @@
+const Bloggify = require("bloggify");
 const Email = Bloggify.require("sendgrid", true);
 const uniq = require("array-unique");
 const User = require("../controllers/User");
