@@ -67,6 +67,7 @@ export default class App extends React.Component {
             <div className="text-center">
                 <h1>Welcome!</h1>
                 {tutorialButton}
+                <p>Time until the hack starts:</p>
                 <span className="countdown">{this.state.countdown_value}</span>
                 {timelineContainer}
             </div>

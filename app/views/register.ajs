@@ -9,7 +9,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row row-same-height">
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="single-price-package">
                     <div class="price-title">

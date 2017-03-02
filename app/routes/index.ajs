@@ -5,21 +5,12 @@
         <a href="https://www.redhat.com/en" target="_blank">
             <img src="<%= _public("/images/partners/red-hat.jpg") %>" />
         </a>
-        <a href="http://www.westlafayette.in.gov/" target="_blank">
-            <img src="<%= _public("/images/partners/city-of-west-lafayette.png") %>" />
-        </a>
         <a href="https://socrata.com/" target="_blank">
             <img src="<%= _public("/images/partners/socrata.png") %>" />
         </a>
-
-        <a href="http://www.10inhouse.com/#10-in-house" target="_blank">
-            <img src="<%= _public("/images/partners/10-in-house.png") %>" />
-        </a>
-
         <a href="https://github.com" target="_blank">
             <img src="<%= _public("/images/partners/github.jpg") %>" />
         </a>
-
         <a href="http://matchboxstudio.org/" target="_blank">
             <img src="<%= _public("/images/partners/match-box.png") %>" />
         </a>

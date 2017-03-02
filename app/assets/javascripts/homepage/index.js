@@ -22,6 +22,8 @@ $(function () {
       centerPadding: '0',
       slidesToShow: 1,
       arrows: false,
+      autoplay: true,
+      autoplaySpeed: 7000,
       responsive: [
         {
           breakpoint: 970,
@@ -46,19 +48,31 @@ $(function () {
         time: 5000
     });
 
-    /*----------------------------
-    owl active brand-logo
-    ------------------------------ */
-    $('.item_all').owlCarousel({
-        autoPlay: false,
-        slideSpeed:2000,
-        pagination:false,
-        navigation:false,
-        items : 9,
-        itemsDesktop : [1199,4],
-        itemsDesktopSmall : [980,4],
-        itemsTablet: [767,2],
-        itemsMobile : [479,2],
+    /*--
+    slick slider
+    ------------------------*/
+    $('.item_all').slick({
+      centerMode: true,
+      dots: true,
+      centerPadding: '0',
+      slidesToShow: 7,
+      arrows: false,
+      autoplay: true,
+      autoplaySpeed: 1000,
+      responsive: [
+        {
+          breakpoint: 800,
+          settings: {
+            slidesToShow: 4,
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+          }
+        }
+      ]
     });
 
     /*--
@@ -127,22 +141,5 @@ $(function () {
         $("html,body").animate({
             scrollTop:0
         }, 500)
-    });
-
-
-    /*----------------------------
-    owl active brand-logo
-    ------------------------------ */
-    $('.slider-img').owlCarousel({
-        autoPlay: false,
-        slideSpeed:2000,
-        pagination:true,
-        navigation:false,
-        items : 1,
-        /* transitionStyle : "fade", */    /* [This code for animation ] */
-        itemsDesktop : [1199,1],
-        itemsDesktopSmall : [980,1],
-        itemsTablet: [767,1],
-        itemsMobile : [479,1],
     });
 });

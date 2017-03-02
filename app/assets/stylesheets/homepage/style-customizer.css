@@ -614,3 +614,30 @@ a.button.button-square {
 .contact-icon {
     margin-right: 0;
 }
+
+.row-same-height {
+    display: table;
+}
+
+@media (min-width: 768px) {
+    .row-same-height > .col-md-4 {
+	float: none;
+	display: table-cell;
+	vertical-align: top;
+    }
+
+    .single-price-package {
+	height: 100%;
+	display: inline-block;
+	box-sizing: border-box;
+	margin-bottom: 130px;
+	position: relative;
+    }
+
+    .price-btn {
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+    }
+}
