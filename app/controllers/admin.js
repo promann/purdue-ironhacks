@@ -30,7 +30,8 @@ module.exports = (lien, cb) => {
         let foundInvalidDate = false;
         forEach(lien.data.hack_types, hType => {
             hType.start_date = new Date(hType.start_date);
-            if (isNaN(hType.start_date)) {
+            hType.hack_start_date = new Date(hType.hack_start_date);
+            if (isNaN(hType.start_date) || isNaN(hType.hack_start_date)) {
                 foundInvalidDate = true;
             }
         });

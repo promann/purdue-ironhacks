@@ -22,7 +22,7 @@ module.exports = bloggify => {
     ], (lien, cb) => {
         const user = Session.getUser(lien);
         if (user && HackTypes[user.profile.hack_type].start_date > new Date() && !Session.isAdmin(user)) {
-            return lien.redirect("/countdown");
+            return lien.redirect("/timeline");
         }
         if (user) {
             return User.get(user, (err, user) => {

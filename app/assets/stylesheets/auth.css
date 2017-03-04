@@ -348,3 +348,11 @@ span.admin-filters {
 .partners-list > a img {
     width: 100%;
 }
+
+span.countdown {
+    font-size: 1.4em;
+}
+
+.quizzes-container .btn {
+    max-width: 400px;
+}

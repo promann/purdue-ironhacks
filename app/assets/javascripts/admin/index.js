@@ -67,8 +67,11 @@ export default class App extends React.Component {
 
         const hackTypes = {};
         $$(".hack-type-start-date").forEach(c => {
-            let input = $("input", c);
-            hackTypes[input.dataset.hackType] = {start_date: input.value };
+            let inputs = $$("input", c);
+            hackTypes[inputs[0].dataset.hackType] = {
+                start_date: inputs[0].value
+              , hack_start_date: inputs[1].value
+            };
         });
 
         $$(".hack-type-subgroup").forEach(c => {
@@ -132,10 +135,13 @@ export default class App extends React.Component {
 
         forEach(window._pageData.settings.hack_types, (hackType, name) => {
             hackType.start_date = moment(new Date(hackType.start_date));
+            hackType.hack_start_date = moment(hackType.hack_start_date);
             hackType.subforums_count = hackType.subforums_count || 0;
             hackTypesStartDates.push(
                 <div className="hack-type-start-date" key={++index} >
-                    <strong>{name}</strong>: <br/><input data-hack-type={name} type="text" defaultValue={hackType.start_date.format("YYYY-MM-DD HH:mm:ss")} />
+                    <strong>{name}</strong>: <br/>
+                    Start of <strong>forum</strong>: <input data-hack-type={name} type="text" defaultValue={hackType.start_date.format("YYYY-MM-DD HH:mm:ss")} /><br/>
+                    Start of <strong>hack</strong>: <input data-hack-type={name} type="text" defaultValue={hackType.hack_start_date.format("YYYY-MM-DD HH:mm:ss")} /><br/>
                 </div>
             );
             hackTypesSubforums.push(

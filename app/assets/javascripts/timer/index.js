@@ -1,11 +1,11 @@
 import React from "react";
-import ucFirst from "uc-first";
 
 export default class App extends React.Component {
 
     constructor (props) {
         super(props);
-        const end = new Date(_pageData.end_time);
+
+        const end = new Date(props.until);
         const _second = 1000;
         const _minute = _second * 60;
         const _hour = _minute * 60;
@@ -18,7 +18,11 @@ export default class App extends React.Component {
 
             if (distance < 0) {
                 clearInterval(timer);
-                window.location = "/";
+                setTimeout(() => {
+                    this.setState({
+                        ended: true
+                    });
+                }, 10);
                 message = '';
             } else {
                 const days = Math.floor(distance / _day);
@@ -44,32 +48,13 @@ export default class App extends React.Component {
     }
 
     render () {
-        const tutorialLink = _pageData.tutorial_link;
-        let timelineTitle = ucFirst(_pageData.user.profile.hack_type);
-        if (timelineTitle === "Bogota") {
-            timelineTitle = `Purdue UNAL ${timelineTitle}`;
+        if (this.state.ended) {
+            return null;
         }
-
-        let tutorialButton = null;
-        if (tutorialLink) {
-            tutorialButton = <p><a href={tutorialLink} className="btn">Please start the tutorial here</a></p>;
-        }
-
-        let timelineContainer = null;
-        if (_pageData.timeline_img) {
-            timelineContainer = <div>
-                <h3>Timeline for <strong>{timelineTitle}</strong></h3>
-                <img src={_pageData.timeline_img} />
-            </div>;
-        }
-
         return (
-            <div className="text-center">
-                <h1>Welcome!</h1>
-                {tutorialButton}
-                <p>Time until the hack starts:</p>
+            <div className="countdown-timer">
+                <p>{this.props.description}</p>
                 <span className="countdown">{this.state.countdown_value}</span>
-                {timelineContainer}
             </div>
         );
     }
