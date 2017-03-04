@@ -13,6 +13,7 @@
             <% if (tutorialLink) { %>
                 | <a href="<%= tutorialLink %>">Tutorial</a>
             <% } %>
+            | <a href="/timeline">Timeline</a>
             <% lien.tutorialLink = tutorialLink %>
             <% if (Bloggify.controllers.Session.isAdmin(lien)) { %>
                 | <a href="/admin">Admin</a>

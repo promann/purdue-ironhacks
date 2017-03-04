@@ -45,10 +45,27 @@
         padding: 0;
     }
 
-    .btn.btn-small {
-        padding: 5px 2px !important;
+    nav {
+        text-align: center;
+        padding-bottom: 75px;
     }
 
+    nav .float-left {
+        float: none;
+    }
+
+    span.auth-buttons.float-right {
+        display: block;
+        position: absolute;
+        top: 50px;
+        left: 50%;
+        margin-left: -60px;
+    }
+
+    span.auth-buttons.float-left {
+        display: block;
+        padding-bottom: 12px;
+    }
 }
 @media (max-width: 460px) {
     span.auth-buttons.float-left {
