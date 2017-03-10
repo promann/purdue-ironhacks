@@ -615,29 +615,26 @@ a.button.button-square {
     margin-right: 0;
 }
 
-.row-same-height {
-    display: table;
-}
-
 @media (min-width: 768px) {
+    .row-same-height {
+        display: flex;
+        flex-wrap: wrap;
+    }
     .row-same-height > .col-md-4 {
-	float: none;
-	display: table-cell;
-	vertical-align: top;
+        display: flex;
+        flex-direction: column;
+        float: none;
+        flex: 1;
     }
 
     .single-price-package {
-	height: 100%;
-	display: inline-block;
-	box-sizing: border-box;
-	margin-bottom: 130px;
-	position: relative;
+        flex: 1;
     }
 
     .price-btn {
-	position: absolute;
-	bottom: 20px;
-	left: 50%;
-	transform: translateX(-50%);
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 }

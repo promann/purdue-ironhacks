@@ -590,10 +590,7 @@
                             </div>
                             <div class="footer-text">
                                 <span>
-                                    <% var now = new Date(); %>
-                                    <% var thisYear = now.getFullYear(); %>
-                                    Copyright © <%= thisYear %> Purdue IronHacks | Powered by
-                                    <a href="https://bloggify.org/" target="_blank">Bloggify</a>
+                                    <% include("../copyright") %>
                                 </span>
                             </div>
                         </div>
