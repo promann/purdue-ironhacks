@@ -1,0 +1,376 @@
+@import "https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700";
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+.bag{margin-left:auto;margin-right:auto;padding:15px;box-sizing:border-box}
+.bag.fixed{max-width:100%}
+@media(min-width:768px){.bag.fixed{width:750px}}
+@media(min-width:992px){.bag.fixed{width:970px}}
+@media(min-width:1200px){.bag.fixed{width:1170px}}
+@font-face {
+  font-family: 'icomoon';
+  src:  url('/!/bloggify/css-urls/c05c59f3a1dca1ea69c6816f1ca4cec9-icomoon.eot');
+  src:  url('/!/bloggify/css-urls/c05c59f3a1dca1ea69c6816f1ca4cec9-icomoon.eot') format('embedded-opentype'),
+    url('/!/bloggify/css-urls/078a3b2f42c87386e726420d6b8bcbf5-icomoon.ttf') format('truetype'),
+    url('/!/bloggify/css-urls/69997c168730dc5ba278ff279f9cefce-icomoon.woff') format('woff'),
+    url('/!/bloggify/css-urls/c487e8114a823f7292e2ddcfe8525941-icomoon.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-bloggify-mark:before {
+  content: "\e900";
+}
+.icon-bloggify-mark-square:before {
+  content: "\e901";
+}
+.icon-bloggify-logo:before {
+  content: "\e902";
+  position: relative;
+  top: 0.15em;
+}
+img { max-width: 100%; }
+* {
+    box-sizing: border-box;
+}
+hr {
+    border-top: 1px solid #111;
+}
+html, body {
+    height: 100%;
+}
+body {
+    background: #fff;
+    color: #444;
+    color: #4a4444;
+    margin: 0;
+}
+body, input, button {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+img { max-width: 100%; }
+hr {
+    border-top: 1px solid #111;
+}
+nav {
+    padding: 20px;
+    background: #4e555d;
+    color: #fff;
+    text-align: center;
+    height: 60px;
+}
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+.float-right {
+    float: right;
+}
+.float-left {
+    float: left;
+}
+.text-center {
+    text-align: center;
+}
+.whole-page-wrapper {
+    min-height: 100%;
+    margin: 0 auto -50px;
+    padding-bottom: 50px;
+}
+footer {
+    height: 50px;
+}
+footer a {
+    color: #fff;
+}
+.btn {
+    cursor: pointer;
+    background: #4e555d;
+    padding: 14px 20px;
+    display: inline-block;
+    color: #fff;
+    font-size: 21px;
+    text-decoration: none;
+    margin-right: 4px;
+    margin-bottom: 6px;
+    border-radius: 3px;
+    border: none;
+}
+footer {
+    background: #4e555d;
+    color: #fff;
+}
+.btn.btn-big {
+    padding: 20px 35px;
+}
+.btn.btn-small {
+    padding: 5px 10px;
+    font-size: 14px;
+}
+.btn-red {
+    background: #DD3416;
+}
+.btn:hover {
+    opacity: 0.9;
+}
+.auth-buttons form {
+    display: inline-block;
+}
+img.profile-picture {
+    border-radius: 100%;
+    height: 35px;
+    margin-right: 3px;
+}
+a.profile-link strong {
+    position: relative;
+    top: -15px;
+}
+a.profile-link {
+    display: inline-block;
+    padding: 0 20px;
+    position: relative;
+}
+nav a.btn.btn-small.btn-red {
+    position: relative;
+    top: -15px;
+}
+span.auth-buttons.float-right {
+    position: relative;
+    top: -6px;
+}
+.full-width {
+    width: 100%;
+}
+.btn-green {
+    background: #1abc9c
+}
+.bold {
+    font-weight: bold;
+}
+.post-item {
+    padding: 20px;
+    background: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+}
+a.post-item-title {
+    color: #b5b0b0;
+    text-decoration: none;
+}
+a.post-item-title h2 {
+    font-weight: normal;
+    display: inline-block;
+    font-size: 18px;
+    margin: 0;
+}
+a.post-item-title h2 {
+    font-weight: normal;
+    display: inline-block;
+    font-size: 18px;
+}
+.partners-list > a {
+    text-decoration: none;
+}
+.partners-list > a:hover {
+    opacity: 0.9;
+}
+span.site-title {position: absolute;left: 50%;-webkit-transform: translateX(-50%);transform: translateX(-50%);}
+.post-item.topic-sticky {
+    background: #fef8ed;
+}
+.error-box {
+    background: #e74c3c;
+    color: white;
+    padding: 15px;
+    border-radius: 4px;
+}
+textarea {
+    resize: vertical;
+    min-height: 200px;
+}
+select, input[type="date"], input[type="number"], input[type="text"], input[type="email"], input[type="url"], textarea {
+    padding: 8px 10px;
+    font-size: 21px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin: 10px 5px;
+}
+select:first-of-type, input[type="date"]:first-of-type, input[type="number"]:first-of-type, input[type="text"]:first-of-type, input[type="email"]:first-of-type, input[type="url"]:first-of-type, textarea:first-of-type {
+    margin-left: 0;
+}
+select:last-of-type, input[type="date"]:last-of-type, input[type="number"]:last-of-type, input[type="text"]:last-of-type, input[type="email"]:last-of-type, input[type="url"]:last-of-type, textarea:last-of-type {
+    margin-right: 0;
+}
+.form-section {
+    margin-bottom: 20px;
+}
+pre {
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.01);
+    padding: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    border-radius: 4px;
+}
+@media (max-width: 600px) {
+  table thead {
+      display: none;
+  }
+  table td {
+      width: 100%;
+      display: table;
+  }
+  table td:before {
+    content: attr(data-label);
+    float: left;
+    text-transform: uppercase;
+    font-weight: bold;
+    width: 100px;
+  }
+  table .score-item {
+      margin: 10px 0;
+      display: table;
+      border: 1px solid rgb(244, 244, 244);
+      border-radius: 4px;
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.03);
+      padding: 10px;
+  }
+}
+@media (min-width: 601px) {
+    table {
+        border-collapse: collapse;
+    }
+    table tr {
+        border-bottom: 1px solid #000;
+    }
+    table tr th,
+    table tr td {
+        padding: 10px;
+        text-align: center;
+    }
+}
+.hack-type-start-date strong,
+.hack-type-name {
+    text-transform: capitalize;
+}
+.inline-block {
+    display: inline-block;
+}
+.hide { display: none !important; }
+.text-right { text-align: right; }
+.col {
+    padding: 10px;
+}
+.disabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.6;
+}
+@media (min-width: 501px) {
+    .hide-lg { display: none !important; }
+}
+@media (max-width: 600px) {
+    .hide-sm { display: none !important; }
+    a.profile-link {
+	padding: 0;
+    }
+
+    nav {
+	padding: 20px 5px;
+
+    }
+
+    nav a.btn.btn-small.btn-red {
+	top: -16px;
+    }
+
+    h1 {
+	font-size: 1.2em;
+    }
+
+    form.search-form input {
+	width: 100%;
+    }
+
+    input[type=date], input[type=number], input[type=text], input[type=email], input[type=url], select, textarea {
+	padding: 2px 4px;
+    }
+
+    .post-item {
+	padding: 0;
+    }
+}
+@media (max-width: 400px) {
+    .hide-xs { display: none !important; }
+    .MDEditor_toolbarButton {
+        width: 38px;
+        height: 30px;
+        padding: 6px 3px;
+    }
+    a.profile-link {
+        padding: 0;
+    }
+
+    nav {
+        text-align: center;
+        padding-bottom: 75px;
+    }
+
+    nav .float-left {
+        float: none;
+    }
+
+    span.auth-buttons.float-right {
+        display: block;
+        position: absolute;
+        top: 50px;
+        left: 50%;
+        margin-left: -60px;
+    }
+
+    span.auth-buttons.float-left {
+        display: block;
+        padding-bottom: 12px;
+    }
+}
+@media (max-width: 460px) {
+    span.auth-buttons.float-left {
+        font-size: 12px;
+        margin-top: 3px;
+    }
+    .btn.btn-small {
+        font-size: 10px;
+    }
+
+    .btn.btn-small {
+        position: relative;
+        top: 3px;
+    }
+}
+@media (min-width: 400px) {
+    .topic-single .post-item {
+        left: -60px;
+        width: calc(100% + 60px);
+    }
+}
+footer .bag {
+    position: relative;
+}
+.bloggify-logo {
+    font-size: 2em;
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+}
+.bloggify-logo a {
+    text-decoration: none;
+}
