@@ -33,6 +33,7 @@
     "find-value": "^1.0.5",
     "gridly": "^1.4.8",
     "jquery": "^2.2.4",
+    "map-o": "^2.0.5",
     "modernizr": "^3.3.1",
     "moment": "^2.17.1",
     "moment-timezone": "^0.5.11",

@@ -10,7 +10,8 @@
             user: <%- stringify(user) %>,
             topic: <%- stringify(f("topic") ? topic : f("post_data") ? post_data : {}) %>,
             csrfToken: "<%= lien.csrfToken %>",
-            isAdmin: <%- stringify(Bloggify.controllers.Session.isAdmin(user)) %>
+            isAdmin: <%- stringify(Bloggify.controllers.Session.isAdmin(user)) %>,
+            hackTypes: <%- stringify(f("hack_types") ? hack_types : {}) %>
         };
     </script>
     <h1><%= lien.pathname === "/new" ? "New topic" : "Edit topic" %></h1>

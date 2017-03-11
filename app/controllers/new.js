@@ -1,6 +1,8 @@
 const User = require("./User");
 const Session = require("./Session");
 const Topic = require("./Topic");
+const HackTypes = require("./HackTypes");
+const mapO = require("map-o");
 
 exports.get = (lien, cb) => {
     if (!Session.isAuthenticated(lien)) {
@@ -10,7 +12,16 @@ exports.get = (lien, cb) => {
         body: "",
         title: ""
     };
-    cb();
+
+    const hackTypes = mapO(HackTypes, val => {
+        return {
+            subforums: val.subforums_count
+        };
+    }, true);
+
+    cb(null, {
+        hack_types: hackTypes
+    });
 };
 
 exports.post = (lien, cb) => {

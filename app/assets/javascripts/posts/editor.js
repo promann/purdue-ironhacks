@@ -1,6 +1,7 @@
 import React from "react";
 import CsrfInput from "../util/csrf-input";
 import Editor from "react-md-editor";
+import AdminArea from "./new-topic-admin-area";
 
 export default class TopicEditor extends React.Component {
     constructor (props) {
@@ -24,24 +25,7 @@ export default class TopicEditor extends React.Component {
         let formSectionTarget = null;
 
         if (location.pathname === "/new") {
-            formSectionTarget = <div className="form-section">
-                <div className="row">
-                    <div className="col">
-                        <h3>HackType</h3>
-                        <p>Choose the hack type. Without changing these, you will post the topic on the forum you belong to.</p>
-                        <select name="hack_type" defaultValue={_pageData.user.profile.hack_type}>
-                            <option value="purdue">Purdue</option>
-                            <option value="bogota">Bogota</option>
-                            <option value="platzi">Platzi</option>
-                        </select>
-                    </div>
-                    <div className="col">
-                        <h3>Hack ID</h3>
-                        <p>This should be <code>0</code> for Purdue, and 0, 1 or 2 for the others.</p>
-                        <input name="hackId" type="number" placeholder="Hack Id" defaultValue="0" min="0" max="2" defaultValue={_pageData.user.profile.hack_id} />
-                    </div>
-                </div>
-            </div>
+            formSectionTarget = <AdminArea />;
         }
 
         return <div className="admin-area">
@@ -62,7 +46,11 @@ export default class TopicEditor extends React.Component {
                 </div>
                 {this.renderAdminFields()}
                 <div className="form-section">
-                    <p>Write the topic content below.  Styling with Markdown is supported.</p>
+                    <p>Write the topic content below. <a href="https://simplemde.com/markdown-guide" target="_blank">Styling with Markdown</a> is supported (use the editor buttons; for links and images, see the examples below):</p>
+                    <strong>Links</strong>
+                    <pre>[Text to display](http://www.example.com)</pre>
+                    <strong>Images &nbsp; <small>Need to upload an image? <a href="http://imgur.com/" target="_blank">Imgur</a> has a great interface.</small></strong>
+                    <pre>![](http://www.example.com/image.jpg)</pre>
                     <Editor value={this.state.topic.body} onChange={this.updateBody.bind(this)} />
                 </div>
                 <div className="form-section">
