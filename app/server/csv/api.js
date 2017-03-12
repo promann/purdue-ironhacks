@@ -132,7 +132,6 @@ exports.users = filters => {
         password: 0,
         "profile.bio": 0,
         "profile.github_username": 0,
-        "profile.full_name": 0,
         "profile.picture": 0,
         "profile.website": 0,
         "role": 0,
