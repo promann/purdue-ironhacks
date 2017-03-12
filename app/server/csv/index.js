@@ -48,7 +48,7 @@ exports.init = () => {
 
         csv.users({
             hackType: hackType
-          , hackId: hackId
+          , hackId: +hackId
         }).pipe(lien.res);
     });
 };
