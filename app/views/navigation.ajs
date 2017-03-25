@@ -9,6 +9,8 @@
                 <% tutorialLink = "https://github.com/blackironhack/2017-Bogota-Ironhack-Tutorials"; %>
             <% } else if (user.profile.hack_type === "purdue") { %>
                 <% tutorialLink = "https://github.com/goldironhack/2017-Purdue-Ironhack-Tutorials"; %>
+            <% } else if (user.profile.hack_type === "platzi") { %>
+                <% tutorialLink = "https://github.com/blackironhack/2017-Purdue-Platzi-IronHack-Tutorials"; %>
             <% } %>
             <% if (tutorialLink) { %>
                 | <a href="<%= tutorialLink %>">Tutorial</a>

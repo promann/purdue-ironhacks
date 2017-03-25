@@ -7,6 +7,8 @@
 <%   timelineImage = _public("/img/timelines/1.png"); %>
 <% } else if (user.profile.hack_type === "bogota") { %>
 <%   timelineImage = _public("/img/timelines/2.png"); %>
+<% } else if (user.profile.hack_type === "platzi") { %>
+<%   timelineImage = _public("/img/timelines/3.png"); %>
 <% } %>
 
 
