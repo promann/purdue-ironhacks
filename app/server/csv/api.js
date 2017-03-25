@@ -37,7 +37,7 @@ exports.topics = () => {
           , User.model.findOne({ _id: doc.metadata.topic_author })
           , User.model.findOne({ _id: doc.actor })
         ]).then(response => {
-            if (response[0]) {
+            if (response[0] && response[1] && response[2]) {
                 const topic = response[0].toObject()
                     , author = response[1].toObject()
                     , actor = response[2].toObject()
