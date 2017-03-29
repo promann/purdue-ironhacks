@@ -1,7 +1,7 @@
 <% include("../views/header", { title: "Scores" }) %>
 <% include("../views/container/start") %>
 
-<h1 class="text-center">Scores (<%= phase %>)</h1>
+<h1 class="text-center">Results (<%= phase %>)</h1>
 <div id="app"></div>
 <script>
     window._pageData = {

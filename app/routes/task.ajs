@@ -1,0 +1,14 @@
+<% // lien.displayNavigationPages = false; %>
+<% include("../views/header", { title: "Task" }) %>
+<% include("../views/container/start") %>
+
+<% if (user.profile.hack_type === "purdue") { %>
+<%   include("../views/task-contents/goldironhacks") %>
+<% } else if (user.profile.hack_type === "bogota") { %>
+<%   include("../views/task-contents/unal-goldironhacks") %>
+<% } else if (user.profile.hack_type === "platzi") { %>
+    <em>Coming soon...</em>
+<% } %>
+
+<% include("../views/container/end") %>
+<% include("../views/footer") %>

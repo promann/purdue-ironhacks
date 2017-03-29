@@ -2,7 +2,8 @@
     <span class="auth-buttons float-left">
         <a href="/" class="show-xs">Home</a>
         <% if (user) { %>
-            | <a href="/scores">Scores</a>
+            | <a href="/task">Task</a>
+            | <a href="/scores">Results</a>
             | <a href="/quizzes">Quizzes</a>
             <% var tutorialLink = "" %>
             <% if (user.profile.hack_type === "bogota") { %>
