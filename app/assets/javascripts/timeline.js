@@ -37,6 +37,7 @@ export default class App extends React.Component {
                 {tutorialButton}
                 <CountdownTimer description="Time until the forum starts:" until={_pageData.forum_start_time} />
                 <CountdownTimer description="Time until the hack starts:" until={_pageData.hack_start_time} />
+                <CountdownTimer description="Time until submission:" until={_pageData.next_phase_time} />
                 {timelineContainer}
             </div>
         );

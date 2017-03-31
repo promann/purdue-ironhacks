@@ -71,6 +71,7 @@ export default class App extends React.Component {
             hackTypes[inputs[0].dataset.hackType] = {
                 start_date: inputs[0].value
               , hack_start_date: inputs[1].value
+              , next_phase_date: inputs[2].value
             };
         });
 
@@ -134,18 +135,22 @@ export default class App extends React.Component {
         let index = -1;
 
         forEach(window._pageData.settings.hack_types, (hackType, name) => {
+
             hackType.start_date = moment(new Date(hackType.start_date));
             hackType.hack_start_date = moment(hackType.hack_start_date);
+            hackType.next_phase_date = moment(hackType.next_phase_date);
+
             hackType.subforums_count = hackType.subforums_count || 0;
             hackTypesStartDates.push(
                 <div className="hack-type-start-date" key={++index} >
                     <strong>{name}</strong>: <br/>
                     Start of <strong>forum</strong>: <input data-hack-type={name} type="text" defaultValue={hackType.start_date.format("YYYY-MM-DD HH:mm:ss")} /><br/>
                     Start of <strong>hack</strong>: <input data-hack-type={name} type="text" defaultValue={hackType.hack_start_date.format("YYYY-MM-DD HH:mm:ss")} /><br/>
+                    Time until <strong>submission</strong>: <input data-hack-type={name} type="text" defaultValue={hackType.next_phase_date.format("YYYY-MM-DD HH:mm:ss")} /><br/>
                 </div>
             );
             hackTypesSubforums.push(
-                <div className="hack-type-subgroup" key={index} >
+                <div className="hack-type-subgroup" key={++index} >
                     <strong className="hack-type-name">{name}</strong> ({_pageData.users.filter(c => c.profile.hack_type === name).length} students): <br/>
                     <input data-hack-type={name} type="number" defaultValue={hackType.subforums_count + 1} />
                 </div>

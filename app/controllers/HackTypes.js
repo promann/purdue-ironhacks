@@ -82,6 +82,7 @@ const update = cb => {
             let thisHackType = HACK_TYPES[name];
             thisHackType.start_date = hType.start_date;
             thisHackType.hack_start_date = hType.hack_start_date;
+            thisHackType.next_phase_date = hType.next_phase_date;
             thisHackType.subforums_count = hType.subforums_count;
             if (new Date() > thisHackType.start_date) {
                 if (thisHackType.startSchedule) {

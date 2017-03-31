@@ -16,8 +16,9 @@
     window._pageData = {
         component: "timeline",
         user: <%- stringify(user) %>,
-        forum_start_time: <%- stringify(hackType.start_date) %>,
-        hack_start_time: <%- stringify(hackType.hack_start_date) %>,
+        forum_start_time: <%- stringify(hackType.start_date || new Date()) %>,
+        hack_start_time: <%- stringify(hackType.hack_start_date || new Date()) %>,
+        next_phase_time: <%- stringify(hackType.next_phase_date || new Date()) %>,
         current_time: new Date(),
         tutorial_link: <%- stringify(lien.tutorialLink) %>,
         timeline_img: <%- stringify(timelineImage) %>
