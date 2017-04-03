@@ -28,7 +28,7 @@ export default class ScoreList extends React.Component {
             { this.state.showScores ? <td>Technical Score</td> : null }
             { this.state.showScores ? <td>Info Viz Score</td> : null }
             { this.state.showScores ? <td>Novelty Score</td> : null }
-            { this.state.showScores ? <td>Total Score</td> : null }
+            { this.state.showScores ? <td>User Requirements Score</td> : null }
             {projectTd}
             {githubTd}
         </tr>

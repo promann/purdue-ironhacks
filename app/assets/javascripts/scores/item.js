@@ -40,10 +40,10 @@ export default class ScoreItem extends React.Component {
     render () {
 
         const scoreColumns = [
-            [this.props.hacker.score_technical, "Score Technical"]
-          , [this.props.hacker.score_info_viz, "Score Info Viz"]
-          , [this.props.hacker.score_novelty, "Score Novelty"]
-          , [this.props.hacker.score_total, "Score Total"]
+            [this.props.hacker.score_technical, "Technical Score"]
+          , [this.props.hacker.score_info_viz, "Info Viz Score"]
+          , [this.props.hacker.score_novelty, "Novelty Score"]
+          , [this.props.hacker.score_total, "User Requirements Score"]
         ].map((c, i) => {
             if (!this.props.showScores) { return null; }
             return <td key={i} data-label={`${c[1]}: `}>{this.state.opened ? `${(c[0] || 0).toFixed(2)}%` : ""}</td>
