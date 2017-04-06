@@ -15,7 +15,7 @@
 
     if (phase === "phase1") {
         if (user.profile.hack_type === "purdue") {
-            message = allMessages[3];
+            message = allMessages[2];
         } else {
             message = allMessages[user.profile.hack_id];
         }
