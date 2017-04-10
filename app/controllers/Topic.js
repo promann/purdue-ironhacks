@@ -96,7 +96,13 @@ class Topic {
         }).then(data => {
             topics = data.map(c => c.toObject());
             data = null;
-            return Topic.populate(topics);
+            return Topic.populate(topics, {
+                userFields: {
+                    "profile.commits": 0,
+                    "email": 0,
+                    "password": 0
+                }
+            });
         }).then(data => {
             cb(null, data);
         }).catch(err => cb(err));

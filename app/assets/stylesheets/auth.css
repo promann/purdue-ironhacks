@@ -356,3 +356,11 @@ span.countdown {
 .quizzes-container .btn {
     max-width: 400px;
 }
+
+.pointer {
+    cursor: pointer;
+}
+
+.user-username > h3 {
+    margin-top: 0;
+}
