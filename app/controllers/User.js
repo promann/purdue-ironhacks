@@ -1,3 +1,5 @@
+"use strict";
+
 const Bloggify = require("bloggify")
     , ul = require("ul")
     , regexEscape = require("regex-escape")
@@ -124,14 +126,7 @@ User.model.addHook("pre", "save", function (next) {
         this.set(`profile.${cPhase}.score_technical`, deffy(phaseObj.score_technical, 0));
         this.set(`profile.${cPhase}.score_info_viz`, deffy(phaseObj.score_info_viz, 0));
         this.set(`profile.${cPhase}.score_novelty`, deffy(phaseObj.score_novelty, 0));
-
-        if (phaseObj.score_custom) {
-            total = phaseObj.score_custom;
-        } else {
-            total = phaseObj.score_technical + phaseObj.score_info_viz + phaseObj.score_novelty
-        }
-
-        this.set(`profile.${cPhase}.score_total`, total || 0);
+        this.set(`profile.${cPhase}.score_total`, deffy(phaseObj.score_total, 0));
     });
     next();
 });

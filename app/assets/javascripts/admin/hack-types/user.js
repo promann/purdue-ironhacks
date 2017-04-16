@@ -62,6 +62,9 @@ export default class UserItem extends React.Component {
                     <div className="score-custom">
                         <span className="user-label">User Requirements:</span> <input type="number" name="score_custom" key={`score-novelty-${Date.now()}`} defaultValue={phaseData.score_custom} />
                     </div>
+                    <div className="score-total">
+                        <span className="user-label">Total:</span> <input type="number" name="score_total" key={`score-total-${Date.now()}`} defaultValue={phaseData.score_total} />
+                    </div>
                     <div className="user-role">
                         <span className="user-label">User role:</span>
                         <select name="role" key={`user-role-${Date.now()}`} defaultValue={this.props.user.role}>

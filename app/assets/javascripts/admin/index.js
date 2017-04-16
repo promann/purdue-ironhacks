@@ -60,6 +60,7 @@ export default class App extends React.Component {
                   , score_info_viz: $("[name='score_info_viz']", c).value
                   , score_novelty: $("[name='score_novelty']", c).value
                   , score_custom: $("[name='score_custom']", c).value
+                  , score_total: $("[name='score_total']", c).value
                   , role: $("[name='role']", c).value
                 }
             };

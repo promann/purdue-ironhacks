@@ -60,6 +60,7 @@ module.exports = (lien, cb) => {
                       , "score_info_viz": +c.update.score_info_viz || 0
                       , "score_novelty": +c.update.score_novelty || 0
                       , "score_custom": c.update.score_custom && +c.update.score_custom
+                      , "score_total": +c.update.score_total || 0
                     }
                 }
             });

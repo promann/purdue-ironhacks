@@ -49,6 +49,11 @@ export default class ScoreItem extends React.Component {
             return <td key={i} data-label={`${c[1]}: `}>{this.state.opened ? `${(c[0] || 0).toFixed(2)}%` : ""}</td>
         });
 
+        let totalScoreColumn = null;
+        if (this.props.showScores) {
+            totalScoreColumn = <td data-label="Total Score">{this.props.hacker.score_total}</td>
+        }
+
         const projectLinks = [
             this.props.showProjectColumn ? [this.props.hacker.project_url, "Project"] : null
           , this.props.showGitHubRepoColumn ? [this.props.hacker.github_repo_url, "GitHub"] : null
@@ -64,6 +69,7 @@ export default class ScoreItem extends React.Component {
         return (
             <tr className="score-item">
                 <td data-label="Username: " className="username">{this.props.hacker.username}</td>
+                {totalScoreColumn}
                 {this.renderViewButton()}
                 {scoreColumns}
                 {projectLinks}

@@ -8,7 +8,7 @@ export default class ScoreList extends React.Component {
         this.state = {
             showProjectColumn: this.props.hackers.some(c => (c.project_url || "").trim())
           , showGitHubRepoColumn: this.props.hackers.some(c => (c.github_repo_url || "").trim())
-          , showScores: this.props.hackers.some(c => c.score_total)
+          , showScores: this.props.hackers.some(c => c.score_technical + c.score_info_viz + c.score_novelty + c.score_total)
         };
     }
     renderItems () {
@@ -18,19 +18,20 @@ export default class ScoreList extends React.Component {
     }
     renderTheadRow () {
 
-        const projectTd = this.state.showProjectColumn ? <td>Project</td> : null
-            , githubTd = this.state.showGitHubRepoColumn ? <td>GitHub</td> : null
+        const projectTh = this.state.showProjectColumn ? <th>Project</th> : null
+            , githubTh = this.state.showGitHubRepoColumn ? <th>GitHub</th> : null
             ;
 
         return <tr>
-           <td>Name</td>
-            { this.state.showScores ? <td>Toggle Scores</td> : null }
-            { this.state.showScores ? <td>Technical Score</td> : null }
-            { this.state.showScores ? <td>Info Viz Score</td> : null }
-            { this.state.showScores ? <td>Novelty Score</td> : null }
-            { this.state.showScores ? <td>User Requirements Score</td> : null }
-            {projectTd}
-            {githubTd}
+           <th>Name</th>
+            { this.state.showScores ? <th>Total score</th> : null }
+            { this.state.showScores ? <th>Toggle Scores</th> : null }
+            { this.state.showScores ? <th>Technical Score</th> : null }
+            { this.state.showScores ? <th>Info Viz Score</th> : null }
+            { this.state.showScores ? <th>Novelty Score</th> : null }
+            { this.state.showScores ? <th>User Requirements Score</th> : null }
+            {projectTh}
+            {githubTh}
         </tr>
     }
     render () {
