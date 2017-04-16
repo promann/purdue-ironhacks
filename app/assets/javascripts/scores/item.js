@@ -51,7 +51,7 @@ export default class ScoreItem extends React.Component {
 
         let totalScoreColumn = null;
         if (this.props.showScores) {
-            totalScoreColumn = <td data-label="Total Score">{this.props.hacker.score_total}</td>
+            totalScoreColumn = <td data-label="Total Score">{this.props.hacker.score_total}%</td>
         }
 
         const projectLinks = [
