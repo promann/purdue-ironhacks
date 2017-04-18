@@ -80,7 +80,7 @@ module.exports = conf({
 
         // Send emails
         "bloggify-sendgrid": {
-            "key": "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"
+            "key": "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"
         }
     }
 }, {
