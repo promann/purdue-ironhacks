@@ -179,7 +179,7 @@ export default class App extends React.Component {
                         <a className="btn" href="/admin/csv/scores">Scores</a>
                         <h2>Export users</h2>
                         <form action="/admin/csv/export-users">
-                            <HackTypeAndIdSelector users={this.state.users}/> <br />
+                            <HackTypeAndIdSelector show_export_type={true} users={this.state.users}/> <br />
                             <button className="btn" type="submit">Export</button>
                         </form>
                     </div>

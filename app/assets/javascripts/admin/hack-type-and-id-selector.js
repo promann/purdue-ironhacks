@@ -31,9 +31,15 @@ export default class HackTypeAndIdSelector extends React.Component {
             {hackIdOptions}
         </select>;
 
+        const exportTypeSelect = this.props.show_export_type ? <select name="exportType">
+            <option value="users">User Details</option>
+            <option value="forum_details">Forum Details</option>
+        </select> : null;
+
         return <span>
             {hackTypeSelect}
             {hackIdSelect}
+            {exportTypeSelect}
         </span>;
     }
 }

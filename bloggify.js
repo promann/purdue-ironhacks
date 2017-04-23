@@ -5,7 +5,7 @@ const conf = require("bloggify-config");
 // Set the right MongoDB URI (depending on the environment).
 const DB_URI = conf.isProduction
              ? "mongodb://bloggify:JwRsdG28yZUCVLRBU3IHfGGKlfXyhci3rVo1K0z4h4xjZ1Zf1eC3ZCXiItyMRM8i@ds163758.mlab.com:63758/heroku_l6lb4k6w"
-             : "mongodb://localhost/bloggify-forum"
+             : "mongodb://localhost/purdue_ironhacks"
              ;
 
 module.exports = conf({

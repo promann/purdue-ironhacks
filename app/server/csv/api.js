@@ -113,7 +113,7 @@ exports.scores = () => {
     return csvStream;
 };
 
-exports.users = filters => {
+exports.users = (filters, exportType) => {
     const csvStream = csv.format({
         headers: true
     });
@@ -140,9 +140,64 @@ exports.users = filters => {
     readStream.on("data", doc => {
         doc = doc.toObject()
         delete doc.__v;
-        csvStream.write(flatten(doc));
+        if (exportType === "forum_details") {
+            readStream.pause();
+            const userId = doc._id.toString();
+            const countCommentsReceived = () => {
+                return Bloggify.models.Topic.find({
+                    author: userId
+                }, {
+                    _id: 1
+                }).then(topics => {
+                    return Bloggify.models.Comment.count({
+                        topic: {
+                            $in: topics.map(c => c._id.toString())
+                        }
+                    })
+                });
+            };
+            Promise.all([
+
+                // #Posts
+                Bloggify.models.Topic.count({ author: userId })
+
+                // #Upvotes Received on Posts
+              , Bloggify.models.Topic.aggregate([
+                    { $match: { author: userId } }
+                  , { $group: { _id: "_", count: { $sum: { $size: "$votes"} } } }
+                ])
+
+                // #Comments received on posts
+              , countCommentsReceived()
+
+                // #Views received on posts
+              , Bloggify.models.Stats.count({ "metadata.topic_author": userId, event: "view-topic" })
+
+                // #Comments
+              , Bloggify.models.Comment.count({ author: userId })
+
+                // #Upvotes Received on Comments
+              , Bloggify.models.Comment.aggregate({ $match: { author: userId } }, { $group: {_id: "upvotes", count: { $sum: { $size: '$votes'} } } })
+            ]).then(data => {
+                const forumObj = {
+                    "Username": doc.username
+                  , "User Email": doc.email
+                  , "#Posts": data[0]
+                  , "#Upvotes Received on Posts": Object((data[1] || [])[0]).count || 0
+                  , "#Comments received on posts": data[2]
+                  , "#Views received on posts": data[3]
+                  , "#Comments": data[4]
+                  , "#Upvotes Received on Comments": Object((data[5] || [])[0]).count || 0
+                };
+                csvStream.write(flatten(forumObj));
+                readStream.resume();
+            });
+        } else {
+            csvStream.write(flatten(doc));
+        }
     }).on("close", () => {
         csvStream.end();
     });
-    return csvStream;
+
+   return csvStream;
 };
