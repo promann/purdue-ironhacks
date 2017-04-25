@@ -20,7 +20,7 @@ To run this application, you will have to have Node.js and MongoDB installed on 
 
  - [Node.js](https://nodejs.org/en/)
  - [MongoDB](https://www.mongodb.com/download-center?jmp=nav#community)
- 
+
 Then you can proceed to the next steps.
 
  1. Clone the repo either from GitHub or Heroku:
