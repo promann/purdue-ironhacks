@@ -11,7 +11,7 @@ if (!DB_URI) {
 module.exports = conf({
     // Application metadata
     title: "IronHacks"
-  , description: "Hack for inovation and join the open data movement.",
+  , description: "Hack for inovation and join the open data movement."
 
     // The production domain
   , domain: "http://www.ironhacks.com"
