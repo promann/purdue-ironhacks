@@ -1,7 +1,7 @@
 {
-  "name": "bloggify-custom-app-template",
+  "name": "purdue-ironhacks-platform",
   "version": "1.0.2",
-  "description": "A custom application built with @Bloggify.",
+  "description": "",
   "main": "bloggify.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -20,7 +20,7 @@
   "dependencies": {
     "bag.css": "^1.0.5",
     "bloggify-cli": "^1.1.1",
-    "bloggify-config": "^1.0.6",
+    "bloggify-config": "^1.2.0",
     "bloggify-custom-assets": "^1.0.2",
     "bloggify-flexible-router": "^1.0.8",
     "bloggify-github-login": "^1.0.0",
