@@ -1,6 +1,6 @@
 {
   "name": "purdue-ironhacks-platform",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "description": "",
   "main": "bloggify.js",
   "scripts": {
@@ -15,7 +15,10 @@
     "enable-heroku-cache": "heroku config:unset NODE_MODULES_CACHE",
     "disable-heroku-cache": "heroku config:set NODE_MODULES_CACHE=false"
   },
-  "author": "Ionică Bizău <bizauionica@gmail.com> (http://ionicabizau.net)",
+  "author": "Purdue University <opendigital@purdue.edu> (https://www.purdue.edu)",
+  "contributors": [
+    "Ionică Bizău <bizauionica@gmail.com> (https://ionicabizau.net)"
+  ],
   "license": "MIT",
   "dependencies": {
     "bag.css": "^1.0.5",
@@ -67,13 +70,13 @@
     "index.js"
   ],
   "bugs": {
-    "url": "https://github.com/BloggifyTutorials/custom-app/issues"
+    "url": "https://github.com/hackpurdue/courseswebpage/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BloggifyTutorials/custom-app.git"
+    "url": "git+https://github.com/hackpurdue/courseswebpage.git"
   },
-  "homepage": "https://github.com/BloggifyTutorials/custom-app#readme",
+  "homepage": "https://github.com/hackpurdue/courseswebpage#readme",
   "bloggify": {
     "bundles": {
       "publicHomepage": {
