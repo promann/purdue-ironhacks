@@ -15,7 +15,7 @@
     "enable-heroku-cache": "heroku config:unset NODE_MODULES_CACHE",
     "disable-heroku-cache": "heroku config:set NODE_MODULES_CACHE=false"
   },
-  "author": "Purdue University <opendigital@purdue.edu> (https://www.purdue.edu)",
+  "author": "Purdue University Research Center for Open Digital Innovation (Purdue Ironhacks) <opendigital@purdue.edu> (https://www.purdue.edu)",
   "contributors": [
     "Ionică Bizău <bizauionica@gmail.com> (https://ionicabizau.net)"
   ],
