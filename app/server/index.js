@@ -137,6 +137,7 @@ module.exports = bloggify => {
 
     Bloggify.require("github-login", GitHub => {
         GitHub.on("login-error", (err, lien) => {
+            console.error(err);
             lien.redirect("/");
         });
         GitHub.on("login-success", (token, user, lien) => {
