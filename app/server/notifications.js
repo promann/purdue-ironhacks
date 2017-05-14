@@ -27,6 +27,10 @@ exports.commentPosted = comment => {
         emails.splice(authorIndex, 1);
     }
 
+    if (!Bloggify.production) {
+        return;
+    }
+
     Email.send({
         to_email: emails
       , from_email: FROM_EMAIL
@@ -60,6 +64,10 @@ exports.topicCreated = topic => {
         }
 
         console.log(emails);
+
+        if (!Bloggify.production) {
+            return;
+        }
 
         Email.send({
             to_email: emails
