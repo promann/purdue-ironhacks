@@ -19,9 +19,10 @@ module.exports = bloggify => {
         "/posts/:postId-:postSlug",
         "/new",
         "/scores",
+        "/task",
     ], (lien, cb) => {
         const user = Session.getUser(lien);
-        if (user && HackTypes[user.profile.hack_type].start_date > new Date() && !Session.isAdmin(user)) {
+        if (lien.pathname !== "/task" && user && HackTypes[user.profile.hack_type].start_date > new Date() && !Session.isAdmin(user)) {
             return lien.redirect("/timeline");
         }
         if (user) {
@@ -136,6 +137,7 @@ module.exports = bloggify => {
 
     Bloggify.require("github-login", GitHub => {
         GitHub.on("login-error", (err, lien) => {
+            console.error(err);
             lien.redirect("/");
         });
         GitHub.on("login-success", (token, user, lien) => {
