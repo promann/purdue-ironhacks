@@ -75,13 +75,9 @@ module.exports = conf({
             key: process.env.SENDGRID_KEY
         }
     }
-}, {
-    cms_methods: false
-  , server: {
-        session: {
-            storeOptions: {
-                url: DB_URI
-            }
-        }
+  , cmsMethods: false
+  , sessionStore: "connect-mongo"
+  , sessionOptions: {
+        url: DB_URI
     }
 });
