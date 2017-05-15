@@ -1,7 +1,7 @@
 {
   "name": "purdue-ironhacks-platform",
   "version": "1.0.0",
-  "description": "",
+  "description": "Hack for inovation and join the open data movement.",
   "main": "bloggify.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
