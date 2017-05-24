@@ -3,9 +3,13 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <div class="title-style title-pb2">
-                    <h1>Upcoming Hacks <span>Hacks Spring 2017</span></h1>
-                    <p>There are 3 hacks coming up. Please sign-up below. You can only sign-up for one hack.</p>
-                    <p>Gold IronHacks are only for students enrolled in classes at Purdue or at our partner universities. Black IronHacks are open for everybody! Before you can enter the online forum, you will have to fill in a brief survey. There will be a training period of 3 weeks where you can get familiar with the key technologies.</p>
+                    <h1>Upcoming Hacks <span>Hacks Fall 2017</span></h1>
+                    <p>Gold IronHacks are for students enrolled in Purdue classes and our partner universities.</p>
+                    <p>Black IronHacks are open to everybody, everywhere.
+                    You can only sign up for one hack at a time.
+                    Before entering the competition, you must complete a brief survey.
+                    There will be a 3-week boot-camp training where you can get familiar with key technologies
+                    prior to the competition. So, start early!</p>
                 </div>
             </div>
         </div>
@@ -13,23 +17,28 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="single-price-package">
                     <div class="price-title">
-                        <h3>Purdue Gold<br>IronHacks Spring 2017</h3>
+                        <h3>Purdue Gold<br>IronHacks Fall 2017</h3>
                     </div>
                     <div class="price">
                         <p>
                             <span class="text-bottom">
-                                Start of training: March 7th<br>
-                                Start of contest: March 28th
+				Start of boot-camp and contest: Mid-October <br>
+				To be confirmed.
                             </span>
                         </p>
                     </div>
                     <div class="price-list">
                         <ul>
-                            <li>This hack is for students at Purdue Polytechnic ONLY</li>
-                            <li>If you are enrolled in the following classes, you are invited to sign-up:  CGT 370: Interactive Data Visualization, CNIT559: Data Warehousing, TECH581: Open Data Hacking</li>
-                            <li>Professors: Sabine Brunswicker, Victor Chen, John Springer</li>
-                            <li>Challenge topic: Food location</li>
-                            <li>Please view the <a href="/downloads/GeneralIronhack.pdf">flyer here</a></li>
+                            <li>This hack is for Purdue Polytechnic students enrolled in the following classes: </li>
+                            <li>
+                                <ul>
+                                    <li>CGT 370: Interactive Data Visualization</li>
+                                    <li>CNIT 559: Data Warehousing </li>
+                                    <li>TECH 581: Open Data Hacking </li>
+                                </ul>
+                            </li>
+                            <li>Purdue Polytechnic Professors: Sabine Brunswicker, John Springer Victor Chen</li>
+                            <li>Challenge topic: Will revolve around safety, health, and travel.</li>
                         </ul>
                         <div class="price-btn">
                             <form method="POST" action="/register">
@@ -41,26 +50,25 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="single-price-package">
                     <div class="price-title">
-                        <h3>Purdue-UNAL Gold<br>IronHacks 2017</h3>
+                        <h3>Purdue-UNAL Gold<br>IronHacks Fall 2017</h3>
                     </div>
                     <div class="price">
                         <p>
                             <span class="text-bottom">
-                                Start of training: March 7th<br>
-                                Start of contest: March 28th
+				Start of boot-camp and contest: Mid-October <br>
+				To be confirmed.
                             </span>
                         </p>
                     </div>
                     <div class="price-list">
                         <ul>
-                            <li>This is hack for students at Universidad Nacional de Colombia ONLY</li>
-                            <li>If you are enrolled in one of the following classes you are invited to sign-up: Ingeniería de software I: Group 1 & 2, Ingeniería de software II: Group 1 & 2. </li>
-                            <li>Professors: Jairo Aponte, David Camilo Delgado, Yury Niño</li>
-                            <li>Challenge topic: Housing and Safety</li>
-                            <li>Please view the <a href="/downloads/Purdude_UNAL_IronHacks.pdf">flyer here</a></li>
+                            <li>This hack is for Universidad Nacional de Colombia students.</li>
+                            <li>Challenge topic: Will revolve around safety, health, and travel.</li>
+                            <li>Stay tuned</li>
                         </ul>
                         <div class="price-btn">
                             <form method="POST" action="/register">
@@ -75,23 +83,21 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="single-price-package">
                     <div class="price-title">
-                        <h3>Purdue-PLATZI Black<br>IronHacks 2017</h3>
+                        <h3>Purdue Black<br>IronHacks 2017</h3>
                     </div>
                     <div class="price">
                         <p>
                             <span class="text-bottom">
-                                Start of training: March 28th<br>
-                                Start of contest: April 18th
+				Start of boot-camp and contest: Mid-October <br>
+				To be confirmed.
                             </span>
                         </p>
                     </div>
                     <div class="price-list">
                         <ul>
-                            <li>This is an open hack, open for everybody.</li>
-                            <li>This hack is performed in collaboration with <a href="https://platzi.com">Platzi.com</a>, a unique online education platform. </li>
-                            <li>Please sign-up to get access to the tutorials and the information you need to get ready for the hack. </li>
-                            <li>Challenge topic: Renting & Housing in New York City</li>
-                            <li>Please view the <a href="/downloads/PlatziIronhack.pdf">flyer here</a></li>
+                            <li>This is an open hack, open to everybody.</li>
+                            <li>Challenge topic: Will revolve around safety, health, and travel.</li>
+                            <li>Stay tuned for more details!</li>
                         </ul>
                         <div class="price-btn">
                             <form method="POST" action="/register">
