@@ -1,5 +1,5 @@
 # Purdue Ironhacks Platform [![](http://bloggify.github.io/resources/badges/powered-by-bloggify.svg)](https://bloggify.org)
-Hack for inovation and join the open data movement.
+Hack for innovation and join the open data movement.
 
 ### About
 
