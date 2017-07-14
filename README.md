@@ -1,4 +1,4 @@
-# Purdue Ironhacks Platform [![](http://bloggify.github.io/resources/badges/powered-by-bloggify.svg)](https://bloggify.org)
+# Purdue Ironhacks Platform 
 Hack for innovation and join the open data movement.
 
 ### About
@@ -9,4 +9,4 @@ Participation is free. During our iterative hacking process, you will learn new 
 [![](http://i.imgur.com/wtv2dy6.png)](http://ironhacks.com)
 
 ### License
-This application is open-source, being licensed under the MIT license.
+This application is open-source, being licensed under the MIT license Research Center for Open Digital Innovation.
