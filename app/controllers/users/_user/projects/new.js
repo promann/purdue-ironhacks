@@ -1,5 +1,6 @@
 const Bloggify = require("bloggify")
     , Project = Bloggify.models.Project
+    , Session = require("../../../Session")
     ;
 
 exports.post = (ctx, cb) => {
