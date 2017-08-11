@@ -1,1 +1,9 @@
-Projects list
+<% if (projects.length) { %>
+	<ul>
+	<% projects.forEach(function (currentProject) { %>
+		<li><a href="view/<%= currentProject.name %>"><%= currentProject.name %></a></li>
+	<% }) %>
+	</ul>
+<% } else { %>
+	<p><a href="<%= ctx.selected_user.url %>">@<%= ctx.selected_user.username %></a> doesn't have any projects</p>
+<% } %>
