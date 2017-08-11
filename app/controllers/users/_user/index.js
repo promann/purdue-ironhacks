@@ -1,14 +1,11 @@
 const User = require("../../User");
 const Session = require("../../Session");
 
-exports.get = (lien, cb) => {
-    const authUser = Session.getUser(lien);
-    if (!authUser) {
-        return lien.next();
-    }
+// Select the user for all the routes under /:user
+exports.use = (ctx, cb) => {
     User.get({
         filters: {
-            username: lien.params.user
+            username: ctx.params.user
         }
       , fields: {
             password: 0
@@ -18,12 +15,22 @@ exports.get = (lien, cb) => {
             return cb(err);
         }
         if (!user) {
-            return lien.next();
+            return ctx.next();
         }
         user = user.toObject();
         user.url = User.getProfileUrl(user);
-        cb(null, {
-            profile: user
-        });
+        ctx.selected_user = user;
+        cb();
+    })
+};
+
+exports.get = (lien, cb) => {
+    const authUser = Session.getUser(lien);
+    if (!authUser) {
+        return lien.next();
+    }
+    
+    cb(null, {
+        profile: lien.selected_user
     });
 };
