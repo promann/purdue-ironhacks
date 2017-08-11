@@ -131,4 +131,4 @@ User.model.addHook("pre", "save", function (next) {
     next();
 });
 
-module.exports = User;
+module.exports = Bloggify.User = User;

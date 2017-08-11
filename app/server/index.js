@@ -31,7 +31,8 @@ module.exports = bloggify => {
                     Bloggify.log(err);
                     return lien.redirect("/500");
                 }
-                lien.req.session._sessionData.user = user
+                lien.req.session._sessionData.user = user;
+                lien.user = user;
                 cb();
             });
         }

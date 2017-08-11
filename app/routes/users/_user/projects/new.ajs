@@ -1,1 +1,6 @@
-new project
+<form method="POST">
+	<%- ctx.csrfInput %>
+	name: <input name="name"><br>
+	description: <input name="description"><br>
+	<button>Create</button>
+</form>
