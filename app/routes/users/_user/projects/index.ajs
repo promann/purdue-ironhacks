@@ -1,9 +1,21 @@
+<% include("../../../../views/header", { title: "Admin" }) %>
+<% include("../../../../views/container/start") %>
+
+<h3>Projects</h3>
+
+<% if (ctx.selected_user.username === ctx.user.username) { %>
+	<a href="new">New project</a>
+<% } %>
+
 <% if (projects.length) { %>
 	<ul>
 	<% projects.forEach(function (currentProject) { %>
-		<li><a href="view/<%= currentProject.name %>"><%= currentProject.name %></a></li>
+		<li><a href="<%= currentProject.name %>/"><%= currentProject.name %></a></li>
 	<% }) %>
 	</ul>
 <% } else { %>
 	<p><a href="<%= ctx.selected_user.url %>">@<%= ctx.selected_user.username %></a> doesn't have any projects</p>
 <% } %>
+
+<% include("../../../../views/container/end") %>
+<% include("../../../../views/footer") %>

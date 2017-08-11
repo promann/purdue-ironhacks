@@ -1,1 +1,8 @@
+<% include("../../../../../../views/header", { title: "Admin" }) %>
+<% include("../../../../../../views/container/start") %>
+
+
 editing <%= ctx.params.projectName %>
+
+<% include("../../../../../../views/container/end") %>
+<% include("../../../../../../views/footer") %>

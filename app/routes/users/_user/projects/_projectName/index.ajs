@@ -1,0 +1,9 @@
+<% include("../../../../../views/header", { title: "Admin" }) %>
+<% include("../../../../../views/container/start") %>
+
+
+<h3><%= ctx.selected_project.name %></h3>
+<p><%= ctx.selected_project.description %></p>
+
+<% include("../../../../../views/container/end") %>
+<% include("../../../../../views/footer") %>
