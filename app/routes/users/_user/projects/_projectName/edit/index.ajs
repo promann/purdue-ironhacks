@@ -1,8 +1,23 @@
-<% include("../../../../../../views/header", { title: "Admin" }) %>
+<% include("../../../../../../views/user-data") %>
+<% include("../../../../../../views/header", { title: "Edit" }) %>
 <% include("../../../../../../views/container/start") %>
 
 
 editing <%= ctx.params.projectName %>
+
+<script>
+    window._pageData = {
+        component: "project-editor",
+        user: <%- stringify(user) %>,
+        project: <%- stringify(ctx.selected_project) %>,
+        csrfToken: "<%= lien.csrfToken %>",
+        isAdmin: <%- stringify(Bloggify.controllers.Session.isAdmin(user)) %>
+    };
+</script>
+
+<div id="app" class="project-editor-wrapper"></div>
+
+<hr>
 
 <% include("../../../../../../views/container/end") %>
 <% include("../../../../../../views/footer") %>

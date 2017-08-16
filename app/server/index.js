@@ -7,6 +7,8 @@ const Bloggify = require("bloggify")
     , idy = require("idy")
     , Settings = require("../controllers/Settings")
     , CSVEndpoints = require("./csv")
+    , RequireDir = require("require-dir")
+    , Actions = RequireDir(__dirname + "/actions")
     ;
 
 module.exports = bloggify => {
