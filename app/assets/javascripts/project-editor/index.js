@@ -12,10 +12,28 @@ export default class App extends React.Component {
         super(props);
         this.state = {
             page: window._pageData,
-            filepath: "index.html"
+            filepath: "index.html",
+            file_content: ""
         };
         this.editor_content = "";
+        this.openFile(this.state.filepath);
     }
+    
+    openFile (path) {
+        BloggifyActions.post("project.getFile", {
+            project_name: this.state.page.project.name,
+            username: this.state.page.project.username,
+            filepath: this.state.filepath
+        }).then(data => {
+            this.setState({
+                file_content: data.Body,
+                filepath: path
+            });
+        }).catch(err => {
+            alert(err.message);
+        });
+    }
+
     saveFile () {
         console.log(this.editor_content);
         BloggifyActions.post("project.saveFile", {
@@ -27,9 +45,11 @@ export default class App extends React.Component {
             alert(err.message);
         });
     }
+    
     onEditorContentChange (content) {
         this.editor_content = content;
     }
+
     render () {
         return (
             <div>
@@ -40,6 +60,7 @@ export default class App extends React.Component {
                         <AceEditor
                             mode="html"
                             theme="github"
+                            value={this.state.file_content}
                             onChange={this.onEditorContentChange.bind(this)}
                             name="UNIQUE_ID_OF_DIV"
                             editorProps={{$blockScrolling: true}}

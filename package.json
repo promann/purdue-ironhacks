@@ -22,6 +22,7 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "aws-sdk": "^2.100.0",
     "bag.css": "^1.0.5",
     "bloggify-cli": "^1.1.1",
     "bloggify-config": "^1.2.0",
