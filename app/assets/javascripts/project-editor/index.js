@@ -5,7 +5,7 @@ import BloggifyActions from "bloggify.js/http-actions";
 
 import 'brace/mode/javascript';
 import 'brace/mode/html';
-import 'brace/theme/github';
+import 'brace/theme/monokai';
 
 export default class App extends React.Component {
     constructor (props) {
@@ -59,7 +59,7 @@ export default class App extends React.Component {
                     <div className="col">
                         <AceEditor
                             mode="html"
-                            theme="github"
+                            theme="monokai"
                             value={this.state.file_content}
                             onChange={this.onEditorContentChange.bind(this)}
                             name="UNIQUE_ID_OF_DIV"

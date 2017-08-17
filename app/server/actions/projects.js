@@ -12,9 +12,35 @@ const s3 = new aws.S3({
     signatureVersion: 'v4'
 });
 
-const buildFilePath = ctx => {
-	return `${PATH_PPROJECTS}/${ctx.data.username}/${ctx.data.project_name}/${ctx.data.filepath}`;
+const buildFilePath = data => {
+	return `${PATH_PPROJECTS}/${data.user || data.username}/${data.projectName || data.project_name}/${data.filepath}`;
 };
+
+
+// :username, :projecName, :filepath
+Bloggify.on("projects.streamFile", ctx => {
+	// TODO Check access, auth etc.
+	// TODO Validate data
+
+	const params = {
+		Bucket: S3_BUCKET,
+		Key: buildFilePath(ctx.params)
+	};
+
+	ctx.res.contentType(ctx.params.filepath);
+	const stream = s3.getObject(params).createReadStream();
+	
+	stream.on("error", err => {
+		ctx.res.contentType("plain/text");
+		if (err.code === "NoSuchKey") {
+			ctx.status(404).end("404 — Not found");
+		} else {
+			ctx.status(400).end(err.message);
+		}
+	});
+
+	stream.pipe(ctx.res);
+});
 
 Bloggify.actions.post("project.saveFile", (ctx, cb) => {
 	// TODO Check access, auth etc.
@@ -22,7 +48,7 @@ Bloggify.actions.post("project.saveFile", (ctx, cb) => {
 
 	const params = {
 		Bucket: S3_BUCKET,
-		Key: buildFilePath(ctx),
+		Key: buildFilePath(ctx.data),
 		Body: ctx.data.content
 	};
 
@@ -43,7 +69,7 @@ Bloggify.actions.post("project.getFile", (ctx, cb) => {
 
 	const params = {
 		Bucket: S3_BUCKET,
-		Key: buildFilePath(ctx)
+		Key: buildFilePath(ctx.data)
 	};
 
     s3.getObject(params, (err, data) => {
