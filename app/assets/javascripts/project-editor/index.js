@@ -2,6 +2,7 @@ import React from "react";
 import brace from "brace";
 import AceEditor from "react-ace";
 import BloggifyActions from "bloggify.js/http-actions";
+import FolderTree from "react-folder-tree";
 
 import 'brace/mode/javascript';
 import 'brace/mode/html';
@@ -15,10 +16,18 @@ export default class App extends React.Component {
             filepath: "index.html",
             file_content: ""
         };
+
+        BloggifyActions.post("project.listFiles", {
+            project_name: this.state.page.project.name,
+            username: this.state.page.project.username,
+        }).then(files => {
+            this.setState({ files });
+        });
+
         this.editor_content = "";
         this.openFile(this.state.filepath);
     }
-    
+
     openFile (path) {
         BloggifyActions.post("project.getFile", {
             project_name: this.state.page.project.name,
@@ -45,9 +54,19 @@ export default class App extends React.Component {
             alert(err.message);
         });
     }
-    
+
     onEditorContentChange (content) {
         this.editor_content = content;
+    }
+
+    renderFolderTree () {
+        if (this.state.files) {
+            return <FolderTree
+                data={this.state.files}
+                showToolbar={true}
+            />
+        }
+        return <p>Loading...</p>;
     }
 
     render () {
@@ -55,6 +74,7 @@ export default class App extends React.Component {
             <div>
                 <div className="row">
                     <div className="col">
+                        {this.renderFolderTree()}
                     </div>
                     <div className="col">
                         <AceEditor
