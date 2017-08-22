@@ -47,6 +47,7 @@
     "moment-timezone": "^0.5.11",
     "node-schedule": "^1.2.0",
     "obj-flatten": "^2.0.0",
+    "paths2tree": "0.0.1",
     "react": "^15.4.2",
     "react-ace": "^5.1.2",
     "react-dom": "^15.4.2",
