@@ -3,6 +3,7 @@ import brace from "brace";
 import AceEditor from "react-ace";
 import BloggifyActions from "bloggify.js/http-actions";
 import FolderTree from "react-folder-tree";
+import Preview from "./preview";
 
 import 'brace/mode/javascript';
 import 'brace/mode/html';
@@ -50,7 +51,9 @@ export default class App extends React.Component {
             username: this.state.page.project.username,
             filepath: this.state.filepath,
             content: this.editor_content
-        }).catch(err => {
+        }).then(() => {
+		this.preview.reload()
+	}).catch(err => {
             alert(err.message);
         });
     }
@@ -88,6 +91,9 @@ export default class App extends React.Component {
                         <button className="btn" onClick={this.saveFile.bind(this)}>Save</button>
                     </div>
                 </div>
+		<div className="row">
+			<Preview ref={ins => this.preview = ins} />
+		</div>
             </div>
         );
     }
