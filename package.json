@@ -54,6 +54,7 @@
     "react-folder-tree": "^3.0.0",
     "react-markdown": "^2.4.4",
     "react-md-editor": "^0.2.2",
+    "react-treebeard": "^2.0.3",
     "regex-escape": "^3.4.4",
     "socket.io": "^1.7.2",
     "socket.io-client": "^1.7.2",
@@ -93,6 +94,11 @@
         ],
         "styles": [
           "app/assets/stylesheets/homepage/index.css"
+        ]
+      },
+      "editor": {
+        "styles": [
+          "app/assets/stylesheets/editor/index.css"
         ]
       },
       "auth": {
