@@ -11,6 +11,9 @@
         <%- Bloggify.assets.html() %>
         <% if (user) { %>
             <%- Bloggify.bundles.auth.html(); %>
+            <% if (ctx.projectsEditor) { %>
+                <%- Bloggify.bundles.editor.html(); %>
+            <% } %>
         <% } else { %>
             <%- Bloggify.bundles.notAuth.html(); %>
         <% } %>
