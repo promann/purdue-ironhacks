@@ -1,6 +1,7 @@
 const Bloggify = require("bloggify")
     , aws = require("aws-sdk")
     , paths2tree = require("paths2tree")
+    , forEach = require("iterate-object")
 
 const S3_BUCKET = process.env.S3_BUCKET
     , PATH_PPROJECTS = "projects"
@@ -12,6 +13,56 @@ const s3 = new aws.S3({
 });
 
 const buildFilePath = data => `${PATH_PPROJECTS}/${data.user || data.username}/${data.projectName || data.project_name}/${data.filepath}`;
+
+Bloggify.on("project:create-template", data => {
+
+    data.project_name = data.name;
+
+    const files = {
+        "index.html": `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Hello World!</h1>
+        <button id="btn">Click me</button>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>`,
+        "style.css": `body {
+    color: #444;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 100%;
+    max-width: 960px;
+}`,
+        "index.js": `
+(function () {
+    document.getElementById(("btn").addEventListener("click", function () {
+        alert("Hi! :)");
+    });
+})();`
+    }
+
+    forEach(files, (content, name) => {
+        data.filepath = name
+        const params = {
+            Bucket: S3_BUCKET,
+            Key: buildFilePath(data),
+            Body: content
+        };
+        s3.putObject(params, (err, data) => {
+        });
+
+    })
+})
 
 // :username, :projecName, :filepath
 Bloggify.on("projects.streamFile", ctx => {
@@ -68,7 +119,7 @@ Bloggify.actions.post("project.getFile", (ctx, cb) => {
 
     s3.getObject(params, (err, data) => {
         if (err) {
-            cb(new Error("Error while saving the file."));
+            cb(new Error("Error while fetching the file."));
             return Bloggify.log(err);
         }
         data.Body = data.Body.toString("utf-8");
@@ -90,7 +141,15 @@ Bloggify.actions.post("project.listFiles", (ctx, cb) => {
         const tree = paths2tree(files, "/", node => {
             node.id = ++id
             node.filename = node.name
+            node.toggled = true
+            setTimeout(() => {
+                if (node.children && !node.children.length) {
+                    delete node.children
+                }
+            })
         })
-        cb(null, tree.children[0])
+        setTimeout(() => {
+            cb(null, tree.children[0])
+        })
     });
 })
