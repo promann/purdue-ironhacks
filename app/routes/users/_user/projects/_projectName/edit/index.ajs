@@ -1,9 +1,6 @@
 <% include("../../../../../../views/user-data") %>
 <% include("../../../../../../views/header", { title: "Edit" }) %>
-<% include("../../../../../../views/container/start") %>
-
-
-editing <%= ctx.params.projectName %>
+<% include("../../../../../../views/container/start-fluid") %>
 
 <script>
     window._pageData = {
@@ -16,8 +13,6 @@ editing <%= ctx.params.projectName %>
 </script>
 
 <div id="app" class="project-editor-wrapper"></div>
-
-<hr>
 
 <% include("../../../../../../views/container/end") %>
 <% include("../../../../../../views/footer") %>

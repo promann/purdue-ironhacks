@@ -5,5 +5,9 @@
 <h3><%= ctx.selected_project.name %></h3>
 <p><%= ctx.selected_project.description %></p>
 
+<a href="<%= ctx.pathname %>/edit" class="btn btn-small">Edit</a>
+<a href="<%= ctx.pathname %>/preview/index.html" class="btn btn-small">View</a>
+
 <% include("../../../../../views/container/end") %>
 <% include("../../../../../views/footer") %>
+
