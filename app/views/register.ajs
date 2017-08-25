@@ -29,16 +29,11 @@
                     </div>
                     <div class="price-list">
                         <ul>
-                            <li>This hack is for Purdue Polytechnic students enrolled in the following classes: </li>
-                            <li>
-                                <ul>
-                                    <li>CGT 370: Interactive Data Visualization</li>
-                                    <li>CNIT 559: Data Warehousing </li>
-                                    <li>TECH 581: Open Data Hacking </li>
-                                </ul>
-                            </li>
-                            <li>Purdue Polytechnic Professors: Sabine Brunswicker, John Springer Victor Chen</li>
+                            <li>This hack is for Purdue Polytechnic students enrolled in the following class: <strong>TECH499: Open Data Apps</strong></li>
+                            <li>Purdue Polytechnic Professor: Sabine Brunswicker</li>
                             <li>Challenge topic: Will revolve around safety, health, and travel.</li>
+                            <li>You may register for this class on myPurdue now!</li>
+
                         </ul>
                         <div class="price-btn">
                             <form method="POST" action="/register">
@@ -54,7 +49,7 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="single-price-package">
                     <div class="price-title">
-                        <h3>Purdue-UNAL Gold<br>IronHacks Fall 2017</h3>
+                        <h3>Purdue Gold<br>IronHacks Fall 2017</h3>
                     </div>
                     <div class="price">
                         <p>
@@ -66,9 +61,11 @@
                     </div>
                     <div class="price-list">
                         <ul>
-                            <li>This hack is for Universidad Nacional de Colombia students.</li>
+                            <li>This hack is for Purdue Honors College students.</li>
                             <li>Challenge topic: Will revolve around safety, health, and travel.</li>
-                            <li>Stay tuned</li>
+
+                            <li>Instructor: Prof. Sabine Brunswicker</li>
+                            <li>Stay tuned for more details</li>
                         </ul>
                         <div class="price-btn">
                             <form method="POST" action="/register">
@@ -83,7 +80,7 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="single-price-package">
                     <div class="price-title">
-                        <h3>Purdue Black<br>IronHacks 2017</h3>
+                        <h3>Purdue-UNAL<br> Gold IronHacks Fall 2017</h3>
                     </div>
                     <div class="price">
                         <p>
@@ -95,7 +92,7 @@
                     </div>
                     <div class="price-list">
                         <ul>
-                            <li>This is an open hack, open to everybody.</li>
+                            <li>This hack is for Universidad Nacional de Colombia students.</li>
                             <li>Challenge topic: Will revolve around safety, health, and travel.</li>
                             <li>Stay tuned for more details!</li>
                         </ul>
