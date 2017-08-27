@@ -8,5 +8,6 @@ module.exports = {
         index: true
     },
     description: String,
-    fork: Boolean
+    fork: String,
+    phase: String
 };
