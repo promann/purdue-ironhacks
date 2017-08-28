@@ -2,6 +2,8 @@ const Bloggify = require("bloggify")
     , aws = require("aws-sdk")
     , paths2tree = require("paths2tree")
     , forEach = require("iterate-object")
+    , sameTime = require("same-time")
+    , bindy = require("bindy")
 
 const S3_BUCKET = process.env.S3_BUCKET
     , PATH_PPROJECTS = "projects"
@@ -150,6 +152,37 @@ Bloggify.actions.post("project.listFiles", (ctx, cb) => {
         })
         setTimeout(() => {
             cb(null, tree.children[0])
+        })
+    });
+})
+
+Bloggify.actions.post("project.fork", (ctx, cb) => {
+    // TODO Check access, auth etc.
+    // TODO Validate data
+    if (ctx.user) {
+        return cb(new Error("You have to be authenticated."));
+    }
+
+    const data = ctx.data
+    const params = {
+      Bucket: S3_BUCKET,
+      Prefix: `${PATH_PPROJECTS}/${data.username}/${data.project_name}/`
+    };
+
+    s3.listObjects(params, function(err, data) {
+        sameTime(bindy(data.Contents, (cFile, done) => {
+            var params = {
+                Bucket: S3_BUCKET,
+                CopySource: cFile.Key,
+                Key: `${PATH_PPROJECTS}/${ctx.user.username}/${data.project_name}/`
+            };
+            s3.copyObject(params, done);
+        }), err => {
+            if (err) {
+                Bloggify.log(err);
+                return cb(new Error("Failed to copy the files."))
+            }
+            cb()
         })
     });
 })
