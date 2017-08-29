@@ -80,4 +80,6 @@ module.exports = conf({
   , sessionOptions: {
         url: DB_URI
     }
+}, {
+    server: { csrf: false }
 });

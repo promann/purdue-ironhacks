@@ -24,6 +24,7 @@
   "dependencies": {
     "aws-sdk": "^2.100.0",
     "bag.css": "^1.0.5",
+    "bindy": "^1.0.8",
     "bloggify-cli": "^1.1.1",
     "bloggify-config": "^1.2.0",
     "bloggify-custom-assets": "^1.0.2",
@@ -56,6 +57,7 @@
     "react-md-editor": "^0.2.2",
     "react-treebeard": "^2.0.3",
     "regex-escape": "^3.4.4",
+    "same-time": "^2.3.3",
     "socket.io": "^1.7.2",
     "socket.io-client": "^1.7.2",
     "treeify-paths": "^1.0.1",
