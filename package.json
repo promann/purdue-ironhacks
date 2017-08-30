@@ -25,16 +25,10 @@
     "aws-sdk": "^2.100.0",
     "bag.css": "^1.0.5",
     "bindy": "^1.0.8",
-    "bloggify-cli": "^1.1.1",
-    "bloggify-config": "^1.2.0",
-    "bloggify-custom-assets": "^1.0.2",
-    "bloggify-flexible-router": "^1.0.8",
+    "bloggify": "0.0.0-alpha1",
     "bloggify-github-login": "^1.0.0",
     "bloggify-icons": "^1.0.0",
-    "bloggify-mongoose": "^1.0.2",
-    "bloggify-router": "^1.0.7",
     "bloggify-sendgrid": "^1.1.0",
-    "bloggify.js": "^1.0.2",
     "codemirror": "^5.24.0",
     "connect-mongo": "^1.3.2",
     "elly": "^1.1.3",
@@ -87,40 +81,5 @@
     "type": "git",
     "url": "git+https://github.com/hackpurdue/courseswebpage.git"
   },
-  "homepage": "https://github.com/hackpurdue/courseswebpage#readme",
-  "bloggify": {
-    "bundles": {
-      "publicHomepage": {
-        "scripts": [
-          "app/assets/javascripts/homepage/index.js"
-        ],
-        "styles": [
-          "app/assets/stylesheets/homepage/index.css"
-        ]
-      },
-      "editor": {
-        "styles": [
-          "app/assets/stylesheets/editor/index.css"
-        ]
-      },
-      "auth": {
-        "scripts": [
-          "app/assets/javascripts/private-router.js"
-        ],
-        "styles": [
-          "app/assets/stylesheets/auth.css"
-        ]
-      },
-      "notAuth": {
-        "scripts": [
-          "app/assets/javascripts/public-router.js"
-        ]
-      },
-      "main": {
-        "scripts": [
-          "app/assets/javascripts/common-router.js"
-        ]
-      }
-    }
-  }
+  "homepage": "https://github.com/hackpurdue/courseswebpage#readme"
 }
