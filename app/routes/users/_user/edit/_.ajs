@@ -1,5 +1,5 @@
-<% include("../../../views/header", { title: "Edit Profile" }) %>
-<% include("../../../views/container/start") %>
+<% include(Bloggify.views.header, { title: "Edit Profile" }) %>
+<% include(Bloggify.views.container.start) %>
 <h1><%= profile.username %></h1>
 <% profileInfo = profile.profile || {} %>
 <form method="post">
@@ -26,5 +26,5 @@
     <button class="btn">Update profile</button>
     </div>
 </form>
-<% include("../../../views/container/end") %>
-<% include("../../../views/footer") %>
+<% include(Bloggify.views.container.end) %>
+<% include(Bloggify.views.footer) %>

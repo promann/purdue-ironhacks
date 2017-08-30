@@ -18,7 +18,7 @@
             <% } %>
             | <a href="/timeline">Timeline</a>
             <% lien.tutorialLink = tutorialLink %>
-            <% if (Bloggify.controllers.Session.isAdmin(lien)) { %>
+            <% if (Bloggify.services.session.isAdmin(lien)) { %>
                 | <a href="/admin">Admin</a>
             <% } %>
         <% } %>
@@ -32,7 +32,7 @@
     </span>
     <span class="auth-buttons float-right">
         <% if (user) { %>
-            <% include("user-controls") %>
+            <% include("user_controls") %>
         <% } else { %>
             <a href="/login"><strong>Login</strong></a>
         <% } %>

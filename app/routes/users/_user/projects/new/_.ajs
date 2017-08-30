@@ -1,5 +1,5 @@
-<% include("../../../../views/header", { title: "Admin" }) %>
-<% include("../../../../views/container/start") %>
+<% include(Bloggify.views.header, { title: "Admin" }) %>
+<% include(Bloggify.views.container.start) %>
 
 
 <form method="POST">
@@ -10,5 +10,5 @@
 </form>
 
 
-<% include("../../../../views/container/end") %>
-<% include("../../../../views/footer") %>
+<% include(Bloggify.views.container.end) %>
+<% include(Bloggify.views.footer) %>

@@ -37,24 +37,23 @@ const HACK_TYPES = {
     }
 }
 
-SettingsSchema.statics.setSettings = (data, cb) => {
-    Settings.getSettings((err, settings) => {
-        if (err) { return cb(err); }
+SettingsSchema.statics.setSettings = data => {
+    return Settings.getSettings().then(settings => {
         settings.set({
             settings: ul.deepMerge(data, settings.toObject().settings)
         })
-        settings.save(cb)
+        return settings.save()
     })
 }
 
-SettingsSchema.statics.getSettings = cb => {
-    return Settings.findOne({ _id: ID }, cb)
+SettingsSchema.statics.getSettings = () => {
+    return Settings.findOne({ _id: ID })
 }
 
 SettingsSchema.statics.ensure = () => {
-    Settings.getSettings().then(settings => {
+    return Settings.getSettings().then(settings => {
         if (!settings) {
-            new Settings({
+            return new Settings({
                 _id: ID
               , settings: {
                     hack_types: {
@@ -114,12 +113,9 @@ const setScheduleForHackType = name => {
     })
 }
 
-const updateSettingsInternally = cb => {
-    Bloggify.models.Settings.getSettings((err, doc) => {
-        if (err) {
-            return Bloggify.log(err)
-        }
-        if (!err && !doc) {
+const updateSettingsInternally = () => {
+    return Bloggify.models.Settings.getSettings().then(doc => {
+        if (!doc) {
             Bloggify.log("Settings not found. Trying again in a second.")
             return setTimeout(updateSettingsInternally, 1000)
         }
@@ -139,7 +135,6 @@ const updateSettingsInternally = cb => {
             }
         })
     })
-    cb && cb()
 }
 
 SettingsSchema.post("save", updateSettingsInternally);

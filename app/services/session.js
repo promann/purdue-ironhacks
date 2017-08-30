@@ -21,4 +21,10 @@ module.exports = class Session {
         }
         ctx.redirect("/")
     }
+    static onlyAuthenticated (ctx, shouldBeAdmin) {
+        const user = Session.getUser(ctx)
+        if (!user || (shouldBeAdmin && !Session.isAdmin(user))) {
+            throw new Bloggify.errors.NOT_AUTHORIZED()
+        }
+    }
 }

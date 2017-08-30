@@ -21,53 +21,56 @@ UserSchema.virtual("profile_url").get(function () {
     return `/users/${this.username}`
 })
 
-UserSchema.statics.getUser = (data, cb) => {
+UserSchema.statics.getUser = data => {
     if (data.filters) {
-        return User.findOne(data.filters, data.fields, cb)
+        return User.findOne(data.filters, data.fields)
     }
+
     const $or = []
     if (data.email) {
         $or.push({ email: data.email })
     }
+
     if (data.username) {
-        $or.push({ username: new RegExp("^" + regexEscape(data.username) + "$", "i") })
+        $or.push({
+            username: new RegExp("^" + regexEscape(data.username) + "$", "i")
+        })
     }
+
     return User.findOne({
         $or: $or
-    }, cb)
+    })
 }
 
-UserSchema.statics.createUser = (data, cb) => {
-    User.count({
+UserSchema.statics.createUser = data => {
+    return User.count({
         $or: [
             { username: data.username },
             { email: data.email }
         ]
-    }, (err, exists) => {
-        if (err) { return cb(err); }
+    }).then(exists => {
         if (exists) {
-            return cb(new Error("Email/username is already registered."))
+            throw new Error("Email/username is already registered.")
         }
 
         const HACK_TYPES = Bloggify.services.hack_types
             , now = new Date()
             , hType = HACK_TYPES[data.profile.hack_type]
-            , create = () => new User(data).save(cb)
-
+            , create = () => new User(data).save()
 
         if (now > hType.start_date) {
-            hType.getHackId(id => {
+            return hType.getHackId(id => {
                 data.profile.hack_id = id
-                create()
+                return create()
             })
-        } else {
-            data.profile.hack_id = null
-            create()
         }
+
+        data.profile.hack_id = null
+        return create()
     })
 }
 
-UserSchema.statics.updateUser = (filters, data, cb) => {
+UserSchema.statics.updateUser = (filters, data) => {
     return User.findOne(filters).then(user => {
         if (!user) {
             throw new Error("User not found.");
@@ -75,55 +78,48 @@ UserSchema.statics.updateUser = (filters, data, cb) => {
         let update = ul.deepMerge(data, user.toObject());
         delete update._id;
         user.set(update);
-        return user.save(cb);
+        return user.save();
     });
 }
 
-UserSchema.statics.createTopic = (data, cb) => {
+UserSchema.statics.createTopic = data => {
     const Topic = Bloggify.models.Topic;
-    return Topic.create(data, cb);
+    return new Topic(data).save()
 }
 
-UserSchema.statics.removeUser = (userId, cb) => {
+UserSchema.statics.removeUser = userId => {
     userId = deffy(userId, "");
-    if (!userId) { return cb(new Error("Invalid user id.")); }
+    if (!userId) {
+        return Promise.reject(Bloggify.errors.INVALID_USER_ID())
+    }
 
     // Delete user
-    User.remove({
+    return User.remove({
         _id: userId
-    }, err => {
-        if (err) { return Bloggify.log(err); }
-
+    }).then(() => {
         // Delete comments
-        Bloggify.models.Topic.remove({
+        return Bloggify.models.Topic.remove({
             author: userId
-        }, err => {
-            if (err) { return Bloggify.log(err); }
-
-            // Delete posts
-            Bloggify.models.Comment.remove({
-                author: userId
-            }, err => {
-                if (err) { return Bloggify.log(err); }
-                cb();
-            });
         })
-    });
+    }).then(() => {
+        // Delete posts
+        return Bloggify.models.Comment.remove({
+            author: userId
+        });
+    }).then(() =>
+        ({ success: true })
+    )
 }
 
-UserSchema.statics.auth = (data, cb) => {
-    User.getUser(data, (err, user) => {
-        if (err) { return cb(err); }
-        if (!user) { return cb(new Error("User not found.")); }
+UserSchema.statics.auth = data => {
+    return User.getUser(data).then(user => {
+        if (!user) { throw Bloggify.errors.USER_NOT_FOUND() }
         if (user.password !== data.password) {
-            cb(new Error("Incorrect password."))
-        } else {
-            cb(null, user)
+            throw Bloggify.errors.INVALID_PASSWORD()
         }
+        return user
     })
 }
-
-const User = module.exports = Bloggify.db.model("User", UserSchema)
 
 UserSchema.pre("save", function (next) {
     const phases = ["phase1", "phase2", "phase3", "phase4"]
@@ -138,3 +134,5 @@ UserSchema.pre("save", function (next) {
     })
     next()
 })
+
+const User = module.exports = Bloggify.db.model("User", UserSchema)

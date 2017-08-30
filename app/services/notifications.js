@@ -1,7 +1,7 @@
-const Bloggify = require("bloggify");
-const Email = Bloggify.require("sendgrid", true);
+const Email = Bloggify.require("sendgrid");
 const uniq = require("array-unique");
-const User = require("../controllers/User");
+const User = Bloggify.models.User;
+const SocketIO = require("socket.io")
 
 const FROM_EMAIL = "noreply@ironhacks.com";
 const FROM_NAME = "IronHacks";
@@ -48,7 +48,7 @@ exports.commentPosted = comment => {
 };
 
 exports.topicCreated = topic => {
-    User.model.find({
+    User.find({
         "profile.hack_type": topic.metadata.hack_type
       , "profile.hack_id": topic.metadata.hack_id
     }, {
@@ -82,3 +82,53 @@ exports.topicCreated = topic => {
         }, log);
     });
 };
+
+const Notifications = exports
+
+Bloggify.on("topic:updated", topic => {
+    Bloggify.wsNamespaces.topic.emit("updated", topic)
+})
+
+Bloggify.on("topic:created", topic => {
+    Bloggify.wsNamespaces.topic.emit("created", topic)
+    Notifications.topicCreated(topic)
+})
+
+Bloggify.on("comment:posted", comment => {
+    Notifications.commentPosted(comment)
+})
+
+Bloggify.on("comment:created", comment => {
+    Bloggify.models.Topic.getPopulated(comment.topic, (err, topic) => {
+        if (err) { return Bloggify.log(err); }
+        User.get({
+            filters: {
+                _id: comment.author
+            }
+        }, (err, author) => {
+            if (err) { return Bloggify.log(err); }
+            comment = comment.toObject()
+            comment.author = author.toObject()
+            comment.topic = topic
+            Bloggify.emit("comment:posted", comment)
+        })
+    }, {
+        userFields: {}
+    })
+})
+
+Bloggify.websocket = SocketIO(Bloggify.server.server)
+Bloggify.wsNamespaces = {
+    topic: Bloggify.websocket.of("/topic")
+}
+
+Bloggify.wsNamespaces.topic.use((socket, next) => {
+    Bloggify.server.session(socket.handshake, {}, next)
+})
+
+Bloggify.wsNamespaces.topic.use((socket, next) => {
+    if (!Object(socket.handshake.session._sessionData).user) {
+        return next(new Error("You are not authenticated."))
+    }
+    next()
+})

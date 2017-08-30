@@ -1,39 +1,41 @@
 const userIndex = require("../_")
 
-exports.get = (lien, cb) => {
-    return lien.next();
-    const user = Bloggify.services.session.getUser(lien);
-    if (!user) { return lien.next(); }
-    userIndex.get(lien, (err, data) => {
-        if (err) { return cb(err); }
-        let profile = data.profile;
-        if (!profile || profile._id.toString() !== user._id) {
-            return lien.next();
-        }
-        cb(null, {
-            profile: profile
-        });
-    });
-};
+exports.before = (ctx, cb) => {
+    ctx.next()
+}
 
-exports.post = (lien, cb) => {
-    return lien.next();
-    const user = Bloggify.services.session.getUser(lien);
-    if (!user) {
-        return lien.next();
-    }
-
-    const updateData = {
-        bio: lien.data.bio
-      , twitter: lien.data.twitter
-      , website: lien.data.website
-    };
-
-    Bloggify.models.User.updateUser({
-        _id: user._id
-    }, {
-        profile: updateData
-    }, (err, data) => {
-        lien.redirect(data.profile_url);
-    })
-};
+// This functionality is disabled
+//exports.get = ctx => {
+//    return ctx.next()
+//    const user = Bloggify.services.session.getUser(ctx)
+//    if (!user) { return ctx.next(); }
+//    return userIndex.get(ctx).then(data => {
+//        let profile = data.profile
+//        if (!profile || profile._id.toString() !== user._id) {
+//            return ctx.next()
+//        }
+//        return {
+//            profile: profile
+//        }
+//    })
+//}
+//
+//exports.post = ctx => {
+//    return ctx.next()
+//
+//    const user = ctx.user
+//    const updateData = {
+//        bio: ctx.data.bio
+//      , twitter: ctx.data.twitter
+//      , website: ctx.data.website
+//    }
+//
+//    return Bloggify.models.User.updateUser({
+//        _id: user._id
+//    }, {
+//        profile: updateData
+//    }).then(() => {
+//        ctx.redirect(data.profile_url)
+//        return false
+//    })
+//}

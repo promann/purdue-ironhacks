@@ -7,16 +7,11 @@ Bloggify.require("github-login", GitHub => {
         ctx.redirect("/")
     })
     GitHub.on("login-success", (token, user, ctx) => {
-        User.get({
+        Bloggify.models.User.getUser({
             username: user.login
-        }, (err, existingUser) => {
-            if (err) {
-                Bloggify.log(err)
-                return ctx.redirect("/")
-            }
-
+        }).then(existingUser => {
             if (existingUser) {
-                return Session.loginUser(existingUser, ctx)
+                return Bloggify.services.session.loginUser(existingUser, ctx)
             }
 
             const newUser = new Bloggify.models.User({
@@ -35,7 +30,11 @@ Bloggify.require("github-login", GitHub => {
             ctx.startSession({
                 new_user: newUser.toObject()
             })
+
             ctx.redirect("/register")
+        }).catch(err => {
+            Bloggify.log(err)
+            return ctx.redirect("/")
         })
     })
 })

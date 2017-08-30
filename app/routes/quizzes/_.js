@@ -13,12 +13,11 @@ quizzes.forEach(c => {
     validQuizzes[c[2]] = c;
 });
 
-module.exports = (lien, cb) => {
-    const user = Bloggify.services.session.getUser(lien);
-    if (!user) { return lien.redirect("/"); }
+module.exports = ctx => {
+    const user = ctx.user;
 
     // Set the quiz complete
-    const completed = lien.query.markComplete;
+    const completed = ctx.query.markComplete;
     if (completed && validQuizzes[completed]) {
         return Bloggify.models.User.updateUser({
             _id: user._id
@@ -30,15 +29,16 @@ module.exports = (lien, cb) => {
                     }
                 }
             }
-        }, (err, _user) => {
-            lien.redirect("/quizzes");
+        }).then(() => {
+            ctx.redirect("/quizzes");
+            return false
         })
     }
 
     // Generate the redirect links
     const completedSurveys = findValue(user, "profile.surveys") || {};
     const userQuizzes = quizzes.map(c => {
-        const redirectTo =  encodeURIComponent(`${Bloggify.options.metadata.domain}/quizzes?markComplete=${c[2]}`);
+        const redirectTo =  encodeURIComponent(`${Bloggify.options.domain}/quizzes?markComplete=${c[2]}`);
         return {
             label: c[0]
           , url: `${c[1]}?redirect_to=${redirectTo}&user_email=${user.email}&user_id=${user._id}`
@@ -47,7 +47,7 @@ module.exports = (lien, cb) => {
     });
 
     // Send the quizzes array to the view
-    cb(null, {
+    return {
         quizzes: userQuizzes
-    });
+    }
 };

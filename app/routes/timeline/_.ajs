@@ -1,6 +1,6 @@
 <% lien.displayNavigationPages = false; %>
-<% include("../views/header", { title: "Timeline" }) %>
-<% include("../views/container/start") %>
+<% include(Bloggify.views.header, { title: "Timeline" }) %>
+<% include(Bloggify.views.container.start) %>
 
 <% var timelineImage = ""; %>
 <% if (user.profile.hack_type === "purdue") { %>
@@ -27,5 +27,5 @@
 
 <div id="app"></div>
 
-<% include("../views/container/end") %>
-<% include("../views/footer") %>
+<% include(Bloggify.views.container.end) %>
+<% include(Bloggify.views.footer) %>

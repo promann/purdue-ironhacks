@@ -1,5 +1,5 @@
-<% include("../views/header", { title: "Admin" }) %>
-<% include("../views/container/start") %>
+<% include(Bloggify.views.header, { title: "Admin" }) %>
+<% include(Bloggify.views.container.start) %>
 
 <script>
     window._pageData = {
@@ -14,5 +14,5 @@
 <h1>Admin</h1>
 <div id="app"></div>
 
-<% include("../views/container/end") %>
-<% include("../views/footer") %>
+<% include(Bloggify.views.container.end) %>
+<% include(Bloggify.views.footer) %>

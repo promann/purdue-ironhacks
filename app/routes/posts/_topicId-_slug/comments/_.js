@@ -1,83 +1,62 @@
-exports.get = lien => {
-    lien.redirect(lien.url.href.split("/").slice(0, -1).join("/"));
-};
+exports.get = ctx => {
+    ctx.redirect(ctx.url.href.split("/").slice(0, -1).join("/"))
+}
 
-exports.post = (lien, cb) => {
-    const user = Bloggify.services.session.getUser(lien);
-    if (!user) { return lien.next(); }
+exports.post = ctx => {
+    const user = ctx.user
 
     // Delete comment
-    if (lien.data.delete_comment_id) {
+    if (ctx.data.delete_comment_id) {
 
         const filters = {
-            _id: lien.data.delete_comment_id
+            _id: ctx.data.delete_comment_id
         }
 
         if (!Bloggify.services.session.isAdmin(user)) {
-            filters.author = user._id;
+            filters.author = user._id
         }
 
-        Bloggify.models.Topic.deleteComment(filters, (err, data) => {
-            if (err) {
-                return lien.apiError(err);
-            }
-            Bloggify.models.Topic.emitTopicUpdated(lien.params.topicId);
-            lien.apiMsg("success");
-        });
-
-        return;
+        return Bloggify.models.Topic.deleteComment(filters).then(data => {
+            Bloggify.models.Topic.emitTopicUpdated(ctx.params.topicId)
+            ctx.apiMsg("success")
+            return false
+        })
     }
 
     // Update comment
-    if (lien.data.update_comment_id) {
+    if (ctx.data.update_comment_id) {
 
         const filters = {
-            _id: lien.data.update_comment_id
+            _id: ctx.data.update_comment_id
         }
 
         if (!Bloggify.services.session.isAdmin(user)) {
-            filters.author = user._id;
+            filters.author = user._id
         }
 
-        Bloggify.models.Topic.updateComment(filters, lien.data.body, (err, data) => {
-            if (err) {
-                return cb(null, {
-                    err: err
-                });
-            }
-            lien.redirect(lien.url.href.split("/").slice(0, -1).join("/"));
-        });
-
-        return;
+        return Bloggify.models.Topic.updateComment(filters, ctx.data.body).then(data => {
+            ctx.redirect(ctx.url.href.split("/").slice(0, -1).join("/"))
+            return false
+        })
     }
 
     // Toggle vote
-    if (lien.data.toggleVote) {
-        Bloggify.models.Topic.toggleCommentVote({
+    if (ctx.data.toggleVote) {
+        return Bloggify.models.Topic.toggleCommentVote({
             user: user._id,
-            comment: lien.data.comment
-        }, (err, data) => {
-            if (err) {
-                return cb(null, {
-                    err: err
-                });
-            }
-            cb(null, {});
-        });
-        return;
+            comment: ctx.data.comment
+        }).then(data => {
+            return {}
+        })
     }
 
     // Post comment
-    Bloggify.models.Topic.postComment({
+    return Bloggify.models.Topic.postComment({
         author: user._id,
-        body: lien.data.body,
-        topic: lien.params.topicId
-    }, (err, data) => {
-        if (err) {
-            return cb(null, {
-                err: err
-            });
-        }
-        lien.redirect(lien.url.href.split("/").slice(0, -1).join("/"));
-    });
-};
+        body: ctx.data.body,
+        topic: ctx.params.topicId
+    }).then(data => {
+        ctx.redirect(ctx.url.href.split("/").slice(0, -1).join("/"))
+        return false
+    })
+}

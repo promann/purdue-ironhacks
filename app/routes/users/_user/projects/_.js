@@ -1,9 +1,8 @@
-module.exports = (ctx, cb) => {
+module.exports = ctx => {
     const Project = Bloggify.models.Project
-    Project.find({
+    return Project.find({
         username: ctx.selected_user.username
-    }, (err, projects) => {
-        if (err) { return cb(err); }
-        cb(null, { projects });
+    }).then(projects => {
+        return { projects }
     })
 };

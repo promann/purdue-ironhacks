@@ -1,5 +1,5 @@
-<% include("../../../../views/header", { title: "Admin" }) %>
-<% include("../../../../views/container/start") %>
+<% include(Bloggify.views.header, { title: "Admin" }) %>
+<% include(Bloggify.views.container.start) %>
 
 <h3>Projects</h3>
 
@@ -17,5 +17,5 @@
 	<p><a href="<%= ctx.selected_user.url %>">@<%= ctx.selected_user.username %></a> doesn't have any projects</p>
 <% } %>
 
-<% include("../../../../views/container/end") %>
-<% include("../../../../views/footer") %>
+<% include(Bloggify.views.container.end) %>
+<% include(Bloggify.views.footer) %>

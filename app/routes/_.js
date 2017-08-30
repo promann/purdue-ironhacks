@@ -1,6 +1,25 @@
-exports.before = (ctx, cb) => {
+const PUBLIC_PAGES = [
+    "/",
+    "/register",
+    "/login",
+    "/login-callback"
+]
+
+exports.use = (ctx, cb) => {
     const user = Bloggify.services.session.getUser(ctx)
-        , HackTypes = Bloggify.services.hack_types
+
+    if (!user && ctx.pathname.startsWith("/posts")) {
+        ctx.setSessionData({
+            return_to: ctx.pathname
+        });
+        return ctx.redirect("/login");
+    }
+
+    if (!user && !PUBLIC_PAGES.includes(ctx.pathname) && !ctx.pathname.startsWith("/@/")) {
+        return ctx.redirect("/")
+    }
+
+    const HackTypes = Bloggify.services.hack_types
         , Session = Bloggify.services.session
 
     if (ctx.pathname !== "/task" && user && HackTypes[user.profile.hack_type].start_date > new Date() && !Session.isAdmin(user)) {
@@ -8,14 +27,13 @@ exports.before = (ctx, cb) => {
     }
 
     if (user) {
-        return Bloggify.services.user.get(user, (err, user) => {
-            if (err) {
-                return cb(err)
-            }
+        return Bloggify.models.User.getUser(user).then(user => {
             ctx.req.session._sessionData.user = user
             ctx.user = user
-            cb()
-        })
+            process.nextTick(cb)
+        }).catch(
+            err => cb(err)
+        )
     }
 
     cb()

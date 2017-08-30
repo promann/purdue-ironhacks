@@ -1,30 +1,15 @@
-const Bloggify = require("bloggify");
 const csv = require("fast-csv");
 const moment = require("moment");
 const flatten = require("obj-flatten");
 
-let Stats = null;
-let Topic = null;
-let User = null;
-
-if (!Bloggify) {
-    const Mongoose = require("mongoose");
-    Mongoose.connect("mongodb://localhost/bloggify-forum");
-    Stats = { model: Mongoose.model("Stat", {}) };
-    Topic = { model: Mongoose.model("Topic", {}) };
-    User = { model: Mongoose.model("User", {}) };
-} else {
-    Stats = { model: Bloggify.models.Stats };
-    Topic = { model: Bloggify.models.Topic };
-    User = { model: Bloggify.models.User };
-}
+const { Topic, User, Stats } = Bloggify.models
 
 exports.topics = () => {
     const csvStream = csv.format({
         headers: true
     });
 
-    const readStream = Stats.model.find({
+    const readStream = Stats.find({
         event: "view-topic"
     }).stream();
 
@@ -33,9 +18,9 @@ exports.topics = () => {
         doc.created_at = moment(doc.created_at)
         readStream.pause();
         Promise.all([
-            Topic.model.findOne({ _id: doc.metadata.topic_id })
-          , User.model.findOne({ _id: doc.metadata.topic_author })
-          , User.model.findOne({ _id: doc.actor })
+            Topic.findOne({ _id: doc.metadata.topic_id })
+          , User.findOne({ _id: doc.metadata.topic_author })
+          , User.findOne({ _id: doc.actor })
         ]).then(response => {
             if (response[0] && response[1] && response[2]) {
                 const topic = response[0].toObject()
@@ -46,7 +31,7 @@ exports.topics = () => {
                 csvStream.write({
                     click_date: doc.created_at.format("YYYY-MM-DD"),
                     click_time: doc.created_at.format("hh:mm a"),
-                    url: `${Bloggify.options.metadata.domain}/posts/${topic._id}-${topic.slug}`,
+                    url: `${Bloggify.options.metadata.domain}${topic.url}`,
                     phase: doc.metadata.phase,
                     post_title: topic.title,
                     post_author: author.username,
@@ -70,7 +55,7 @@ exports.scores = () => {
         headers: true
     });
 
-    const readStream = Stats.model.find({
+    const readStream = Stats.find({
         $or: [{
             event: "click-github-repo-url",
         }, {
@@ -85,8 +70,8 @@ exports.scores = () => {
         doc.created_at = moment(doc.created_at)
         readStream.pause();
         Promise.all([
-            User.model.findOne({ _id: doc.metadata.hacker_id })
-          , User.model.findOne({ _id: doc.actor })
+            User.findOne({ _id: doc.metadata.hacker_id })
+          , User.findOne({ _id: doc.actor })
         ]).then(response => {
             const hacker = response[0].toObject()
                 , actor = response[1].toObject()
@@ -128,7 +113,7 @@ exports.users = (filters, exportType) => {
         query["profile.hack_id"] = filters.hackId;
     }
 
-    const readStream = User.model.find(query, {
+    const readStream = User.find(query, {
         password: 0,
         "profile.bio": 0,
         "profile.github_username": 0,
@@ -171,7 +156,7 @@ exports.users = (filters, exportType) => {
               , countCommentsReceived()
 
                 // #Views received on posts
-              , Bloggify.models.Stats.count({ "metadata.topic_author": userId, event: "view-topic" })
+              , Stats.count({ "metadata.topic_author": userId, event: "view-topic" })
 
                 // #Comments
               , Bloggify.models.Comment.count({ author: userId })

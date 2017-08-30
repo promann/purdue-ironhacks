@@ -11,8 +11,8 @@ forEach(HACK_TYPES, (c, name) => {
 Bloggify.models.Settings.updateSettingsInternally()
 
 function generateGetHackId(hType, name) {
-    return cb => {
-        Bloggify.models.User.aggregate([{
+    return () => {
+        return Bloggify.models.User.aggregate([{
             $match: {
                 "profile.hack_id": { $ne: null },
                 "profile.hack_type": name
@@ -22,8 +22,7 @@ function generateGetHackId(hType, name) {
                 _id: "$profile.hack_id",
                 total: { $sum: 1 }
             }
-        }], (err, docs) => {
-            if (err) { return cb(0); }
+        }]).then(docs => {
             const ids = Array(hType.subforums_count + 1).fill(0)
             docs.forEach(c => {
                 ids[c._id] = c.total
@@ -36,7 +35,7 @@ function generateGetHackId(hType, name) {
                     min = ids[minId]
                 }
             })
-            cb(minId)
+            return minId
         })
     }
 }

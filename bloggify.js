@@ -9,7 +9,7 @@ if (!DB_URI) {
 module.exports = {
     title: "IronHacks",
     description: "Hack for inovation and join the open data movement.",
-    domain: "http://www.ironhacks.com",
+    domain: process.env.DOMAIN || "http://www.ironhacks.com",
     plugins: [
         ["sendgrid", {
             key: process.env.SENDGRID_KEY

@@ -1,9 +1,9 @@
-<% include("../views/header", { title: "Register" }) %>
+<% include(Bloggify.views.header, { title: "Register" }) %>
 <style>
-    @import url("/!/bloggify/core/<%= Bloggify.production ? "production" : "development" %>-bundles/publicHomepage/stylesheets-publicHomepage.css");
+    @import url("/@/bloggify/core/<%= Bloggify.production ? "production" : "development" %>-bundles/publicHomepage/stylesheets-publicHomepage.css");
     body {
         background: #f1f1f1;
     }
 </style>
-<% include("../views/register") %>
-<% include("../views/footer") %>
+<% include(Bloggify.views.register) %>
+<% include(Bloggify.views.footer) %>

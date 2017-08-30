@@ -1,11 +1,7 @@
-module.exports = (lien, cb) => {
+module.exports = ctx => {
     const HackTypes = Bloggify.services.hack_types
-    const user = Bloggify.services.session.getUser(lien);
-    if (!user) {
-        return lien.redirect("/");
-    }
-    cb(null, {
-        user: user,
-        hackType: HackTypes[user.profile.hack_type]
-    });
+    return {
+        user: ctx.user,
+        hackType: HackTypes[ctx.user.profile.hack_type]
+    };
 };

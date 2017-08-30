@@ -26,35 +26,34 @@ CommentSchema.pre("save", function (next) {
     next()
 })
 
-CommentSchema.post("save", function (next) {
+CommentSchema.post("save", function () {
     if (this.wasNew) {
         Bloggify.emit("comment:created", this)
     }
-    next()
 })
 
-const Comment = module.exports = Bloggify.db.model("Comment", CommentSchema)
-
 // Create comment
-CommentSchema.statics.createComment = (data, cb) => {
+CommentSchema.statics.createComment = data => {
     data.body = deffy(data.body, "").trim()
     data.votes = []
     if (!data.body.length) {
-        return cb(new Error("Comment cannot be empty."))
+        return Promise.reject(Bloggify.errors.COMMENT_BODY_IS_BLANK())
     }
-    return new Comment(data).save(cb)
+    return new Comment(data).save()
 }
 
 // Get comment
-CommentSchema.statics.getComment = (findOne, cb) => {
-    return Comment.findOne(filters, cb)
+CommentSchema.statics.getComment = filters => {
+    return Comment.findOne(filters)
 }
 
 // Query comments
-CommentSchema.statics.queryComments = (opts, cb) => {
+CommentSchema.statics.queryComments = opts => {
     opts = opts || {}
     let topics = []
-    return Comment.model.find(opts.filters, opts.fields).sort({
+    return Comment.find(opts.filters, opts.fields).sort({
         created_at: 1
-    }).exec(cb)
+    }).exec()
 }
+
+const Comment = module.exports = Bloggify.db.model("Comment", CommentSchema)

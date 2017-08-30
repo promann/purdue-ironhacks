@@ -1,14 +1,8 @@
-module.exports = (lien, cb) => {
-    const user = Bloggify.services.session.getUser(lien);
-    if (!user) {
-        lien.setSessionData({
-            return_to: lien.pathname
-        });
-        return lien.redirect("/login");
-    }
+module.exports = ctx => {
+    const user = ctx.user;
 
     const filters = {
-        _id: lien.params.topicId
+        _id: ctx.params.topicId
     };
 
     if (!Bloggify.services.session.isAdmin(user)) {
@@ -16,21 +10,12 @@ module.exports = (lien, cb) => {
         filters["metadata.hack_id"] = user.profile.hack_id;
     }
 
-    Bloggify.models.Topic.getTopic(filters, (err, topic) => {
-       if (err && err.name === "CastError") {
-           err = null;
-           topic = null;
+    return Bloggify.models.Topic.getTopic(filters).then(topic => {
+       if (topic.slug !== ctx.params.slug) {
+           return ctx.redirect(topic.url);
        }
-       if (!topic) {
-            return lien.next();
-       }
-       if (topic.slug !== lien.params.slug) {
-           return lien.redirect(topic.url);
-       }
-       Bloggify.models.Topic.populateTopic(topic.toObject()).then(topic => {
-           cb(null, {
-               topic: topic
-           });
-       }).catch(e => cb(e));
-   });
+       return Bloggify.models.Topic.populateTopic(topic.toObject())
+    }).then(topic => {
+        return { topic };
+    });
 };

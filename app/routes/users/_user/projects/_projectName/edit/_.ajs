@@ -1,6 +1,6 @@
-<% include("../../../../../../views/user-data") %>
-<% include("../../../../../../views/header", { title: "Edit" }) %>
-<% include("../../../../../../views/container/start-fluid") %>
+<% include(Bloggify.views.user_data) %>
+<% include(Bloggify.views.header, { title: "Edit" }) %>
+<% include(Bloggify.views.container/start_fluid) %>
 
 <script>
     window._pageData = {
@@ -14,5 +14,5 @@
 
 <div id="app" class="project-editor-wrapper"></div>
 
-<% include("../../../../../../views/container/end") %>
-<% include("../../../../../../views/footer") %>
+<% include(Bloggify.views.container.end) %>
+<% include(Bloggify.views.footer) %>

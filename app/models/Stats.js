@@ -5,9 +5,9 @@ const StatsSchema = new Bloggify.db.Schema({
     created_at: Date
 })
 
-StatsSchema.statics.record = (data, cb) => {
+StatsSchema.statics.record = data => {
     data.created_at = new Date()
-    return Stats(data).save(cb)
+    return Stats(data).save()
 }
 
 const Stats = module.exports = Bloggify.db.model("Stats", StatsSchema)

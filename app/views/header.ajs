@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <meta name="csrf-token" content="<%= ctx.csrfToken %>" />
-        <title><%= title %> | <%= siteMetadata.title %></title>
+        <title><%= title %> | <%= Bloggify.options.title %></title>
         <link rel="icon" href="<%= _public("/img/favicon.png") %>">
         <% var user = lien.user = lien.getSessionData("user") %>
         <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>

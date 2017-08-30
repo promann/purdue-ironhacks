@@ -1,5 +1,0 @@
-<% if (f("err")) { %>
-    <div class="error-box">
-        <%= err.message || err %>
-    </div>
-<% } %>

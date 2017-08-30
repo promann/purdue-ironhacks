@@ -12,4 +12,8 @@ const ProjectSchema = new Bloggify.db.Schema({
     phase: String
 })
 
+ProjectSchema.virtual("url").get(function () {
+   return `/users/${this.username}/projects/${this.name}`
+})
+
 const Project = module.exports = Bloggify.db.model("Project", ProjectSchema)

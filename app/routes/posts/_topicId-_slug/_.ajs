@@ -1,6 +1,6 @@
-<% include("../../../views/user-data") %>
-<% include("../../../views/header", { title: topic.title }) %>
-<% include("../../../views/container/start") %>
+<% include(Bloggify.views.user_data) %>
+<% include(Bloggify.views.header, { title: topic.title }) %>
+<% include(Bloggify.views.container.start) %>
 
 <script>
     window._pageData = {
@@ -8,7 +8,7 @@
         user: <%- stringify(user) %>,
         topic: <%- stringify(topic) %>,
         csrfToken: "<%= lien.csrfToken %>",
-        isAdmin: <%- stringify(Bloggify.controllers.Session.isAdmin(user)) %>
+        isAdmin: <%- stringify(Bloggify.services.session.isAdmin(user)) %>
     };
 </script>
 
@@ -16,5 +16,5 @@
 
 <hr>
 
-<% include("../../../views/container/end") %>
-<% include("../../../views/footer") %>
+<% include(Bloggify.views.container.end) %>
+<% include(Bloggify.views.footer) %>

@@ -1,48 +1,63 @@
 const forEach = require("iterate-object");
 
-module.exports = (ctx, cb) => {
-    const user = Bloggify.services.Session.getUser(ctx);
+exports.before = (ctx, cb) => {
+    const dbUser = ctx.user;
+    if (Bloggify.services.session.isAdmin(dbUser)) {
+        return cb()
+    }
+    ctx.redirect("/");
+}
 
-    if (!user) {
-        return ctx.redirect("/");
+exports.get = ctx => {
+    const data = {}
+    return Bloggify.models.Settings.getSettings().then(options => {
+        data.settings = options.settings
+        return Bloggify.models.User.find({}, {
+            password: 0
+        })
+    }).then(users => {
+        users = users.map(c => c.toObject());
+        return {
+            users: users
+          , settings: data.settings
+        }
+    })
+}
+
+exports.post = ctx => {
+    const deleteUserId = ctx.data["delete-user-id"];
+
+    // Delete user
+    if (deleteUserId) {
+        return Bloggify.models.User.removeUser(deleteUserId).then(() => {
+            ctx.redirect("/admin");
+            return false
+        });
     }
 
-    const dbUser = user;
-    if (dbUser.role !== "admin" && dbUser.username !== process.env.ADMIN_USERNAME) {
-        return ctx.redirect("/");
+    if (!ctx.data.hack_types) {
+        ctx.redirect("/admin");
+        return false
     }
 
-    if (ctx.method === "post") {
-        const deleteUserId = ctx.data["delete-user-id"];
-        if (deleteUserId) {
-            Bloggify.models.User.removeUser(deleteUserId, err => {
-                ctx.redirect("/admin");
-            });
-            return;
+    let foundInvalidDate = false;
+    forEach(ctx.data.hack_types, hType => {
+        hType.start_date = new Date(hType.start_date);
+        hType.hack_start_date = new Date(hType.hack_start_date);
+        hType.next_phase_date = new Date(hType.next_phase_date);
+        if (isNaN(hType.start_date) || isNaN(hType.hack_start_date) || isNaN(hType.next_phase_date)) {
+            foundInvalidDate = true;
         }
-        if (!ctx.data.hack_types) {
-            return ctx.redirect("/admin");
-        }
+    });
 
-        let foundInvalidDate = false;
-        forEach(ctx.data.hack_types, hType => {
-            hType.start_date = new Date(hType.start_date);
-            hType.hack_start_date = new Date(hType.hack_start_date);
-            hType.next_phase_date = new Date(hType.next_phase_date);
-            if (isNaN(hType.start_date) || isNaN(hType.hack_start_date) || isNaN(hType.next_phase_date)) {
-                foundInvalidDate = true;
-            }
-        });
+    if (foundInvalidDate) {
+        return ctx.apiError(new Error("Invalid date. Make sure the format is correct."));
+    }
 
-        if (foundInvalidDate) {
-            return ctx.apiError("Invalid date. Make sure the format is correct.");
-        }
-
-        Bloggify.models.Settings.setSettings({
-            hack_types: ctx.data.hack_types
-        });
-
-        Promise.all(ctx.data.users.map(c => {
+    return Bloggify.models.Settings.setSettings({
+        hack_types: ctx.data.hack_types
+    }).then(() => {
+        return Promise.all(ctx.data.users.map(c => {
             const roleValue = c.update.role;
             delete ctx.data.role;
             return Bloggify.models.User.updateUser({
@@ -61,24 +76,9 @@ module.exports = (ctx, cb) => {
                     }
                 }
             });
-        })).then(c => {
-            ctx.apiMsg({ success: true });
-        }).catch(e => {
-            ctx.apiError(e);
-        });
-    } else {
-        Settingsmodels.Settings.getSettings((err, options) => {
-            if (err) { return cb(err); }
-            Bloggify.models.User.find({}, {
-                password: 0
-            }, (err, users) => {
-                if (err) { return cb(err); }
-                users = users.map(c => c.toObject());
-                cb(null, {
-                    users: users
-                  , settings: options.settings
-                });
-            });
-        });
-    }
+        }))
+    }).then(c => {
+        ctx.redirect("/admin");
+        return false
+    });
 };

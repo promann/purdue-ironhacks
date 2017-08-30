@@ -7,27 +7,23 @@ exports.use = (ctx, cb) => {
       , fields: {
             password: 0
         }
-    }, (err, user) => {
-        if (err) {
-            return cb(err);
-        }
+    }).then(user => {
         if (!user) {
             return ctx.next();
         }
         user = user.toObject();
-        user.url = User.getProfileUrl(user);
         ctx.selected_user = user;
         cb();
-    })
+    }).catch(err => cb(err))
 };
 
-exports.get = (lien, cb) => {
-    const authUser = Bloggify.services.session.getUser(lien);
+exports.get = ctx => {
+    const authUser = Bloggify.services.session.getUser(ctx);
     if (!authUser) {
-        return lien.next();
+        return ctx.next();
     }
 
-    cb(null, {
-        profile: lien.selected_user
-    });
+    return {
+        profile: ctx.selected_user
+    }
 };

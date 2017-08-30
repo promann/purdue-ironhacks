@@ -17,42 +17,36 @@ function shuffle(array) {
   return array;
 }
 
-module.exports = (lien, cb) => {
-    const user = Bloggify.services.session.getUser(lien);
-    if (!user) {
-        return lien.redirect("/");
-    }
-    Bloggify.models.User.find({
-        "profile.hack_type": user.profile.hack_type,
-        "profile.hack_id": user.profile.hack_id
-    }, (err, users) => {
-        if (err) { return cb(err); }
-        Bloggify.models.Settings.getSettings((err, options) => {
-            if (err) { return cb(err); }
-            const phase = options.settings.hack_types[user.profile.hack_type].phase;
-            users = users.map((u, i) => {
-                u = u.toObject();
-                u.username = `Hacker ${i + 1}`;
-                const phaseObj = Object(u.profile[phase]);
-                return {
-                    _id: u._id,
-                    username: u.username,
-                    score_technical: phaseObj.score_technical,
-                    score_info_viz: phaseObj.score_info_viz,
-                    score_novelty: phaseObj.score_novelty,
-                    score_total: phaseObj.score_total,
-                    project_url: phaseObj.project_url,
-                    github_repo_url: phaseObj.github_repo_url,
-                    phase: phase
-                };
-            });
-
-            shuffle(users);
-
-            cb(null, {
-                users: users,
+module.exports = ctx => {
+    const data = {}
+    return Bloggify.models.User.find({
+        "profile.hack_type": ctx.user.profile.hack_type,
+        "profile.hack_id": ctx.user.profile.hack_id
+    }).then(users => {
+        data.users = users
+        return Bloggify.models.Settings.getSettings()
+    }).then(options => {
+        const phase = options.settings.hack_types[ctx.user.profile.hack_type].phase;
+        data.users = data.users.map((u, i) => {
+            u = u.toObject();
+            u.username = `Hacker ${i + 1}`;
+            const phaseObj = Object(u.profile[phase]);
+            return {
+                _id: u._id,
+                username: u.username,
+                score_technical: phaseObj.score_technical,
+                score_info_viz: phaseObj.score_info_viz,
+                score_novelty: phaseObj.score_novelty,
+                score_total: phaseObj.score_total,
+                project_url: phaseObj.project_url,
+                github_repo_url: phaseObj.github_repo_url,
                 phase: phase
-            });
+            };
         });
+        shuffle(data.users);
+        return {
+            users: data.users,
+            phase: phase
+        };
     });
 };

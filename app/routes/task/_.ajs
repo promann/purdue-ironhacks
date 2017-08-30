@@ -1,14 +1,14 @@
 <% // lien.displayNavigationPages = false; %>
-<% include("../views/header", { title: "Task" }) %>
-<% include("../views/container/start") %>
+<% include(Bloggify.views.header, { title: "Task" }) %>
+<% include(Bloggify.views.container.start) %>
 
 <% if (user.profile.hack_type === "purdue") { %>
-<%   include("../views/task-contents/goldironhacks") %>
+<%   include(Bloggify.views.task_contents.goldironhacks) %>
 <% } else if (user.profile.hack_type === "bogota") { %>
-<%   include("../views/task-contents/unal-goldironhacks") %>
+<%   include(Bloggify.views.task_contents.unal_goldironhacks) %>
 <% } else if (user.profile.hack_type === "platzi") { %>
     <em>Coming soon...</em>
 <% } %>
 
-<% include("../views/container/end") %>
-<% include("../views/footer") %>
+<% include(Bloggify.views.container.end) %>
+<% include(Bloggify.views.footer) %>

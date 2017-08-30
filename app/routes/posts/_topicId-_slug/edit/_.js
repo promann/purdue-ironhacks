@@ -1,40 +1,34 @@
-const getTopic = require("../_");
+const getTopic = require("../_")
 
-exports.get = (lien, cb) => {
-    const user = Bloggify.services.session.isAuthenticated(lien);
+exports.get = ctx => {
+    const user = Bloggify.services.session.isAuthenticated(ctx)
     if (!user) {
-        return lien.next();
+        return ctx.next()
     }
-    getTopic(lien, (err, data) => {
-        if (err) { return cb(err); }
+    return getTopic(ctx).then(data => {
         if (data.topic.author._id.toString() === user._id || Bloggify.services.session.isAdmin(user)) {
-            return cb(null, data);
+            return data
         }
-        lien.next();
-    });
-};
+        ctx.next()
+        return false
+    })
+}
 
-exports.post = (lien, cb) => {
-   const user = Bloggify.services.session.getUser(lien);
-   if (!user) { return lien.next(); }
+exports.post = ctx => {
+   const user = ctx.user
    const filters = {
-      _id: lien.params.topicId
-   };
-
-   if (!Bloggify.services.session.isAdmin(user)) {
-        filters.author = user._id;
-        delete lien.data.sticky;
-   } else {
-        lien.data.sticky = !!lien.data.sticky;
+      _id: ctx.params.topicId
    }
 
-   Bloggify.models.Topic.updateTopic(filters, lien.data, (err, topic) => {
-       if (err) {
-           return cb(null, {
-               err: err
-             , topic: lien.data
-           });
-       }
-       lien.redirect(topic.url);
-   });
-};
+   if (!Bloggify.services.session.isAdmin(user)) {
+        filters.author = user._id
+        delete ctx.data.sticky
+   } else {
+        ctx.data.sticky = !!ctx.data.sticky
+   }
+
+   return Bloggify.models.Topic.update(filters, ctx.data).then(topic => {
+       ctx.redirect(topic.url)
+       return false
+   })
+}

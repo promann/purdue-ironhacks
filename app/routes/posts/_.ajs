@@ -1,6 +1,6 @@
-<% include("../../views/user-data") %>
-<% include("../../views/header") %>
-<% include("../../views/container/start") %>
-<% include("../../views/posts") %>
-<% include("../../views/container/end") %>
-<% include("../../views/footer") %>
+<% include(Bloggify.views.user-data) %>
+<% include(Bloggify.views.header) %>
+<% include(Bloggify.views.container.start) %>
+<% include(Bloggify.views.posts) %>
+<% include(Bloggify.views.container.end) %>
+<% include(Bloggify.views.footer) %>

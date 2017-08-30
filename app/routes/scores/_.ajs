@@ -1,5 +1,5 @@
-<% include("../views/header", { title: "Scores" }) %>
-<% include("../views/container/start") %>
+<% include(Bloggify.views.header, { title: "Scores" }) %>
+<% include(Bloggify.views.container.start) %>
 
 <h1 class="text-center">Results (<%= phase %>)</h1>
 
@@ -13,7 +13,7 @@
       , "In this table you find the scores of all participants in your hack. Each performance score is reported with a corresponding percentile rank. A percentile rank for a score indicates the percentage of participants who participated in the hack and received a lower score. Regardless of when the reported scores were earned, the percentile ranks for all these four scores are based on the scores of all participants within the hack. To see the detailed scores for each dimension please click on the link.<br>You can also access the code and the running applications of all apps. To see the code click on the github link. To see the running application, click on the second link:"
     ];
 
-    
+
     if (user.profile.hack_type === "purdue") {
         message = allMessages[2];
     } else {
@@ -33,5 +33,5 @@
     };
 </script>
 
-<% include("../views/container/end") %>
-<% include("../views/footer") %>
+<% include(Bloggify.views.container.end) %>
+<% include(Bloggify.views.footer) %>
