@@ -1,4 +1,4 @@
-<% // lien.displayNavigationPages = false; %>
+<% // ctx.displayNavigationPages = false; %>
 <% include(Bloggify.views.header, { title: "Task" }) %>
 <% include(Bloggify.views.container.start) %>
 

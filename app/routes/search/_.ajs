@@ -5,7 +5,7 @@
     <% include(Bloggify.views.search_form) %>
 </div>
 <% if (f("results")) { %>
-    <p class="search-results-text">Search results for <em>‘<%= lien.query.search %>’</em></p>
+    <p class="search-results-text">Search results for <em>‘<%= ctx.query.search %>’</em></p>
     <div class="search-results">
         <% if (results.length) { %>
             <% results.forEach(function (cResult) { %>

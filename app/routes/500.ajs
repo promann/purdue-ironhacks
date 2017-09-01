@@ -5,11 +5,11 @@
 </center>
 <% var err = typeof error === "undefined" ? null : error %>
 <% if (err && !Bloggify.production) { %>
-    <pre><%= lien.method.toUpperCase() %> <%= lien.href %>
+    <pre><%= ctx.method.toUpperCase() %> <%= ctx.href %>
 
-<% if (lien.method !== "get") { %>
+<% if (ctx.method !== "get") { %>
 Post data:
-<%- stringify(lien.data, null, 4) %>
+<%- stringify(ctx.data, null, 4) %>
 <% } %>
 
 Error stack:

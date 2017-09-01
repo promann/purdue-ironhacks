@@ -1,4 +1,4 @@
-<% lien.displayNavigationPages = false; %>
+<% ctx.displayNavigationPages = false; %>
 <% include(Bloggify.views.header, { title: "Timeline" }) %>
 <% include(Bloggify.views.container.start) %>
 
@@ -20,7 +20,7 @@
         hack_start_time: <%- stringify(hackType.hack_start_date || new Date()) %>,
         next_phase_time: <%- stringify(hackType.next_phase_date || new Date()) %>,
         current_time: new Date(),
-        tutorial_link: <%- stringify(lien.tutorialLink) %>,
+        tutorial_link: <%- stringify(ctx.tutorialLink) %>,
         timeline_img: <%- stringify(timelineImage) %>
     };
 </script>

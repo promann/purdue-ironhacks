@@ -7,7 +7,7 @@
         component: "project-editor",
         user: <%- stringify(user) %>,
         project: <%- stringify(ctx.selected_project) %>,
-        csrfToken: "<%= lien.csrfToken %>",
+        csrfToken: "<%= ctx.csrfToken %>",
         isAdmin: <%- stringify(Bloggify.controllers.Session.isAdmin(user)) %>
     };
 </script>

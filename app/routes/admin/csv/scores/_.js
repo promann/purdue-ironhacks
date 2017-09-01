@@ -1,5 +1,5 @@
 module.exports = ctx => {
-    lien.header(
+    ctx.header(
         "Content-Disposition"
       , `attachment; filename=${ctx.formattedDate}-scores.csv`
     );

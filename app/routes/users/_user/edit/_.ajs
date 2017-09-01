@@ -3,7 +3,7 @@
 <h1><%= profile.username %></h1>
 <% profileInfo = profile.profile || {} %>
 <form method="post">
-    <%- lien.csrfInput %>
+    <%- ctx.csrfInput %>
     <div class="form-section">
         <label>
             <strong>Twitter Username</strong>:<br>

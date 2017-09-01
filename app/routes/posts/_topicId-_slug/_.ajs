@@ -7,7 +7,7 @@
         component: "topic-page",
         user: <%- stringify(user) %>,
         topic: <%- stringify(topic) %>,
-        csrfToken: "<%= lien.csrfToken %>",
+        csrfToken: "<%= ctx.csrfToken %>",
         isAdmin: <%- stringify(Bloggify.services.session.isAdmin(user)) %>
     };
 </script>

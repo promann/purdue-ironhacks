@@ -27,9 +27,9 @@
 <script>
     window._pageData = {
         component: "scores",
-        user: <%- stringify(lien.user) %>,
+        user: <%- stringify(ctx.user) %>,
         hackers: <%- stringify(users) %>,
-        csrfToken: <%- stringify(lien.csrfToken) %>
+        csrfToken: <%- stringify(ctx.csrfToken) %>
     };
 </script>
 

@@ -3,7 +3,7 @@ module.exports = ctx => {
         , hackId = ctx.query.hackId
         ;
 
-    lien.header(
+    ctx.header(
         "Content-Disposition"
       , `attachment; filename=users-${ctx.formattedDate}${hackType ? "-" + hackType : ""}${hackId ? "-" + hackId : hackId}.csv`
     );
