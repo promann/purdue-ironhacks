@@ -17,8 +17,8 @@
                 | <a href="<%= tutorialLink %>">Tutorial</a>
             <% } %>
             | <a href="/timeline">Timeline</a>
-            <% lien.tutorialLink = tutorialLink %>
-            <% if (Bloggify.services.session.isAdmin(lien)) { %>
+            <% ctx.tutorialLink = tutorialLink %>
+            <% if (Bloggify.services.session.isAdmin(ctx)) { %>
                 | <a href="/admin">Admin</a>
             <% } %>
         <% } %>

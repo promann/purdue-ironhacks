@@ -1,4 +1,4 @@
-<% var user = lien.getSessionData("user") %>
+<% var user = ctx.getSessionData("user") %>
 <% if (user) { %>
 <% delete user.password %>
 <% delete user.email %>

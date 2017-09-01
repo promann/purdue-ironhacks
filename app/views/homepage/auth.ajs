@@ -1,5 +1,5 @@
 <h1 class="text-center">
-    <% var hType = lien.user.profile.hack_type; %>
+    <% var hType = ctx.user.profile.hack_type; %>
     <% var hTypeName = hType.charAt(0).toUpperCase() + hType.slice(1); %>
     <% var now = new Date() %>
     <% var thisYear = now.getFullYear() %>

@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="<%= ctx.csrfToken %>" />
         <title><%= title %> | <%= Bloggify.options.title %></title>
         <link rel="icon" href="<%= _public("/img/favicon.png") %>">
-        <% var user = lien.user = lien.getSessionData("user") %>
+        <% var user = ctx.user = ctx.getSessionData("user") %>
         <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
         <%- Bloggify.assets.html() %>
         <% if (user) { %>
