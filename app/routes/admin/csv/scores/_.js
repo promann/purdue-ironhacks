@@ -3,6 +3,6 @@ module.exports = ctx => {
         "Content-Disposition"
       , `attachment; filename=${ctx.formattedDate}-scores.csv`
     );
-    Bloggify.services.csv.scores().pipe(ctx.res);
+    Bloggify.services.exports.scores().pipe(ctx.res);
     return false
 }

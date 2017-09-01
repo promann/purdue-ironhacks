@@ -8,7 +8,7 @@ module.exports = ctx => {
       , `attachment; filename=users-${ctx.formattedDate}${hackType ? "-" + hackType : ""}${hackId ? "-" + hackId : hackId}.csv`
     );
 
-    Bloggify.services.csv.users({
+    Bloggify.services.exports.users({
         hackType: hackType
       , hackId: +hackId
     }).pipe(ctx.res);
