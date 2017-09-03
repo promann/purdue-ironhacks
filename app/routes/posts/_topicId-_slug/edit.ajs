@@ -1,1 +1,0 @@
-<% include("../../../views/topic/edit", { title: "Edit topic" }) %>

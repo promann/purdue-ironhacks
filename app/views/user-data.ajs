@@ -1,5 +1,0 @@
-<% var user = lien.getSessionData("user") %>
-<% if (user) { %>
-<% delete user.password %>
-<% delete user.email %>
-<% } %>

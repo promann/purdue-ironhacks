@@ -1,3 +1,0 @@
-<form>
-    <input type="text" name="search" value="<%= lien.query.search || "" %>" placeholder="Search for something..." />
-</form>

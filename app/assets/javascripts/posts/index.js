@@ -2,6 +2,7 @@ import React from "react";
 import TopicsList from "./topics-list";
 import io from "socket.io-client";
 import util from "../util";
+import Actions from "bloggify/actions"
 
 export default class App extends React.Component {
     constructor (props) {
@@ -47,8 +48,8 @@ export default class App extends React.Component {
                 }
             }
         });
-        util
-          .getJSON("/api/posts")
+
+        Actions.get("posts.list")
           .then(topics => {
               topics.forEach(util.normalizeTopic);
               updateTopics(topics);

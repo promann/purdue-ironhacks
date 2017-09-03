@@ -1,0 +1,14 @@
+<% include(Bloggify.views.header, { title: "Admin" }) %>
+<% include(Bloggify.views.container.start) %>
+
+
+<form method="POST">
+	<%- ctx.csrfInput %>
+	Name: <input name="name"><br>
+	Description: <input name="description"><br>
+	<button>Create</button>
+</form>
+
+
+<% include(Bloggify.views.container.end) %>
+<% include(Bloggify.views.footer) %>

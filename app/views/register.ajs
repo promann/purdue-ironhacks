@@ -37,7 +37,7 @@
                         </ul>
                         <div class="price-btn">
                             <form method="POST" action="/register">
-                                <%- lien.csrfInput %>
+                                <%- ctx.csrfInput %>
                                 <input name="hack_type" value="purdue" type="hidden" />
                                 <input class="button" type="submit" value="Sign up" />
                             </form>
@@ -69,7 +69,7 @@
                         </ul>
                         <div class="price-btn">
                             <form method="POST" action="/register">
-                                <%- lien.csrfInput %>
+                                <%- ctx.csrfInput %>
                                 <input name="hack_type" value="bogota" type="hidden" />
                                 <input class="button" type="submit" value="Sign up" />
                             </form>
@@ -98,7 +98,7 @@
                         </ul>
                         <div class="price-btn">
                             <form method="POST" action="/register">
-                                <%- lien.csrfInput %>
+                                <%- ctx.csrfInput %>
                                 <input name="hack_type" value="platzi" type="hidden" />
                                 <input class="button" type="submit" value="Sign up" />
                             </form>

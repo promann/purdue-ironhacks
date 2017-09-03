@@ -2,8 +2,8 @@
     window._pageData = {
         component: "topics",
         user: <%- stringify(user) %>,
-        csrfToken: <%- stringify(lien.csrfToken) %>,
-        isAdmin: <%- stringify(Bloggify.controllers.Session.isAdmin(user)) %>
+        csrfToken: <%- stringify(ctx.csrfToken) %>,
+        isAdmin: <%- stringify(Bloggify.services.session.isAdmin(user)) %>
     };
 </script>
 <div id="app"></div>
