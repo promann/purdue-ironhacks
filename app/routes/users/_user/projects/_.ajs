@@ -10,7 +10,7 @@
 <% if (projects.length) { %>
 	<ul>
 	<% projects.forEach(function (currentProject) { %>
-		<li><a href="<%= currentProject.name %>/"><%= currentProject.name %></a></li>
+		<li><a href="<%= currentProject.url %>"><%= currentProject.name %></a></li>
 	<% }) %>
 	</ul>
 <% } else { %>

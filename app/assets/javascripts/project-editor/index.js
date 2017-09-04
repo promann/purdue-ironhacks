@@ -9,17 +9,29 @@ import 'brace/mode/javascript';
 import 'brace/mode/html';
 import 'brace/theme/monokai';
 
+const DEFAULT_FILEPATH = "index.html"
+
 // Customising The Header Decorator To Include Icons
 decorators.Header = ({style, node}) => {
     const iconType = node.children ? 'folder' : 'file-text';
     const iconClass = `fa fa-${iconType}`;
     const iconStyle = {marginRight: '5px'};
 
+    style.title.width = style.base.width = "100%";
+    style.deleteIcon = {
+        marginLeft: "2px",
+        marginTop: "2px",
+        float: "right"
+    }
+
     return (
         <div style={style.base}>
-            <div style={style.title} onClick={node.onClick}>
-                <i className={iconClass} style={iconStyle}/>
-                {node.name}
+            <div style={style.title} >
+                <span onClick={node.onOpen}>
+                    <i className={iconClass} style={iconStyle}/>
+                    {node.name}
+                </span>
+                <i onClick={node.onDelete} className="fa fa-trash" style={style.deleteIcon}/>
             </div>
         </div>
     );
@@ -30,18 +42,13 @@ export default class App extends React.Component {
         super(props);
         this.state = {
             page: window._pageData,
-            filepath: "index.html",
+            filepath: DEFAULT_FILEPATH,
             file_content: "",
             reloading_preview: true,
             preview_filepath: "index.html"
         };
 
-        BloggifyActions.post("project.listFiles", {
-            project_name: this.state.page.project.name,
-            username: this.state.page.project.username,
-        }).then(files => {
-            this.setState({ files });
-        });
+       this.reloadFileTree()
 
         this.editor_content = "";
         this.openFile(this.state.filepath);
@@ -58,9 +65,34 @@ export default class App extends React.Component {
         })
     }
 
+    reloadFileTree () {
+        return BloggifyActions.post("projects.listFiles", {
+            project_name: this.state.page.project.name,
+            username: this.state.page.project.username,
+        }).then(files => {
+            this.setState({ files });
+        });
+    }
+
+    deleteFile (path) {
+        BloggifyActions.post("projects.deleteFile", {
+            project_name: this.state.page.project.name,
+            username: this.state.page.project.username,
+            filepath: path
+        }).then(() => {
+            return this.reloadFileTree()
+        }).then(() => {
+            if (this.state.filepath === path) {
+                return this.openFile(DEFAULT_FILEPATH);
+            }
+        }).catch(err => {
+            alert(err.message);
+        });
+    }
+
     openFile (path) {
         this.editor_content = ""
-        BloggifyActions.post("project.getFile", {
+        const prom = BloggifyActions.post("projects.getFile", {
             project_name: this.state.page.project.name,
             username: this.state.page.project.username,
             filepath: path
@@ -69,25 +101,41 @@ export default class App extends React.Component {
                 file_content: data.Body,
                 filepath: path
             });
-        }).catch(err => {
+        });
+        prom.catch(err => {
             alert(err.message);
         });
+        return prom
     }
 
-    saveFile () {
+    saveFile (opts = {}) {
         this.setState({
             reloading_preview: true
         })
-        BloggifyActions.post("project.saveFile", {
+        const prom = BloggifyActions.post("projects.saveFile", {
             project_name: this.state.page.project.name,
             username: this.state.page.project.username,
-            filepath: this.state.filepath,
+            filepath: opts.filepath || this.state.filepath,
             content: this.editor_content
         }).then(() => {
             this.reloadPreview()
-        }).catch(err => {
+        })
+        prom.catch(err => {
             alert(err.message);
         });
+        return prom
+    }
+
+    newFile () {
+        const filepath = prompt("New file name:");
+        this.editor_content = "";
+        this.saveFile({
+            filepath
+        }).then(() => {
+            return this.reloadFileTree()
+        }).then(() => {
+            return this.openFile(filepath)
+        })
     }
 
     onEditorContentChange (content) {
@@ -99,8 +147,13 @@ export default class App extends React.Component {
             const walk = obj => {
                 obj.active = false;
                 obj._path = obj.path.split("/").slice(2).join("/");
-                obj.onClick = () => {
+                obj.onOpen = () => {
                     this.openFile(obj._path)
+                }
+                obj.onDelete = () => {
+                    if (confirm(`Do you really want to delete ${obj._path}?`)) {
+                        this.deleteFile(obj._path)
+                    }
                 }
                 if (obj._path === this.state.filepath) {
                     obj.active = true
@@ -139,6 +192,7 @@ export default class App extends React.Component {
                     <div className="col file-tree-column">
                         <div className="editor-controls">
                             <button className="btn btn-small" onClick={this.saveFile.bind(this)}>Save</button>
+                            <button className="btn btn-small" onClick={this.newFile.bind(this)}>New file</button>
                         </div>
                         {this.renderFolderTree()}
                     </div>

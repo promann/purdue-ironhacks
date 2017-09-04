@@ -3,20 +3,22 @@
 // Set the right MongoDB URI (depending on the environment).
 const DB_URI = process.env.DB_URI
 if (!DB_URI) {
-    Bloggify.log(new Error(">>>> Please provide the MongoDB URI. Set the MONGODB_URI environment variable."));
+    Bloggify.log(new Error(">>>> Please provide the MongoDB URI. Set the DB_URI environment variable."));
 }
 
 module.exports = {
     title: "IronHacks",
     description: "Hack for inovation and join the open data movement.",
     domain: process.env.DOMAIN || "http://www.ironhacks.com",
+    core_plugins: [
+        ["github-login", {
+            githubClient: process.env.GITHUB_CLIENT,
+            githubSecret: process.env.GITHUB_SECRET,
+        }]
+    ],
     plugins: [
         ["sendgrid", {
             key: process.env.SENDGRID_KEY
-        }],
-        ["github-login", {
-            githubClient: process.env.GITHUB_CLIENT,
-            githubSecret: process.env.GITHUB_SECRET
         }]
     ],
     styles: [ "app/assets/stylesheets/index.css" ],

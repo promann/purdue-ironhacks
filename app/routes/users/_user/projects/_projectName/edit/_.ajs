@@ -1,6 +1,6 @@
 <% include(Bloggify.views.user_data) %>
 <% include(Bloggify.views.header, { title: "Edit" }) %>
-<% include(Bloggify.views.container/start_fluid) %>
+<% include(Bloggify.views.container.start_fluid) %>
 
 <script>
     window._pageData = {
@@ -8,7 +8,7 @@
         user: <%- stringify(user) %>,
         project: <%- stringify(ctx.selected_project) %>,
         csrfToken: "<%= ctx.csrfToken %>",
-        isAdmin: <%- stringify(Bloggify.controllers.Session.isAdmin(user)) %>
+        isAdmin: <%- stringify(Bloggify.services.session.isAdmin(user)) %>
     };
 </script>
 

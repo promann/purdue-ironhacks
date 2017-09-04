@@ -1,21 +1,16 @@
-const Bloggify = require("bloggify")
-    , aws = require("aws-sdk")
-    , paths2tree = require("paths2tree")
+const paths2tree = require("paths2tree")
     , forEach = require("iterate-object")
     , sameTime = require("same-time")
     , bindy = require("bindy")
+    , { buildFilePath, s3, S3_BUCKET, PATH_PPROJECTS } = require("../common/aws-s3")
+    , util = require("util")
+    , setTimeoutAsync = duration => {
+        return new Promise(res => {
+            setTimeout(res, duration)
+        })
+      }
 
-const S3_BUCKET = process.env.S3_BUCKET
-    , PATH_PPROJECTS = "projects"
-
-const s3 = new aws.S3({
-    accessKeyId: process.env.S3_ACCESS_KEY_ID,
-    secretAccessKey: process.env.S3_ACCESS_SECRET,
-    signatureVersion: 'v4'
-});
-
-const buildFilePath = data => `${PATH_PPROJECTS}/${data.user || data.username}/${data.projectName || data.project_name}/${data.filepath}`;
-
+// TODO Move it from actions
 Bloggify.on("project:create-template", data => {
 
     data.project_name = data.name;
@@ -47,7 +42,7 @@ Bloggify.on("project:create-template", data => {
 }`,
         "index.js": `
 (function () {
-    document.getElementById(("btn").addEventListener("click", function () {
+    document.getElementById("btn").addEventListener("click", function () {
         alert("Hi! :)");
     });
 })();`
@@ -60,38 +55,12 @@ Bloggify.on("project:create-template", data => {
             Key: buildFilePath(data),
             Body: content
         };
-        s3.putObject(params, (err, data) => {
-        });
-
+        s3.putObject(params, (err, data) => {});
     })
 })
 
-// :username, :projecName, :filepath
-Bloggify.on("projects.streamFile", ctx => {
-    // TODO Check access, auth etc.
-    // TODO Validate data
 
-    const params = {
-        Bucket: S3_BUCKET,
-        Key: buildFilePath(ctx.params)
-    };
-
-    ctx.res.contentType(ctx.params.filepath);
-    const stream = s3.getObject(params).createReadStream();
-
-    stream.on("error", err => {
-        ctx.res.contentType("plain/text");
-        if (err.code === "NoSuchKey") {
-            ctx.status(404).end("404 — Not found");
-        } else {
-            ctx.status(400).end(err.message);
-        }
-    });
-
-    stream.pipe(ctx.res);
-});
-
-Bloggify.actions.post("project.saveFile", (ctx, cb) => {
+exports.saveFile = ["post", ctx => {
     // TODO Check access, auth etc.
     // TODO Validate data
 
@@ -101,16 +70,12 @@ Bloggify.actions.post("project.saveFile", (ctx, cb) => {
         Body: ctx.data.content
     };
 
-    s3.putObject(params, (err, data) => {
-        if (err) {
-            cb(new Error("Error while saving the file."));
-            return Bloggify.log(err);
-        }
-        cb();
-    });
-})
+    return s3.putObjectAsync(params);
+}]
 
-Bloggify.actions.post("project.getFile", (ctx, cb) => {
+
+
+exports.deleteFile = ["post", ctx => {
     // TODO Check access, auth etc.
     // TODO Validate data
 
@@ -119,17 +84,25 @@ Bloggify.actions.post("project.getFile", (ctx, cb) => {
         Key: buildFilePath(ctx.data)
     };
 
-    s3.getObject(params, (err, data) => {
-        if (err) {
-            cb(new Error("Error while fetching the file."));
-            return Bloggify.log(err);
-        }
-        data.Body = data.Body.toString("utf-8");
-        cb(null, data);
-    });
-})
+    return s3.deleteObjectAsync(params);
+}]
 
-Bloggify.actions.post("project.listFiles", (ctx, cb) => {
+exports.getFile = ["post", ctx => {
+    // TODO Check access, auth etc.
+    // TODO Validate data
+
+    const params = {
+        Bucket: S3_BUCKET,
+        Key: buildFilePath(ctx.data)
+    };
+
+    return s3.getObjectAsync(params).then(data => {
+        data.Body = data.Body.toString("utf-8");
+        return data;
+    });
+}]
+
+exports.listFiles = ["post", ctx => {
     // TODO Check access, auth etc.
     // TODO Validate data
     const data = ctx.data
@@ -137,7 +110,7 @@ Bloggify.actions.post("project.listFiles", (ctx, cb) => {
       Bucket: S3_BUCKET,
       Prefix: `${PATH_PPROJECTS}/${data.username}/${data.project_name}/`
     };
-    s3.listObjects(params, function(err, data) {
+    return s3.listObjectsAsync(params).then(data => {
         const files = data.Contents.map(c => c.Key.split("/").slice(2).join("/"));
         let id = 0
         const tree = paths2tree(files, "/", node => {
@@ -150,13 +123,15 @@ Bloggify.actions.post("project.listFiles", (ctx, cb) => {
                 }
             })
         })
-        setTimeout(() => {
-            cb(null, tree.children[0])
-        })
+        return tree
+    }).then(tree => {
+        return setTimeoutAsync().then(() => tree.children[0])
     });
-})
+}]
 
-Bloggify.actions.post("project.fork", (ctx, cb) => {
+
+// TODO
+exports.fork = ["post", (ctx, cb) => {
     // TODO Check access, auth etc.
     // TODO Validate data
     if (ctx.user) {
@@ -185,4 +160,4 @@ Bloggify.actions.post("project.fork", (ctx, cb) => {
             cb()
         })
     });
-})
+}]

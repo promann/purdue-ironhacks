@@ -1,12 +1,9 @@
 const getTopic = require("../_")
 
 exports.get = ctx => {
-    const user = Bloggify.services.session.isAuthenticated(ctx)
-    if (!user) {
-        return ctx.next()
-    }
+    const user = ctx.user
     return getTopic(ctx).then(data => {
-        if (data.topic.author._id.toString() === user._id || Bloggify.services.session.isAdmin(user)) {
+        if (data.topic.author._id.toString() === user._id.toString() || Bloggify.services.session.isAdmin(user)) {
             return data
         }
         ctx.next()

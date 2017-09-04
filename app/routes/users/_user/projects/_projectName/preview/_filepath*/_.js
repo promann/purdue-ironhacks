@@ -1,3 +1,4 @@
 module.exports = ctx => {
-    Bloggify.emit("projects.streamFile", ctx);
+	Bloggify.services.projects.streamFile(ctx);
+	return false
 };
