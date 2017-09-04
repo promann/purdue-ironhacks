@@ -83,5 +83,8 @@
     "type": "git",
     "url": "git+https://github.com/hackpurdue/courseswebpage.git"
   },
-  "homepage": "https://github.com/hackpurdue/courseswebpage#readme"
+  "homepage": "https://github.com/hackpurdue/courseswebpage#readme",
+  "engines": {
+    "node": "8.0.0"
+  }
 }
