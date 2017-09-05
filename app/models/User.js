@@ -59,7 +59,7 @@ UserSchema.statics.createUser = data => {
             , create = () => new User(data).save()
 
         if (now > hType.start_date) {
-            return hType.getHackId(id => {
+            return hType.getHackId().then(id => {
                 data.profile.hack_id = id
                 return create()
             })
