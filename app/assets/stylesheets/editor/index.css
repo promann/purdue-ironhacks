@@ -70,3 +70,8 @@ body.hack-type-bogota nav, body.hack-type-bogota footer, body.hack-type-purdue n
 .reloading-preview .iframe-spinner {
     opacity: 1
 }
+
+
+.breadcrumbs {
+    color: white;
+}

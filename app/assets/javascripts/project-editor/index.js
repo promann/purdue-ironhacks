@@ -215,7 +215,22 @@ export default class App extends React.Component {
                             <div className="col preview-column">
                                 <div className={`editor-preview ${this.state.reloading_preview ? "reloading-preview" : "loaded-preview"}`}>
                                     <div className="open-in-new-tab">
-                                        <a href={previewFileUrl} target="blank">Open in New Tab</a>
+                                        <a href={previewFileUrl} target="blank">Open in New Tab</a> |
+                                        <span className="pull-right breadcrumbs">
+                                            <a href={`/users/${_pageData.project.username}`}>
+                                                @{_pageData.project.username}   
+                                            </a>
+                                            /
+                                            <a href={`/users/${_pageData.project.username}/projects`}>
+                                                projects 
+                                            </a>
+                                            /
+                                            <a href={`/users/${_pageData.project.username}/projects/${_pageData.project.name}`}>
+                                                {_pageData.project.name}
+                                            </a>
+                                            /edit
+                                        </span>
+                                        
                                     </div>
                                     <iframe src={previewFileUrl} id="preview-iframe" className="editor-preview-iframe" onLoad={this.previewLoaded.bind(this)} />
                                     <div className="iframe-spinner">
