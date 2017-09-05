@@ -13,7 +13,7 @@ module.exports = class Session {
     }
     static loginUser (user, ctx) {
         ctx.setSessionData({
-            user: user.toObject()
+            user
         })
         const returnTo = ctx.getSessionData("return_to")
         if (returnTo) {

@@ -35,21 +35,21 @@ exports.get = ctx => {
 
     if (userId === qsuid) {
         const hType = HACK_TYPES[user.profile.hack_types];
-        return Bloggify.models.User.createUser(user, (err, newUser) => {
-            if (err) { return ctx.redirect("/"); }
+        return Bloggify.models.User.createUser(user).then(newUser => {
             Bloggify.emit("user:registered", newUser);
             ctx.setSessionData({
                 new_user: null
               , surveyLink: null
-            });
-            Bloggify.services.session.loginUser(newUser, ctx);
+            })
+            Bloggify.services.session.loginUser(newUser, ctx)
+            return false
         });
     }
 
     // Take the survey
     const surveyLink = ctx.getSessionData("surveyLink");
     if (user.username && surveyLink) {
-        const redirectTo =  `${Bloggify.options.metadata.domain}/register?uid=${user.password}`;
+        const redirectTo =  `${Bloggify.options.domain}/register?uid=${user.password}`;
         if (process.argv.includes("--bypass-survey")) {
             return ctx.redirect(redirectTo);
         }
@@ -62,10 +62,8 @@ exports.get = ctx => {
         ctx.redirect(
             `${surveyLink}?${qsParams}`
         );
+        return false
     }
-
-    ctx.next()
-    return false
 };
 
 exports.post = ctx => {
