@@ -10,55 +10,6 @@ const paths2tree = require("paths2tree")
         })
       }
 
-// TODO Move it from actions
-Bloggify.on("project:create-template", data => {
-
-    data.project_name = data.name;
-
-    const files = {
-        "index.html": `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Hello World!</h1>
-        <button id="btn">Click me</button>
-    </div>
-    <script src="index.js"></script>
-</body>
-</html>`,
-        "style.css": `body {
-    color: #444;
-    font-family: Arial, sans-serif;
-}
-
-.container {
-    width: 100%;
-    max-width: 960px;
-}`,
-        "index.js": `
-(function () {
-    document.getElementById("btn").addEventListener("click", function () {
-        alert("Hi! :)");
-    });
-})();`
-    }
-
-    forEach(files, (content, name) => {
-        data.filepath = name
-        const params = {
-            Bucket: S3_BUCKET,
-            Key: buildFilePath(data),
-            Body: content
-        };
-        s3.putObject(params, (err, data) => {});
-    })
-})
-
 
 exports.saveFile = ["post", ctx => {
     // TODO Check access, auth etc.
@@ -129,35 +80,47 @@ exports.listFiles = ["post", ctx => {
     });
 }]
 
+exports.commit = ["post", ctx => {
+    return Bloggify.models.Project.findOne({
+        username: ctx.user.username,
+        name: ctx.data.project_name
+    }).then(project => {
+        if (!project) {
+            throw new Bloggify.errors.PROJECT_NOT_FOUND()
+        }
+        return project.syncGitHubRepository(ctx.data.commit_message)
+    })
+}]
+
 
 // TODO
-exports.fork = ["post", (ctx, cb) => {
-    // TODO Check access, auth etc.
-    // TODO Validate data
-    if (ctx.user) {
-        return cb(new Error("You have to be authenticated."));
-    }
+// exports.fork = ["post", (ctx, cb) => {
+//     // TODO Check access, auth etc.
+//     // TODO Validate data
+//     if (ctx.user) {
+//         return cb(new Error("You have to be authenticated."));
+//     }
 
-    const data = ctx.data
-    const params = {
-      Bucket: S3_BUCKET,
-      Prefix: `${PATH_PPROJECTS}/${data.username}/${data.project_name}/`
-    };
+//     const data = ctx.data
+//     const params = {
+//       Bucket: S3_BUCKET,
+//       Prefix: `${PATH_PPROJECTS}/${data.username}/${data.project_name}/`
+//     };
 
-    s3.listObjects(params, function(err, data) {
-        sameTime(bindy(data.Contents, (cFile, done) => {
-            var params = {
-                Bucket: S3_BUCKET,
-                CopySource: cFile.Key,
-                Key: `${PATH_PPROJECTS}/${ctx.user.username}/${data.project_name}/`
-            };
-            s3.copyObject(params, done);
-        }), err => {
-            if (err) {
-                Bloggify.log(err);
-                return cb(new Error("Failed to copy the files."))
-            }
-            cb()
-        })
-    });
-}]
+//     s3.listObjects(params, function(err, data) {
+//         sameTime(bindy(data.Contents, (cFile, done) => {
+//             var params = {
+//                 Bucket: S3_BUCKET,
+//                 CopySource: cFile.Key,
+//                 Key: `${PATH_PPROJECTS}/${ctx.user.username}/${data.project_name}/`
+//             };
+//             s3.copyObject(params, done);
+//         }), err => {
+//             if (err) {
+//                 Bloggify.log(err);
+//                 return cb(new Error("Failed to copy the files."))
+//             }
+//             cb()
+//         })
+//     });
+// }]

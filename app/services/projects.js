@@ -93,14 +93,11 @@ ${data.description}
 
 exports.createGitHubRepository = (username, projectName) => {
     const repoName = Project.getGitHubRepoName(username, projectName, new Date().getFullYear())
-    return GitHub.getAsync(`orgs/${GITHUB_PROJECTS_ORGANIZATION}/repos`, {
+    return GitHub.getAsync(`orgs/${process.env.GITHUB_PROJECTS_ORGANIZATION}/repos`, {
         data: {
             name: repoName,
             private: true
         }
-    }).then(res => {
-        debugger
-        return res;
     })
 }
 
@@ -109,23 +106,29 @@ exports.downloadFiles = (project, projectPath) => {
 
     const params = {
       Bucket: S3_BUCKET,
-      Prefix: `${PATH_PPROJECTS}/${project.username}/${project.project_name}/`
+      Prefix: `${PATH_PPROJECTS}/${project.username}/${project.name}/`
     };
 
     return s3.listObjectsAsync(params).then(data => {
         return Promise.all(data.Contents.map(currentObject => {
-            const currentFilePath = c.Key.split("/").slice(2).join("/")
+            const currentFilePath = currentObject.Key.split("/").slice(3).join("/")
             const localFilePath = path.resolve(repoPath, currentFilePath)
-            const wStream = new streamp.Writable(localFilePath)
-            debugger
-            // TODO 
+            return new Promise(res => {
+                const params = {
+                    Bucket: S3_BUCKET,
+                    Key: currentObject.Key
+                };
+                const stream = s3.getObject(params).createReadStream();
+                const wStream = new streamp.writable(localFilePath)
+                stream.pipe(wStream).on("close", res)
+            })
         }))
     })
 }
 
 exports.syncGitHubRepository = (project, commitMessage) => {
     const repoPath = project.local_path
-    debugger
+    
     // 1. Delete the projec path
     return execa("rm", ["-rf", repoPath]).then(() => 
         // 2. Clone the GitHub repo
@@ -141,7 +144,7 @@ exports.syncGitHubRepository = (project, commitMessage) => {
         execa("git", ["add", "-A", "."], { cwd: repoPath })
     ).then(() => 
         // 6. Create the commit
-        execa("git", ["commit", "-m", commitMessage], { cwd: repoPath })
+        execa("git", ["commit", "-m", commitMessage, "--author", `${project.user.username} <${project.user.email}>`], { cwd: repoPath })
     ).then(() => 
         // 7. Push the commit to GitHub
         execa("git", ["push", "--all"], { cwd: repoPath })
@@ -150,15 +153,13 @@ exports.syncGitHubRepository = (project, commitMessage) => {
 
 exports.create = projectData => {
     let project = null
-    debugger
     return new Project(projectData).save().then(_project => {
         project = _project
-        debugger
         return exports.createTemplateFiles(projectData)
     }).then(() => {
         // TODO Do that in background
         debugger
-        return exports.createGitHubRepository(projectData.user, projectData.name)
+        return exports.createGitHubRepository(projectData.username, projectData.name)
     }).then(() => {
         debugger
         return project.syncGitHubRepository("Inital commit.")

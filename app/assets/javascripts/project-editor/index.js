@@ -138,6 +138,17 @@ export default class App extends React.Component {
         })
     }
 
+    commitProject () {
+        const commit_message = prompt("Commit message");
+        if (!commit_message) {
+            return
+        }
+        BloggifyActions.post("projects.commit", {
+            project_name: this.state.page.project.name,
+            commit_message
+        }).catch(err => alert(err.message))
+    }
+
     onEditorContentChange (content) {
         this.editor_content = content;
     }
@@ -192,6 +203,7 @@ export default class App extends React.Component {
                     <div className="col file-tree-column">
                         <div className="editor-controls">
                             <button className="btn btn-small" onClick={this.saveFile.bind(this)}>Save</button>
+                            <button className="btn btn-small" onClick={this.commitProject.bind(this)}>Commit</button>
                             <button className="btn btn-small" onClick={this.newFile.bind(this)}>New file</button>
                         </div>
                         {this.renderFolderTree()}
