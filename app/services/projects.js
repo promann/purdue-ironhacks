@@ -91,11 +91,12 @@ ${data.description}
 }
 
 
-exports.createGitHubRepository = (username, projectName) => {
-    const repoName = Project.getGitHubRepoName(username, projectName, new Date().getFullYear())
+exports.createGitHubRepository = project => {
+    const repoName = project.github_repo_name
     return GitHub.getAsync(`orgs/${process.env.GITHUB_PROJECTS_ORGANIZATION}/repos`, {
         data: {
             name: repoName,
+            description: project.description,
             private: true
         }
     })
@@ -158,10 +159,8 @@ exports.create = projectData => {
         return exports.createTemplateFiles(projectData)
     }).then(() => {
         // TODO Do that in background
-        debugger
-        return exports.createGitHubRepository(projectData.username, projectData.name)
+        return project.createGitHubRepository()
     }).then(() => {
-        debugger
         return project.syncGitHubRepository("Inital commit.")
     });
 }
