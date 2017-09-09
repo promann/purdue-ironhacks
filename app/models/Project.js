@@ -35,7 +35,7 @@ ProjectSchema.methods.syncGitHubRepository = function (commitMessage) {
 
 
 ProjectSchema.methods.createGitHubRepository = function (commitMessage) {
-    return return Bloggify.services.projects.createGitHubRepository(this)
+    return Bloggify.services.projects.createGitHubRepository(this)
 }
 
 ProjectSchema.methods.downloadFiles = function (projectPath) {
