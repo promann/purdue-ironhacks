@@ -129,7 +129,7 @@ exports.downloadFiles = (project, projectPath) => {
 
 exports.syncGitHubRepository = (project, commitMessage) => {
     const repoPath = project.local_path
-    
+
     // 1. Delete the projec path
     return execa("rm", ["-rf", repoPath]).then(() => 
         // 2. Clone the GitHub repo
@@ -141,13 +141,19 @@ exports.syncGitHubRepository = (project, commitMessage) => {
         // 4. Download the files from S3
         project.downloadFiles(repoPath)
     ).then(() => 
-        // 5. Add the files to commit
+        // 5. Set up the git commit details
+        Promise.all([
+            execa("git", ["config", "user.email", project.user.email], { cwd: repoPath }),
+            execa("git", ["config", "user.name", project.user.username], { cwd: repoPath })
+        ])
+    ).then(() => 
+        // 6. Add the files to commit
         execa("git", ["add", "-A", "."], { cwd: repoPath })
     ).then(() => 
-        // 6. Create the commit
+        // 7. Create the commit
         execa("git", ["commit", "-m", commitMessage, "--author", `${project.user.username} <${project.user.email}>`], { cwd: repoPath })
     ).then(() => 
-        // 7. Push the commit to GitHub
+        // 78 Push the commit to GitHub
         execa("git", ["push", "--all"], { cwd: repoPath })
     )
 }
