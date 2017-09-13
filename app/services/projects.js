@@ -168,23 +168,22 @@ exports.get = data => {
 }
 
 exports.create = projectData => {
-    let project = null
     projectData.name = slug(projectData.name).trim()
     if (!projectData.name) {
         throw Bloggify.errors.PROJECT_NAME_IS_EMPTY()
     }
     return exports.get(projectData).then(existingProject => {
         if (existingProject) {
-            debugger
             throw Bloggify.errors.PROJECT_NAME_IS_TAKEN(projectData.name)
         }
         return new Project(projectData).save()
-    }).then(_project => {
-        project = _project
-        return exports.createTemplateFiles(projectData)
-    }).then(() => {
-        return project.createGitHubRepository()
-    }).then(() => {
-        return project.syncGitHubRepository("Inital commit.")
+    }).then(project => {
+        // Create the template files and the Github repo in parallel
+        exports.createTemplateFiles(projectData).then(() => 
+            project.createGitHubRepository()
+        ).then(() => 
+            project.syncGitHubRepository("Inital commit.")
+        ).catch(err => Bloggify.log(err)) 
+        return project 
     })
 }
