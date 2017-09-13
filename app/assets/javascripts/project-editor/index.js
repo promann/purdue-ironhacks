@@ -1,13 +1,15 @@
-import React from "react";
-import brace from "brace";
+import React from "react"
+import brace from "brace"
 import AceEditor from "react-ace";
-import BloggifyActions from "bloggify/http-actions";
-import FolderTree from "react-folder-tree";
-import {Treebeard, decorators} from "react-treebeard";
+import BloggifyActions from "bloggify/http-actions"
+import FolderTree from "react-folder-tree"
+import {Treebeard, decorators} from "react-treebeard"
 
-import 'brace/mode/javascript';
-import 'brace/mode/html';
-import 'brace/theme/monokai';
+import 'brace/mode/javascript'
+import 'brace/mode/html'
+import 'brace/theme/monokai'
+
+import 'brace/ext/searchbox'
 
 const DEFAULT_FILEPATH = "index.html"
 
@@ -272,6 +274,6 @@ export default class App extends React.Component {
                     </div>
                 </div>
             </div>
-        );
+        )
     }
 }
