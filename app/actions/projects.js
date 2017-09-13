@@ -86,7 +86,7 @@ exports.commit = ["post", ctx => {
         name: ctx.data.project_name
     }).then(project => {
         if (!project) {
-            throw new Bloggify.errors.PROJECT_NOT_FOUND()
+            throw Bloggify.errors.PROJECT_NOT_FOUND()
         }
         return project.syncGitHubRepository(ctx.data.commit_message)
     })

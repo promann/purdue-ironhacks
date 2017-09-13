@@ -24,7 +24,7 @@ module.exports = class Session {
     static onlyAuthenticated (ctx, shouldBeAdmin) {
         const user = Session.getUser(ctx)
         if (!user || (shouldBeAdmin && !Session.isAdmin(user))) {
-            throw new Bloggify.errors.NOT_AUTHORIZED()
+            throw Bloggify.errors.NOT_AUTHORIZED()
         }
     }
 }

@@ -6,6 +6,7 @@ const { buildFilePath, s3, S3_BUCKET, PATH_PPROJECTS } = require("../common/aws-
     , execa = require("execa")
     , path = require("path")
     , streamp = require("streamp")
+    , slug = require("slugo")
 
 const GitHub = promisfy(new GitHubApi(process.env.GITHUB_ADMIN_TOKEN))
 
@@ -155,18 +156,35 @@ exports.syncGitHubRepository = (project, commitMessage) => {
     ).then(() => 
         // 78 Push the commit to GitHub
         execa("git", ["push", "--all"], { cwd: repoPath })
-    )
+    ).then(() => project)
+}
+
+exports.get = data => {
+    const { name, username } = data
+    return Project.findOne({
+        name,
+        username
+    })
 }
 
 exports.create = projectData => {
     let project = null
-    return new Project(projectData).save().then(_project => {
+    projectData.name = slug(projectData.name).trim()
+    if (!projectData.name) {
+        throw Bloggify.errors.PROJECT_NAME_IS_EMPTY()
+    }
+    return exports.get(projectData).then(existingProject => {
+        if (existingProject) {
+            debugger
+            throw Bloggify.errors.PROJECT_NAME_IS_TAKEN(projectData.name)
+        }
+        return new Project(projectData).save()
+    }).then(_project => {
         project = _project
         return exports.createTemplateFiles(projectData)
     }).then(() => {
-        // TODO Do that in background
         return project.createGitHubRepository()
     }).then(() => {
         return project.syncGitHubRepository("Inital commit.")
-    });
+    })
 }

@@ -327,12 +327,16 @@ span.comment-controls {
     opacity: 0.6;
 }
 
-.search-form input {
+.search-form input, input.form-control {
     font-size: 17px;
 }
 
 span.admin-filters {
     margin-left: 10px;
+}
+
+form.form > div {
+    margin: 5px 0;
 }
 
 .elm-centered {
