@@ -154,8 +154,11 @@ exports.syncGitHubRepository = (project, commitMessage) => {
         // 7. Create the commit
         execa("git", ["commit", "-m", commitMessage, "--author", `${project.user.username} <${project.user.email}>`], { cwd: repoPath })
     ).then(() => 
-        // 78 Push the commit to GitHub
+        // 8. Push the commit to GitHub
         execa("git", ["push", "--all"], { cwd: repoPath })
+    ).then(() => 
+        // 9. Delete the directory
+        execa("rm", ["-rf", repoPath])
     ).then(() => project)
 }
 
