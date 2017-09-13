@@ -37,6 +37,7 @@
     "find-value": "^1.0.5",
     "gh.js": "^3.0.11",
     "gridly": "^1.4.8",
+    "is-valid-path": "^0.1.1",
     "jquery": "^2.2.4",
     "map-o": "^2.0.5",
     "modernizr": "^3.3.1",

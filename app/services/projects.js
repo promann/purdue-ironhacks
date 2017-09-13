@@ -23,12 +23,11 @@ exports.streamFile = ctx => {
     const stream = s3.getObject(params).createReadStream();
 
     stream.on("error", err => {
-    	
         ctx.res.contentType("plain/text");
         if (err.code === "NoSuchKey") {
-            ctx.status(404).end("404 — Not found");
+            ctx.end("404 — Not found", 404);
         } else {
-            ctx.status(400).end(err.message);
+            ctx.end(err.message, 400);
         }
     })
 

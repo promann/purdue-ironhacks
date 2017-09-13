@@ -67,10 +67,17 @@ export default class App extends React.Component {
                 }
             }
         })
-
-        // Save every 10 seconds
-        
     }
+
+    _getEditorMode (filepath) {
+        const extension = filepath.split(".").slice(-1)[0]
+        const mappings = {
+            js: "javascript"
+        }
+        const editorMode = mappings[extension] || extension
+        return editorMode
+    }
+    
 
     maybeTriggerSave () {
         clearTimeout(this.saveTimeout)
@@ -111,8 +118,8 @@ export default class App extends React.Component {
         }).then(data => {
             this.setState({
                 file_content: data.Body,
-                filepath: path
-            });
+                filepath: path 
+            })
         });
         prom.catch(err => {
             alert(err.message);
@@ -143,7 +150,7 @@ export default class App extends React.Component {
     }
 
     newFile () {
-        const filepath = prompt("New file name:");
+        const filepath = prompt("Enter the new file name. You can use slashes for creating files in directories.");
         this.editor_content = "";
         this.saveFile({
             filepath
@@ -232,7 +239,7 @@ export default class App extends React.Component {
                         <div className="row">
                             <div className="col editor-column">
                                 <AceEditor
-                                    mode="html"
+                                    mode={this._getEditorMode(this.state.filepath)}
                                     theme="monokai"
                                     value={this.editor_content || this.state.file_content}
                                     onChange={this.onEditorContentChange.bind(this)}
