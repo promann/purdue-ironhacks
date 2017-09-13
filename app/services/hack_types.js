@@ -1,5 +1,4 @@
 const forEach = require("iterate-object")
-    , schedule = require("node-schedule")
 
 const HACK_TYPES = Bloggify.models.Settings.HACK_TYPES
 forEach(HACK_TYPES, (c, name) => {

@@ -33,7 +33,7 @@
                             <li>Purdue Polytechnic Professor: Sabine Brunswicker</li>
                             <li>Challenge topic: Will revolve around safety, health, and travel.</li>
                             <li>You may register for this class on myPurdue now!</li>
-
+                            <li><strong><a href="/downloads/fall2017-flyer.pdf">Download flyer</a></strong></li>
                         </ul>
                         <div class="price-btn">
                             <form method="POST" action="/register">
@@ -66,6 +66,7 @@
 
                             <li>Instructor: Prof. Sabine Brunswicker</li>
                             <li>Stay tuned for more details</li>
+                            <li><strong><a href="/downloads/fall2017-flyer.pdf">Download flyer</a></strong></li>
                         </ul>
                         <div class="price-btn">
                             <form method="POST" action="/register">
@@ -95,6 +96,7 @@
                             <li>This hack is for Universidad Nacional de Colombia students.</li>
                             <li>Challenge topic: Will revolve around safety, health, and travel.</li>
                             <li>Stay tuned for more details!</li>
+                            <li><strong><a href="/downloads/fall2017-flyer.pdf">Download flyer</a></strong></li>
                         </ul>
                         <div class="price-btn">
                             <form method="POST" action="/register">
