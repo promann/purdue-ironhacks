@@ -6,7 +6,7 @@
     <% if (hType === "platzi") { %>
         Purdue – Platzi Black IronHacks <%= thisYear %>
     <% } else if (hType === "purdue") { %>
-        Purdue Gold IronHacks Spring <%= thisYear %>
+        Purdue Gold IronHacks Fall <%= thisYear %>
     <% } else if (hType === "bogota") { %>
         Purdue – UNAL Gold IronHacks <%= thisYear %>
     <% } %>

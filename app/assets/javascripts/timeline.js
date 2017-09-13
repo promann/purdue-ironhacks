@@ -14,7 +14,7 @@ export default class App extends React.Component {
                 timelineTitle = `Purdue – Platzi Black IronHacks ${new Date().getFullYear()}`;
                 break;
             case "Purdue":
-                timelineTitle = `Purdue Gold IronHacks Spring ${new Date().getFullYear()}`;
+                timelineTitle = `Purdue Gold IronHacks Fall ${new Date().getFullYear()}`;
                 break;
         }
 
