@@ -137,7 +137,7 @@ exports.syncGitHubRepository = (project, commitMessage) => {
         execa("git", ["clone", project.github_repo_url, repoPath])
     ).then(() => 
         // 3. Remove all the files
-        execa("rm", ["-rf", "*"], { cwd: repoPath })
+        execa.shell("rm -rf *", { cwd: repoPath })
     ).then(() => 
         // 4. Download the files from S3
         project.downloadFiles(repoPath)

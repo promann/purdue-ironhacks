@@ -24,6 +24,8 @@ decorators.Header = ({style, node}) => {
         float: "right"
     }
 
+    const deleteIcon = node.onDelete && <i onClick={node.onDelete} className="fa fa-trash" style={style.deleteIcon}/>
+
     return (
         <div style={style.base}>
             <div style={style.title} >
@@ -31,7 +33,7 @@ decorators.Header = ({style, node}) => {
                     <i className={iconClass} style={iconStyle}/>
                     {node.name}
                 </span>
-                <i onClick={node.onDelete} className="fa fa-trash" style={style.deleteIcon}/>
+                {deleteIcon}
             </div>
         </div>
     );
@@ -174,10 +176,13 @@ export default class App extends React.Component {
                 obj.onOpen = () => {
                     this.openFile(obj._path)
                 }
-                obj.onDelete = () => {
-                    if (confirm(`Do you really want to delete ${obj._path}?`)) {
-                        this.deleteFile(obj._path)
-                    }
+                if (obj.deletable !== false) {
+                    obj.onDelete = () => {
+                        if (confirm(`Do you really want to delete ${obj._path}?`)) {
+                            this.deleteFile(obj._path)
+                     
+                        }
+                   }
                 }
                 if (obj._path === this.state.filepath) {
                     obj.active = true

@@ -30,6 +30,10 @@ exports.deleteFile = ["post", ctx => {
     // TODO Check access, auth etc.
     // TODO Validate data
 
+    if (ctx.data.filepath === "index.html") {
+        throw Bloggify.errors.FILE_SHOULD_NOT_BE_DELETED(ctx.data.filepath)
+    }
+
     const params = {
         Bucket: S3_BUCKET,
         Key: buildFilePath(ctx.data)
@@ -67,6 +71,9 @@ exports.listFiles = ["post", ctx => {
         const tree = paths2tree(files, "/", node => {
             node.id = ++id
             node.filename = node.name
+            if (node.filename === "index.html") {
+                node.deletable = false
+            }
             node.toggled = true
             setTimeout(() => {
                 if (node.children && !node.children.length) {
