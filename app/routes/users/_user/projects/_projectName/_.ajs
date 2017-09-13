@@ -2,15 +2,13 @@
 <% include(Bloggify.views.container.start) %>
 
 
-<h3><%= ctx.selected_project.name %></h3>
+<h2><%= ctx.selected_project.name %></h2>
 <p><%= ctx.selected_project.description %></p>
 
-<a href="<%= ctx.pathname %>/edit" class="btn btn-small">Edit</a>
-<a href="<%= ctx.pathname %>/preview/index.html" class="btn btn-small">View</a>
-<form method="POST" action="<%= Bloggify.actions.url("projects.fork") %>">
-    <%- ctx.csrfInput %>
-    <button class="btn btn-small">Fork</button>
-</form>
+<hr>
+
+<a href="<%= ctx.pathname %>/edit" class="btn">Edit</a>
+<a href="<%= ctx.pathname %>/preview/index.html" class="btn">View</a>
 
 <% include(Bloggify.views.container.end) %>
 <% include(Bloggify.views.footer) %>

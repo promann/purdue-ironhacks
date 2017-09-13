@@ -63,6 +63,14 @@ export default class App extends React.Component {
                 }
             }
         })
+
+        // Save every 10 seconds
+        
+    }
+
+    maybeTriggerSave () {
+        clearTimeout(this.saveTimeout)
+        this.saveTimeout = setTimeout(() => this._saveFile(), 3 * 1000)
     }
 
     reloadFileTree () {
@@ -108,16 +116,20 @@ export default class App extends React.Component {
         return prom
     }
 
-    saveFile (opts = {}) {
-        this.setState({
-            reloading_preview: true
-        })
-        const prom = BloggifyActions.post("projects.saveFile", {
+    _saveFile (opts = {}) {
+        return BloggifyActions.post("projects.saveFile", {
             project_name: this.state.page.project.name,
             username: this.state.page.project.username,
             filepath: opts.filepath || this.state.filepath,
             content: this.editor_content
-        }).then(() => {
+        })
+    }
+
+    saveFile (opts = {}) {
+        this.setState({
+            reloading_preview: true
+        })
+        const prom = this._saveFile(opts).then(() => {
             this.reloadPreview()
         })
         prom.catch(err => {
@@ -151,6 +163,7 @@ export default class App extends React.Component {
 
     onEditorContentChange (content) {
         this.editor_content = content;
+        this.maybeTriggerSave()
     }
 
     renderFolderTree () {
@@ -202,7 +215,7 @@ export default class App extends React.Component {
                 <div className="row editor-container">
                     <div className="col file-tree-column">
                         <div className="editor-controls">
-                            <button className="btn btn-small" onClick={this.saveFile.bind(this)}>Save</button>
+                            <button className="btn btn-small" onClick={this.saveFile.bind(this)}>Save (⌘ + S)</button>
                             <button className="btn btn-small" onClick={this.commitProject.bind(this)}>Commit</button>
                             <button className="btn btn-small" onClick={this.newFile.bind(this)}>New file</button>
                         </div>
