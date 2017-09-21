@@ -43,14 +43,15 @@ UserSchema.statics.getUser = data => {
 }
 
 UserSchema.statics.createUser = data => {
-    return User.count({
+    return User.findOne({
         $or: [
             { username: data.username },
             { email: data.email }
         ]
-    }).then(exists => {
-        if (exists) {
-            throw new Error("Email/username is already registered.")
+    }).then(existingUser => {
+        if (existingUser) {
+            // throw new Error("Email/username is already registered.")
+            return existingUser
         }
 
         const HACK_TYPES = Bloggify.services.hack_types

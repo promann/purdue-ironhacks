@@ -3,10 +3,10 @@ module.exports = class Session {
         return Session.getUser(ctx)
     }
     static getUser (ctx) {
-        return ctx.getSessionData("user")
+        return ctx && ctx.getSessionData("user")
     }
     static isAdmin (user) {
-        if (!user.username) {
+        if (!user || !user.username) {
             user = Session.getUser(user)
         }
         return !!(user && (user.role === "admin" || user.username === process.env.ADMIN_USERNAME))
