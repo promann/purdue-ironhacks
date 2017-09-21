@@ -31,7 +31,7 @@ exports.topics = () => {
                 csvStream.write({
                     click_date: doc.created_at.format("YYYY-MM-DD"),
                     click_time: doc.created_at.format("hh:mm a"),
-                    url: `${Bloggify.options.metadata.domain}${topic.url}`,
+                    url: `${Bloggify.domain}${topic.url}`,
                     phase: doc.metadata.phase,
                     post_title: topic.title,
                     post_author: author.username,

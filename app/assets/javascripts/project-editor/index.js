@@ -77,7 +77,7 @@ export default class App extends React.Component {
         const editorMode = mappings[extension] || extension
         return editorMode
     }
-    
+
 
     maybeTriggerSave () {
         clearTimeout(this.saveTimeout)
@@ -86,8 +86,7 @@ export default class App extends React.Component {
 
     reloadFileTree () {
         return BloggifyActions.post("projects.listFiles", {
-            project_name: this.state.page.project.name,
-            username: this.state.page.project.username,
+            project_name: this.state.page.project.name
         }).then(files => {
             this.setState({ files });
         });
@@ -96,7 +95,6 @@ export default class App extends React.Component {
     deleteFile (path) {
         BloggifyActions.post("projects.deleteFile", {
             project_name: this.state.page.project.name,
-            username: this.state.page.project.username,
             filepath: path
         }).then(() => {
             return this.reloadFileTree()
@@ -113,12 +111,11 @@ export default class App extends React.Component {
         this.editor_content = ""
         const prom = BloggifyActions.post("projects.getFile", {
             project_name: this.state.page.project.name,
-            username: this.state.page.project.username,
             filepath: path
         }).then(data => {
             this.setState({
                 file_content: data.Body,
-                filepath: path 
+                filepath: path
             })
         });
         prom.catch(err => {
@@ -130,7 +127,6 @@ export default class App extends React.Component {
     _saveFile (opts = {}) {
         return BloggifyActions.post("projects.saveFile", {
             project_name: this.state.page.project.name,
-            username: this.state.page.project.username,
             filepath: opts.filepath || this.state.filepath,
             content: this.editor_content
         })
@@ -189,7 +185,7 @@ export default class App extends React.Component {
                     obj.onDelete = () => {
                         if (confirm(`Do you really want to delete ${obj._path}?`)) {
                             this.deleteFile(obj._path)
-                     
+
                         }
                    }
                 }
@@ -257,11 +253,11 @@ export default class App extends React.Component {
                                         <a href={previewFileUrl} target="blank">Open in New Tab</a> |
                                         <span className="pull-right breadcrumbs">
                                             <a href={`/users/${_pageData.project.username}`}>
-                                                @{_pageData.project.username}   
+                                                @{_pageData.project.username}
                                             </a>
                                             /
                                             <a href={`/users/${_pageData.project.username}/projects`}>
-                                                projects 
+                                                projects
                                             </a>
                                             /
                                             <a href={`/users/${_pageData.project.username}/projects/${_pageData.project.name}`}>
@@ -269,7 +265,7 @@ export default class App extends React.Component {
                                             </a>
                                             /edit
                                         </span>
-                                        
+
                                     </div>
                                     <iframe src={previewFileUrl} id="preview-iframe" className="editor-preview-iframe" onLoad={this.previewLoaded.bind(this)} />
                                     <div className="iframe-spinner">

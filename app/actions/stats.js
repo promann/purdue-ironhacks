@@ -1,3 +1,7 @@
+exports.before = ctx => {
+    return Bloggify.services.session.onlyAuthenticated(ctx)
+}
+
 exports.insert = ctx => {
     const user = ctx.user
     const ev = {

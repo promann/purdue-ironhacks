@@ -40,8 +40,8 @@ exports.commentPosted = comment => {
       , substitutions: {
             "-message-": comment.body,
             "-commentAuthorUsername-": comment.author.username,
-            "-commentAuthorUrl-": `${Bloggify.options.metadata.domain}/users/${comment.author.username}`,
-            "-topicUrl-": `${Bloggify.options.metadata.domain}${comment.topic.url}`,
+            "-commentAuthorUrl-": `${Bloggify.options.domain}/users/${comment.author.username}`,
+            "-topicUrl-": `${Bloggify.options.domain}${comment.topic.url}`,
             "-topicTitle-": comment.topic.title
         }
     }, log);
@@ -76,7 +76,7 @@ exports.topicCreated = topic => {
           , subject: "A new topic was posted: ‘" + topic.title + "’"
           , template_id: EMAIL_TEMPLATES.NEW_TOPIC
           , substitutions: {
-                "-topicUrl-": `${Bloggify.options.metadata.domain}${topic.url}`,
+                "-topicUrl-": `${Bloggify.options.domain}${topic.url}`,
                 "-topicTitle-": topic.title
             }
         }, log);
