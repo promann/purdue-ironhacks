@@ -11,9 +11,6 @@ const { buildFilePath, s3, S3_BUCKET, PATH_PPROJECTS } = require("../common/aws-
 const GitHub = promisfy(new GitHubApi(process.env.GITHUB_ADMIN_TOKEN))
 
 exports.streamFile = ctx => {
-    // TODO Check access, auth etc.
-    // TODO Validate data
-
     const params = {
         Bucket: S3_BUCKET,
         Key: buildFilePath(ctx.params)
@@ -131,31 +128,31 @@ exports.syncGitHubRepository = (project, commitMessage) => {
     const repoPath = project.local_path
 
     // 1. Delete the projec path
-    return execa("rm", ["-rf", repoPath]).then(() => 
+    return execa("rm", ["-rf", repoPath]).then(() =>
         // 2. Clone the GitHub repo
         execa("git", ["clone", project.github_repo_url, repoPath])
-    ).then(() => 
+    ).then(() =>
         // 3. Remove all the files
         execa.shell("rm -rf *", { cwd: repoPath })
-    ).then(() => 
+    ).then(() =>
         // 4. Download the files from S3
         project.downloadFiles(repoPath)
-    ).then(() => 
+    ).then(() =>
         // 5. Set up the git commit details
         Promise.all([
             execa("git", ["config", "user.email", project.user.email], { cwd: repoPath }),
             execa("git", ["config", "user.name", project.user.username], { cwd: repoPath })
         ])
-    ).then(() => 
+    ).then(() =>
         // 6. Add the files to commit
         execa("git", ["add", "-A", "."], { cwd: repoPath })
-    ).then(() => 
+    ).then(() =>
         // 7. Create the commit
         execa("git", ["commit", "-m", commitMessage, "--author", `${project.user.username} <${project.user.email}>`], { cwd: repoPath })
-    ).then(() => 
+    ).then(() =>
         // 8. Push the commit to GitHub
         execa("git", ["push", "--all"], { cwd: repoPath })
-    ).then(() => 
+    ).then(() =>
         // 9. Delete the directory
         execa("rm", ["-rf", repoPath])
     ).then(() => project)
@@ -181,11 +178,11 @@ exports.create = projectData => {
         return new Project(projectData).save()
     }).then(project => {
         // Create the template files and the Github repo in parallel
-        exports.createTemplateFiles(projectData).then(() => 
+        exports.createTemplateFiles(projectData).then(() =>
             project.createGitHubRepository()
-        ).then(() => 
+        ).then(() =>
             project.syncGitHubRepository("Inital commit.")
-        ).catch(err => Bloggify.log(err)) 
-        return project 
+        ).catch(err => Bloggify.log(err))
+        return project
     })
 }

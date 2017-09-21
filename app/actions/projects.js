@@ -11,7 +11,7 @@ const paths2tree = require("paths2tree")
       }
 
 exports.before = ctx => {
-    const user = Bloggify.services.session.onlyAuthenticated(ctx).then(user => {
+    const user = Bloggify.services.session.onlyAuthenticated(ctx)
     if (ctx.data) {
         ctx.data.username = user.username
     }
