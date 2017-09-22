@@ -8,5 +8,6 @@ exports.list = ctx => {
         ctx.query["metadata.hack_type"] = user.profile.hack_type
         ctx.query["metadata.hack_id"] = user.profile.hack_id
     }
+    ctx.query.hidden = { $ne: true }
     return Bloggify.services.posts.list(ctx.query)
 }
