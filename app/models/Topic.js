@@ -25,7 +25,8 @@ const TopicSchema = new Bloggify.db.Schema({
     created_at: Date,
     votes: [String],
     sticky: Boolean,
-    metadata: Object
+    metadata: Object,
+    hidden: Boolean
 }, {
     toObject: {
       virtuals: true
