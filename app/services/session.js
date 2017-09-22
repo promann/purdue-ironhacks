@@ -26,5 +26,6 @@ module.exports = class Session {
         if (!user || (shouldBeAdmin && !Session.isAdmin(user))) {
             throw Bloggify.errors.NOT_AUTHORIZED()
         }
+        return user
     }
 }
