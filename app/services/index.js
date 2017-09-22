@@ -9,7 +9,8 @@ Bloggify.require("github-login", GitHub => {
     })
     GitHub.on("login-success", (token, user, ctx) => {
         Bloggify.models.User.getUser({
-            username: user.login
+            username: user.login,
+            email: user.emails[0].email
         }).then(existingUser => {
             if (existingUser) {
                 return Bloggify.services.session.loginUser(existingUser, ctx)
@@ -24,7 +25,8 @@ Bloggify.require("github-login", GitHub => {
                     website: user.blog,
                     full_name: user.name,
                     picture: user.avatar_url,
-                    github_username: user.login
+                    github_username: user.login,
+                    github_id: user.id
                 }
             })
 
