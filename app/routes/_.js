@@ -5,6 +5,12 @@ const PUBLIC_PAGES = [
     "/login-callback"
 ]
 
+const WHITELISTED_PRIVATE_PAGES = [
+    "/timeline",
+    "/task",
+    "/logout"
+]
+
 exports.use = (ctx, cb) => {
     const user = Bloggify.services.session.getUser(ctx)
 
@@ -22,7 +28,7 @@ exports.use = (ctx, cb) => {
     const HackTypes = Bloggify.services.hack_types
         , Session = Bloggify.services.session
 
-    if (ctx.pathname !== "/timeline" && ctx.pathname !== "/task" && user && HackTypes[user.profile.hack_type].start_date > new Date() && !Session.isAdmin(user)) {
+    if (!WHITELISTED_PRIVATE_PAGES.includes(ctx.pathname) && user && HackTypes[user.profile.hack_type].start_date > new Date() && !Session.isAdmin(user)) {
         return ctx.redirect("/timeline")
     }
 

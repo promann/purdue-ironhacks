@@ -1,5 +1,6 @@
-import React from "react";
-import util from "../util";
+import React from "react"
+import util from "../util"
+import Actions from "bloggify/http-actions"
 
 export default class ScoreItem extends React.Component {
     constructor (props) {
@@ -10,7 +11,7 @@ export default class ScoreItem extends React.Component {
     }
     toggleScores () {
         if (!this.state.opened) {
-            util.post("/api/stats", {
+            Actions.post("/api/stats.insert", {
                 event: "score-click",
                 metadata: {
                     hacker_id: this.props.hacker._id
@@ -22,7 +23,7 @@ export default class ScoreItem extends React.Component {
         });
     }
     onLinkClick (e) {
-        util.post("/api/stats", {
+        Actions.post("/api/stats.insert", {
             event: e.target.dataset.event,
             metadata: {
                 hacker_id: this.props.hacker._id,

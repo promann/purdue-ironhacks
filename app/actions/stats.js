@@ -12,7 +12,7 @@ exports.insert = ctx => {
 
     ev.metadata.user_agent = ctx.header("user-agent")
 
-    return Bloggify.models.Settings.get().then(settings => {
+    return Bloggify.models.Settings.getSettings().then(settings => {
         ev.metadata.phase = settings.settings.hack_types[user.profile.hack_type].phase
         return Bloggify.models.Stats.record(ev)
     }).then(() =>

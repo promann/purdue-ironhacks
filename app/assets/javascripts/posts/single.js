@@ -1,11 +1,12 @@
-import React from "react";
-import TopicsListItem from "./topics-list-item";
-import TopicComments from "./comments/list";
-import CommentForm from "./comments/form";
-import moment from "moment";
-import io from "socket.io-client";
-import util from "../util";
-import ReactMarkdown from "react-markdown";
+import React from "react"
+import TopicsListItem from "./topics-list-item"
+import TopicComments from "./comments/list"
+import CommentForm from "./comments/form"
+import moment from "moment"
+import io from "socket.io-client"
+import util from "../util"
+import ReactMarkdown from "react-markdown"
+import Actions from "bloggify/http-actions"
 
 export default class App extends React.Component {
     constructor (props) {
@@ -21,7 +22,7 @@ export default class App extends React.Component {
             topic: topic,
             user: window._pageData.user
         };
-        util.post("/api/stats", {
+        Actions.post("stats.insert", {
             event: "view-topic",
             metadata: {
                 topic_id: topic._id,
