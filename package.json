@@ -25,7 +25,7 @@
     "aws-sdk": "^2.100.0",
     "bag.css": "^1.0.5",
     "bindy": "^1.0.8",
-    "bloggify": "0.0.0-alpha4",
+    "bloggify": "0.0.0-alpha6",
     "bloggify-github-login": "^2.0.2",
     "bloggify-icons": "^1.0.0",
     "bloggify-sendgrid": "^2.0.2",
