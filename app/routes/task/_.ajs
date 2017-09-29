@@ -6,7 +6,7 @@
 <%   include(Bloggify.views.task_contents.goldironhacks) %>
 <% } else if (user.profile.hack_type === "bogota") { %>
 <%   include(Bloggify.views.task_contents.unal_goldironhacks) %>
-<% } else if (user.profile.hack_type === "platzi") { %>
+<% } else if (user.profile.hack_type === "unal") { %>
     <em>Coming soon...</em>
 <% } %>
 

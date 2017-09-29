@@ -98,7 +98,7 @@
                         <div class="price-btn">
                             <form method="POST" action="/register">
                                 <%- ctx.csrfInput %>
-                                <input name="hack_type" value="platzi" type="hidden" />
+                                <input name="hack_type" value="unal" type="hidden" />
                                 <input class="button" type="submit" value="Sign up" />
                             </form>
                         </div>

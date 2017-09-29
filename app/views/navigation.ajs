@@ -5,14 +5,7 @@
             | <a href="/task">Task</a>
             | <a href="/scores">Results</a>
             | <a href="/quizzes">Quizzes</a>
-            <% var tutorialLink = "" %>
-            <% if (user.profile.hack_type === "bogota") { %>
-                <% tutorialLink = "https://github.com/blackironhack/2017-Bogota-Ironhack-Tutorials"; %>
-            <% } else if (user.profile.hack_type === "purdue") { %>
-                <% tutorialLink = "https://github.com/goldironhack/2017-Purdue-Ironhack-Tutorials"; %>
-            <% } else if (user.profile.hack_type === "platzi") { %>
-                <% tutorialLink = "https://github.com/blackironhack/2017-Purdue-Platzi-IronHack-Tutorials"; %>
-            <% } %>
+            <% var tutorialLink = "https://github.com/goldironhack/2017-Fall-Purdue-UNAL-IronHack-Tutorials" %>
             <% if (tutorialLink) { %>
                 | <a href="<%= tutorialLink %>">Tutorial</a>
             <% } %>

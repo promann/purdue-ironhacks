@@ -12,7 +12,7 @@ const SettingsSchema = new Bloggify.db.Schema({
 const HACK_TYPES = {
     // Gold
     purdue: {
-        survey: "https://purdue.qualtrics.com/jfe/form/SV_brTBahMpVU9CFYV"
+        survey: "https://purdue.qualtrics.com/jfe/form/SV_3qidG4HYagy65xj"
       , label: "Purdue"
       , hackatons: [ {} ]
       , start_date: null
@@ -21,7 +21,7 @@ const HACK_TYPES = {
 
     // Black
   , bogota: {
-        survey: "https://purdue.qualtrics.com/jfe/form/SV_2b1fTpmPhtyMRAV"
+        survey: "https://purdue.qualtrics.com/jfe/form/SV_3qidG4HYagy65xj"
       , label: "Bogota"
       , hackatons: [ {}, {}, {} ]
       , start_date: null
@@ -29,9 +29,9 @@ const HACK_TYPES = {
     }
 
     // Green
-  , platzi: {
-        survey: "https://purdue.qualtrics.com/jfe/form/SV_4ZoALAMqPjrTUlT"
-      , label: "Platzi"
+  , unal: {
+        survey: "https://purdue.qualtrics.com/jfe/form/SV_b7P31dWaqxUBniB"
+      , label: "UNAL"
       , hackatons: [ {}, {}, {} ]
       , start_date: null
       , subforums_count: 0
@@ -60,7 +60,7 @@ SettingsSchema.statics.ensure = () => {
                     hack_types: {
                         purdue: { phase: "phase1", subforums_count: 0, start_date: null }
                       , bogota: { phase: "phase1", subforums_count: 0, start_date: FIFTEENTH_OF_MARCH }
-                      , platzi: { phase: "phase1", subforums_count: 0, start_date: FIFTEENTH_OF_MARCH }
+                      , unal: { phase: "phase1", subforums_count: 0, start_date: FIFTEENTH_OF_MARCH }
                     }
                 }
             }).save()

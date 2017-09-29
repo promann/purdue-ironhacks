@@ -3,8 +3,8 @@
     <% var hTypeName = hType.charAt(0).toUpperCase() + hType.slice(1); %>
     <% var now = new Date() %>
     <% var thisYear = now.getFullYear() %>
-    <% if (hType === "platzi") { %>
-        Purdue – Platzi Black IronHacks <%= thisYear %>
+    <% if (hType === "unal") { %>
+        Purdue – UNAL Gold IronHacks <%= thisYear %>
     <% } else if (hType === "purdue") { %>
         Purdue Gold IronHacks Fall <%= thisYear %>
     <% } else if (hType === "bogota") { %>
