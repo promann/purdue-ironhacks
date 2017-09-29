@@ -137,25 +137,32 @@ exports.syncGitHubRepository = (project, commitMessage) => {
     ).then(() =>
         // 4. Download the files from S3
         project.downloadFiles(repoPath)
-    ).then(() =>
-        // 5. Set up the git commit details
-        Promise.all([
+    ).then(() => 
+        // 5. Check if there are changes to commit
+        execa("git", ["status", "--porcelain"], { cwd: repoPath })
+    ).then(status => {
+        status = status.stdout.trim();
+        if (!status) {
+            return
+        }
+        // 6. Set up the git commit details
+        return Promise.all([
             execa("git", ["config", "user.email", project.user.email], { cwd: repoPath }),
             execa("git", ["config", "user.name", project.user.username], { cwd: repoPath })
-        ])
-    ).then(() =>
-        // 6. Add the files to commit
-        execa("git", ["add", "-A", "."], { cwd: repoPath })
-    ).then(() =>
-        // 7. Create the commit
-        execa("git", ["commit", "-m", commitMessage, "--author", `${project.user.username} <${project.user.email}>`], { cwd: repoPath })
-    ).then(() =>
-        // 8. Push the commit to GitHub
-        execa("git", ["push", "--all"], { cwd: repoPath })
-    ).then(() =>
-        // 9. Delete the directory
-        execa("rm", ["-rf", repoPath])
-    ).then(() => project)
+        ]).then(() =>
+            // 7. Add the files to commit
+            execa("git", ["add", "-A", "."], { cwd: repoPath })
+        ).then(() =>
+            // 8. Create the commit
+            execa("git", ["commit", "-m", commitMessage, "--author", `${project.user.username} <${project.user.email}>`], { cwd: repoPath })
+        ).then(() =>
+            // 9. Push the commit to GitHub
+            execa("git", ["push", "--all"], { cwd: repoPath })
+        ).then(() =>
+            // 10. Delete the directory
+            execa("rm", ["-rf", repoPath])
+        )
+    }).then(() => project)
 }
 
 exports.get = data => {

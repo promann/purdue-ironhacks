@@ -75,3 +75,7 @@ body.hack-type-bogota nav, body.hack-type-bogota footer, body.hack-type-purdue n
 .breadcrumbs {
     color: white;
 }
+
+div[data-radium] > div:not([data-type='file-text']):first-of-type {
+    display: none !important;
+}

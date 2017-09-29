@@ -37,6 +37,7 @@ const HACK_TYPES = {
       , subforums_count: 0
     }
 }
+HACK_TYPES.platzi = HACK_TYPES.unal
 
 SettingsSchema.statics.setSettings = data => {
     return Settings.getSettings().then(settings => {

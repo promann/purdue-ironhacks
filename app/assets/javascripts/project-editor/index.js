@@ -29,7 +29,7 @@ decorators.Header = ({style, node}) => {
     const deleteIcon = node.onDelete && <i onClick={node.onDelete} className="fa fa-trash" style={style.deleteIcon}/>
 
     return (
-        <div style={style.base}>
+        <div style={style.base} data-type={iconType}>
             <div style={style.title} >
                 <span onClick={node.onOpen}>
                     <i className={iconClass} style={iconStyle}/>
@@ -147,6 +147,9 @@ export default class App extends React.Component {
 
     newFile () {
         const filepath = prompt("Enter the new file name. You can use slashes for creating files in directories.");
+        if (!filepath) {
+            return
+        }
         this.editor_content = "";
         this.saveFile({
             filepath
@@ -178,8 +181,10 @@ export default class App extends React.Component {
             const walk = obj => {
                 obj.active = false;
                 obj._path = obj.path.split("/").slice(2).join("/");
-                obj.onOpen = () => {
-                    this.openFile(obj._path)
+                if (obj.clickable !== false) {
+                    obj.onOpen = () => {
+                        this.openFile(obj._path)
+                    }
                 }
                 if (obj.deletable !== false) {
                     obj.onDelete = () => {
@@ -198,7 +203,10 @@ export default class App extends React.Component {
                     }
                 }
             }
+            this.state.files.deletable = false;
+            this.state.files.clickable = false;
             walk(this.state.files)
+
             return <Treebeard
                 data={this.state.files}
             />
