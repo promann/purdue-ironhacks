@@ -17,11 +17,7 @@ export default class ScoreList extends React.Component {
         });
     }
     renderTheadRow () {
-
         const projectTh = this.state.showProjectColumn ? <th>Project</th> : null
-            , githubTh = this.state.showGitHubRepoColumn ? <th>GitHub</th> : null
-            ;
-
         return <tr>
            <th>Name</th>
             { this.state.showScores ? <th>Total score</th> : null }
@@ -31,7 +27,6 @@ export default class ScoreList extends React.Component {
             { this.state.showScores ? <th>Novelty Score</th> : null }
             { this.state.showScores ? <th>User Requirements Score</th> : null }
             {projectTh}
-            {githubTh}
         </tr>
     }
     render () {
