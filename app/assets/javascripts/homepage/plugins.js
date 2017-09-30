@@ -315,7 +315,7 @@
             complete: function() {
                 s.afterScroll.call(s.link, s)
             }
-        }, s.step && (u.step = s.step), n.length ? n.stop().animate(h, u) : s.afterScroll.call(s.link, s)
+        }, s.step && (u.step = s.step), n.length ? n.add($("body,html")).stop().animate(h, u) : s.afterScroll.call(s.link, s)
     }, t.smoothScroll.version = l, t.smoothScroll.filterPath = function(t) {
         return t.replace(/^\//, "").replace(/(?:index|default).[a-zA-Z]{3,4}$/, "").replace(/\/$/, "")
     }, t.fn.smoothScroll.defaults = s
