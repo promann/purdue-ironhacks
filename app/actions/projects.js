@@ -17,7 +17,6 @@ exports.before = ctx => {
     }
 }
 
-
 exports.saveFile = ["post", ctx => {
     const params = {
         Bucket: S3_BUCKET,
@@ -27,8 +26,6 @@ exports.saveFile = ["post", ctx => {
 
     return s3.putObjectAsync(params)
 }]
-
-
 
 exports.deleteFile = ["post", ctx => {
     if (ctx.data.filepath === "index.html") {
@@ -82,8 +79,6 @@ exports.listFiles = ["post", ctx => {
         return setTimeoutAsync().then(() => tree.children[0])
     })
 }]
-
-
 
 exports.commit = ["post", ctx => {
     return Bloggify.models.Project.findOne({
