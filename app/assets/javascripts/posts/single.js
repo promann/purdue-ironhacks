@@ -28,7 +28,7 @@ export default class App extends React.Component {
                 topic_id: topic._id,
                 topic_author: topic.author._id
             }
-        });
+        })
     }
     renderCommentForm () {
         if (!this.state.user) {

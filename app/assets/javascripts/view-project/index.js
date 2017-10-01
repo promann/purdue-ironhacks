@@ -1,4 +1,5 @@
 import React from "react"
+import Actions from "bloggify/http-actions"
 
 export default class ViewProject extends React.Component {
     constructor (props) {
@@ -7,19 +8,27 @@ export default class ViewProject extends React.Component {
 
     }
 
-    _setActiveUrl (active_url) {
+    _setActiveUrl (urlType) {
+        const active_url = _pageData[urlType + "_url"]
+
     	this.setState({
         	active_url
         })
+
+        Actions.post("stats.insert", {
+            event: `show-${urlType}`,
+            metadata: {
+                url: active_url
+            }
+        });
     }
 
-
     showCode () {
-        this._setActiveUrl(_pageData.code_url)
+        this._setActiveUrl("code")
     }
 
 	showApp () {
-        this._setActiveUrl(_pageData.view_url)
+        this._setActiveUrl("view")
     }
 
     render () {

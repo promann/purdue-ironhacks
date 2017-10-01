@@ -11,7 +11,7 @@ export default class ScoreItem extends React.Component {
     }
     toggleScores () {
         if (!this.state.opened) {
-            Actions.post("/api/stats.insert", {
+            Actions.post("stats.insert", {
                 event: "score-click",
                 metadata: {
                     hacker_id: this.props.hacker._id
@@ -23,7 +23,7 @@ export default class ScoreItem extends React.Component {
         });
     }
     onLinkClick (e) {
-        Actions.post("/api/stats.insert", {
+        Actions.post("stats.insert", {
             event: e.target.dataset.event,
             metadata: {
                 hacker_id: this.props.hacker._id,

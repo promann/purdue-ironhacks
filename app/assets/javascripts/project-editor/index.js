@@ -4,6 +4,7 @@ import AceEditor from "react-ace";
 import BloggifyActions from "bloggify/http-actions"
 import FolderTree from "react-folder-tree"
 import {Treebeard, decorators} from "react-treebeard"
+import Actions from "bloggify/http-actions"
 
 import 'brace/mode/javascript'
 import 'brace/mode/html'
@@ -109,6 +110,17 @@ export default class App extends React.Component {
     }
 
     openFile (path) {
+
+        if (this.state.readonly) {
+            Actions.post("stats.insert", {
+                event: `open-file`,
+                metadata: {
+                    url: location.href,
+                    file_path: path
+                }
+            });
+        }
+
         this.editor_content = ""
         const prom = BloggifyActions.post("projects.getFile", {
             project_name: this.state.page.project.name,
@@ -118,14 +130,19 @@ export default class App extends React.Component {
                 file_content: data.Body,
                 filepath: path
             })
-        });
+        })
+
         prom.catch(err => {
-            alert(err.message);
-        });
+            alert(err.message)
+        })
+
         return prom
     }
 
     _saveFile (opts = {}) {
+        if (this.state.readonly) {
+            return Promise.reject(new Error("You are in the read-only mode. Cannot save the file."));
+        }
         return BloggifyActions.post("projects.saveFile", {
             project_name: this.state.page.project.name,
             filepath: opts.filepath || this.state.filepath,
