@@ -6,6 +6,39 @@
     flex: 0 0 50%;
 }
 
+.readonly-badge {
+    display: none;
+}
+
+.non-editable {
+
+    & nav, & .editor-controls, & footer, & .preview-column, & .fa-trash  {
+        display: none;
+    }
+
+    & .row.editor-container {
+        top: 0;
+        bottom: 0;
+    }
+
+    & .editor-column {
+        flex: 0 0 100%
+    }
+
+    & .readonly-badge {
+        display: block;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        background: rgba(255, 158, 0, 0.46);
+        z-index: 9;
+        border-radius: 4px;
+        padding: 3px 10px;
+        color: white;
+        border: 1px solid rgba(158, 73, 10, 0.87);
+    }
+}
+
 body {
     background-color: rgb(33, 37, 43);
 }

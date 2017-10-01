@@ -368,3 +368,15 @@ span.countdown {
 .user-username > h3 {
     margin-top: 0;
 }
+
+iframe#view-project-iframe {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    top: 180px;
+    border: none;
+    display: block;
+    height: calc(100% - 230px);
+}

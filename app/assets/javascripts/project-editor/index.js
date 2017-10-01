@@ -49,7 +49,8 @@ export default class App extends React.Component {
             filepath: DEFAULT_FILEPATH,
             file_content: "",
             reloading_preview: true,
-            preview_filepath: "index.html"
+            preview_filepath: "index.html",
+            readonly: !!_pageData.query.readonly
         };
 
        this.reloadFileTree()
@@ -231,6 +232,9 @@ export default class App extends React.Component {
         return (
             <div>
                 <div className="row editor-container">
+                    <div className="readonly-badge">
+                        Read-only
+                    </div>
                     <div className="col file-tree-column">
                         <div className="editor-controls">
                             <button className="btn btn-small" onClick={this.saveFile.bind(this)}>Save (⌘ + S)</button>
@@ -251,8 +255,9 @@ export default class App extends React.Component {
                                     width="100%"
                                     height="100%"
                                     editorProps={{
-                                        $blockScrolling: true,
+                                        $blockScrolling: true
                                     }}
+                                    readOnly={this.state.readonly}
                                 />
                             </div>
                             <div className="col preview-column">
