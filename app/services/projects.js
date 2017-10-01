@@ -178,17 +178,36 @@ exports.create = projectData => {
     if (!projectData.name) {
         throw Bloggify.errors.PROJECT_NAME_IS_EMPTY()
     }
-    return exports.get(projectData).then(existingProject => {
+    let settings = null
+      , user = null
+
+    return Bloggify.models.Settings.getSettings().then(_settings => {
+        settings = _settings
+        return Bloggify.models.User.findOne({
+           username: projectData.username
+        })
+    }).then(_user => {
+        user = _user
+        if (!user) {
+            throw Bloggify.errors.USER_DOES_NOT_EXIST()
+        }
+        projectData.phase = settings.settings.hack_types[user.profile.hack_type].phase
+        return exports.get(projectData)
+    }).then(existingProject => {
         if (existingProject) {
             throw Bloggify.errors.PROJECT_NAME_IS_TAKEN(projectData.name)
         }
         return new Project(projectData).save()
     }).then(project => {
         // Create the template files and the Github repo in parallel
+        user.set(`profile.${projectData.phase}.project_url`, project.readonly_url)
+
         exports.createTemplateFiles(projectData).then(() =>
             project.createGitHubRepository()
         ).then(() =>
             project.syncGitHubRepository("Inital commit.")
+        ).then(() => 
+            user.save()
         ).catch(err => Bloggify.log(err))
         return project
     })

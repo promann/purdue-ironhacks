@@ -1,4 +1,7 @@
-<% include(Bloggify.views.header, { title: "Admin" }) %>
+<% include(Bloggify.views.header, {
+	title: "Preview"
+}) %>
+
 <% include(Bloggify.views.container.start) %>
 
 previewing <%= ctx.params.projectName %>

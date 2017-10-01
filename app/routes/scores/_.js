@@ -39,7 +39,6 @@ module.exports = ctx => {
                 score_novelty: phaseObj.score_novelty,
                 score_total: phaseObj.score_total,
                 project_url: phaseObj.project_url,
-                github_repo_url: phaseObj.github_repo_url,
                 phase: phase
             };
         });

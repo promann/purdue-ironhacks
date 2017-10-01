@@ -22,6 +22,9 @@
     <% if (user) { %>
     <%    bodyClass = "hack-type-" + user.profile.hack_type + " user-hack-id-" + user.profile.hack_id; %>
     <% } %>
+    <% if (typeof customClasses === "string") { %>
+    <%   bodyClass += " " + customClasses; %>
+    <% } %>
     <body class="<%= bodyClass %>">
         <div class="whole-page-wrapper">
             <% include("navigation", { user: user }) %>

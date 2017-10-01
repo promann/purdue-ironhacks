@@ -1,5 +1,8 @@
 <% include(Bloggify.views.user_data) %>
-<% include(Bloggify.views.header, { title: "Edit" }) %>
+<% include(Bloggify.views.header, {
+	title: "Edit",
+	customClasses: ctx.query.readonly ? "non-editable" : ""
+}) %>
 <% include(Bloggify.views.container.start_fluid) %>
 
 <script>
@@ -8,7 +11,8 @@
         user: <%- stringify(user) %>,
         project: <%- stringify(ctx.selected_project) %>,
         csrfToken: "<%= ctx.csrfToken %>",
-        isAdmin: <%- stringify(Bloggify.services.session.isAdmin(user)) %>
+        isAdmin: <%- stringify(Bloggify.services.session.isAdmin(user)) %>,
+        query: <%- stringify(ctx.query) %>
     };
 </script>
 
