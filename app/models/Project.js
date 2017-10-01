@@ -47,6 +47,10 @@ ProjectSchema.virtual("url").get(function () {
 })
 
 
+ProjectSchema.virtual("readonly_url").get(function () {
+   return `/view-project/${Bloggify.services.crypto.encrypt(this.url)}`
+})
+
 ProjectSchema.virtual("local_path").get(function () {
    return path.resolve(Bloggify.options.root, "repos", this.github_repo_name)
 })
