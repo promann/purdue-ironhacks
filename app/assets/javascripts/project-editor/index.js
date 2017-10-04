@@ -45,16 +45,21 @@ decorators.Header = ({style, node}) => {
 export default class App extends React.Component {
     constructor (props) {
         super(props);
+        window.addEventListener("beforeunload", e => {
+            if (!this.saved) {
+                event.returnValue = "You may lose changes..."
+            }
+        })
         this.state = {
             page: window._pageData,
             filepath: DEFAULT_FILEPATH,
             file_content: "",
             reloading_preview: true,
             preview_filepath: "index.html",
-            readonly: !!_pageData.query.readonly
-        };
-
-       this.reloadFileTree()
+            readonly: !!_pageData.query.readonly,
+        }
+        this.saved = true
+        this.reloadFileTree()
 
         this.editor_content = "";
         this.openFile(this.state.filepath);
@@ -62,7 +67,7 @@ export default class App extends React.Component {
         window.addEventListener("keydown", event => {
             if (event.ctrlKey || event.metaKey) {
                 switch (String.fromCharCode(event.which).toLowerCase()) {
-                    case 's':
+                    case "s":
                         event.preventDefault();
                         this.saveFile()
                         break;
@@ -110,7 +115,7 @@ export default class App extends React.Component {
     }
 
     openFile (path) {
-
+        if (this.maybeNotSaved()) { return }
         if (this.state.readonly) {
             Actions.post("stats.insert", {
                 event: `open-file`,
@@ -140,6 +145,9 @@ export default class App extends React.Component {
     }
 
     _saveFile (opts = {}) {
+        if (this.saved) {
+            return Promise.resolve()
+        }
         if (this.state.readonly) {
             return Promise.reject(new Error("You are in the read-only mode. Cannot save the file."));
         }
@@ -147,12 +155,15 @@ export default class App extends React.Component {
             project_name: this.state.page.project.name,
             filepath: opts.filepath || this.state.filepath,
             content: this.editor_content
+        }).then(() => {
+            this.saved = true
         })
     }
 
     saveFile (opts = {}) {
         this.setState({
             reloading_preview: true
+          , file_content:this.editor_content
         })
         const prom = this._saveFile(opts).then(() => {
             this.reloadPreview()
@@ -163,7 +174,15 @@ export default class App extends React.Component {
         return prom
     }
 
+    maybeNotSaved () {
+        if (!this.saved) {
+            alert("Please save your changes first.")
+            return true
+        }
+    }
+
     newFile () {
+        if (this.maybeNotSaved()) { return }
         const filepath = prompt("Enter the new file name. You can use slashes for creating files in directories.");
         if (!filepath) {
             return
@@ -179,6 +198,7 @@ export default class App extends React.Component {
     }
 
     commitProject () {
+        if (this.maybeNotSaved()) { return }
         const commit_message = prompt("Commit message");
         if (!commit_message) {
             return
@@ -192,6 +212,7 @@ export default class App extends React.Component {
     onEditorContentChange (content) {
         this.editor_content = content;
         this.maybeTriggerSave()
+        this.saved = false
     }
 
     renderFolderTree () {
@@ -228,7 +249,6 @@ export default class App extends React.Component {
             return <Treebeard
                 data={this.state.files}
             />
-
         }
         return <p>Loading...</p>;
     }
