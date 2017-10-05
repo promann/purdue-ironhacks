@@ -62,15 +62,29 @@ exports.scores = () => {
             event: "click-project-url"
         }, {
             event: "score-click"
+        }, {
+            event: "show-code"
+        }, {
+            event: "show-view"
+        }, {
+            event: "open-file"
         }]
     }).stream();
 
     readStream.on("data", doc => {
         doc = doc.toObject()
         doc.created_at = moment(doc.created_at)
+        if (doc.metadata.url) {
+            doc.project_username = (doc.metadata.url.match(/\/users\/([^/]*)\//) || [])[1]    
+        }
+        
         readStream.pause();
         Promise.all([
-            User.findOne({ _id: doc.metadata.hacker_id })
+            User.findOne(doc.project_username ? {
+                username: doc.project_username
+            } : { 
+                _id: doc.metadata.hacker_id
+            })
           , User.findOne({ _id: doc.actor })
         ]).then(response => {
             const hacker = response[0].toObject()
@@ -82,12 +96,14 @@ exports.scores = () => {
                 click_time: doc.created_at.format("hh:mm a"),
                 event_type: doc.event,
                 url: doc.metadata.url || "",
+                file_path: doc.metadata.file_path || "",
                 phase: doc.metadata.phase,
                 hacker_username: hacker.username,
                 hacker_email: hacker.email,
                 clicker_username: actor.username,
                 clicker_email: actor.email
             });
+
             readStream.resume();
         }).catch(e => {
             console.error(e.stack);
