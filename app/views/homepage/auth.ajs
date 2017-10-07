@@ -1,14 +1,4 @@
 <h1 class="text-center">
-    <% var hType = ctx.user.profile.hack_type; %>
-    <% var hTypeName = hType.charAt(0).toUpperCase() + hType.slice(1); %>
-    <% var now = new Date() %>
-    <% var thisYear = now.getFullYear() %>
-    <% if (hType === "unal") { %>
-        Purdue – UNAL Gold IronHacks <%= thisYear %>
-    <% } else if (hType === "purdue") { %>
-        Purdue Gold IronHacks Fall <%= thisYear %>
-    <% } else if (hType === "bogota") { %>
-        Purdue – UNAL Gold IronHacks <%= thisYear %>
-    <% } %>
+    <%= ctx.hackLabel %>
 </h1>
 <% include("../posts") %>
