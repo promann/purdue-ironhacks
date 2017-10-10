@@ -45,13 +45,15 @@ exports.post = ctx => {
         hType.start_date = new Date(hType.start_date);
         hType.hack_start_date = new Date(hType.hack_start_date);
         hType.next_phase_date = new Date(hType.next_phase_date);
-        if (isNaN(hType.start_date) || isNaN(hType.hack_start_date) || isNaN(hType.next_phase_date)) {
+        hType.show_results_date = new Date(hType.show_results_date);
+        if (isNaN(hType.start_date) || isNaN(hType.hack_start_date) || isNaN(hType.next_phase_date) || isNaN(hType.show_results_date)) {
             foundInvalidDate = true;
         }
     });
 
     if (foundInvalidDate) {
-        return ctx.apiError(new Error("Invalid date. Make sure the format is correct."));
+        ctx.apiError(new Error("Invalid date. Make sure the format is correct."));
+        return false;
     }
 
     return Bloggify.models.Settings.setSettings({

@@ -26,7 +26,15 @@ module.exports = ctx => {
         data.users = users
         return Bloggify.models.Settings.getSettings()
     }).then(options => {
-        const phase = options.settings.hack_types[ctx.user.profile.hack_type].phase;
+        const hackType = options.settings.hack_types[ctx.user.profile.hack_type]
+            , phase = hackType.phase
+
+        if (new Date() < hackType.show_results_date) {
+            return {
+                phase,
+                users: []
+            }
+        } 
         data.users = data.users.map((u, i) => {
             u = u.toObject();
             u.username = `Hacker ${i + 1}`;
@@ -45,7 +53,7 @@ module.exports = ctx => {
         shuffle(data.users);
         return {
             users: data.users,
-            phase: phase
+            phase
         };
     });
 };

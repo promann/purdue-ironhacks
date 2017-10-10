@@ -42,6 +42,7 @@ span.user-label {
     font-family: Monaco, monospace;
 }
 
+/*
 body.hack-type-unal nav,
 body.hack-type-unal footer,
 body.hack-type-unal .btn {
@@ -75,6 +76,22 @@ body.hack-type-purdue h1,
 body.hack-type-purdue h2,
 body.hack-type-purdue h3,
 body.hack-type-purdue h4 {
+    color: #f39c12;
+}*/
+
+body nav,
+body footer {
+    background: #f39c12;
+}
+
+body .btn {
+    background: #e67e22;
+}
+
+body h1,
+body h2,
+body h3,
+body h4 {
     color: #f39c12;
 }
 

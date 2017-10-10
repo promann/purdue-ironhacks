@@ -14,7 +14,7 @@
                 var HACK_LABELS = {
                     unal: "Purdue – UNAL Gold IronHacks " + thisYear,
                     purdue: "Purdue Gold IronHacks Fall " + thisYear,
-                    bogota: "Purdue – UNAL Gold IronHacks " + thisYear
+                    bogota: "Purdue – Gold IronHacks Fall" + thisYear
                 }
             %>
             <% ctx.hackLabel = HACK_LABELS[hType] %>
