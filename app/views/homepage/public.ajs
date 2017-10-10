@@ -498,11 +498,6 @@
                                 </a>
                             </div>
                             <div class="col-md-12 single-item2">
-                                <a href="http://www.in.gov/isac/" target="_blank">
-                                    <img src="<%= _public("/images/partners/iac-logo.png") %>" />
-                                </a>
-                            </div>
-                            <div class="col-md-12 single-item2">
                                 <a href="http://purduehackers.com/" target="_blank">
                                     <img src="<%= _public("/images/partners/purdue-hackers.jpg") %>" />
                                 </a>
@@ -515,11 +510,6 @@
                             <div class="col-md-12 single-item2 hide">
                                 <a href="https://polytechnic.purdue.edu/" target="_blank">
                                     <img src="<%= _public("/images/partners/polytechnic-black-gold.png") %>" />
-                                </a>
-                            </div>
-                            <div class="col-md-12 single-item2">
-                                <a href="https://www.platzi.com/" target="_blank">
-                                    <img src="<%= _public("/images/partners/platzi.png") %>" />
                                 </a>
                             </div>
                             <div class="col-md-12 single-item2">

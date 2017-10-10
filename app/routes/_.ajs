@@ -17,9 +17,6 @@
         <a href="http://www.nsf.gov/" target="_blank">
             <img src="<%= _public("/images/partners/nsf.jpg") %>" />
         </a>
-        <a href="http://www.in.gov/isac/" target="_blank">
-            <img src="<%= _public("/images/partners/iac-logo.png") %>" />
-        </a>
         <a href="http://purduehackers.com/" target="_blank">
             <img src="<%= _public("/images/partners/purdue-hackers.jpg") %>" />
         </a>
@@ -28,9 +25,6 @@
         </a>
         <a href="https://polytechnic.purdue.edu/" target="_blank" class="hide">
             <img src="<%= _public("/images/partners/polytechnic-black-gold.png") %>" />
-        </a>
-        <a href="https://www.platzi.com/" target="_blank">
-            <img src="<%= _public("/images/partners/platzi.png") %>" />
         </a>
         <a href="http://unal.edu.co/" target="_blank">
             <img src="<%= _public("/images/partners/universidad-nacional-de-colombia.png") %>" />
