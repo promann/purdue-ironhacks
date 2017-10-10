@@ -1,9 +1,19 @@
-// Disable the editor if the forum didn't start yet
+
 exports.use = (ctx, cb) => {
-	if (new Date() < Bloggify.models.Settings.HACK_TYPES[ctx.user.profile.hack_type].start_date) {
-		ctx.redirect("/timeline")
-		return
+
+    const hackType = Bloggify.models.Settings.HACK_TYPES[ctx.user.profile.hack_type]
+        , isOwner = ctx.selected_user.username === ctx.user.username
+
+	if (
+        // Disable the editor if the forum didn't start yet
+        new Date() < hackType.start_date
+
+		// The results page is not yet visible and another user is trying to access the project
+        || (new Date() < hackType.show_results_date && !isOwner)
+    ) {
+        return ctx.redirect("/timeline")
 	}
+
 	cb()
 }
 
