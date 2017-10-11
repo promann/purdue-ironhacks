@@ -63,8 +63,6 @@ exports.topicCreated = topic => {
             emails.splice(authorIndex, 1);
         }
 
-        console.log(emails);
-
         if (!Bloggify.production) {
             return;
         }
