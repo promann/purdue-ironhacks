@@ -37,7 +37,6 @@ const HACK_TYPES = {
       , subforums_count: 0
     }
 }
-HACK_TYPES.platzi = HACK_TYPES.unal
 
 SettingsSchema.statics.setSettings = data => {
     return Settings.getSettings().then(settings => {
@@ -126,7 +125,7 @@ const updateSettingsInternally = () => {
             thisHackType.next_phase_date = hType.next_phase_date
             thisHackType.show_results_date = hType.show_results_date
             thisHackType.subforums_count = hType.subforums_count
-            debugger
+
             if (new Date() > thisHackType.start_date) {
                 if (thisHackType.startSchedule) {
                     thisHackType.startSchedule.cancel()
