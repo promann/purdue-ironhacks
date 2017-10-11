@@ -12,7 +12,8 @@ module.exports = ctx => {
 
     return Bloggify.models.Topic.getTopic(filters).then(topic => {
        if (topic.slug !== ctx.params.slug) {
-           return ctx.redirect(topic.url);
+          ctx.redirect(topic.url);
+          return false;
        }
        return Bloggify.models.Topic.populateTopic(topic.toObject())
     }).then(topic => {

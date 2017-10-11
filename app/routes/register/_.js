@@ -51,7 +51,8 @@ exports.get = ctx => {
     if (user.username && surveyLink) {
         const redirectTo =  `${Bloggify.options.domain}/register?uid=${user.password}`;
         if (process.argv.includes("--bypass-survey")) {
-            return ctx.redirect(redirectTo);
+            ctx.redirect(redirectTo);
+            return false
         }
         const qsParams = qs.stringify({
             redirect_to: redirectTo

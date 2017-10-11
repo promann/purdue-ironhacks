@@ -1,5 +1,6 @@
 exports.get = ctx => {
     ctx.redirect(ctx.url.href.split("/").slice(0, -1).join("/"))
+    return false
 }
 
 exports.post = ctx => {

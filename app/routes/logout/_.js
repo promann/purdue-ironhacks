@@ -1,4 +1,5 @@
 exports.post = ctx => {
-    ctx.destroySession();
-    ctx.redirect("/");
+    ctx.destroySession()
+    ctx.redirect("/")
+    return false
 };
