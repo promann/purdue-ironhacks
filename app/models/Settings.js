@@ -77,18 +77,16 @@ const assignHackIdsToUsers = hType => {
 
     usersCursor.on("data", cDoc => {
         usersCursor.pause()
-        hType.getHackId(uHackId => {
-            Bloggify.models.User.update({
+        hType.getHackId().then(uHackId => {
+            return Bloggify.models.User.findOne({
                 _id: cDoc._id
-            }, {
-                profile: {
-                    hack_id: uHackId
-                }
-            }, (err, data) => {
-                if (err) { Bloggify.log(err); }
-                usersCursor.resume()
+            }).then(user => {
+                user.set("profile.hack_id", uHackId)
+                return user.save()
             })
-        })
+        }).then(() => {
+            usersCursor.resume()
+        }).catch(err => Bloggify.log(err))
     })
 
     usersCursor.on("error", err => {
@@ -128,6 +126,7 @@ const updateSettingsInternally = () => {
             thisHackType.next_phase_date = hType.next_phase_date
             thisHackType.show_results_date = hType.show_results_date
             thisHackType.subforums_count = hType.subforums_count
+            debugger
             if (new Date() > thisHackType.start_date) {
                 if (thisHackType.startSchedule) {
                     thisHackType.startSchedule.cancel()
