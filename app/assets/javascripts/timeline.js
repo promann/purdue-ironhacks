@@ -4,19 +4,8 @@ import CountdownTimer from "./timer";
 
 export default class App extends React.Component {
     render () {
-        const tutorialLink = _pageData.tutorial_link;
-        let timelineTitle = ucFirst(_pageData.user.profile.hack_type);
-        switch (timelineTitle) {
-            case "Bogota":
-                timelineTitle = `Purdue – UNAL Gold IronHacks ${new Date().getFullYear()}`;
-                break;
-            case "UNAL":
-                timelineTitle = `Purdue – UNAL Gold IronHacks ${new Date().getFullYear()}`;
-                break;
-            case "Purdue":
-                timelineTitle = `Purdue Gold IronHacks Fall ${new Date().getFullYear()}`;
-                break;
-        }
+        const tutorialLink = _pageData.tutorial_link
+        let timelineTitle = _pageData.hack_label
 
         let tutorialButton = null;
         if (tutorialLink) {
