@@ -1,6 +1,5 @@
 import React from "react";
 import TopicsList from "./topics-list";
-import io from "socket.io-client";
 import util from "../util";
 import Actions from "bloggify/actions"
 
@@ -28,17 +27,17 @@ export default class App extends React.Component {
             this.setState({ topics: sticky.concat(nonSticky) });
         };
 
-        this.socket = io.connect("/topic");
-        this.socket.on("created", topic => {
+        Actions.ws("topic").on("created", topic => {
             const topics = this.state.topics;
             util.normalizeTopic(topic)
+            
             if ([topic.metadata.hack_type, topic.metadata.hack_id].join(":") !== [_pageData.user.profile.hack_type, _pageData.user.profile.hack_id].join(":")) {
-                return;
+                return
             }
+
             topics.unshift(topic);
             updateTopics(topics);
-        });
-        this.socket.on("updated", topic => {
+        }).on("updated", topic => {
             const topics = this.state.topics;
             for (let t of topics) {
                 if (t._id === topic._id) {
@@ -47,7 +46,7 @@ export default class App extends React.Component {
                     return;
                 }
             }
-        });
+        })
 
         Actions.get("posts.list")
           .then(topics => {

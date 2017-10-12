@@ -1,7 +1,6 @@
 const Email = Bloggify.require("sendgrid");
 const uniq = require("array-unique");
 const User = Bloggify.models.User;
-const SocketIO = require("socket.io")
 
 const FROM_EMAIL = "noreply@ironhacks.com";
 const FROM_NAME = "IronHacks";
@@ -84,11 +83,11 @@ exports.topicCreated = topic => {
 const Notifications = exports
 
 Bloggify.on("topic:updated", topic => {
-    Bloggify.wsNamespaces.topic.emit("updated", topic)
+    TopicWS.emit("updated", topic)
 })
 
 Bloggify.on("topic:created", topic => {
-    Bloggify.wsNamespaces.topic.emit("created", topic)
+    TopicWS.emit("created", topic)
     Notifications.topicCreated(topic)
 })
 
@@ -115,18 +114,14 @@ Bloggify.on("comment:created", comment => {
     })
 })
 
-Bloggify.websocket = SocketIO(Bloggify.server.server)
-Bloggify.wsNamespaces = {
-    topic: Bloggify.websocket.of("/topic")
-}
-
-Bloggify.wsNamespaces.topic.use((socket, next) => {
-    Bloggify.server.session(socket.handshake, {}, next)
-})
-
-Bloggify.wsNamespaces.topic.use((socket, next) => {
-    if (!Object(socket.handshake.session._sessionData).user) {
-        return next(new Error("You are not authenticated."))
+const TopicWS = Bloggify.actions.ws("topic", [
+    (socket, next) => {
+        Bloggify.server.session(socket.handshake, {}, next)
+    },
+    (socket, next) => {
+        if (!Object(socket.handshake.session._sessionData).user) {
+            return next(new Error("You are not authenticated."))
+        }
+        next()
     }
-    next()
-})
+])

@@ -3,21 +3,21 @@ import TopicsListItem from "./topics-list-item"
 import TopicComments from "./comments/list"
 import CommentForm from "./comments/form"
 import moment from "moment"
-import io from "socket.io-client"
 import util from "../util"
 import ReactMarkdown from "react-markdown"
-import Actions from "bloggify/http-actions"
+import Actions from "bloggify/actions"
 
 export default class App extends React.Component {
     constructor (props) {
         super(props);
         const topic = util.normalizeTopic(window._pageData.topic);
-        this.socket = io.connect("/topic");
-        this.socket.on("updated", topic => {
-            if (this.state.topic._id !== topic._id) { return; }
-            util.normalizeTopic(topic);
-            this.setState({ topic });
-        });
+        
+        Actions.ws("topic").on("updated", topic => {
+            if (this.state.topic._id !== topic._id) { return }
+            util.normalizeTopic(topic)
+            this.setState({ topic })
+        })
+
         this.state = {
             topic: topic,
             user: window._pageData.user

@@ -118,6 +118,7 @@ const updateSettingsInternally = () => {
             Bloggify.log("Settings not found. Trying again in a second.")
             return setTimeout(updateSettingsInternally, 1000)
         }
+
         forEach(doc.settings.hack_types, (hType, name) => {
             let thisHackType = HACK_TYPES[name]
             thisHackType.start_date = hType.start_date

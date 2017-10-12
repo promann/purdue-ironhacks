@@ -41,3 +41,5 @@ Bloggify.require("github-login", GitHub => {
         })
     })
 })
+
+process.on("unhandledRejection", err => console.error(err.stack))
