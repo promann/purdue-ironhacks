@@ -12,10 +12,44 @@ exports.insert = ctx => {
 
     ev.metadata.user_agent = ctx.header("user-agent")
 
-    return Bloggify.models.Settings.getSettings().then(settings => {
-        ev.metadata.phase = settings.settings.hack_types[user.profile.hack_type].phase
-        return Bloggify.models.Stats.record(ev)
-    }).then(() =>
-        ({ success: true })
-    )
+    return Bloggify.services.tracking.record(user, ev)
 }
+
+
+const TrackingWS = Bloggify.actions.ws("tracking", [
+    (socket, next) => {
+        Bloggify.server.session(socket.handshake, {}, next)
+    },
+    (socket, next) => {
+        socket.user = Object(socket.handshake.session._sessionData).user
+        if (!socket.user) {
+            return next(new Error("You are not authenticated."))
+        }
+        next()
+    }
+])
+
+TrackingWS.on("connect", socket => {
+    const openPageDate = new Date()
+        , ctx = socket.handshake
+        , user = socket.user
+        , url = Bloggify.services.crypto.decrypt(ctx.headers.referer.split("/").slice(-1)[0])
+    
+    if (!url) {
+        return
+    }
+    
+    socket.on("disconnect", () => {
+        const closePageDate = new Date()
+            , ev = {
+                actor: user._id,
+                event: "view-project-time",
+                metadata: {
+                    url,
+                    time_open: (closePageDate - openPageDate) / 1000,
+                    user_agent: ctx.headers["user-agent"]
+                }
+              }
+        Bloggify.services.tracking.record(user, ev)
+    })
+})

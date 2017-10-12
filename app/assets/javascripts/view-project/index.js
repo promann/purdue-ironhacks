@@ -1,11 +1,11 @@
 import React from "react"
-import Actions from "bloggify/http-actions"
+import Actions from "bloggify/actions"
 
 export default class ViewProject extends React.Component {
     constructor (props) {
         super(props);
         this.state = {}
-
+        Actions.ws("tracking")
     }
 
     _setActiveUrl (urlType) {

@@ -68,6 +68,8 @@ exports.scores = () => {
             event: "show-view"
         }, {
             event: "open-file"
+        }, {
+            event: "view-project-time"
         }]
     }).stream();
 
@@ -87,19 +89,20 @@ exports.scores = () => {
             })
           , User.findOne({ _id: doc.actor })
         ]).then(response => {
-            const hacker = response[0].toObject()
+            const hacker = (response[0] && response[0].toObject()) || {}
                 , actor = response[1].toObject()
                 ;
 
             csvStream.write({
                 click_date: doc.created_at.format("YYYY-MM-DD"),
                 click_time: doc.created_at.format("hh:mm a"),
+                time_open: doc.metadata.time_open || "",
                 event_type: doc.event,
                 url: doc.metadata.url || "",
                 file_path: doc.metadata.file_path || "",
                 phase: doc.metadata.phase,
-                hacker_username: hacker.username,
-                hacker_email: hacker.email,
+                hacker_username: hacker.username || "",
+                hacker_email: hacker.email || "",
                 clicker_username: actor.username,
                 clicker_email: actor.email
             });

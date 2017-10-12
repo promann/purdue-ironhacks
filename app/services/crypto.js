@@ -14,9 +14,13 @@ class Crypto {
 
   static decrypt (text) {
     const decipher = crypto.createDecipher(algorithm, password)
-    let dec = decipher.update(text, "hex", "utf8")
-    dec += decipher.final("utf8");
-    return dec;
+    try {
+      let dec = decipher.update(text, "hex", "utf8")
+      dec += decipher.final("utf8");
+      return dec;  
+    } catch (err) {
+      return null
+    }
   }
 
   static encryptProjectFullName (username, projectName) {
