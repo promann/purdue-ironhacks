@@ -175,11 +175,14 @@ exports.get = data => {
 
 exports.create = projectData => {
     projectData.name = slug(projectData.name).trim()
+    
     if (!projectData.name) {
         throw Bloggify.errors.PROJECT_NAME_IS_EMPTY()
     }
+
     let settings = null
       , user = null
+      , project = null
 
     return Bloggify.models.Settings.getSettings().then(_settings => {
         settings = _settings
@@ -198,17 +201,17 @@ exports.create = projectData => {
             throw Bloggify.errors.PROJECT_NAME_IS_TAKEN(projectData.name)
         }
         return new Project(projectData).save()
-    }).then(project => {
+    }).then(_project => {
+        project = _project
         // Create the template files and the Github repo in parallel
         user.set(`profile.${projectData.phase}.project_url`, project.readonly_url)
 
-        exports.createTemplateFiles(projectData).then(() =>
-            project.createGitHubRepository()
-        ).then(() =>
-            project.syncGitHubRepository("Inital commit.")
-        ).then(() => 
-            user.save()
-        ).catch(err => Bloggify.log(err))
-        return project
-    })
+        return exports.createTemplateFiles(projectData)
+    }).then(() =>
+        project.createGitHubRepository()
+    ).then(() =>
+        project.syncGitHubRepository("Inital commit.")
+    ).then(() => 
+        user.save()
+    ).then(() => project)
 }
