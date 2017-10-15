@@ -131,6 +131,7 @@ export default class App extends React.Component {
             project_name: this.state.page.project.name,
             filepath: path
         }).then(data => {
+            this.editor_content = data.Body
             this.setState({
                 file_content: data.Body,
                 filepath: path
@@ -187,6 +188,7 @@ export default class App extends React.Component {
         if (!filepath) {
             return
         }
+        this.saved = false
         this.editor_content = "";
         this.saveFile({
             filepath
