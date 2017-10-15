@@ -1,5 +1,4 @@
 const paths2tree = require("paths2tree")
-    , fs = require("fs")
     , forEach = require("iterate-object")
     , sameTime = require("same-time")
     , bindy = require("bindy")
