@@ -1,9 +1,11 @@
 const paths2tree = require("paths2tree")
+    , fs = require("fs")
     , forEach = require("iterate-object")
     , sameTime = require("same-time")
     , bindy = require("bindy")
     , { buildFilePath, s3, S3_BUCKET, PATH_PPROJECTS } = require("../common/aws-s3")
     , util = require("util")
+    , AwsFsCache = require("../common/s3-cache")
     , setTimeoutAsync = duration => {
         return new Promise(res => {
             setTimeout(res, duration)
@@ -24,7 +26,8 @@ exports.saveFile = ["post", ctx => {
         Body: ctx.data.content
     }
 
-    return s3.putObjectAsync(params)
+    s3.putObjectAsync(params).catch(err => Bloggify.log(err))
+    return AwsFsCache.saveFile(params.Key, params.Body)
 }]
 
 exports.deleteFile = ["post", ctx => {
@@ -37,7 +40,8 @@ exports.deleteFile = ["post", ctx => {
         Key: buildFilePath(ctx.data)
     }
 
-    return s3.deleteObjectAsync(params)
+    s3.deleteObjectAsync(params).catch(err => Bloggify.log(err))
+    return AwsFsCache.deleteFile(filePath)
 }]
 
 exports.getFile = ["post", ctx => {
@@ -46,9 +50,15 @@ exports.getFile = ["post", ctx => {
         Key: buildFilePath(ctx.data)
     }
 
-    return s3.getObjectAsync(params).then(data => {
-        data.Body = data.Body.toString("utf-8")
-        return data
+    return AwsFsCache.getFile(params.Key).then(cont => {
+        if (!cont) {
+            return s3.getObjectAsync(params).then(data => {
+                data.Body = data.Body.toString("utf-8")
+                return data
+            })
+        }
+        AwsFsCache.saveFile(params.Key, cont)
+        return { Body: cont }
     })
 }]
 
