@@ -74,7 +74,7 @@ exports.listFiles = ["post", ctx => {
                 }
             })
         })
-        return tree
+        return setTimeoutAsync(0).then(() => tree)
     }).then(tree => {
         return (tree.children || [{}])[0]
     })
