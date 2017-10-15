@@ -40,8 +40,8 @@ exports.deleteFile = ["post", ctx => {
         Key: buildFilePath(ctx.data)
     }
 
-    s3.deleteObjectAsync(params).catch(err => Bloggify.log(err))
-    return AwsFsCache.deleteFile(filePath)
+    AwsFsCache.deleteFile(params.Key).catch(err => Bloggify.log(err))
+    return s3.deleteObjectAsync(params)
 }]
 
 exports.getFile = ["post", ctx => {
@@ -54,6 +54,7 @@ exports.getFile = ["post", ctx => {
         if (!cont) {
             return s3.getObjectAsync(params).then(data => {
                 data.Body = data.Body.toString("utf-8")
+                AwsFsCache.saveFile(params.Key, data.Body).catch(err => Bloggify.log(err))
                 return data
             })
         }

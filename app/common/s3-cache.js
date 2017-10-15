@@ -28,7 +28,7 @@ class AwsFsCache {
     static deleteFile(filePath) {
         filePath = AwsFsCache.getAbsPath(filePath)
         return new Promise((res, rej) => {
-            fs.unlink(filePath, err => err ? rej(err) : res())
+            fs.unlink(filePath, () => res())
         })
     }
 }
