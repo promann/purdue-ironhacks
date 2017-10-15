@@ -187,6 +187,7 @@ export default class App extends React.Component {
         if (!filepath) {
             return
         }
+        this.saved = false
         this.editor_content = "";
         this.saveFile({
             filepath
