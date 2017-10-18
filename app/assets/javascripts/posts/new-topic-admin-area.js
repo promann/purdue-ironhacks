@@ -19,7 +19,8 @@ export default class TopicEditor extends React.Component {
     render () {
         const hackTypes = _pageData.hackTypes;
         const $selectOpts = Object.keys(hackTypes).map((hackTypeName, index) => {
-            return <option key={index} data-subforums={hackTypes[hackTypeName].subforums} value={hackTypeName}>{uFirst(hackTypeName)}</option>
+            const labelHT = hackTypes[hackTypeName].label
+            return <option key={index} data-subforums={hackTypes[hackTypeName].subforums} value={hackTypeName}>{labelHT}</option>
         });
 
         const $select = <select name="hack_type" defaultValue={this.state.selectedHackType} onChange={this.onHackTypeChange.bind(this)}>
