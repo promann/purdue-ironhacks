@@ -1,6 +1,8 @@
 const Email = Bloggify.require("sendgrid");
 const uniq = require("array-unique");
 const User = Bloggify.models.User;
+const Entities = require("html-entities").XmlEntities;
+const entities = new Entities();
 
 const FROM_EMAIL = "noreply@ironhacks.com";
 const FROM_NAME = "IronHacks";
@@ -38,11 +40,11 @@ exports.commentPosted = comment => {
       , subject: "A new comment was posted on ‘" + comment.topic.title + "’"
       , template_id: EMAIL_TEMPLATES.NEW_COMMENT
       , substitutions: {
-            "-message-": comment.body,
+            "-message-": entities.encode(htmlcomment.body),
             "-commentAuthorUsername-": comment.author.username,
             "-commentAuthorUrl-": `${Bloggify.options.domain}/users/${comment.author.username}`,
             "-topicUrl-": `${Bloggify.options.domain}${comment.topic.url}`,
-            "-topicTitle-": comment.topic.title
+            "-topicTitle-": entities.encode(comment.topic.title)
         }
     }, log);
 };
@@ -76,7 +78,7 @@ exports.topicCreated = topic => {
           , template_id: EMAIL_TEMPLATES.NEW_TOPIC
           , substitutions: {
                 "-topicUrl-": `${Bloggify.options.domain}${topic.url}`,
-                "-topicTitle-": topic.title
+                "-topicTitle-": entities.encode(topic.title)
             }
         }, log);
     });
