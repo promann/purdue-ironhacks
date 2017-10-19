@@ -31,7 +31,8 @@ exports.commentPosted = comment => {
     }
 
     Email.send({
-        to_email: emails
+        bcc_email: emails
+      , to_email: "purdue@bloggify.org"
       , from_email: FROM_EMAIL
       , from_name: FROM_NAME
       , subject: "A new comment was posted on ‘" + comment.topic.title + "’"
@@ -67,7 +68,8 @@ exports.topicCreated = topic => {
         }
 
         Email.send({
-            to_email: emails
+            bcc_email: emails
+          , to_email: "purdue@bloggify.org"
           , from_email: FROM_EMAIL
           , from_name: FROM_NAME
           , subject: "A new topic was posted: ‘" + topic.title + "’"
@@ -96,22 +98,20 @@ Bloggify.on("comment:posted", comment => {
 })
 
 Bloggify.on("comment:created", comment => {
-    Bloggify.models.Topic.getPopulated(comment.topic, (err, topic) => {
-        if (err) { return Bloggify.log(err); }
-        User.get({
+    Bloggify.models.Topic.getPopulated(comment.topic, {
+        userFields: {}
+    }).then(topic => {
+        return User.getUser({
             filters: {
                 _id: comment.author
             }
-        }, (err, author) => {
-            if (err) { return Bloggify.log(err); }
+        }).then(author => {
             comment = comment.toObject()
             comment.author = author.toObject()
             comment.topic = topic
             Bloggify.emit("comment:posted", comment)
         })
-    }, {
-        userFields: {}
-    })
+    }).catch(err => Bloggify.log(err))
 })
 
 const TopicWS = Bloggify.actions.ws("topic", [
