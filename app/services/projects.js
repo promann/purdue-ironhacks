@@ -137,7 +137,7 @@ exports.syncGitHubRepository = (project, commitMessage) => {
     ).then(() =>
         // 4. Download the files from S3
         project.downloadFiles(repoPath)
-    ).then(() => 
+    ).then(() =>
         // 5. Check if there are changes to commit
         execa("git", ["status", "--porcelain"], { cwd: repoPath })
     ).then(status => {
@@ -175,7 +175,7 @@ exports.get = data => {
 
 exports.create = projectData => {
     projectData.name = slug(projectData.name).trim()
-    
+
     if (!projectData.name) {
         throw Bloggify.errors.PROJECT_NAME_IS_EMPTY()
     }
@@ -211,7 +211,19 @@ exports.create = projectData => {
         project.createGitHubRepository()
     ).then(() =>
         project.syncGitHubRepository("Inital commit.")
-    ).then(() => 
+    ).then(() =>
         user.save()
     ).then(() => project)
+}
+
+exports.destroyProject = project => {
+    const repoName = project.github_repo_name
+    // TODO
+    return project.remove().then(() => {
+        return GitHub.getAsync(`orgs/${process.env.GITHUB_PROJECTS_ORGANIZATION}/repos`, {
+            data: {
+                name: repoName,
+            }
+        })
+    })
 }
