@@ -266,6 +266,15 @@ export default class App extends React.Component {
         })
     }
 
+    renderLeftBoottomControls () {
+        const completeSurveyLink = "https://purdue.qualtrics.com/jfe/form/SV_bKmRJnCYfb9rRnn";
+        if (completeSurveyLink) {
+            return <div className="left-bottom-controls">
+                <a className="btn btn-small" href="{completeSurveyLink}">If this is the last commit that you plan to do for this phase, please complete the survey here.</a>
+            </div>
+        }
+    }
+
     render () {
         const previewFileUrl = `/users/${_pageData.project.username}/projects/${_pageData.project.name}/preview/${this.state.preview_filepath}`
         return (
@@ -281,6 +290,7 @@ export default class App extends React.Component {
                             <button className="btn btn-small" onClick={this.newFile.bind(this)}>New file</button>
                         </div>
                         {this.renderFolderTree()}
+                        {this.renderLeftBoottomControls()}
                     </div>
                     <div className="col">
                         <div className="row">
