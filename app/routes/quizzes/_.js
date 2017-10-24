@@ -5,6 +5,9 @@ const quizzes = [
     ["HTML & CSS", "https://purdue.qualtrics.com/SE/?SID=SV_a46jpxyHH2MjW9n&Q_JFE=0", "html_css"]
   , ["JavaScript & jQuery", "https://purdue.qualtrics.com/SE/?SID=SV_aW2ARacRQFARoy1&Q_JFE=0", "javascript_jquery"]
   , ["d3.js", "https://purdue.qualtrics.com/SE/?SID=SV_2oxRgzb4FB8wo4t&Q_JFE=0", "d3"]
+  , ["Design Elements", "https://purdue.qualtrics.com/jfe/form/SV_esbe7BxRTJdCIM5", "design_elements"]
+  , ["Design Principles", "https://purdue.qualtrics.com/jfe/form/SV_6WDUSwWGkM8udo1", "design_principles"]
+  , ["Usability Heuristics", "https://purdue.qualtrics.com/jfe/form/SV_eESwNO3Kxe1DJiJ", "usability_heuristics"]
 ];
 
 // Map the quizzes labels to the data
