@@ -9,13 +9,8 @@
 <form method="post">
     <%- ctx.csrfInput %>
     <button class="btn" type="submit">Yes, delete it!</button>
-    <button class="btn">No</button>
+    <a class="btn" href="<%= ctx.selected_project.url %>">No</a>
 </form>
-
-
-<a href="<%= ctx.pathname %>/preview/index.html" class="btn">View</a>
-<a href="<%= ctx.pathname %>/delete" class="btn">Delete</a>
 
 <% include(Bloggify.views.container.end) %>
 <% include(Bloggify.views.footer) %>
-

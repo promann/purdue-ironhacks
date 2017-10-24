@@ -230,12 +230,7 @@ exports.create = projectData => {
 
 exports.destroyProject = project => {
     const repoName = project.github_repo_name
-    // TODO
-    return project.remove().then(() => {
-        return GitHub.getAsync(`orgs/${process.env.GITHUB_PROJECTS_ORGANIZATION}/repos`, {
-            data: {
-                name: repoName,
-            }
-        })
-    })
+    // TODO Maybe delete the GitHub repo and AWS S3 bucket
+    //      But let's keep them for now.
+    return project.remove()
 }
