@@ -112,3 +112,10 @@ body.hack-type-bogota nav, body.hack-type-bogota footer, body.hack-type-purdue n
 div[data-radium] > div:not([data-type='file-text']):first-of-type {
     display: none !important;
 }
+
+.left-bottom-controls {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    width: 160px
+}

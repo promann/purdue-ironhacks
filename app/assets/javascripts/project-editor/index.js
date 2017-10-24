@@ -267,12 +267,23 @@ export default class App extends React.Component {
     }
 
     renderLeftBoottomControls () {
-        const completeSurveyLink = "https://purdue.qualtrics.com/jfe/form/SV_bKmRJnCYfb9rRnn";
-        if (completeSurveyLink) {
-            return <div className="left-bottom-controls">
-                <a className="btn btn-small" href="{completeSurveyLink}">If this is the last commit that you plan to do for this phase, please complete the survey here.</a>
-            </div>
-        }
+        const beforeHackSurvey = `https://purdue.qualtrics.com/jfe/form/SV_6hY2jDq7HAIFoZT?redirect_to=${location.href}`
+        const afterHackSurvey = `https://purdue.qualtrics.com/jfe/form/SV_bKmRJnCYfb9rRnn?redirect_to=${location.href}`;
+
+        return <div className="left-bottom-controls">
+            <a class="btn btn-small" href={beforeHackSurvey}>
+                Survey 1<br/>
+                Please complete this survey BEFORE you get
+                started on the hacks.
+            </a>
+            <a class="btn btn-small" href={afterHackSurvey}>
+                Survey 2<br/>
+                THIS IS APPLICABLE ONLY AFTER THE
+                HACKS START: If this is the last
+                commit that you plan to do for this
+                phase, please complete the survey here.
+            </a>
+        </div>
     }
 
     render () {
