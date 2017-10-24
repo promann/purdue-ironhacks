@@ -271,12 +271,12 @@ export default class App extends React.Component {
         const afterHackSurvey = `https://purdue.qualtrics.com/jfe/form/SV_bKmRJnCYfb9rRnn?redirect_to=${location.href}`;
 
         return <div className="left-bottom-controls">
-            <a class="btn btn-small" href={beforeHackSurvey}>
+            <a className="btn btn-small" href={beforeHackSurvey}>
                 Survey 1<br/>
                 Please complete this survey BEFORE you get
                 started on the hacks.
             </a>
-            <a class="btn btn-small" href={afterHackSurvey}>
+            <a className="btn btn-small" href={afterHackSurvey}>
                 Survey 2<br/>
                 THIS IS APPLICABLE ONLY AFTER THE
                 HACKS START: If this is the last
