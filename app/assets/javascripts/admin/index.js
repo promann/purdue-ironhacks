@@ -118,7 +118,7 @@ export default class App extends React.Component {
             const options = PHASES.map((c, i) => <option key={i} value={c[1]}>{c[0]}</option>);
             hackTypes.push(
                 <div className="hack-type-phase-selector" key={++index} >
-                    <strong className="hack-type-name">{name}</strong>: <br/>
+                    <strong className="hack-type-name">{_pageData.hackTypes[name].label}</strong>: <br/>
                     <div className="phase-select-wrapper">
                         <select data-hack-type={name} value={this.state.phases[name]} className="phase-select" onChange={this.onPhaseChange.bind(this)}>
                             {options}
@@ -146,7 +146,7 @@ export default class App extends React.Component {
             hackType.subforums_count = hackType.subforums_count || 0;
             hackTypesStartDates.push(
                 <div className="hack-type-start-date" key={++index} >
-                    <strong>{name}</strong>: <br/>
+                    <strong>{_pageData.hackTypes[name].label}</strong>: <br/>
                     Start of <strong>forum</strong>: <input data-hack-type={name} type="text" defaultValue={hackType.start_date.format("YYYY-MM-DD HH:mm:ss")} /><br/>
                     Start of <strong>hack</strong>: <input data-hack-type={name} type="text" defaultValue={hackType.hack_start_date.format("YYYY-MM-DD HH:mm:ss")} /><br/>
                     Time until <strong>submission</strong>: <input data-hack-type={name} type="text" defaultValue={hackType.next_phase_date.format("YYYY-MM-DD HH:mm:ss")} /><br/>
@@ -155,7 +155,7 @@ export default class App extends React.Component {
             );
             hackTypesSubforums.push(
                 <div className="hack-type-subgroup" key={++index} >
-                    <strong className="hack-type-name">{name}</strong> ({_pageData.users.filter(c => c.profile.hack_type === name).length} students): <br/>
+                    <strong className="hack-type-name">{_pageData.hackTypes[name].label}</strong> ({_pageData.users.filter(c => c.profile.hack_type === name).length} students): <br/>
                     <input data-hack-type={name} type="number" defaultValue={hackType.subforums_count + 1} />
                 </div>
             );

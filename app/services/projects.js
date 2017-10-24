@@ -6,6 +6,7 @@ const { buildFilePath, s3, S3_BUCKET, PATH_PPROJECTS } = require("../common/aws-
     , execa = require("execa")
     , path = require("path")
     , streamp = require("streamp")
+    , AwsFsCache = require("../common/s3-cache")
     , slug = require("slugo")
 
 const GitHub = promisfy(new GitHubApi(process.env.GITHUB_ADMIN_TOKEN))
@@ -17,9 +18,22 @@ exports.streamFile = ctx => {
     };
 
     ctx.res.contentType(ctx.params.filepath);
-    const stream = s3.getObject(params).createReadStream();
+    let shouldBeCached = false
 
-    stream.on("error", err => {
+    return AwsFsCache.getFile(params.Key).then(res => {
+        if (res) {
+            return res
+        }
+        shouldBeCached = true
+        return s3.getObjectAsync(params).then(data => {
+            return data.Body.toString("utf-8")
+        })
+    }).then(res => {
+        if (shouldBeCached) {
+            AwsFsCache.saveFile(params.Key, res).catch(err => Bloggify.log(err))
+        }
+        ctx.end(res)
+    }).catch(err => {
         ctx.res.contentType("plain/text");
         if (err.code === "NoSuchKey") {
             ctx.end("404 — Not found", 404);
@@ -27,8 +41,6 @@ exports.streamFile = ctx => {
             ctx.end(err.message, 400);
         }
     })
-
-    stream.pipe(ctx.res);
 };
 
 exports.createTemplateFiles = data => {

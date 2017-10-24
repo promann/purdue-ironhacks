@@ -1,6 +1,8 @@
 const Email = Bloggify.require("sendgrid");
 const uniq = require("array-unique");
 const User = Bloggify.models.User;
+const Entities = require("html-entities").XmlEntities;
+const entities = new Entities();
 
 const FROM_EMAIL = "noreply@ironhacks.com";
 const FROM_NAME = "IronHacks";
@@ -31,17 +33,18 @@ exports.commentPosted = comment => {
     }
 
     Email.send({
-        to_email: emails
+        bcc_email: emails
+      , to_email: "purdue@bloggify.org"
       , from_email: FROM_EMAIL
       , from_name: FROM_NAME
       , subject: "A new comment was posted on ‘" + comment.topic.title + "’"
       , template_id: EMAIL_TEMPLATES.NEW_COMMENT
       , substitutions: {
-            "-message-": comment.body,
+            "-message-": entities.encode(htmlcomment.body),
             "-commentAuthorUsername-": comment.author.username,
             "-commentAuthorUrl-": `${Bloggify.options.domain}/users/${comment.author.username}`,
             "-topicUrl-": `${Bloggify.options.domain}${comment.topic.url}`,
-            "-topicTitle-": comment.topic.title
+            "-topicTitle-": entities.encode(comment.topic.title)
         }
     }, log);
 };
@@ -67,14 +70,15 @@ exports.topicCreated = topic => {
         }
 
         Email.send({
-            to_email: emails
+            bcc_email: emails
+          , to_email: "purdue@bloggify.org"
           , from_email: FROM_EMAIL
           , from_name: FROM_NAME
           , subject: "A new topic was posted: ‘" + topic.title + "’"
           , template_id: EMAIL_TEMPLATES.NEW_TOPIC
           , substitutions: {
                 "-topicUrl-": `${Bloggify.options.domain}${topic.url}`,
-                "-topicTitle-": topic.title
+                "-topicTitle-": entities.encode(topic.title)
             }
         }, log);
     });
@@ -96,22 +100,20 @@ Bloggify.on("comment:posted", comment => {
 })
 
 Bloggify.on("comment:created", comment => {
-    Bloggify.models.Topic.getPopulated(comment.topic, (err, topic) => {
-        if (err) { return Bloggify.log(err); }
-        User.get({
+    Bloggify.models.Topic.getPopulated(comment.topic, {
+        userFields: {}
+    }).then(topic => {
+        return User.getUser({
             filters: {
                 _id: comment.author
             }
-        }, (err, author) => {
-            if (err) { return Bloggify.log(err); }
+        }).then(author => {
             comment = comment.toObject()
             comment.author = author.toObject()
             comment.topic = topic
             Bloggify.emit("comment:posted", comment)
         })
-    }, {
-        userFields: {}
-    })
+    }).catch(err => Bloggify.log(err))
 })
 
 const TopicWS = Bloggify.actions.ws("topic", [

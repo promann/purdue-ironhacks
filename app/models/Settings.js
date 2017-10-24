@@ -22,7 +22,7 @@ const HACK_TYPES = {
     // Black
   , bogota: {
         survey: "https://purdue.qualtrics.com/jfe/form/SV_3qidG4HYagy65xj"
-      , label: "Bogota"
+      , label: "Honors"
       , hackatons: [ {}, {}, {} ]
       , start_date: null
       , subforums_count: 0
