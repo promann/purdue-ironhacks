@@ -58,6 +58,7 @@
     "same-time": "^2.3.3",
     "slugo": "^0.2.1",
     "streamp": "^2.2.8",
+    "sweetalert2-react": "^0.5.0",
     "treeify-paths": "^1.0.1",
     "uc-first": "^1.0.4",
     "unique-random-range": "^1.0.1",

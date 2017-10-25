@@ -5,6 +5,8 @@ import BloggifyActions from "bloggify/http-actions"
 import FolderTree from "react-folder-tree"
 import {Treebeard, decorators} from "react-treebeard"
 import Actions from "bloggify/http-actions"
+import SweetAlert from "sweetalert2-react"
+import { renderToStaticMarkup } from 'react-dom/server';
 
 import 'brace/mode/javascript'
 import 'brace/mode/html'
@@ -14,7 +16,6 @@ import 'brace/ext/searchbox'
 
 const DEFAULT_FILEPATH = "index.html"
 
-// Customising The Header Decorator To Include Icons
 decorators.Header = ({style, node}) => {
     const iconType = node.children ? 'folder' : 'file-text';
     const iconClass = `fa fa-${iconType}`;
@@ -84,7 +85,6 @@ export default class App extends React.Component {
         const editorMode = mappings[extension] || extension
         return editorMode
     }
-
 
     maybeTriggerSave () {
         clearTimeout(this.saveTimeout)
@@ -199,17 +199,18 @@ export default class App extends React.Component {
         })
     }
 
-    commitProject () {
-        if (this.maybeNotSaved()) { return }
-        const commit_message = prompt("Commit message");
-        if (!commit_message) {
-            return
-        }
+    commitFile (commit_message) {
         BloggifyActions.post("projects.commit", {
             project_name: this.state.page.project.name,
             commit_message
         }).catch(err => alert(err.message))
     }
+
+    commitProject () {
+        if (this.maybeNotSaved()) { return }
+        this.setState({ show_commit_prompt: true })
+    }
+
 
     onEditorContentChange (content) {
         this.editor_content = content;
@@ -288,8 +289,25 @@ export default class App extends React.Component {
 
     render () {
         const previewFileUrl = `/users/${_pageData.project.username}/projects/${_pageData.project.name}/preview/${this.state.preview_filepath}`
+        const commitPromptHtml = <div>
+            <p>Enter the commit message below:</p>
+            <p><input id="commit-message" type="text" className="swal2-input" /></p>
+            <p><a href="#">Click here</a> to complete the survey.</p>
+        </div>
         return (
             <div>
+                <SweetAlert
+                  show={this.state.show_commit_prompt}
+                  title="Commit"
+                  html={renderToStaticMarkup(commitPromptHtml)}
+                  onConfirm={() => {
+                    const message = document.getElementById("commit-message").value
+                    if (message) {
+                      this.commitFile(message)
+                    }
+                    this.setState({ show_commit_prompt: false });
+                  }}
+                />
                 <div className="row editor-container">
                     <div className="readonly-badge">
                         Read-only
