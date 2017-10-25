@@ -289,9 +289,14 @@ export default class App extends React.Component {
 
     render () {
         const previewFileUrl = `/users/${_pageData.project.username}/projects/${_pageData.project.name}/preview/${this.state.preview_filepath}`
+        if (this.state.show_commit_prompt) {
+            setTimeout(() => {
+                document.getElementById("commit-message").focus()
+            }, 10);
+        }
         const commitPromptHtml = <div>
             <p>Enter the commit message below:</p>
-            <p><input id="commit-message" type="text" className="swal2-input" /></p>
+            <p><input autofocus="autofocus" id="commit-message" type="text" className="swal2-input" /></p>
             <p><a href="#">Click here</a> to complete the survey.</p>
         </div>
         return (
