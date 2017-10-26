@@ -11,9 +11,9 @@ const paths2tree = require("paths2tree")
         })
       }
 
-exports.before = ctx => {
+exports.before = (ctx, actionName) => {
     const user = Bloggify.services.session.onlyAuthenticated(ctx)
-    if (ctx.data) {
+    if (ctx.data && !["getFile", "listFiles"].includes(actionName)) {
         ctx.data.username = user.username
     }
 }
@@ -44,6 +44,7 @@ exports.deleteFile = ["post", ctx => {
 }]
 
 exports.getFile = ["post", ctx => {
+
     const params = {
         Bucket: S3_BUCKET,
         Key: buildFilePath(ctx.data)

@@ -93,7 +93,8 @@ export default class App extends React.Component {
 
     reloadFileTree () {
         return BloggifyActions.post("projects.listFiles", {
-            project_name: this.state.page.project.name
+            project_name: this.state.page.project.name,
+            username: _pageData.project.username
         }).then(files => {
             this.setState({ files });
         });
@@ -129,7 +130,8 @@ export default class App extends React.Component {
         this.editor_content = ""
         const prom = BloggifyActions.post("projects.getFile", {
             project_name: this.state.page.project.name,
-            filepath: path
+            filepath: path,
+            username: _pageData.project.username
         }).then(data => {
             this.editor_content = data.Body
             this.setState({
