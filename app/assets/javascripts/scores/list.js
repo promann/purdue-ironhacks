@@ -25,9 +25,9 @@ export default class ScoreList extends React.Component {
             { this.state.showScores ? <th>Technical Score</th> : null }
             { this.state.showScores ? <th>Info Viz Score</th> : null }
             { this.state.showScores ? <th>Novelty Score</th> : null }
-            { this.state.showScores ? <th>User Requirements Score</th> : null }
             {projectTh}
         </tr>
+            //{ this.state.showScores ? <th>User Requirements Score</th> : null }
     }
     render () {
 
