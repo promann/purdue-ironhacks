@@ -40,7 +40,7 @@ exports.commentPosted = comment => {
       , subject: "A new comment was posted on ‘" + comment.topic.title + "’"
       , template_id: EMAIL_TEMPLATES.NEW_COMMENT
       , substitutions: {
-            "-message-": entities.encode(htmlcomment.body),
+            "-message-": entities.encode(comment.body),
             "-commentAuthorUsername-": comment.author.username,
             "-commentAuthorUrl-": `${Bloggify.options.domain}/users/${comment.author.username}`,
             "-topicUrl-": `${Bloggify.options.domain}${comment.topic.url}`,
