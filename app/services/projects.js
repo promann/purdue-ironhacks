@@ -227,3 +227,10 @@ exports.create = projectData => {
         user.save()
     ).then(() => project)
 }
+
+exports.destroyProject = project => {
+    const repoName = project.github_repo_name
+    // TODO Maybe delete the GitHub repo and AWS S3 bucket
+    //      But let's keep them for now.
+    return project.remove()
+}

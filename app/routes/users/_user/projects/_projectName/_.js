@@ -3,6 +3,7 @@ exports.use = (ctx, cb) => {
     if (!ctx.params.projectName) {
         return cb();
     }
+    const isOwner = ctx.isProjectOwner = ctx.selected_user.username === ctx.user.username
     Project.findOne({
         username: ctx.selected_user.username,
         name: ctx.params.projectName

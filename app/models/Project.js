@@ -16,7 +16,7 @@ const ProjectSchema = new Bloggify.db.Schema({
     timestamps: {
         createdAt: "created_at",
         updatedAt: "updated_at"
-    } 
+    }
 })
 
 
@@ -40,6 +40,10 @@ ProjectSchema.methods.createGitHubRepository = function (commitMessage) {
 
 ProjectSchema.methods.downloadFiles = function (projectPath) {
     return Bloggify.services.projects.downloadFiles(this, projectPath)
+}
+
+ProjectSchema.methods.destroyProject = function () {
+    return Bloggify.services.projects.destroyProject(this)
 }
 
 ProjectSchema.virtual("url").get(function () {
