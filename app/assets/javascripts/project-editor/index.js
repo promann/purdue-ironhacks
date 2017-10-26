@@ -267,23 +267,15 @@ export default class App extends React.Component {
         })
     }
 
-    renderLeftBoottomControls () {
-        const beforeHackSurvey = `https://purdue.qualtrics.com/jfe/form/SV_6hY2jDq7HAIFoZT?redirect_to=${location.href}`
+    renderSurveys () {
         const afterHackSurvey = `https://purdue.qualtrics.com/jfe/form/SV_bKmRJnCYfb9rRnn?redirect_to=${location.href}`;
+        return <div>
+            If this is your final commit for this phase, <a href={afterHackSurvey} target="blank">click here</a> to complete the survey.
+        </div>
+    }
 
+    renderLeftBoottomControls () {
         return <div className="left-bottom-controls">
-            <a className="btn btn-small" href={beforeHackSurvey}>
-                Survey 1<br/>
-                Please complete this survey BEFORE you get
-                started on the hacks.
-            </a>
-            <a className="btn btn-small" href={afterHackSurvey}>
-                Survey 2<br/>
-                THIS IS APPLICABLE ONLY AFTER THE
-                HACKS START: If this is the last
-                commit that you plan to do for this
-                phase, please complete the survey here.
-            </a>
         </div>
     }
 
@@ -296,8 +288,8 @@ export default class App extends React.Component {
         }
         const commitPromptHtml = <div>
             <p>Enter the commit message below:</p>
-            <p><input autofocus="autofocus" id="commit-message" type="text" className="swal2-input" /></p>
-            <p><a href="#">Click here</a> to complete the survey.</p>
+            <p><input autoFocus="autofocus" id="commit-message" type="text" className="swal2-input" /></p>
+            {this.renderSurveys()}
         </div>
         return (
             <div>
