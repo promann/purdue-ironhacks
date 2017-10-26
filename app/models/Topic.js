@@ -85,6 +85,7 @@ TopicSchema.statics.populateTopic = (item, options) => {
     ]).then(data => {
         item.author = data[0]
         item.comments = data[1]
+        item.metadata.hack_label = Object(Bloggify.models.Settings.HACK_TYPES[item.metadata.hack_type]).label
         return item
     })
 }

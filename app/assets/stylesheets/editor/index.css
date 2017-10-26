@@ -117,5 +117,5 @@ div[data-radium] > div:not([data-type='file-text']):first-of-type {
     position: absolute;
     left: 20px;
     bottom: 20px;
-    width: 160px
+    width: 160px;
 }
