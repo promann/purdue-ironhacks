@@ -34,8 +34,6 @@
 
 <% } %>
 
-<p><%- message -%>
-
 <div id="app"></div>
 <script>
     window._pageData = {
