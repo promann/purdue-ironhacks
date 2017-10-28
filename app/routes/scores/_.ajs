@@ -3,23 +3,36 @@
 
 <h1 class="text-center">Results (<%= phase %>)</h1>
 
-<%
-    var message = "";
+<% // UNAL 0 %>
+<% if (user.profile.hack_type === "unal" && user.profile.hack_id === 0) { %>
+    <p>Curious to learn about how you are doing? We have now completed the previous phase the hack. Please check your emails to review your personal feedback. You are now competing with other hackers. They have all received their personal feedback for this phase. </p>
+    
+    </p>Do not share your feedback with others. This is a competition, and the rules require you to keep this information confidential. If you have questions about your feedback, send us an email on <a href="mailto:opendigital@purdue.edu ">opendigital@purdue.edu</a> or attend one of our tech help sessions. </p>
 
-    var allMessages = [
-        "We have successfully completed phase 1 of Purdue IronHacks. Please check your emails with the results for your app. It was evaluated in four dimensions: Technology, User requirements, InfoVis, Novelty."
-      , "In this table you find the scores of all participants in your hack. Each performance score is reported with a corresponding percentile rank. A percentile rank for a score indicates the percentage of participants who participated in the hack and received a lower score. Regardless of when the reported scores were earned, the percentile ranks for all these four scores are based on the scores of all participants within the hack. To see the detailed scores for each dimension please click on the link."
-      , "In this table you find the apps developed by all participants in your hack. You can access the code by clicking on the link to the github repository. You can also look at the hosted applications of other participants by clicking the second link."
-      , "In this table you find the scores of all participants in your hack. Each performance score is reported with a corresponding percentile rank. A percentile rank for a score indicates the percentage of participants who participated in the hack and received a lower score. Regardless of when the reported scores were earned, the percentile ranks for all these four scores are based on the scores of all participants within the hack. To see the detailed scores for each dimension please click on the link.<br>You can also access the code and the running applications of all apps. To see the code click on the github link. To see the running application, click on the second link:"
-    ];
+    <p>Happy Coding! Work hard and play hard. It should be fun! </p>
+<% } %>
 
+<% // UNAL 1 %>
+<% if (user.profile.hack_type === "unal" && user.profile.hack_id === 1) { %>
+    <p>Curious to learn what others are doing to outperform the competition? Below, you find the list of all apps build in this hacking competition. We present a list of all hackers in your group. For reasons of anonymity we do not reveal the names of other hackers.</p>
 
-    if (user.profile.hack_type === "purdue") {
-        message = allMessages[2];
-    } else {
-        message = allMessages[user.profile.hack_id];
-    }
-%>
+    <p>You can view all other hackers’ projects (both their code and the running application) by clicking on the “Project Link”. After clicking on this link, you can browse three the other’s apps, their file structure, and their actual code. Further, you can also see the running application as if you were a user of the app. This might inspire you. Keep exploring and get inspired.</p>
+
+    <p>Keep in mind! You are allowed to reuse others’ solutions as long as you are not cloning complete solutions. About 50 percent of the code should be your own (we are not considering libraries for this but the actual original code in other’s app). </p>
+
+    <p>Trying to find your own app? Sorry that you have to keep looking for in this list. Since this is a competition, we do not reveal names. Do not talk to other hackers outside of this competition. Stick to our rules and guidelines (<a href="/tasks">www.ironhacks.com/tasks</a>). </p>
+
+    <p>Happy Coding! Work hard and play hard. It should be fun!</p>
+<% } %>
+
+<% // UNAL 2 And Honors (Bogota) %>
+<% var unalTwoAndBHonors = user.profile.hack_type === "bogota" || (user.profile.hack_type === "unal" && user.profile.hack_id === 2) %>
+<% if (unalTwoAndBHonors) { %>
+    <p>You want to know how you are doing? Below you find the results of the previous phase of the hack. For reasons of anonymity we do not reveal the names of other hackers. The table below contains the relative performance of all the participants in your hacking group. We report each hacker’s score in percentiles. A percentile score indicates a certain hacker’s relative standing compared to others. It indicates the percentile of other hackers that have achievement a lower or equal performance of a certain hacker. </p>
+
+    <p>We report a total score and three detailed scores, that related to the three performance dimensions we evaluate your app in: Technology, information visualization, and novelty (see www.ironhacks.com/task for more details). To see the detailed scores, click on “view scores”. This gives you the opportunity to learn more about the performance of others’ in a certain performance dimension. You can also view other’s projects (both their code and the running application) by clicking on the “Project Link”. After clicking on this link, you can browse three the other’s apps, their file structure, and their actual code. Further, you can also see the running application as if you were a user of the app. This might inspire you. </p>
+
+<% } %>
 
 <p><%- message -%>
 
@@ -32,6 +45,14 @@
         csrfToken: <%- stringify(ctx.csrfToken) %>
     };
 </script>
+
+<% if (unalTwoAndBHonors) { %>
+    <p>Keep in mind! You are allowed to reuse others’ solutions as long as you are not cloning complete solutions. About 50 percent of the code should be your own (we are not considering libraries for this but the actual original code in other’s app). </p>
+
+    <p>Trying to find your own app? You should have received an email with the information about the performance of your own application. Use this as a reference when browsing through this table. </p>
+
+    <p>Happy Coding! Work hard and play hard. It should be fun! </p>
+<% } %>
 
 <% include(Bloggify.views.container.end) %>
 <% include(Bloggify.views.footer) %>
