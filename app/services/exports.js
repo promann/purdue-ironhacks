@@ -77,14 +77,14 @@ exports.scores = () => {
         doc = doc.toObject()
         doc.created_at = moment(doc.created_at)
         if (doc.metadata.url) {
-            doc.project_username = (doc.metadata.url.match(/\/users\/([^/]*)\//) || [])[1]    
+            doc.project_username = (doc.metadata.url.match(/\/users\/([^/]*)\//) || [])[1]
         }
-        
+
         readStream.pause();
         Promise.all([
             User.findOne(doc.project_username ? {
                 username: doc.project_username
-            } : { 
+            } : {
                 _id: doc.metadata.hacker_id
             })
           , User.findOne({ _id: doc.actor })
@@ -197,6 +197,9 @@ exports.users = (filters, exportType) => {
                 readStream.resume();
             });
         } else {
+            if (doc.profile.hack_type === "bogota") {
+                doc.profile.hack_type = "honors"
+            }
             csvStream.write(flatten(doc));
         }
     }).on("close", () => {

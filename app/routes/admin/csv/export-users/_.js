@@ -11,7 +11,7 @@ module.exports = ctx => {
     Bloggify.services.exports.users({
         hackType: hackType
       , hackId: +hackId
-    }).pipe(ctx.res);
+    }, ctx.query.exportType).pipe(ctx.res);
 
     return false
 }

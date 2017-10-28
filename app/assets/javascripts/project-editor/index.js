@@ -272,7 +272,7 @@ export default class App extends React.Component {
     renderSurveys () {
         const afterHackSurvey = `https://purdue.qualtrics.com/jfe/form/SV_bKmRJnCYfb9rRnn?redirect_to=${location.href}`;
         return <div>
-            If this is your final commit for this phase, <a href={afterHackSurvey} target="blank">click here</a> to complete the survey.
+            If this is your last commit for this phase, please provide the mandatory submission information <a href={afterHackSurvey} target="blank">here</a>!
         </div>
     }
 

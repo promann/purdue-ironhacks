@@ -16,7 +16,7 @@ export default class HackTypeAndIdSelector extends React.Component {
         });
 
         hackTypeOptions = hackTypeOptions.map((c, i) => {
-            return <option key={i} value={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</option>
+            return <option key={i} value={c}>{c === "All" ? c : _pageData.hackTypes[c].label}</option>
         });
 
         hackIdOptions = hackIdOptions.map((c, i) => {
