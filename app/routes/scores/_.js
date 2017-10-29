@@ -28,17 +28,28 @@ module.exports = ctx => {
     }).then(options => {
         const hackType = options.settings.hack_types[ctx.user.profile.hack_type]
             , phase = hackType.phase
+            , notPublishedYet = new Date() < hackType.show_results_date
 
-        if (new Date() < hackType.show_results_date) {
+        if (phase === "phase1" && notPublishedYet) {
             return {
                 phase,
                 users: []
             }
         } 
+
+        let phaseToDisplay = phase
+        if (notPublishedYet) {
+            const currentPhase = (phase.match(/(\d+)/g) || [])[0]
+                , previousPhase = currentPhase - 1
+
+            phaseToDisplay = "phase" + previousPhase
+        }
+
         data.users = data.users.map((u, i) => {
             u = u.toObject();
-            u.username = `Hacker ${i + 1}`;
-            const phaseObj = Object(u.profile[phase]);
+            u.username = `Hacker ${i + 1}`            
+
+            const phaseObj = Object(u.profile[phaseToDisplay]);
             return {
                 _id: u._id,
                 username: u.username,
@@ -47,13 +58,13 @@ module.exports = ctx => {
                 score_novelty: phaseObj.score_novelty,
                 score_total: phaseObj.score_total,
                 project_url: phaseObj.project_url,
-                phase: phase
+                phase: phaseToDisplay
             };
         });
         shuffle(data.users);
         return {
             users: data.users,
-            phase
+            phase: phaseToDisplay
         };
     });
 };

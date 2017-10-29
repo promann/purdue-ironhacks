@@ -4,8 +4,9 @@
 <h1 class="text-center">Results (<%= phase %>)</h1>
 
 <% // UNAL 0 %>
-<% if (user.profile.hack_type === "unal" && user.profile.hack_id === 0) { %>
-    <p>Curious to learn about how you are doing? We have now completed the previous phase the hack. Please check your emails to review your personal feedback. You are now competing with other hackers. They have all received their personal feedback for this phase. </p>
+<% var isUnalZero = (user.profile.hack_type === "unal" && user.profile.hack_id === 0) %>
+<% if (isUnalZero) { %>
+    <p>Curious to learn about how you are doing? We have now completed the previous phase the hack. Please check your emails to review your personal feedback. You are now competing with 28 other hackers. They have all received their personal feedback for this phase. </p>
     
     </p>Do not share your feedback with others. This is a competition, and the rules require you to keep this information confidential. If you have questions about your feedback, send us an email on <a href="mailto:opendigital@purdue.edu ">opendigital@purdue.edu</a> or attend one of our tech help sessions. </p>
 
@@ -34,6 +35,7 @@
 
 <% } %>
 
+<% if (!isUnalZero) { %>
 <div id="app"></div>
 <script>
     window._pageData = {
@@ -43,6 +45,7 @@
         csrfToken: <%- stringify(ctx.csrfToken) %>
     };
 </script>
+<% } %>
 
 <% if (unalTwoAndBHonors) { %>
     <p>Keep in mind! You are allowed to reuse others’ solutions as long as you are not cloning complete solutions. About 50 percent of the code should be your own (we are not considering libraries for this but the actual original code in other’s app). </p>
