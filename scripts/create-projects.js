@@ -10,7 +10,7 @@ Bloggify.log("Loading the environment...")
 // Listen for Bloggify to load
 Bloggify.onLoad(err => {
     if (err) { return Bloggify.log(err) }
-debugger
+
     Bloggify.log("Finding the users...")
 
     // 1. Get the list of users
