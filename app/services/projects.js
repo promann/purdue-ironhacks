@@ -185,6 +185,17 @@ exports.get = data => {
     })
 }
 
+/**
+ * create
+ * Creates a new project for given data
+ *
+ * @name create
+ * @param {Object} projectData An object containing the following fields:
+ *    - `name` (String): The project name.
+ *.   - `username` (String): The user username.
+ *    - `phase` (String): The phase you want the project to belong to (default: current phase)
+ * @return {Promise} The promise resolving when the task is done.
+ */
 exports.create = projectData => {
     projectData.name = slug(projectData.name).trim()
 
@@ -206,7 +217,7 @@ exports.create = projectData => {
         if (!user) {
             throw Bloggify.errors.USER_DOES_NOT_EXIST()
         }
-        projectData.phase = settings.settings.hack_types[user.profile.hack_type].phase
+        projectData.phase = projectData.phase || settings.settings.hack_types[user.profile.hack_type].phase
         return exports.get(projectData)
     }).then(existingProject => {
         if (existingProject) {
