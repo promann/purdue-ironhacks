@@ -13,6 +13,7 @@ const PHASES = [
   , ["Phase 2", "phase2"]
   , ["Phase 3", "phase3"]
   , ["Phase 4", "phase4"]
+  , ["Phase 5", "phase5"]
 ];
 
 export default class App extends React.Component {
