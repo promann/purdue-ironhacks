@@ -17,15 +17,21 @@ import 'brace/ext/searchbox'
 const DEFAULT_FILEPATH = "index.html"
 
 decorators.Header = ({style, node}) => {
-    const iconType = node.children ? 'folder' : 'file-text';
-    const iconClass = `fa fa-${iconType}`;
-    const iconStyle = {marginRight: '5px'};
+    const isFolder = node.children
+        , iconType = isFolder ? 'folder' : 'file-text'
+        , iconClass = `fa fa-${iconType}`
+        , iconStyle = {marginRight: '5px'}
 
     style.title.width = style.base.width = "100%";
     style.deleteIcon = {
         marginLeft: "2px",
         marginTop: "2px",
         float: "right"
+    }
+
+    if (isFolder) {
+        node.onDelete = null
+        node.onOpen = null
     }
 
     const deleteIcon = node.onDelete && <i onClick={node.onDelete} className="fa fa-trash" style={style.deleteIcon}/>
@@ -157,7 +163,8 @@ export default class App extends React.Component {
         return BloggifyActions.post("projects.saveFile", {
             project_name: this.state.page.project.name,
             filepath: opts.filepath || this.state.filepath,
-            content: this.editor_content
+            content: this.editor_content,
+            safe: opts.safe
         }).then(() => {
             this.saved = true
         })
@@ -193,7 +200,8 @@ export default class App extends React.Component {
         this.saved = false
         this.editor_content = "";
         this.saveFile({
-            filepath
+            filepath,
+            safe: true
         }).then(() => {
             return this.reloadFileTree()
         }).then(() => {

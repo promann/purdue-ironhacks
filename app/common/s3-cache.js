@@ -19,7 +19,7 @@ class AwsFsCache {
             })
         })
     }
-    static saveFile(filePath, content) {
+    static saveFile(filePath, content, waitForS3) {
         filePath = AwsFsCache.getAbsPath(filePath)
         return new Promise((res, rej) => {
             new streamp.writable(filePath).on("close", res).end(content)

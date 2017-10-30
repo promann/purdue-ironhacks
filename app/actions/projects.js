@@ -25,8 +25,16 @@ exports.saveFile = ["post", ctx => {
         Body: ctx.data.content
     }
 
-    s3.putObjectAsync(params).catch(err => Bloggify.log(err))
-    return AwsFsCache.saveFile(params.Key, params.Body)
+    const saveS3 = s3.putObjectAsync(params)
+        , saveFile = AwsFsCache.saveFile(params.Key, params.Body)
+
+    if (ctx.data.safe) {
+        saveFile.catch(Bloggify.log)
+        return saveS3
+    }
+
+    saveS3.catch(Bloggify.log)
+    return saveFile
 }]
 
 exports.deleteFile = ["post", ctx => {
