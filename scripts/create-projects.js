@@ -6,7 +6,7 @@ const Bloggify = new (require("bloggify"))({ port: 4242 })
 Logger.config.date = true
 
 // Constants
-const PHASES = ["phase2", "phase3", "phase4"]
+const PHASES = ["phase1", "phase2", "phase3", "phase4", "phase5"]
 
 Bloggify.log("Loading the environment...")
 
@@ -18,7 +18,7 @@ Bloggify.ready(err => {
 
     // 1. Get the list of users
     Bloggify.models.User.find().then(users => {
-        const limitProjectCreation = pLimit(1)
+        const limitProjectCreation = pLimit(10)
         // 2. For each user
         return Promise.all(users.map((user, index) => {
             // 3. Create the 3 projects (phase2, 3, 4)
