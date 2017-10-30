@@ -191,9 +191,11 @@ exports.get = data => {
  *
  * @name create
  * @param {Object} projectData An object containing the following fields:
+ *
  *    - `name` (String): The project name.
  *.   - `username` (String): The user username.
  *    - `phase` (String): The phase you want the project to belong to (default: current phase)
+ *
  * @return {Promise} The promise resolving when the task is done.
  */
 exports.create = projectData => {

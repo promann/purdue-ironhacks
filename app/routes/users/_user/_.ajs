@@ -37,7 +37,7 @@
         <% } %>
         <a class="btn btn-small" href="<%= ctx.pathname %>/projects">Projects</a>
         <% if (profile._id.toString() === user._id.toString()) { %>
-            <a class="btn btn-small" href="<%= ctx.pathname %>/projects/new">Create Project</a>
+            <a class="hide btn btn-small" href="<%= ctx.pathname %>/projects/new">Create Project</a>
         <% } %>
     </div>
     <div class="col">
