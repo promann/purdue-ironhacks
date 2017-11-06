@@ -47,7 +47,7 @@ export default class ScoreItem extends React.Component {
           //, [this.props.hacker.score_total, "User Requirements Score"]
         ].map((c, i) => {
             if (!this.props.showScores) { return null; }
-            return <td key={i} data-label={`${c[1]}: `}>{this.state.opened ? `${(c[0] || 0).toFixed(2)}%` : ""}</td>
+            return <td key={i} data-label={`${c[1]}: `}>{this.state.opened ? `${(c[0] || 0).toFixed(0)}%` : ""}</td>
         });
 
         let totalScoreColumn = null;
