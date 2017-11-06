@@ -17,7 +17,9 @@ Bloggify.ready(err => {
     Bloggify.log("Finding the users...")
 
     // 1. Get the list of users
-    Bloggify.models.User.find().then(users => {
+    Bloggify.models.User.find({
+        //username: ""
+    }).then(users => {
         const limitProjectCreation = pLimit(10)
         // 2. For each user
         return Promise.all(users.map((user, index) => {
@@ -25,10 +27,18 @@ Bloggify.ready(err => {
             return Promise.all(PHASES.map(phase => {
                 return limitProjectCreation(() => {
                     Bloggify.log(`[${index + 1}/${users.length}] Creating the project for @${user.username}, ${phase}`)
-                    return Bloggify.services.projects.create({
-                        name: `webapp_${phase}`
+                    const projectName = `webapp_${phase}`
+                    return Bloggify.models.Project.findOne({
+                        username: user.username,
+                        name: projectName
+                    }).then(project => {
+                    //    return project.destroyProject()
+                    }).then(() => {
+                        return Bloggify.services.projects.create({
+                          name: projectName
                         , username: user.username
                         , phase
+                        })
                     }).then(() => {
                         Bloggify.log(`Created the project for @${user.username}, ${phase}`)
                     }).catch(err => {
