@@ -6,8 +6,12 @@ exports.use = (ctx, cb) => {
 }
 
 exports.post = ctx => {
-    return ctx.selected_project.destroyProject().then(() => {
-        ctx.redirect(`/users/${ctx.user.username}/projects`)
-        return false
-    })
+    // Currently we don't delete projects anymore.
+    ctx.redirect(`/users/${ctx.user.username}/projects`)
+    return false
+
+    //return ctx.selected_project.destroyProject().then(() => {
+    //    ctx.redirect(`/users/${ctx.user.username}/projects`)
+    //    return false
+    //})
 }

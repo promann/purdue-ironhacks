@@ -13,7 +13,7 @@
 <% } %>
 <a href="<%= ctx.pathname %>/preview/index.html" class="btn">View</a>
 <% if (ctx.selected_user.username === ctx.user.username) { %>
-  <a href="<%= ctx.pathname %>/delete" class="btn">Delete</a>
+  <a href="<%= ctx.pathname %>/delete" class="btn hide">Delete</a>
 <% } %>
 
 <% include(Bloggify.views.container.end) %>
