@@ -90,7 +90,7 @@ exports.scores = () => {
           , User.findOne({ _id: doc.actor })
         ]).then(response => {
             const hacker = (response[0] && response[0].toObject()) || {}
-                , actor = response[1].toObject()
+                , actor = (response[1] && response[1].toObject()) || {}
                 ;
 
             csvStream.write({
