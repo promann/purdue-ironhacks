@@ -35,7 +35,7 @@ module.exports = ctx => {
                 phase,
                 users: []
             }
-        } 
+        }
 
         let phaseToDisplay = phase
         if (notPublishedYet) {
@@ -47,7 +47,7 @@ module.exports = ctx => {
 
         data.users = data.users.map((u, i) => {
             u = u.toObject();
-            u.username = `Hacker ${i + 1}`            
+            u.username = `Hacker ${i + 1}`
 
             const phaseObj = Object(u.profile[phaseToDisplay]);
             return {

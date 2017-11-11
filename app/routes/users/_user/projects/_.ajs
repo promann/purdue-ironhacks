@@ -1,4 +1,4 @@
-<% include(Bloggify.views.header, { title: "Admin" }) %>
+<% include(Bloggify.views.header, { title: "Projects" }) %>
 <% include(Bloggify.views.container.start) %>
 
 <h3>Projects</h3>
