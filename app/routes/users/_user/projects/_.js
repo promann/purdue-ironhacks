@@ -1,6 +1,4 @@
-
 exports.use = (ctx, cb) => {
-
     const hackType = Bloggify.models.Settings.HACK_TYPES[ctx.user.profile.hack_type]
         , isOwner = ctx.isProjectOwner = ctx.selected_user.username === ctx.user.username
 
@@ -18,7 +16,7 @@ exports.use = (ctx, cb) => {
 }
 
 
-module.exports = ctx => {
+exports.get = ctx => {
     const Project = Bloggify.models.Project
     return Project.find({
         username: ctx.selected_user.username
