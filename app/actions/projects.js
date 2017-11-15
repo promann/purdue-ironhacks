@@ -18,6 +18,18 @@ exports.before = (ctx, actionName) => {
     }
 }
 
+exports.getHashedUrl = ctx => {
+    return Bloggify.models.Project.findOne({
+        username: ctx.query.username,
+        name: ctx.query.name
+    }).then(project => {
+        if (!project) {
+            throw Bloggify.errors.PROJECT_NOT_FOUND()
+        }
+        return { url: project.readonly_url }
+    })
+}
+
 exports.saveFile = ["post", ctx => {
     const params = {
         Bucket: S3_BUCKET,
