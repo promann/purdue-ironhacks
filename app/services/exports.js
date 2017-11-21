@@ -1,6 +1,7 @@
 const csv = require("fast-csv");
 const moment = require("moment");
 const flatten = require("obj-flatten");
+const typpy = require("typpy")
 
 const { Topic, User, Stats } = Bloggify.models
 
@@ -128,7 +129,7 @@ exports.users = (filters, exportType) => {
         query["profile.hack_type"] = filters.hackType;
     }
 
-    if (filters.hackId && filters.hackId !== "All") {
+    if (typpy(filters.hackId, Number)) {
         query["profile.hack_id"] = filters.hackId;
     }
 
