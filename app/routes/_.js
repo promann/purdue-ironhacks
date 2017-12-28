@@ -5,11 +5,14 @@ const PUBLIC_PAGES = [
     "/login-callback"
 ]
 
+PUBLIC_PAGES.re = /^\/(\@|preview)\//
+
 const WHITELISTED_PRIVATE_PAGES = [
     "/timeline",
     "/task",
     "/logout"
 ]
+
 
 exports.use = (ctx, cb) => {
     const user = Bloggify.services.session.getUser(ctx)
@@ -21,7 +24,7 @@ exports.use = (ctx, cb) => {
         return ctx.redirect("/login");
     }
 
-    if (!user && !PUBLIC_PAGES.includes(ctx.pathname) && !ctx.pathname.startsWith("/@/")) {
+    if (!user && !PUBLIC_PAGES.includes(ctx.pathname) && !PUBLIC_PAGES.re.test(ctx.pathname)) {
         return ctx.redirect("/")
     }
 
