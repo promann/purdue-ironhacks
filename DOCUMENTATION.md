@@ -68,10 +68,34 @@ sudo mongod
 Before starting the app, you will have to create a file named `.env`, containing:
 
 ```env
+# GitHub Keys
 GITHUB_CLIENT=...
 GITHUB_SECRET=...
-SENDGRID_KEY=...
-MONGODB_URI=mongodb://localhost/purdue_ironhacks
+GITHUB_ADMIN_TOKEN=a09...b76c99
+
+# Where will the GitHub projects be created
+GITHUB_PROJECTS_ORGANIZATION=goldironhack
+
+# Sendgrid Keys
+SENDGRID_KEY=SG.qzv8HNb...mqpcHD8
+
+# Database
+DB_URI=mongodb://localhost/purdue_ironhacks
+
+# Amazon S3 Keys
+S3_BUCKET=purdue-ironhacks-projects
+S3_ACCESS_KEY_ID=AK...ZUA
+S3_ACCESS_SECRET=Bvo...R63G
+
+# Domain
+DOMAIN=http://localhost:8080
+
+# This is used for creating encrypted urls
+# for seeing the projects
+CRYPTO_PASSWORD=some_secret_you_want
+
+# Make yourself an admin
+ADMIN_USERNAME=your_username
 ```
 
 You can get the GitHub keys after creating a GitHub application. Do not share these with anyone.
@@ -146,96 +170,53 @@ The posts and discussions from one forum are *not* visible to the users from the
 
 ### Workflow and functionality
 
-Being a Bloggify application, the application configuration is kept in a file: `bloggify.js`. This contains (see the inline comments):
+Being a Bloggify application, the application configuration is kept in a file: `bloggify.js`.:
 
 ```js
 "use strict";
 
-const conf = require("bloggify-config");
-
 // Set the right MongoDB URI (depending on the environment).
-const DB_URI = process.env.MONGODB_URI
+const DB_URI = process.env.DB_URI
 if (!DB_URI) {
-    console.error(">>>> Please provide the MongoDB URI. Set the MONGODB_URI environment variable.");
+    Bloggify.log(new Error(">>>> Please provide the MongoDB URI. Set the DB_URI environment variable."));
 }
 
-module.exports = conf({
-    // Application metadata
-    title: "IronHacks"
-  , description: "Hack for inovation and join the open data movement."
-
-    // The production domain
-  , domain: "http://www.ironhacks.com"
-
-    // Core plugins (which are initialized before the others)
-  , corePlugins: [
-        "bloggify-mongoose"
-    ]
-
-    // Application plugins
-  , plugins: [
-        "bloggify-sendgrid"
-      , "bloggify-custom-assets"
-      , "bloggify-github-login"
-    ]
-
-    // The application router
-  , router: "bloggify-flexible-router"
-
-    // We do not have a blog page, so we do not need a Bloggify viewer at all
-  , viewer: null
-
-    // Plugins configuration
-  , config: {
-
-        // Custom application assets
-        "bloggify-custom-assets": {
-            styles: [
-                "app/assets/stylesheets/index.css"
-            ]
-          , server: [
-                "app/server/index.js"
-            ]
-        }
-
-        // The application router
-      , "bloggify-flexible-router": {
-            controllers_dir: "app/controllers"
-          , routes_dir: "app/routes"
-          , error_pages: {
-                404: "404.ajs"
-              , 500: "500.ajs"
-              , bad_csrf: "422.ajs"
-            }
-        }
-
-        // Login with GitHub
-      , "bloggify-github-login": {
-            githubClient: process.env.GITHUB_CLIENT
-          , githubSecret: process.env.GITHUB_SECRET
-        }
-
-        // Connect to the MongoDB database
-      , "bloggify-mongoose": {
-            db: DB_URI
-          , models_dir: "app/models"
-        }
-
-        // Send emails
-      , "bloggify-sendgrid": {
+module.exports = {
+    title: "IronHacks",
+    description: "Hack for inovation and join the open data movement.",
+    domain: process.env.DOMAIN || "http://www.ironhacks.com",
+    core_plugins: [
+        ["github-login", {
+            githubClient: process.env.GITHUB_CLIENT,
+            githubSecret: process.env.GITHUB_SECRET,
+        }]
+    ],
+    plugins: [
+        ["sendgrid", {
             key: process.env.SENDGRID_KEY
+        }]
+    ],
+    styles: [ "app/assets/stylesheets/index.css" ],
+    bundles: {
+        publicHomepage: {
+            scripts: [ "app/assets/javascripts/homepage/index.js" ],
+            styles: [ "app/assets/stylesheets/homepage/index.css" ]
+        },
+        editor: {
+            styles: [ "app/assets/stylesheets/editor/index.css" ]
+        },
+        auth: {
+            scripts: [ "app/assets/javascripts/private-router.js" ],
+            styles: [ "app/assets/stylesheets/auth.css" ]
+        },
+        notAuth: {
+            scripts: [ "app/assets/javascripts/public-router.js" ]
+        },
+        main: {
+            scripts: [ "app/assets/javascripts/common-router.js" ]
         }
     }
-}, {
-    cms_methods: false
-  , server: {
-        session: {
-            storeOptions: {
-                url: DB_URI
-            }
-        }
-    }
-});
+};
 ```
 
 The way how this Bloggify application is structured is explained below.
@@ -247,8 +228,12 @@ The application routes (urls) are:
 ```sh
 GET         /
 GET         /404
+GET         /422
 GET         /500
 GET/POST    /admin
+GET         /admin/csv/export-users
+GET         /admin/csv/scores
+GET         /admin/csv/topics
 GET         /countdown
 GET/POST    /logout
 GET/POST    /new
@@ -257,13 +242,25 @@ GET         /login
 GET         /scores
 GET         /search
 GET         /quizzes
-GET/POST    /posts/topicId-_slug/
-POST        /posts/topicId-_slug/comments
-POST        /posts/topicId-_slug/delete
-GET/POST    /posts/topicId-_slug/edit
-POST        /posts/topicId-_slug/toggle-vote
-GET/POST    /users/_user/edit
-GET         /users/_user
+GET         /posts
+GET         /timeline
+GET         /task
+GET/POST    /posts/:topicId-:slug/
+POST        /posts/:topicId-:slug/comments
+POST        /posts/:topicId-:slug/delete
+GET/POST    /posts/:topicId-:slug/edit
+POST        /posts/:topicId-:slug/toggle-vote
+GET/POST    /users/:user/edit
+GET         /users/:user
+GET/POST    /users/:user/edit
+GET         /users/:user/projects
+GET         /users/:user/projects/:projectName
+GET/POST    /users/:user/projects/:projectName/delete
+GET/POST    /users/:user/projects/:projectName/edit
+GET         /users/:user/projects/:projectName/preview
+GET/POST    /users/:user/projects/:projectName/new
+GET         /users/:user/projects/:projectName/preview/:filepath*
+GET         /preview/:user/:projectName/:filepath*
 ```
 
 The `GET` method means that we fetch information from the server, while the `POST` means we post information to the server side.
@@ -279,9 +276,50 @@ We store the `user_email` and the `user_id` which are sent in the url.
 
 The code in the Qualtrics quizzes is set in the last block, last question (which may happen to be an empty question, used for tracking):
 
-TODO
+```js
+function getParameterByName(name, url) {
+    if (!url) {
+      url = window.location.href;
+    }
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+var redirectUrl = getParameterByName("redirect_to");
+var userEmail = getParameterByName("user_email");
+var userId = getParameterByName("user_id");
+if (userEmail) {
+   Qualtrics.SurveyEngine.setEmbeddedData("email", userEmail);
+}
+if (userId) {
+   Qualtrics.SurveyEngine.setEmbeddedData("user_id", userId);
+}
+if (redirectUrl) {
+	var interval = setInterval(function () {
+		if (Qualtrics.SurveyEngine.Page.isEndOfSurvey()) {
+			window.location = decodeURIComponent(redirectUrl);
+			clearInterval(interval);
+		}
+	}, 100);
+}
+```
 
 This approach is being used for all the quizzes: the sign up survey and the other technical quizzes.
+
+```
+Surveys:                    -------> Qualtrics
+     d3.js                                  | email, user_id
+     HTML & CSS                             | And after the survey we redirect back
+     JavaScript and jQuery                  |
+        ^                                   |
+        +-----------------------------------+
+            Save in db
+            (that the user took the survey)
+```
 
 #### Login / Register Process
 
@@ -902,67 +940,100 @@ exports.post = (lien, cb) => {
 In the `routes` folder, we have the page templates which are linked to the controllers from the `controllers` folder.
 
 ```
-routes/
+app/routes/
 ├── 404.ajs
+├── 422.ajs
 ├── 500.ajs
-├── admin.ajs
-├── countdown.ajs
-├── index.ajs
-├── logout.ajs
-├── new.ajs
+├── _.ajs
+├── _.js
+├── admin
+│   ├── _.ajs
+│   ├── _.js
+│   └── csv
+│       ├── _.js
+│       ├── export-users
+│       │   └── _.js
+│       ├── scores
+│       │   └── _.js
+│       └── topics
+│           └── _.js
+├── logout
+│   ├── _.ajs
+│   └── _.js
+├── new
+│   ├── _.ajs
+│   └── _.js
 ├── posts
-│   ├── index.ajs
+│   ├── _.ajs
 │   └── _topicId-_slug
-│       ├── comments.ajs
-│       ├── delete.ajs
-│       ├── edit.ajs
-│       ├── index.ajs
-│       └── toggle-vote.ajs
-├── quizzes.ajs
-├── register.ajs
-├── scores.ajs
-├── search.ajs
-└── users
-    └── _user
-        ├── edit.ajs
-        └── index.ajs
+│       ├── _.ajs
+│       ├── _.js
+│       ├── comments
+│       │   ├── _.ajs
+│       │   └── _.js
+│       ├── delete
+│       │   └── _.js
+│       ├── edit
+│       │   ├── _.ajs
+│       │   └── _.js
+│       └── toggle-vote
+│           └── _.js
+├── preview
+│   └── _user
+│       └── _projectName
+│           └── _filepath*
+│               └── _.js
+├── quizzes
+│   ├── _.ajs
+│   └── _.js
+├── register
+│   ├── _.ajs
+│   └── _.js
+├── scores
+│   ├── _.ajs
+│   └── _.js
+├── search
+│   ├── _.ajs
+│   └── _.js
+├── task
+│   ├── _.ajs
+│   └── _.js
+├── timeline
+│   ├── _.ajs
+│   └── _.js
+├── users
+│   └── _user
+│       ├── _.ajs
+│       ├── _.js
+│       ├── edit
+│       │   ├── _.ajs
+│       │   └── _.js
+│       └── projects
+│           ├── _.ajs
+│           ├── _.js
+│           ├── _projectName
+│           │   ├── _.ajs
+│           │   ├── _.js
+│           │   ├── delete
+│           │   │   ├── _.ajs
+│           │   │   └── _.js
+│           │   ├── edit
+│           │   │   ├── _.ajs
+│           │   │   └── _.js
+│           │   └── preview
+│           │       ├── _.ajs
+│           │       └── _filepath*
+│           │           └── _.js
+│           └── new
+│               ├── _.ajs
+│               └── _.js
+└── view-project
+    └── _projectHash
+        ├── _.ajs
+        └── _.js
 ```
 
-The `_` character marks a dynamic route (such as a topic id/slug, or user).
-
-The controllers are:
-
-```
-controllers/
-├── admin.js
-├── Comment.js
-├── countdown.js
-├── HackTypes.js
-├── index.js
-├── login.js
-├── logout.js
-├── new.js
-├── posts
-│   └── _topicId-_slug
-│       ├── comments.js
-│       ├── delete.js
-│       ├── edit.js
-│       ├── index.js
-│       └── toggle-vote.js
-├── quizzes.js
-├── register.js
-├── scores.js
-├── search.js
-├── Session.js
-├── Settings.js
-├── Stats.js
-├── Topic.js
-├── User.js
-└── users
-    └── _user
-        ├── edit.js
-        └── index.js
-```
+The `_` character marks a dynamic route (such as a topic id/slug, or user). The `.js` files are the controlers.
 
 #### Modules
 
