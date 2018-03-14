@@ -47,7 +47,11 @@ module.exports = ctx => {
 
         data.users = data.users.map((u, i) => {
             u = u.toObject();
-            u.username = `Hacker ${i + 1}`
+            if (u.username === ctx.user.username) {
+                u.username = "This is you"
+            } else {
+                u.username = `Hacker ${i + 1}`
+            }
 
             const phaseObj = Object(u.profile[phaseToDisplay]);
             return {
