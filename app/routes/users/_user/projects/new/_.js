@@ -1,6 +1,6 @@
-exports.before = ctx => {
-    ctx.redirect("/")
-}
+//exports.before = ctx => {
+//    ctx.redirect("/")
+//}
 
 exports.post = ctx => {
     const user = ctx.user
