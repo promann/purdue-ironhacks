@@ -10,7 +10,6 @@ const SettingsSchema = new Bloggify.db.Schema({
 })
 
 const HACK_TYPES = {
-    // Gold
     purdue: {
         survey: "https://purdue.qualtrics.com/jfe/form/SV_3qidG4HYagy65xj"
       , label: "Purdue"
@@ -19,7 +18,6 @@ const HACK_TYPES = {
       , subforums_count: 0
     }
 
-    // Black
   , bogota: {
         survey: "https://purdue.qualtrics.com/jfe/form/SV_3qidG4HYagy65xj"
       , label: "Honors"
@@ -28,11 +26,35 @@ const HACK_TYPES = {
       , subforums_count: 0
     }
 
-    // Green
   , unal: {
         survey: "https://purdue.qualtrics.com/jfe/form/SV_b7P31dWaqxUBniB"
       , label: "UNAL"
       , hackatons: [ {}, {}, {} ]
+      , start_date: null
+      , subforums_count: 0
+    }
+
+    // Gold
+  , purdue_spring_2018: {
+        survey: "https://purdue.qualtrics.com/jfe/form/SV_3qidG4HYagy65xj"
+      , label: "Purdue Spring 2018"
+      , hackatons: [ {} ]
+      , start_date: null
+      , subforums_count: 0
+    }
+
+  , purdue_summer_2018: {
+        survey: "https://purdue.qualtrics.com/jfe/form/SV_3qidG4HYagy65xj"
+      , label: "Purdue Summer 2018"
+      , hackatons: [ {} ]
+      , start_date: null
+      , subforums_count: 0
+    }
+
+  , purdue_fall_2018: {
+        survey: "https://purdue.qualtrics.com/jfe/form/SV_3qidG4HYagy65xj"
+      , label: "Purdue Fall 2018"
+      , hackatons: [ {} ]
       , start_date: null
       , subforums_count: 0
     }

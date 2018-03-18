@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="row row-same-height">
-            <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="col-md-4 col-sm-4 col-xs-12 hide">
                 <div class="single-price-package">
                     <div class="price-title">
                         <h3>Purdue Gold<br>IronHacks Fall 2017</h3>
@@ -45,7 +45,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="col-md-4 col-sm-4 col-xs-12 hide">
                 <div class="single-price-package">
                     <div class="price-title">
                         <h3>Purdue Gold<br>IronHacks Fall 2017</h3>
@@ -76,7 +76,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-4 col-xs-12">
+
+            <div class="col-md-4 col-sm-4 col-xs-12 hide">
                 <div class="single-price-package">
                     <div class="price-title">
                         <h3>Purdue-UNAL<br> Gold IronHacks Fall 2017</h3>
@@ -99,6 +100,92 @@
                             <form method="POST" action="/register">
                                 <%- ctx.csrfInput %>
                                 <input name="hack_type" value="unal" type="hidden" />
+                                <input class="button" type="submit" value="Sign up" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="single-price-package">
+                    <div class="price-title">
+                        <h3>Purdue IronHacks<br> Spring 2018</h3>
+                    </div>
+                    <div class="price">
+                        <p>
+                            <span class="text-bottom">
+				Start of tutorials: April 23<sup>rd</sup><br>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="price-list">
+                        <ul>
+                            <li>Challenge topic: Housing</li>
+                            <li>This hack is for students enrolled in a Software Engineering class at Universidad Nacional de Colombia</li>
+                            <li>Stay tuned for more details</li>
+                        </ul>
+                        <div class="price-btn">
+                            <form method="POST" action="/register">
+                                <%- ctx.csrfInput %>
+                                <input name="hack_type" value="purdue_spring_2018" type="hidden" />
+                                <input class="button" type="submit" value="Sign up" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="single-price-package">
+                    <div class="price-title">
+                        <h3>Purdue IronHacks<br> Summer 2018</h3>
+                    </div>
+                    <div class="price">
+                        <p>
+                            <span class="text-bottom">
+				Start of tutorials: July 2018 <br>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="price-list">
+                        <ul>
+                            <li>Challenge topic: Workforce</li>
+                            <li>This hack is for students at Purdue University; external students can participate upon request </li>
+                            <li>Partner: Management Performance Hub (MPH)</li>
+                            <li>Stay tuned for more details</li>
+                        </ul>
+                        <div class="price-btn">
+                            <form method="POST" action="/register">
+                                <%- ctx.csrfInput %>
+                                <input name="hack_type" value="purdue_summer_2018" type="hidden" />
+                                <input class="button" type="submit" value="Sign up" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="single-price-package">
+                    <div class="price-title">
+                        <h3>Purdue IronHacks<br> Fall 2018</h3>
+                    </div>
+                    <div class="price">
+                        <p>
+                            <span class="text-bottom">
+				Start of tutorials: October 2018 <br>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="price-list">
+                        <ul>
+                            <li>Challenge topic: to be announced soon</li>
+                            <li>This hack is for students at Purdue University; external students can participate upon request</li>
+                            <li>Stay tuned for more details</li>
+                        </ul>
+                        <div class="price-btn">
+                            <form method="POST" action="/register">
+                                <%- ctx.csrfInput %>
+                                <input name="hack_type" value="purdue_fall_2018" type="hidden" />
                                 <input class="button" type="submit" value="Sign up" />
                             </form>
                         </div>

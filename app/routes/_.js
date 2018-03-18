@@ -16,7 +16,6 @@ const WHITELISTED_PRIVATE_PAGES = [
 
 
 exports.use = (ctx, cb) => {
-    debugger
     const user = Bloggify.services.session.getUser(ctx)
 
     if (!user && ctx.pathname.startsWith("/posts")) {
