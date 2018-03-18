@@ -1,6 +1,6 @@
 import React from "react"
 import util from "../util"
-import Actions from "bloggify/http-actions"
+import Actions from "bloggify/actions"
 
 export default class ScoreItem extends React.Component {
     constructor (props) {
@@ -67,7 +67,7 @@ export default class ScoreItem extends React.Component {
         });
 
         return (
-            <tr className="score-item">
+            <tr className={`score-item ${this.props.hacker.you ? "highlighted" : ""}`}>
                 <td data-label="Username: " className="username">{this.props.hacker.username}</td>
                 {totalScoreColumn}
                 {this.renderViewButton()}

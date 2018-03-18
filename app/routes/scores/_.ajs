@@ -1,5 +1,5 @@
-<% include(Bloggify.views.header, { title: "Scores" }) %>
-<% include(Bloggify.views.container.start) %>
+<% include(Bloggify.partials.header, { title: "Scores" }) %>
+<% include(Bloggify.partials.container.start) %>
 
 <h1 class="text-center">Results (<%= phase %>)</h1>
 
@@ -55,5 +55,5 @@
     <p>Happy Coding! Work hard and play hard. It should be fun! </p>
 <% } %>
 
-<% include(Bloggify.views.container.end) %>
-<% include(Bloggify.views.footer) %>
+<% include(Bloggify.partials.container.end) %>
+<% include(Bloggify.partials.footer) %>

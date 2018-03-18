@@ -397,3 +397,8 @@ iframe#view-project-iframe {
     display: block;
     height: calc(100% - 230px);
 }
+
+
+tr.score-item.highlighted {
+    background: #ffff30;
+}

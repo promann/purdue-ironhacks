@@ -49,6 +49,7 @@ module.exports = ctx => {
             u = u.toObject();
             if (u.username === ctx.user.username) {
                 u.username = "This is you"
+                u.you = true
             } else {
                 u.username = `Hacker ${i + 1}`
             }
