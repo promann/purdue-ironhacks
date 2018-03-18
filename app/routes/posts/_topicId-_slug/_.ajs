@@ -1,6 +1,6 @@
-<% include(Bloggify.views.user_data) %>
-<% include(Bloggify.views.header, { title: f("topic") ? topic.title : "Post not found." }) %>
-<% include(Bloggify.views.container.start) %>
+<% include(Bloggify.partials.user_data) %>
+<% include(Bloggify.partials.header, { title: f("topic") ? topic.title : "Post not found." }) %>
+<% include(Bloggify.partials.container.start) %>
 
 <% if (f("topic")) { %>
 <script>
@@ -17,8 +17,8 @@
 
 <hr>
 <% } else { %>
-<% include(Bloggify.views.error_box) %>
+<% include(Bloggify.partials.error_box) %>
 <% } %>
 
-<% include(Bloggify.views.container.end) %>
-<% include(Bloggify.views.footer) %>
+<% include(Bloggify.partials.container.end) %>
+<% include(Bloggify.partials.footer) %>

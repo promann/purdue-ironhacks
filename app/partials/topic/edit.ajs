@@ -1,6 +1,6 @@
-<% include(Bloggify.views.user_data) %>
-<% include(Bloggify.views.header, { title: title }) %>
-<% include(Bloggify.views.container.start) %>
+<% include(Bloggify.partials.user_data) %>
+<% include(Bloggify.partials.header, { title: title }) %>
+<% include(Bloggify.partials.container.start) %>
 <% var user = ctx.user %>
 <div class="box">
     <% include("../error_box") %>
@@ -17,5 +17,5 @@
     <h1><%= ctx.pathname === "/new" ? "New topic" : "Edit topic" %></h1>
     <div id="app"></div>
 </div>
-<% include(Bloggify.views.container.end) %>
-<% include(Bloggify.views.footer) %>
+<% include(Bloggify.partials.container.end) %>
+<% include(Bloggify.partials.footer) %>

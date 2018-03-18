@@ -1,6 +1,6 @@
 <% // ctx.displayNavigationPages = false; %>
-<% include(Bloggify.views.header, { title: "Task" }) %>
-<% include(Bloggify.views.container.start) %>
+<% include(Bloggify.partials.header, { title: "Task" }) %>
+<% include(Bloggify.partials.container.start) %>
 
 <% var googleDocId = "" %>
 
@@ -32,5 +32,5 @@ iframe {
 <% } %>
 
 
-<% include(Bloggify.views.container.end) %>
-<% include(Bloggify.views.footer) %>
+<% include(Bloggify.partials.container.end) %>
+<% include(Bloggify.partials.footer) %>

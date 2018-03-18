@@ -2,6 +2,7 @@ import React from "react";
 import TopicsList from "./topics-list";
 import util from "../util";
 import Actions from "bloggify/actions"
+import ws from "bloggify-ws"
 
 export default class App extends React.Component {
     constructor (props) {
@@ -27,10 +28,10 @@ export default class App extends React.Component {
             this.setState({ topics: sticky.concat(nonSticky) });
         };
 
-        Actions.ws("topic").on("created", topic => {
+        ws("topic").on("created", topic => {
             const topics = this.state.topics;
             util.normalizeTopic(topic)
-            
+
             if ([topic.metadata.hack_type, topic.metadata.hack_id].join(":") !== [_pageData.user.profile.hack_type, _pageData.user.profile.hack_id].join(":")) {
                 return
             }

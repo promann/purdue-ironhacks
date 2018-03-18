@@ -2,7 +2,8 @@ const PUBLIC_PAGES = [
     "/",
     "/register",
     "/login",
-    "/login-callback"
+    "/login-callback",
+    "/session"
 ]
 
 PUBLIC_PAGES.re = /^\/(\@|preview)\//
@@ -15,6 +16,7 @@ const WHITELISTED_PRIVATE_PAGES = [
 
 
 exports.use = (ctx, cb) => {
+    debugger
     const user = Bloggify.services.session.getUser(ctx)
 
     if (!user && ctx.pathname.startsWith("/posts")) {

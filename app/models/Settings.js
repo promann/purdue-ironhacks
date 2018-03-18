@@ -121,6 +121,7 @@ const updateSettingsInternally = () => {
 
         forEach(doc.settings.hack_types, (hType, name) => {
             let thisHackType = HACK_TYPES[name]
+            if (!thisHackType) { return }
             thisHackType.start_date = hType.start_date
             thisHackType.hack_start_date = hType.hack_start_date
             thisHackType.phase = hType.phase

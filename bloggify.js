@@ -11,6 +11,7 @@ module.exports = {
     description: "Hack for inovation and join the open data movement.",
     domain: process.env.DOMAIN || "http://www.ironhacks.com",
     core_plugins: [
+        "ws",
         ["github-login", {
             githubClient: process.env.GITHUB_CLIENT,
             githubSecret: process.env.GITHUB_SECRET,

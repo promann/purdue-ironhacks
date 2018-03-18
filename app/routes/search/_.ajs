@@ -1,8 +1,8 @@
-<% include(Bloggify.views.header, { title: "Search" }) %>
-<% include(Bloggify.views.container.start) %>
+<% include(Bloggify.partials.header, { title: "Search" }) %>
+<% include(Bloggify.partials.container.start) %>
 <h1>Search</h1>
 <div class="search-form-wrapper">
-    <% include(Bloggify.views.search_form) %>
+    <% include(Bloggify.partials.search_form) %>
 </div>
 <% if (f("results")) { %>
     <p class="search-results-text">Search results for <em>‘<%= ctx.query.search %>’</em></p>
@@ -24,5 +24,5 @@
         <% } %>
     </div>
 <% } %>
-<% include(Bloggify.views.container.end) %>
-<% include(Bloggify.views.footer) %>
+<% include(Bloggify.partials.container.end) %>
+<% include(Bloggify.partials.footer) %>

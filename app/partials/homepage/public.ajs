@@ -160,7 +160,7 @@
                     </div>
                 </div>
             </div>
-            <% include(Bloggify.views.register) %>
+            <% include(Bloggify.partials.register) %>
             <div id="prizes-area" class="ptb-120">
                 <div class="container">
                     <div class="row">
@@ -588,7 +588,7 @@
                             </div>
                             <div class="footer-text">
                                 <span>
-                                    <% include(Bloggify.views.copyright) %>
+                                    <% include(Bloggify.partials.copyright) %>
                                 </span>
                             </div>
                         </div>

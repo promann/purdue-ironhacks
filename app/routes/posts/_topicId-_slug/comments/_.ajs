@@ -1,8 +1,8 @@
-<% include(Bloggify.views.user_data) %>
-<% include(Bloggify.views.header) %>
-<% include(Bloggify.views.container.start) %>
+<% include(Bloggify.partials.user_data) %>
+<% include(Bloggify.partials.header) %>
+<% include(Bloggify.partials.container.start) %>
 <center>
-<% include(Bloggify.views.error_box) %>
+<% include(Bloggify.partials.error_box) %>
 </center>
-<% include(Bloggify.views.container.end) %>
-<% include(Bloggify.views.footer) %>
+<% include(Bloggify.partials.container.end) %>
+<% include(Bloggify.partials.footer) %>

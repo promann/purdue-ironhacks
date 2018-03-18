@@ -1,5 +1,5 @@
-<% include(Bloggify.views.header, { title: "Admin" }) %>
-<% include(Bloggify.views.container.start) %>
+<% include(Bloggify.partials.header, { title: "Admin" }) %>
+<% include(Bloggify.partials.container.start) %>
 
 <h1>Create project</h1>
 
@@ -9,7 +9,7 @@
 
 <form method="POST" class="form">
     <%- ctx.csrfInput %>
-    <% include(Bloggify.views.error_box) %>
+    <% include(Bloggify.partials.error_box) %>
     <div>
         <label>
             <span>Name:</span>
@@ -28,5 +28,5 @@
 </form>
 
 
-<% include(Bloggify.views.container.end) %>
-<% include(Bloggify.views.footer) %>
+<% include(Bloggify.partials.container.end) %>
+<% include(Bloggify.partials.footer) %>

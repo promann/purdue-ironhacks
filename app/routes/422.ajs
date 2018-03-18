@@ -1,7 +1,7 @@
-<% include(Bloggify.views.header, { title: title = "Ouch! Server error! " }) %>
-<% include(Bloggify.views.container.start) %>
+<% include(Bloggify.partials.header, { title: title = "Ouch! Server error! " }) %>
+<% include(Bloggify.partials.container.start) %>
 <center>
-<% include(Bloggify.views.error_box, { err: "What‽ Your browser did something unexpected." }) %>
+<% include(Bloggify.partials.error_box, { err: "What‽ Your browser did something unexpected." }) %>
 </center>
 <% var err = typeof error === "undefined" ? null : error %>
 <% if (err && !Bloggify.production) { %>
@@ -15,5 +15,5 @@ Post data:
 Error stack:
 <%= err.stack %></pre>
 <% } %>
-<% include(Bloggify.views.container.end) %>
-<% include(Bloggify.views.footer) %>
+<% include(Bloggify.partials.container.end) %>
+<% include(Bloggify.partials.footer) %>

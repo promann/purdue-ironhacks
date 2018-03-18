@@ -1,11 +1,12 @@
 import React from "react"
 import Actions from "bloggify/actions"
+import ws from "bloggify-ws"
 
 export default class ViewProject extends React.Component {
     constructor (props) {
         super(props);
         this.state = {}
-        Actions.ws("tracking")
+        ws("tracking")
     }
 
     _setActiveUrl (urlType) {
@@ -40,7 +41,7 @@ export default class ViewProject extends React.Component {
 	                <button className="btn btn-small" onClick={this.showApp.bind(this)}>Show App</button>
                 </div>
                 <iframe src={this.state.active_url} id="view-project-iframe"/>
-			</div>           	
+			</div>
         )
     }
 }

@@ -1,10 +1,10 @@
 import React from "react"
 import brace from "brace"
 import AceEditor from "react-ace";
-import BloggifyActions from "bloggify/http-actions"
+import BloggifyActions from "bloggify/actions"
 import FolderTree from "react-folder-tree"
 import {Treebeard, decorators} from "react-treebeard"
-import Actions from "bloggify/http-actions"
+import Actions from "bloggify/actions"
 import SweetAlert from "sweetalert2-react"
 import { renderToStaticMarkup } from 'react-dom/server';
 

@@ -1,6 +1,6 @@
 <% ctx.displayNavigationPages = false; %>
-<% include(Bloggify.views.header, { title: "Timeline" }) %>
-<% include(Bloggify.views.container.start) %>
+<% include(Bloggify.partials.header, { title: "Timeline" }) %>
+<% include(Bloggify.partials.container.start) %>
 
 <% var timelineImage = ""; %>
 <% if (user.profile.hack_type === "purdue") { %>
@@ -28,5 +28,5 @@
 
 <div id="app"></div>
 
-<% include(Bloggify.views.container.end) %>
-<% include(Bloggify.views.footer) %>
+<% include(Bloggify.partials.container.end) %>
+<% include(Bloggify.partials.footer) %>

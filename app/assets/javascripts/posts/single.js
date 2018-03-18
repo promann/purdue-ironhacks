@@ -6,13 +6,14 @@ import moment from "moment"
 import util from "../util"
 import ReactMarkdown from "react-markdown"
 import Actions from "bloggify/actions"
+import ws from "bloggify-ws"
 
 export default class App extends React.Component {
     constructor (props) {
         super(props);
         const topic = util.normalizeTopic(window._pageData.topic);
-        
-        Actions.ws("topic").on("updated", topic => {
+
+        ws("topic").on("updated", topic => {
             if (this.state.topic._id !== topic._id) { return }
             util.normalizeTopic(topic)
             this.setState({ topic })

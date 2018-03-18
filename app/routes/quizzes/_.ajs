@@ -1,5 +1,5 @@
-<% include(Bloggify.views.header, { title: "Quizzes" }) %>
-<% include(Bloggify.views.container.start) %>
+<% include(Bloggify.partials.header, { title: "Quizzes" }) %>
+<% include(Bloggify.partials.container.start) %>
 <div class="text-center">
     <h1>Quizzes</h1>
     <p></p>
@@ -18,5 +18,5 @@
     </div>
 </div>
 
-<% include(Bloggify.views.container.end) %>
-<% include(Bloggify.views.footer) %>
+<% include(Bloggify.partials.container.end) %>
+<% include(Bloggify.partials.footer) %>

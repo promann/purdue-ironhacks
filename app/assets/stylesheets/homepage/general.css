@@ -545,7 +545,7 @@ p.about-pb {
 ------------------------*/
 
 .bg-img-2 {
-    background: rgba(0, 0, 0, 0) url("../../../../public/img/video/1.png") no-repeat scroll center center / cover;
+    background: rgba(0, 0, 0, 0) url("../../../public/img/video/1.png") no-repeat scroll center center / cover;
 }
 .video-popup {
     border: 5px solid #ffffff;
@@ -897,7 +897,7 @@ p.about-pb {
     transition: all 0.3s ease 0s;
 }
 .price {
-    background: #e8e8e8 url("../../../../public/img/icon-img/price.png") no-repeat scroll left center;
+    background: #e8e8e8 url("../../../public/img/icon-img/price.png") no-repeat scroll left center;
     padding: 25px 0 37px;
     position: relative;
     transition: all 0.3s ease 0s;

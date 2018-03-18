@@ -1,8 +1,8 @@
-<% include(Bloggify.views.header, {
+<% include(Bloggify.partials.header, {
 	title: "Preview"
 }) %>
 
-<% include(Bloggify.views.container.start) %>
+<% include(Bloggify.partials.container.start) %>
 
-<% include(Bloggify.views.container.end) %>
-<% include(Bloggify.views.footer) %>
+<% include(Bloggify.partials.container.end) %>
+<% include(Bloggify.partials.footer) %>

@@ -1,5 +1,5 @@
-<% include(Bloggify.views.header, { title: profile.username }) %>
-<% include(Bloggify.views.container.start) %>
+<% include(Bloggify.partials.header, { title: profile.username }) %>
+<% include(Bloggify.partials.container.start) %>
 <div class="row">
     <div class="col">
         <% profileInfo = profile.profile || {} %>
@@ -8,7 +8,7 @@
         </h1>
         <% if (profile._id.toString() === user._id.toString()) { %>
             <div class="user-profile-controls">
-                <% include(Bloggify.views.logout) %>
+                <% include(Bloggify.partials.logout) %>
                 <a class="hide" href="<%= profile.url %>/edit">Edit profile</a>
             </div>
         <% } %>
@@ -46,5 +46,5 @@
         <% } %>
     </div>
 </div>
-<% include(Bloggify.views.container.end) %>
-<% include(Bloggify.views.footer) %>
+<% include(Bloggify.partials.container.end) %>
+<% include(Bloggify.partials.footer) %>
