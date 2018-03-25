@@ -24,6 +24,7 @@ exports.before = (ctx, cb) => {
 
 exports.get = ctx => {
     const user = ctx.getSessionData("new_user");
+
     if (!user) {
         return {
             hTypeOptions: HACK_TYPE_OPTIONS
@@ -34,6 +35,7 @@ exports.get = ctx => {
     const qsuid = ctx.query.uid;
 
     if (userId === qsuid) {
+        debugger
         const hType = HACK_TYPES[user.profile.hack_types];
         return Bloggify.models.User.createUser(user).then(newUser => {
             Bloggify.emit("user:registered", newUser);

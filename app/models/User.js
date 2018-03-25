@@ -49,6 +49,8 @@ UserSchema.statics.createUser = data => {
             { email: data.email }
         ]
     }).then(existingUser => {
+        data;
+        debugger
         if (existingUser) {
             // throw new Error("Email/username is already registered.")
             return existingUser

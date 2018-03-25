@@ -12,11 +12,13 @@ Bloggify.require("github-login", GitHub => {
             username: user.login,
             email: user.emails[0].email
         }).then(existingUser => {
-            if (existingUser) {
+            const shouldRegister = !existingUser || Bloggify.models.Settings.HACK_TYPES[existingUser.get("profile.hack_type")].end_date < new Date()
+
+            if (!shouldRegister) {
                 return Bloggify.services.session.loginUser(existingUser, ctx)
             }
 
-            const newUser = new Bloggify.models.User({
+            let userToRegister = existingUser || new Bloggify.models.User({
                 username: user.login,
                 email: user.emails[0].email,
                 password: idy(),
@@ -31,7 +33,7 @@ Bloggify.require("github-login", GitHub => {
             })
 
             ctx.startSession({
-                new_user: newUser.toObject()
+                new_user: userToRegister.toObject()
             })
 
             ctx.redirect("/register")

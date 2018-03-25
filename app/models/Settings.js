@@ -1,9 +1,11 @@
 const ul = require("ul")
     , forEach = require("iterate-object")
     , schedule = require("node-schedule")
+    , Daty = require("daty")
 
 const ID = "0".repeat(24)
-const FIFTEENTH_OF_MARCH = new Date(new Date().getFullYear(), 2, 15)
+const DEFAULT_START_DATE = new Daty().setDate(15).setMonth(2).setFullYear(2017)
+const DEFAULT_END_DATE = DEFAULT_START_DATE.add(10, "months")
 
 const SettingsSchema = new Bloggify.db.Schema({
     settings: Object
@@ -13,24 +15,24 @@ const HACK_TYPES = {
     purdue: {
         survey: "https://purdue.qualtrics.com/jfe/form/SV_3qidG4HYagy65xj"
       , label: "Purdue"
-      , hackatons: [ {} ]
       , start_date: null
+      , end_date: null
       , subforums_count: 0
     }
 
   , bogota: {
         survey: "https://purdue.qualtrics.com/jfe/form/SV_3qidG4HYagy65xj"
       , label: "Honors"
-      , hackatons: [ {}, {}, {} ]
       , start_date: null
+      , end_date: null
       , subforums_count: 0
     }
 
   , unal: {
         survey: "https://purdue.qualtrics.com/jfe/form/SV_b7P31dWaqxUBniB"
       , label: "UNAL"
-      , hackatons: [ {}, {}, {} ]
       , start_date: null
+      , end_date: null
       , subforums_count: 0
     }
 
@@ -38,24 +40,24 @@ const HACK_TYPES = {
   , purdue_spring_2018: {
         survey: "https://purdue.qualtrics.com/jfe/form/SV_3qidG4HYagy65xj"
       , label: "Purdue Spring 2018"
-      , hackatons: [ {} ]
       , start_date: null
+      , end_date: null
       , subforums_count: 0
     }
 
   , purdue_summer_2018: {
         survey: "https://purdue.qualtrics.com/jfe/form/SV_3qidG4HYagy65xj"
       , label: "Purdue Summer 2018"
-      , hackatons: [ {} ]
       , start_date: null
+      , end_date: null
       , subforums_count: 0
     }
 
   , purdue_fall_2018: {
         survey: "https://purdue.qualtrics.com/jfe/form/SV_3qidG4HYagy65xj"
       , label: "Purdue Fall 2018"
-      , hackatons: [ {} ]
       , start_date: null
+      , end_date: null
       , subforums_count: 0
     }
 }
@@ -74,18 +76,28 @@ SettingsSchema.statics.getSettings = () => {
 }
 
 SettingsSchema.statics.ensure = () => {
+    const defaultHackTypes = {}
+    forEach(HACK_TYPES, (hack, hackName) => {
+        defaultHackTypes[hackName] = {
+            phase: "phase1",
+            subforums_count: 0,
+            start_date: DEFAULT_START_DATE._,
+            end_date: DEFAULT_END_DATE._
+        }
+    })
     return Settings.getSettings().then(settings => {
+        debugger
         if (!settings) {
             return new Settings({
                 _id: ID
               , settings: {
-                    hack_types: {
-                        purdue: { phase: "phase1", subforums_count: 0, start_date: null }
-                      , bogota: { phase: "phase1", subforums_count: 0, start_date: FIFTEENTH_OF_MARCH }
-                      , unal: { phase: "phase1", subforums_count: 0, start_date: FIFTEENTH_OF_MARCH }
-                    }
+                    hack_types: defaultHackTypes
                 }
             }).save()
+        } else {
+            const updatedHackTypes = ul.deepMerge(settings.toObject().settings.hack_types, defaultHackTypes)
+            settings.set("settings.hack_types", updatedHackTypes)
+            return settings.save()
         }
     })
 }
@@ -145,6 +157,7 @@ const updateSettingsInternally = () => {
             let thisHackType = HACK_TYPES[name]
             if (!thisHackType) { return }
             thisHackType.start_date = hType.start_date
+            thisHackType.end_date = hType.end_date
             thisHackType.hack_start_date = hType.hack_start_date
             thisHackType.phase = hType.phase
             thisHackType.next_phase_date = hType.next_phase_date
