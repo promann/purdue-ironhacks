@@ -2,15 +2,7 @@
 <% include(Bloggify.partials.header, { title: "Timeline" }) %>
 <% include(Bloggify.partials.container.start) %>
 
-<% var timelineImage = ""; %>
-<% if (user.profile.hack_type === "purdue") { %>
-<%   timelineImage = _public("/img/timelines/1.png"); %>
-<% } else if (user.profile.hack_type === "bogota") { %>
-<%   timelineImage = _public("/img/timelines/2.png"); %>
-<% } else if (user.profile.hack_type === "unal") { %>
-<%   timelineImage = _public("/img/timelines/3.png"); %>
-<% } %>
-
+<% var timelineImage = _public("/img/timelines/" + user.profile.hack_type + ".jpeg"); %>
 
 <script>
     window._pageData = {
