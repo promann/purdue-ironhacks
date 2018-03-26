@@ -160,6 +160,15 @@ export default class App extends React.Component {
         if (this.state.readonly) {
             return Promise.reject(new Error("You are in the read-only mode. Cannot save the file."));
         }
+
+        Actions.post("stats.insert", {
+            event: "save-file",
+            metadata: {
+                project_name: this.state.page.project.name,
+                filepath: opts.filepath || this.state.filepath,
+            }
+        });
+
         return BloggifyActions.post("projects.saveFile", {
             project_name: this.state.page.project.name,
             filepath: opts.filepath || this.state.filepath,
