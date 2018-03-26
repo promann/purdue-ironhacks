@@ -7,17 +7,10 @@
         <% var user = ctx.user = ctx.getSessionData("user") %>
         <% if (user) { %>
             <% var hType = ctx.user.profile.hack_type; %>
+            <% var hTypeObj = Bloggify.models.Settings.HACK_TYPES[hType] %>
             <% var hTypeName = hType.charAt(0).toUpperCase() + hType.slice(1); %>
             <% var now = new Date() %>
-            <% var thisYear = now.getFullYear() %>
-            <%
-                var HACK_LABELS = {
-                    unal: "Purdue – UNAL Gold IronHacks " + thisYear,
-                    purdue: "Purdue Gold IronHacks Fall " + thisYear,
-                    bogota: "Purdue – Gold IronHacks Fall" + thisYear
-                }
-            %>
-            <% ctx.hackLabel = HACK_LABELS[hType] %>
+            <% ctx.hackLabel = hTypeObj.display_label || hTypeObj.label %>
         <% } %>
         <title><%= title %> <%=  ctx.hackLabel ? "for " + ctx.hackLabel : "" %> | <%= Bloggify.options.title %></title>
         <link rel="icon" href="<%= _public("/img/favicon.png") %>">

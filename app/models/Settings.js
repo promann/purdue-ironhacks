@@ -4,6 +4,7 @@ const ul = require("ul")
     , Daty = require("daty")
 
 const ID = "0".repeat(24)
+const CURRENT_YEAR = new Date().getFullYear()
 const DEFAULT_START_DATE = new Daty().setDate(15).setMonth(2)
 const DEFAULT_END_DATE = DEFAULT_START_DATE.clone().add(10, "months")
 
@@ -15,6 +16,7 @@ const HACK_TYPES = {
     purdue: {
         survey: "https://purdue.qualtrics.com/jfe/form/SV_3qidG4HYagy65xj"
       , label: "Purdue"
+      , display_label: "Purdue Gold IronHacks Fall " + CURRENT_YEAR
       , start_date: null
       , end_date: null
       , subforums_count: 0
@@ -23,6 +25,7 @@ const HACK_TYPES = {
   , bogota: {
         survey: "https://purdue.qualtrics.com/jfe/form/SV_3qidG4HYagy65xj"
       , label: "Honors"
+      , display_label: "Purdue – Gold IronHacks Fall" + CURRENT_YEAR
       , start_date: null
       , end_date: null
       , subforums_count: 0
@@ -31,6 +34,7 @@ const HACK_TYPES = {
   , unal: {
         survey: "https://purdue.qualtrics.com/jfe/form/SV_b7P31dWaqxUBniB"
       , label: "UNAL"
+      , display_label: "Purdue – UNAL Gold IronHacks " + CURRENT_YEAR
       , start_date: null
       , end_date: null
       , subforums_count: 0
