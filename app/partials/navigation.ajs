@@ -5,7 +5,7 @@
             | <a href="/task">Task</a>
             | <a href="/scores">Results</a>
             | <a href="/quizzes">Quizzes</a>
-            <% var tutorialLink = "https://github.com/goldironhack/2017-Fall-Purdue-UNAL-IronHack-Tutorials" %>
+            <% var tutorialLink = "https://github.com/RCODI/Purdue-IronHacks-Spring-2018-Tutorials" %>
             <% if (tutorialLink) { %>
                 | <a href="<%= tutorialLink %>">Tutorial</a>
             <% } %>
