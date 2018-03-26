@@ -2,13 +2,13 @@ const findValue = require("find-value")
 
 // Define the quizzes list
 const quizzes = [
-    ["HTML & CSS", "https://purdue.qualtrics.com/SE/?SID=SV_a46jpxyHH2MjW9n&Q_JFE=0", "html_css"]
-  , ["JavaScript & jQuery", "https://purdue.qualtrics.com/SE/?SID=SV_aW2ARacRQFARoy1&Q_JFE=0", "javascript_jquery"]
-  , ["d3.js", "https://purdue.qualtrics.com/SE/?SID=SV_2oxRgzb4FB8wo4t&Q_JFE=0", "d3"]
-  , ["Design Elements", "https://purdue.qualtrics.com/jfe/form/SV_esbe7BxRTJdCIM5", "design_elements"]
-  , ["Design Principles", "https://purdue.qualtrics.com/jfe/form/SV_6WDUSwWGkM8udo1", "design_principles"]
-  , ["Usability Heuristics", "https://purdue.qualtrics.com/jfe/form/SV_eESwNO3Kxe1DJiJ", "usability_heuristics"]
+    ["HTML & CSS", "https://purdue.ca1.qualtrics.com/jfe/form/SV_0l9UUOmgB2TCZ1P", "html_css"]
+  , ["Bootstrap", "https://purdue.ca1.qualtrics.com/jfe/form/SV_ai47Laj9EM1n433", "bootstrap"]
+  , ["Javascript and jQuery", "https://purdue.ca1.qualtrics.com/jfe/form/SV_1Xkpq23Qu5j7P01", "javascript_jquery"]
+  , ["Google Map API", "https://purdue.ca1.qualtrics.com/jfe/form/SV_eEe3JnzCkS2ppnn", "google_maps_api"]
+  , ["D3.js", "https://purdue.ca1.qualtrics.com/jfe/form/SV_0ep4CDeW4BYTckR", "d3_js"]
 ];
+
 
 // Map the quizzes labels to the data
 const validQuizzes = {};
