@@ -4,4 +4,6 @@
 @import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
 @import "general.css";
 @import "responsive.css";
-@import "https://cdn.rawgit.com/IonicaBizauKitchen/sweetalert2-react/master/src/sweetalert2.css"
+@import "https://cdn.rawgit.com/IonicaBizauKitchen/sweetalert2-react/master/src/sweetalert2.css";
+@import "react-github-contribution-calendar/default.css";
+

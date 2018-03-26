@@ -7,7 +7,7 @@
 <% var isUnalZero = (user.profile.hack_type === "unal" && user.profile.hack_id === 0) %>
 <% if (isUnalZero) { %>
     <p>Curious to learn about how you are doing? We have now completed the previous phase the hack. Please check your emails to review your personal feedback. You are now competing with 28 other hackers. They have all received their personal feedback for this phase. </p>
-    
+
     </p>Do not share your feedback with others. This is a competition, and the rules require you to keep this information confidential. If you have questions about your feedback, send us an email on <a href="mailto:opendigital@purdue.edu ">opendigital@purdue.edu</a> or attend one of our tech help sessions. </p>
 
     <p>Happy Coding! Work hard and play hard. It should be fun! </p>
@@ -42,6 +42,7 @@
         component: "scores",
         user: <%- stringify(ctx.user) %>,
         hackers: <%- stringify(users) %>,
+        calendar_values: <%- stringify(calendarValues) %>,
         csrfToken: <%- stringify(ctx.csrfToken) %>
     };
 </script>

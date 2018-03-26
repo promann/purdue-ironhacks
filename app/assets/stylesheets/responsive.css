@@ -104,3 +104,9 @@ footer .bag {
 .bloggify-logo a {
     text-decoration: none;
 }
+
+.calendar {
+    max-width: 720px;
+    display: block;
+    margin: 0 auto;
+}

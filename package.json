@@ -53,6 +53,7 @@
     "react-ace": "^5.1.2",
     "react-dom": "^15.4.2",
     "react-folder-tree": "^3.0.0",
+    "react-github-contribution-calendar": "^1.0.0",
     "react-markdown": "^2.4.4",
     "react-md-editor": "^0.2.2",
     "react-treebeard": "^2.0.3",

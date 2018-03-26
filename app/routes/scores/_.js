@@ -1,3 +1,5 @@
+const Daty = require("daty")
+
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -19,9 +21,20 @@ function shuffle(array) {
 
 module.exports = ctx => {
     const data = {}
-    return Bloggify.models.User.find({
-        "profile.hack_type": ctx.user.profile.hack_type,
-        "profile.hack_id": ctx.user.profile.hack_id
+    return Bloggify.models.Stats.find({
+        actor: ctx.user._id,
+        event: "save-file"
+    }).then(res => {
+        data.calendarValues = {}
+        res.forEach(c => {
+            const cDay = new Daty(c.created_at).format("YYYY-MM-DD")
+            data.calendarValues[cDay] = data.calendarValues[cDay] || 0
+            ++data.calendarValues[cDay]
+        })
+        return Bloggify.models.User.find({
+            "profile.hack_type": ctx.user.profile.hack_type,
+            "profile.hack_id": ctx.user.profile.hack_id
+        })
     }).then(users => {
         data.users = users
         return Bloggify.models.Settings.getSettings()
@@ -69,7 +82,8 @@ module.exports = ctx => {
         shuffle(data.users);
         return {
             users: data.users,
-            phase: phaseToDisplay
+            phase: phaseToDisplay,
+            calendarValues: data.calendarValues
         };
     });
 };
