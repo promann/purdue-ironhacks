@@ -43,6 +43,7 @@ exports.post = ctx => {
     let foundInvalidDate = false;
     forEach(ctx.data.hack_types, hType => {
         hType.start_date = new Date(hType.start_date);
+        hType.end_date = new Date(hType.end_date);
         hType.hack_start_date = new Date(hType.hack_start_date);
         hType.next_phase_date = new Date(hType.next_phase_date);
         hType.show_results_date = new Date(hType.show_results_date);

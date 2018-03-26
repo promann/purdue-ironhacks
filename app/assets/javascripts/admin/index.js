@@ -72,9 +72,10 @@ export default class App extends React.Component {
             let inputs = $$("input", c);
             hackTypes[inputs[0].dataset.hackType] = {
                 start_date: inputs[0].value
-              , hack_start_date: inputs[1].value
-              , next_phase_date: inputs[2].value
-              , show_results_date: inputs[3].value
+              , end_date: inputs[1].value
+              , hack_start_date: inputs[2].value
+              , next_phase_date: inputs[3].value
+              , show_results_date: inputs[4].value
             };
         });
 
@@ -137,9 +138,12 @@ export default class App extends React.Component {
         const hackTypesSubforums = []
         let index = -1;
 
-        forEach(window._pageData.settings.hack_types, (hackType, name) => {
+        const hackTypes = window._pageData.settings.hack_types
+        Object.keys(hackTypes).sort().forEach(name => {
+            const hackType = hackTypes[name]
 
             hackType.start_date = moment(new Date(hackType.start_date));
+            hackType.end_date = moment(new Date(hackType.end_date));
             hackType.hack_start_date = moment(hackType.hack_start_date);
             hackType.next_phase_date = moment(hackType.next_phase_date);
             hackType.show_results_date = moment(hackType.show_results_date);
@@ -149,6 +153,7 @@ export default class App extends React.Component {
                 <div className="hack-type-start-date" key={++index} >
                     <strong>{_pageData.hackTypes[name].label}</strong>: <br/>
                     Start of <strong>forum</strong>: <input data-hack-type={name} type="text" defaultValue={hackType.start_date.format("YYYY-MM-DD HH:mm:ss")} /><br/>
+                    End of <strong>hackaton</strong>: <input data-hack-type={name} type="text" defaultValue={hackType.end_date.format("YYYY-MM-DD HH:mm:ss")} /><br/>
                     Start of <strong>hack</strong>: <input data-hack-type={name} type="text" defaultValue={hackType.hack_start_date.format("YYYY-MM-DD HH:mm:ss")} /><br/>
                     Time until <strong>submission</strong>: <input data-hack-type={name} type="text" defaultValue={hackType.next_phase_date.format("YYYY-MM-DD HH:mm:ss")} /><br/>
                     Time when <strong>results become visible</strong>: <input data-hack-type={name} type="text" defaultValue={hackType.show_results_date.format("YYYY-MM-DD HH:mm:ss")} /><br/>
