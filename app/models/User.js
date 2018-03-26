@@ -49,10 +49,12 @@ UserSchema.statics.createUser = data => {
             { email: data.email }
         ]
     }).then(existingUser => {
-        data;
-        debugger
         if (existingUser) {
-            // throw new Error("Email/username is already registered.")
+            const currentHackType = existingUser.get("profile.hack_type")
+            if (currentHackType !== data.profile.hack_type) {
+                existingUser.set("profile.hack_type", data.profile.hack_type)
+                return existingUser.save()
+            }
             return existingUser
         }
 

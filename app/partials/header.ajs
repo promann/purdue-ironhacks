@@ -10,7 +10,7 @@
             <% var hTypeName = hType.charAt(0).toUpperCase() + hType.slice(1); %>
             <% var now = new Date() %>
             <% var thisYear = now.getFullYear() %>
-            <% 
+            <%
                 var HACK_LABELS = {
                     unal: "Purdue – UNAL Gold IronHacks " + thisYear,
                     purdue: "Purdue Gold IronHacks Fall " + thisYear,
@@ -21,7 +21,7 @@
         <% } %>
         <title><%= title %> <%=  ctx.hackLabel ? "for " + ctx.hackLabel : "" %> | <%= Bloggify.options.title %></title>
         <link rel="icon" href="<%= _public("/img/favicon.png") %>">
-        
+
         <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
         <%- Bloggify.assets.html() %>
         <% if (user) { %>

@@ -12,7 +12,9 @@ Bloggify.require("github-login", GitHub => {
             username: user.login,
             email: user.emails[0].email
         }).then(existingUser => {
-            const shouldRegister = !existingUser || Bloggify.models.Settings.HACK_TYPES[existingUser.get("profile.hack_type")].end_date < new Date()
+            debugger
+            const currentHackType = existingUser.get("profile.hack_type")
+            const shouldRegister = !existingUser || !currentHackType || Bloggify.models.Settings.HACK_TYPES[currentHackType].end_date < new Date()
 
             if (!shouldRegister) {
                 return Bloggify.services.session.loginUser(existingUser, ctx)
@@ -31,6 +33,29 @@ Bloggify.require("github-login", GitHub => {
                     github_id: user.id
                 }
             })
+
+            const selectedHackType = ctx.getSessionData("new_user.profile.hack_type")
+            if (existingUser) {
+                if (selectedHackType && currentHackType !== selectedHackType) {
+                    existingUser.set("profile.hack_type", selectedHackType)
+                    existingUser.set("profile.hack_id", undefined)
+                    existingUser.set("profile.phase1", undefined)
+                    existingUser.set("profile.phase2", undefined)
+                    existingUser.set("profile.phase3", undefined)
+                    existingUser.set("profile.phase4", undefined)
+                    existingUser.set("profile.phase5", undefined)
+                    existingUser.save()
+                } else {
+                    existingUser.set("profile.hack_type", undefined)
+                    existingUser.set("profile.hack_id", undefined)
+                    existingUser.set("profile.phase1", undefined)
+                    existingUser.set("profile.phase2", undefined)
+                    existingUser.set("profile.phase3", undefined)
+                    existingUser.set("profile.phase4", undefined)
+                    existingUser.set("profile.phase5", undefined)
+                    existingUser.save()
+                }
+            }
 
             ctx.startSession({
                 new_user: userToRegister.toObject()

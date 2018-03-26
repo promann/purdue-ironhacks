@@ -4,8 +4,8 @@ const ul = require("ul")
     , Daty = require("daty")
 
 const ID = "0".repeat(24)
-const DEFAULT_START_DATE = new Daty().setDate(15).setMonth(2).setFullYear(2017)
-const DEFAULT_END_DATE = DEFAULT_START_DATE.add(10, "months")
+const DEFAULT_START_DATE = new Daty().setDate(15).setMonth(2)
+const DEFAULT_END_DATE = DEFAULT_START_DATE.clone().add(10, "months")
 
 const SettingsSchema = new Bloggify.db.Schema({
     settings: Object
@@ -86,7 +86,6 @@ SettingsSchema.statics.ensure = () => {
         }
     })
     return Settings.getSettings().then(settings => {
-        debugger
         if (!settings) {
             return new Settings({
                 _id: ID
@@ -148,7 +147,7 @@ const setScheduleForHackType = name => {
 
 const updateSettingsInternally = () => {
     return Bloggify.models.Settings.getSettings().then(doc => {
-        if (!doc) {
+        if (!doc || !HACK_TYPES.purdue.getHackId) {
             Bloggify.log("Settings not found. Trying again in a second.")
             return setTimeout(updateSettingsInternally, 1000)
         }
