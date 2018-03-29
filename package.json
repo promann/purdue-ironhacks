@@ -22,6 +22,7 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "array-unique": "^0.3.2",
     "aws-sdk": "^2.100.0",
     "bag.css": "^1.0.5",
     "bindy": "^1.0.8",
