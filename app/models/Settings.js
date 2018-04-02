@@ -12,9 +12,12 @@ const SettingsSchema = new Bloggify.db.Schema({
     settings: Object
 })
 
+
+const SURVEY_URL = "https://purdue.ca1.qualtrics.com/jfe/form/SV_23GkqPCNMdqsdo1"
+
 const HACK_TYPES = {
     purdue: {
-        survey: "https://purdue.qualtrics.com/jfe/form/SV_3qidG4HYagy65xj"
+        survey: SURVEY_URL
       , label: "Purdue"
       , display_label: "Purdue Gold IronHacks Fall " + CURRENT_YEAR
       , start_date: null
@@ -23,7 +26,7 @@ const HACK_TYPES = {
     }
 
   , bogota: {
-        survey: "https://purdue.qualtrics.com/jfe/form/SV_3qidG4HYagy65xj"
+        survey: SURVEY_URL
       , label: "Honors"
       , display_label: "Purdue – Gold IronHacks Fall" + CURRENT_YEAR
       , start_date: null
@@ -32,7 +35,7 @@ const HACK_TYPES = {
     }
 
   , unal: {
-        survey: "https://purdue.qualtrics.com/jfe/form/SV_b7P31dWaqxUBniB"
+        survey: SURVEY_URL
       , label: "UNAL"
       , display_label: "Purdue – UNAL Gold IronHacks " + CURRENT_YEAR
       , start_date: null
@@ -42,7 +45,7 @@ const HACK_TYPES = {
 
     // Gold
   , purdue_spring_2018: {
-        survey: "https://purdue.qualtrics.com/jfe/form/SV_3qidG4HYagy65xj"
+        survey: SURVEY_URL
       , label: "Purdue Spring 2018"
       , start_date: null
       , end_date: null
@@ -50,7 +53,7 @@ const HACK_TYPES = {
     }
 
   , purdue_summer_2018: {
-        survey: "https://purdue.qualtrics.com/jfe/form/SV_3qidG4HYagy65xj"
+        survey: SURVEY_URL
       , label: "Purdue Summer 2018"
       , start_date: null
       , end_date: null
@@ -58,7 +61,7 @@ const HACK_TYPES = {
     }
 
   , purdue_fall_2018: {
-        survey: "https://purdue.qualtrics.com/jfe/form/SV_3qidG4HYagy65xj"
+        survey: SURVEY_URL
       , label: "Purdue Fall 2018"
       , start_date: null
       , end_date: null
