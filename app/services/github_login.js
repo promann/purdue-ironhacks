@@ -12,8 +12,7 @@ Bloggify.require("github-login", GitHub => {
             username: user.login,
             email: user.emails[0].email
         }).then(existingUser => {
-            debugger
-            const currentHackType = existingUser.get("profile.hack_type")
+            const currentHackType = existingUser && existingUser.get("profile.hack_type")
             const shouldRegister = !existingUser || !currentHackType || Bloggify.models.Settings.HACK_TYPES[currentHackType].end_date < new Date()
 
             if (!shouldRegister) {
