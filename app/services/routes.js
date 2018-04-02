@@ -1,3 +1,3 @@
-Bloggify.ready(function () {
-    Bloggify;
-})
+//Bloggify.ready(function () {
+//    Bloggify;
+//})
