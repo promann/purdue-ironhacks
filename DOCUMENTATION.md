@@ -16,7 +16,7 @@ Then you can proceed to the next steps:
  1. Clone the repo either from GitHub or Heroku:
 
   ```sh
-  git clone https://github.com/hackpurdue/courseswebpage.git
+  git clone https://github.com/hackpurdue/purdue-ironhacks.git
   ```
 
   or Heroku (this is not recommended, but it will still work as long you have access to the project):
@@ -45,7 +45,7 @@ Then you can proceed to the next steps:
  2. Open the folder:
 
   ```sh
-  cd courseswebpage
+  cd purdue-ironhacks
   ```
 
  3. Install the dependencies:
