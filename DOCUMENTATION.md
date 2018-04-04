@@ -16,7 +16,7 @@ Then you can proceed to the next steps:
  1. Clone the repo either from GitHub or Heroku:
 
   ```sh
-  git clone https://github.com/hackpurdue/purdue-ironhacks.git
+  git clone https://github.com/HackPurdue/purdue-ironhacks.git
   ```
 
   or Heroku (this is not recommended, but it will still work as long you have access to the project):
