@@ -25,7 +25,6 @@ export default class App extends React.Component {
           ];
         return (
             <div className="page-content">
-                <Calendar values={values} until={until} panelColors={panelColors} />
                 <List hackers={hackers} user={this.state.user} />
             </div>
         )

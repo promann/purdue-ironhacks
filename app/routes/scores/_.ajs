@@ -42,7 +42,6 @@
         component: "scores",
         user: <%- stringify(ctx.user) %>,
         hackers: <%- stringify(users) %>,
-        calendar_values: <%- stringify(calendarValues) %>,
         csrfToken: <%- stringify(ctx.csrfToken) %>
     };
 </script>
