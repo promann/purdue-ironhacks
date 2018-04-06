@@ -3,13 +3,9 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <div class="title-style title-pb2">
-                    <h1>Upcoming Hacks <span>Hacks Fall 2017</span></h1>
-                    <p>Gold IronHacks are for students enrolled in Purdue classes and our partner universities.</p>
-                    <p>Black IronHacks are open to everybody, everywhere.
-                    You can only sign up for one hack at a time.
-                    Before entering the competition, you must complete a brief survey.
-                    There will be a 3-week boot-camp training where you can get familiar with key technologies
-                    prior to the competition. So, start early!</p>
+                    <h1>Upcoming Hacks <span>Hacks Spring 2018</span></h1>
+                    <p>IronHacks are for students enrolled in Purdue classes and our partner universities.</p>
+                    <p> IronHacks are open to everybody, everywhere. You can only sign up for one hack at a time. Before entering the competition, you must complete a brief survey. There will be a 3-week boot-camp training where you can get familiar with key technologies prior to the competition. So, start early!</p>
                 </div>
             </div>
         </div>
@@ -17,28 +13,26 @@
             <div class="col-md-4 col-sm-4 col-xs-12 hide">
                 <div class="single-price-package">
                     <div class="price-title">
-                        <h3>Purdue Gold<br>IronHacks Fall 2017</h3>
+                        <h3>Purdue<br>IronHacks Spring 2018</h3>
                     </div>
                     <div class="price">
                         <p>
                             <span class="text-bottom">
-				Start of boot-camp and contest: October 11<sup>th</sup> <br>
+				Start of tutorials: April 23<sup>rd</sup> <br>
                             </span>
                         </p>
                     </div>
                     <div class="price-list">
                         <ul>
-                            <li>This hack is for Purdue Polytechnic students enrolled in the following class: <strong>TECH499: Open Data Apps</strong></li>
-                            <li>Purdue Polytechnic Professor: Sabine Brunswicker</li>
-                            <li>Challenge topic: Will revolve around safety, health, and travel.</li>
-                            <li>You may register for this class on myPurdue now!</li>
-                            <li><strong><a href="/downloads/fall2017-flyer.pdf">Download flyer</a></strong></li>
+                            <li><strong>Challenge topic: Housing</strong></li>
+                            <li>This hack is for students enrolled in a Software Engineering class at Universidad Nacional de Colombia.</li>
+                            <li>Stay tuned for more details.</li>
                         </ul>
                         <div class="price-btn">
                             <form method="POST" action="/register">
                                 <%- ctx.csrfInput %>
                                 <input name="hack_type" value="bogota" type="hidden" />
-                                <input class="button" type="submit" value="Sign up" />
+                                <input class="button" type="submit" value="Sign up" disabled="true"/>
                             </form>
                         </div>
                     </div>
@@ -48,29 +42,27 @@
             <div class="col-md-4 col-sm-4 col-xs-12 hide">
                 <div class="single-price-package">
                     <div class="price-title">
-                        <h3>Purdue Gold<br>IronHacks Fall 2017</h3>
+                        <h3>Purdue<br>IronHacks Summer 2018</h3>
                     </div>
                     <div class="price">
                         <p>
                             <span class="text-bottom">
-				Start of boot-camp and contest: October 11<sup>th</sup> <br>
+				Start of tutorials: July 2018<br>
                             </span>
                         </p>
                     </div>
                     <div class="price-list">
                         <ul>
-                            <li>This hack is for Purdue Honors College students.</li>
-                            <li>Challenge topic: Will revolve around safety, health, and travel.</li>
-
-                            <li>Instructor: Prof. Sabine Brunswicker</li>
-                            <li>Stay tuned for more details</li>
-                            <li><strong><a href="/downloads/fall2017-flyer.pdf">Download flyer</a></strong></li>
+                            <li><strong>Challenge topic: Workforce</strong></li>
+                            <li>This hack is for students at Purdue University; external students can participate upon request</li>
+                            <li>Partner: <strong>Management Performance Hub (MPH).</strong></li>
+                            <li>Stay tuned for more details.</li>
                         </ul>
                         <div class="price-btn">
                             <form method="POST" action="/register">
                                 <%- ctx.csrfInput %>
                                 <input name="hack_type" value="bogota" type="hidden" />
-                                <input class="button" type="submit" value="Sign up" />
+                                <input class="button" type="submit" value="Sign up" disabled="true"/>
                             </form>
                         </div>
                     </div>
@@ -80,27 +72,26 @@
             <div class="col-md-4 col-sm-4 col-xs-12 hide">
                 <div class="single-price-package">
                     <div class="price-title">
-                        <h3>Purdue-UNAL<br> Gold IronHacks Fall 2017</h3>
+                        <h3>Purdue<br>IronHacks Fall 2018</h3>
                     </div>
                     <div class="price">
                         <p>
                             <span class="text-bottom">
-				Start of boot-camp and contest: October 11<sup>th</sup> <br>
+				Start of tutorials: October 2018<br>
                             </span>
                         </p>
                     </div>
                     <div class="price-list">
                         <ul>
-                            <li>This hack is for Universidad Nacional de Colombia students.</li>
-                            <li>Challenge topic: Will revolve around safety, health, and travel.</li>
-                            <li>Stay tuned for more details!</li>
-                            <li><strong><a href="/downloads/fall2017-flyer.pdf">Download flyer</a></strong></li>
+                            <li>Challenge topic: to be announced soon.</li>
+                            <li>This hack is for students at Purdue University; external students can participate upon request.</li>
+                            <li>Stay tuned for more details.</li>
                         </ul>
                         <div class="price-btn">
                             <form method="POST" action="/register">
                                 <%- ctx.csrfInput %>
                                 <input name="hack_type" value="unal" type="hidden" />
-                                <input class="button" type="submit" value="Sign up" />
+                                <input class="button" type="submit" value="Sign up" disabled="true"/>
                             </form>
                         </div>
                     </div>
@@ -123,13 +114,13 @@
                         <ul>
                             <li>Challenge topic: Housing</li>
                             <li>This hack is for students enrolled in a Software Engineering class at Universidad Nacional de Colombia</li>
-                            <li>Stay tuned for more details</li>
+                            <li>Stay tuned for more details.</li>
                         </ul>
                         <div class="price-btn">
                             <form method="POST" action="/register">
                                 <%- ctx.csrfInput %>
                                 <input name="hack_type" value="purdue_spring_2018" type="hidden" />
-                                <input class="button" type="submit" value="Sign up" />
+                                <input class="button" type="submit" value="Sign up" disabled="true"/>
                             </form>
                         </div>
                     </div>
@@ -152,13 +143,13 @@
                             <li>Challenge topic: Workforce</li>
                             <li>This hack is for students at Purdue University; external students can participate upon request </li>
                             <li>Partner: Management Performance Hub (MPH)</li>
-                            <li>Stay tuned for more details</li>
+                            <li>Stay tuned for more details.</li>
                         </ul>
                         <div class="price-btn">
                             <form method="POST" action="/register">
                                 <%- ctx.csrfInput %>
                                 <input name="hack_type" value="purdue_summer_2018" type="hidden" />
-                                <input class="button" type="submit" value="Sign up" />
+                                <input class="button" type="submit" value="Sign up" disabled="true"/>
                             </form>
                         </div>
                     </div>
@@ -186,7 +177,7 @@
                             <form method="POST" action="/register">
                                 <%- ctx.csrfInput %>
                                 <input name="hack_type" value="purdue_fall_2018" type="hidden" />
-                                <input class="button" type="submit" value="Sign up" />
+                                <input class="button" type="submit" value="Sign up" disabled="true"/>
                             </form>
                         </div>
                     </div>
