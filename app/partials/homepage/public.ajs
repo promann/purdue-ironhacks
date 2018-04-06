@@ -109,7 +109,7 @@
                                         <i class="zmdi zmdi-accounts"></i>
                                     </div>
                                     <h4 class="ht-pt">HOW CAN I GET INVOLVED?</h4>
-                                    <p>There are many ways to get involved: As hack participants, as industry sponsor, or as researcher. To learn more about upcoming hacks, go here.</p>
+                                    <p>There are many ways to get involved: As hack participants, as industry sponsor, or as researcher. To learn more about upcoming hacks, please send an email to opendigital@purdue.edu.</p>
                                 </div>
                             </div>
                         </div>
@@ -128,10 +128,10 @@
                             <div class="col-md-8 col-md-offset-2">
                                 <div class="about-bottom-left clearfix pt-120">
                                     <h1>About <span>IronHacks</span></h1>
-                                    <p><strong>Innovate with open data:</strong> Create a novel and useful data-driven web apps; analyze data and display them in an interactive <a href="https://techterms.com/definition/mashup">mashup</a> that combines several open data sets into interactive visualizations. </p>
+                                    <p><strong>Innovate with open data:</strong> Create novel and useful data-driven web apps; analyze data and display them in an interactive <a href="https://techterms.com/definition/mashup">mashup</a> that combines several open data sets into interactive visualizations. </p>
                                     <p><strong>Outperform and learn from others: </strong>IronHacks is a competition, however, there is more o be gained: you receive expert feedback and learn from other’s work.</p>
                                     <p><strong>Hack and learn virtually:</strong> During the competition, you will use a unique social coding environment with direct access to tutorials, libraries, datasets, your dashboard with information about our progress, and a discussion forum. No physical presence is needed. Prior to the hack, we offer online tutorials and videos on technologies needed in the hack (e.g. how to access an API, how use bootstrap CSS, jquery, and D3.js). </p>
-                                    <p><strong>Gain fame:</strong> Improve your score along the way, build your reputation among otherhackers, create a link with IronHacks sponsors, win cool prizes ($$$), and receive a certificate confirming your successful completion in the competition.</p>
+                                    <p><strong>Gain fame:</strong> Improve your score along the way, build your reputation among other hackers, create a link with IronHacks sponsors, win cool prizes ($$$), and receive a certificate confirming your successful completion in the competition.</p>
                                     <div class="about-icon">
                                         <ul>
                                             <li><a href="https://www.facebook.com/OpenDigitalPurdue"><i class="zmdi zmdi-facebook"></i></a></li>
@@ -222,7 +222,7 @@
                        <div class="col-md-12 text-center">
                             <div class="feature-title title-style title-pb">
                                 <h1>RULES AND GUIDELINES</h1>
-                                <p>Our IronHacks follow a unique 5-stage process. In order to win a prize and qualify for a certificate there are few rules and guidelines to keep in mind! We are all about openness and community-think! Be part of it.</p>
+                                <p>Our IronHacks follow a unique 5-stage process. In order to win a prize and qualify for a certificate, there are few rules and guidelines to keep in mind! We are all about openness and community-think! Be part of it.</p>
                             </div>
                        </div>
                    </div>
@@ -246,7 +246,7 @@
                                 </div>
                                 <div class="feature-list-text text-right">
                                     <h3>Use our tools and infrastructure</h3>
-                                    <p>In IronHacks, we give you acess to a great social coding experience. All the activiites happen online. Use our tools and environments and do not cheet.</p>
+                                    <p>In IronHacks, we give you access to a great social coding experience. All the activites happen online. Use our tools and environments and do not cheat.</p>
                                     <p>&nbsp;</p>
                                 </div>
                             </div>
@@ -257,7 +257,7 @@
                                 <div class="feature-list-text text-right">
                                     <h3>Iterate</h3>
                                     <p>
-                                        Your first of  submission does not have to final. A rough working prototype is enough to start off,  and improving. We will help with a pre-defined file structure to get started.
+                                        Your first of  submission does not have to be final. A rough working prototype is enough to start off,  and improving. We will help with a pre-defined file structure to get started.
                                     </p>
                                 </div>
                             </div>
@@ -309,7 +309,7 @@
                        <div class="col-md-12 text-center">
                             <div class="feature-title title-style title-pb">
                                 <h1>Prior Hacks</h1>
-                                <p>Check out what prior participants experienced</p>
+                                <p>Check out what prior participants experienced.</p>
                             </div>
                        </div>
                    </div>

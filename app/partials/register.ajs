@@ -54,7 +54,7 @@
                     <div class="price-list">
                         <ul>
                             <li><strong>Challenge topic: Workforce</strong></li>
-                            <li>This hack is for students at Purdue University; external students can participate upon request</li>
+                            <li>This hack is for students at Purdue University; external students can participate upon request.</li>
                             <li>Partner: <strong>Management Performance Hub (MPH).</strong></li>
                             <li>Stay tuned for more details.</li>
                         </ul>
@@ -112,8 +112,8 @@
                     </div>
                     <div class="price-list">
                         <ul>
-                            <li>Challenge topic: Housing</li>
-                            <li>This hack is for students enrolled in a Software Engineering class at Universidad Nacional de Colombia</li>
+                            <li>Challenge topic: Housing.</li>
+                            <li>This hack is for students enrolled in a Software Engineering class at Universidad Nacional de Colombia.</li>
                             <li>Stay tuned for more details.</li>
                         </ul>
                         <div class="price-btn">
@@ -140,9 +140,9 @@
                     </div>
                     <div class="price-list">
                         <ul>
-                            <li>Challenge topic: Workforce</li>
-                            <li>This hack is for students at Purdue University; external students can participate upon request </li>
-                            <li>Partner: Management Performance Hub (MPH)</li>
+                            <li>Challenge topic: Workforce.</li>
+                            <li>This hack is for students at Purdue University; external students can participate upon request.</li>
+                            <li>Partner: Management Performance Hub (MPH).</li>
                             <li>Stay tuned for more details.</li>
                         </ul>
                         <div class="price-btn">
@@ -169,9 +169,9 @@
                     </div>
                     <div class="price-list">
                         <ul>
-                            <li>Challenge topic: to be announced soon</li>
-                            <li>This hack is for students at Purdue University; external students can participate upon request</li>
-                            <li>Stay tuned for more details</li>
+                            <li>Challenge topic: to be announced soon.</li>
+                            <li>This hack is for students at Purdue University; external students can participate upon request.</li>
+                            <li>Stay tuned for more details.</li>
                         </ul>
                         <div class="price-btn">
                             <form method="POST" action="/register">
