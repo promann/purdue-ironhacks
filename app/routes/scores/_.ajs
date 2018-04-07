@@ -1,7 +1,7 @@
 <% include(Bloggify.partials.header, { title: "Scores" }) %>
 <% include(Bloggify.partials.container.start) %>
 
-<h1 class="text-center">Results (<%= phase %>)</h1>
+<!-- <h1 class="text-center">Results (<%= phase %>)</h1> -->
 
 <% // UNAL 0 %>
 <% var isUnalZero = (user.profile.hack_type === "unal" && user.profile.hack_id === 0) %>
@@ -39,10 +39,7 @@
 <div id="app"></div>
 <script>
     window._pageData = {
-        component: "scores",
         user: <%- stringify(ctx.user) %>,
-        hackers: <%- stringify(users) %>,
-        csrfToken: <%- stringify(ctx.csrfToken) %>
     };
 </script>
 <% } %>
@@ -131,6 +128,11 @@
 <div class="scoreLogicContainer">
   <div class="container-fluid">
     <div class="row">
+      <div class="col-md-12" id="initialText">
+        
+      </div>
+    </div>
+    <div class="row">
       <div class="col-md-12">
         <div id="phasesDiv">
           <button class="phase-button" id="phase1" disabled="true">Phase 1</button>
@@ -164,8 +166,12 @@
             </div>
           </div>
         </div>
-        
       </div>
+      <div class="row">
+        <div class="col-md-12" id="bottomText">
+          
+        </div>
+    </div>
     </div>
 </div>
 </div>
@@ -189,6 +195,16 @@ var API_KEY = 'AIzaSyDzZog6BPwu__S1klBvsGwrtLME6U0oP7s';
 function enableButtons(googleData) {
     var range = googleData;
     generalData = range;
+
+    //Getting identifier data
+    
+    //DELETE THIS BEFORE GO PRODUCTION
+    console.log(currentUser)
+    currentUser.hack_type = generalData.values[1][0]
+    currentUser.hack_id = 2
+    currentUser.group_id = "bogota"
+    console.log(currentUser)
+    //DELETE THIS BEFORE GO PRODUCTION
     // Enable phase buttons
     var currentDate = new Date()
     //var phaseEnd = new Date(generalData.values[i][12])
@@ -196,10 +212,9 @@ function enableButtons(googleData) {
     var phasesEndDates = []
     for (var i = generalData.values.length - 1; i >= 0; i--) {
       var row = generalData.values[i];
-      console.log(row)
       //Getting all the phases from the current user.
       if(row[4] == currentUser.github_username){
-        if(row[1] == currentUser.hack_type){
+        if(row[0] == currentUser.hack_type){
           phasesEndDates.push({phase: row[2], endDate: row[12]})
         }
       }
@@ -238,7 +253,7 @@ function showPhaseScore(phase, mode){
   var phaseButton = document.getElementById("phase" + phase)
   phaseButton.style.background = '#F39D26'
   // Declaring aux variables.
-  var newRow, semester, group_id, phase_id, hack_id, project, score, user_id;
+  var newRow, group_id, phase_id, hack_id, project, score, user_id;
   // Array of rows, we storage the rows cause we need to randomize before draw them.
   var tableRows = []
   // Getting the reference to the table 
@@ -247,11 +262,7 @@ function showPhaseScore(phase, mode){
   //cleaning the table on each iteration, we do this to "redraw" the same reference.
   tableHeadReference.innerHTML = ""
   tableBodyReference.innerHTML = ""
-  //Getting identifier data
-  currentUser.hack_id = generalData.values[1][3]
-  currentUser.semester = generalData.values[1][0]
-  currentUser.group_id = generalData.values[1][1]
-  currentUser.phase_id = generalData.values[1][2]
+  
   // drawing stuff according with the treatment 
   // General score
   if(currentMode == 0){
@@ -286,7 +297,7 @@ function showPhaseScore(phase, mode){
         for (i = generalData.values.length - 1; i >= 0; i--) {
           var row = generalData.values[i];
           //checking if they are from the same semestrer
-          if(row[0] == currentUser.semester){
+          if(row[0] == currentUser.hack_type){
             //checking if they are from the same group_id
             if(row[1] == currentUser.group_id){
               //checking if they are from the same phase
@@ -344,7 +355,8 @@ function showPhaseScore(phase, mode){
         for (i = generalData.values.length - 1; i >= 0; i--) {
           var row = generalData.values[i];
           //checking if they are from the same semestrer
-          if(row[0] == currentUser.semester){
+        console.log(phase)
+          if(row[0] == currentUser.hack_type){
             //checking if they are from the same group_id
             if(row[1] == currentUser.group_id){
               //checking if they are from the same phase
@@ -414,7 +426,7 @@ function showPhaseScore(phase, mode){
     for (i = generalData.values.length - 1; i >= 0; i--) {
       var row = generalData.values[i];
       //checking if they are from the same semestrer
-      if(row[0] == currentUser.semester){
+      if(row[0] == currentUser.hack_type){
         //checking if they are from the same group_id
         if(row[1] == currentUser.group_id){
           //checking if they are from the same phase
@@ -503,6 +515,27 @@ function getDataFromGoogle(){
     })
 }
 
+function initView(){
+  var topDiv = document.getElementById('initialText');
+  var topParagraph = document.createElement('div');
+  var bottomDiv = document.getElementById('bottomText');
+  var bottomParagraph = document.createElement('div');
+  // Showing bogotá text
+  // Bogotá 0
+  console.log(currentUser.hack_type)
+  currentUser.hack_id = 2
+  if(currentUser.hack_type == 'purdue_spring_2018' && currentUser.hack_id == 0){
+    topParagraph.innerHTML = "<p>Curious to learn about how you are doing? We have now completed the previous phase the hack. Please check your emails to review your personal feedback. You are now competing with 28 other hackers. They have all received their personal feedback for this phase. </p></p>Do not share your feedback with others. This is a competition, and the rules require you to keep this information confidential. If you have questions about your feedback, send us an email on <a href='mailto:opendigital@purdue.edu'>opendigital@purdue.edu</a> or attend one of our tech help sessions. </p><p>Happy Coding! Work hard and play hard. It should be fun! </p>"
+  }else if(currentUser.hack_type == 'purdue_spring_2018' && currentUser.hack_id == 1){
+    topParagraph.innerHTML = "<p>Curious to learn what others are doing to outperform the competition? Below, you find the list of all apps build in this hacking competition. We present a list of all hackers in your group. For reasons of anonymity we do not reveal the names of other hackers.</p><p>You can view all other hackers’ projects (both their code and the running application) by clicking on the “Project Link”. After clicking on this link, you can browse three the other’s apps, their file structure, and their actual code. Further, you can also see the running application as if you were a user of the app. This might inspire you. Keep exploring and get inspired.</p><p>Keep in mind! You are allowed to reuse others’ solutions as long as you are not cloning complete solutions. About 50 percent of the code should be your own (we are not considering libraries for this but the actual original code in other’s app). </p><p>Trying to find your own app? Sorry that you have to keep looking for in this list. Since this is a competition, we do not reveal names. Do not talk to other hackers outside of this competition. Stick to our rules and guidelines (<a href='/tasks'>www.ironhacks.com/tasks</a>). </p><p>Happy Coding! Work hard and play hard. It should be fun!</p>"
+  }else if(currentUser.hack_type == 'purdue_spring_2018' && currentUser.hack_id == 2){ 
+      topParagraph.innerHTML = "<p>Keep in mind! You are allowed to reuse others’ solutions as long as you are not cloning complete solutions. About 50 percent of the code should be your own (we are not considering libraries for this but the actual original code in other’s app). </p><p>Trying to find your own app? You should have received an email with the information about the performance of your own application. Use this as a reference when browsing through this table. </p><p>Happy Coding! Work hard and play hard. It should be fun! </p>"
+      bottomParagraph.innerHTML = "<p>Keep in mind! You are allowed to reuse others’ solutions as long as you are not cloning complete solutions. About 50 percent of the code should be your own (we are not considering libraries for this but the actual original code in other’s app). </p><p>Trying to find your own app? You should have received an email with the information about the performance of your own application. Use this as a reference when browsing through this table. </p><p>Happy Coding! Work hard and play hard. It should be fun! "
+  }
+  topDiv.appendChild(topParagraph)
+  bottomDiv.appendChild(bottomParagraph)
+}
+
 
 $(document).ready(function() {
   $("#phase1").on("click", showPhase1)
@@ -513,7 +546,8 @@ $(document).ready(function() {
   
   $("#generalScoreButton").on("click", showGeneralScore)
   $("#personalScoreButton").on("click", showPersonalScore)
-
+  //Showing initial text
+  initView();
   //Pulling the google API
   getDataFromGoogle();
 })

@@ -1,6 +1,5 @@
 import React from "react"
 import List from "./list"
-import Calendar from 'react-github-contribution-calendar';
 
 export default class App extends React.Component {
     constructor (props) {
@@ -25,7 +24,6 @@ export default class App extends React.Component {
           ];
         return (
             <div className="page-content">
-                <Calendar values={values} until={until} panelColors={panelColors} />
                 <List hackers={hackers} user={this.state.user} />
             </div>
         )
