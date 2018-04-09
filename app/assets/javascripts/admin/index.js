@@ -186,8 +186,6 @@ export default class App extends React.Component {
                         <a className="btn" href="/admin/csv/topics">Topics</a>
                         {" "}
                         <a className="btn" href="/admin/csv/scores">Scores</a>
-                        {" "}
-                        <a className="btn" href="/admin/csv/commitSurveyStatus">Commit survey status</a>
                         <h2>Export users</h2>
                         <form action="/admin/csv/export-users">
                             <HackTypeAndIdSelector show_export_type={true} users={this.state.users}/> <br />
