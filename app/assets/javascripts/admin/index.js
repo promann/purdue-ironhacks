@@ -40,7 +40,6 @@ export default class App extends React.Component {
           , HackTypes: hackTypes
           , phases: phases
         };
-        console.log(window._pageData.hackTypes)
     }
 
     onPhaseChange (e) {
@@ -122,7 +121,7 @@ export default class App extends React.Component {
             hackTypes.push(
 
                 <div className="hack-type-phase-selector" key={++index} >
-                    <strong className="hack-type-name">{_pageData.hackTypes[name].label}</strong>: <br/>
+                    <strong className="hack-type-name">{window._pageData.hackTypes[name].label}</strong>: <br/>
                     <div className="phase-select-wrapper">
                         <select data-hack-type={name} value={this.state.phases[name]} className="phase-select" onChange={this.onPhaseChange.bind(this)}>
                             {options}
@@ -163,7 +162,7 @@ export default class App extends React.Component {
             );
             hackTypesSubforums.push(
                 <div className="hack-type-subgroup" key={++index} >
-                    <strong className="hack-type-name">{_pageData.hackTypes[name].label}</strong> ({_pageData.users.filter(c => c.profile.hack_type === name).length} students): <br/>
+                    <strong className="hack-type-name">{window._pageData.hackTypes[name].label}</strong> ({_pageData.users.filter(c => c.profile.hack_type === name).length} students): <br/>
                     <input data-hack-type={name} type="number" defaultValue={hackType.subforums_count + 1} />
                 </div>
             );
