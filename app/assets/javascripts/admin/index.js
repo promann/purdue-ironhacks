@@ -40,6 +40,7 @@ export default class App extends React.Component {
           , HackTypes: hackTypes
           , phases: phases
         };
+        console.log(window._pageData.hackTypes)
     }
 
     onPhaseChange (e) {
@@ -119,6 +120,7 @@ export default class App extends React.Component {
         forEach(window._pageData.settings.hack_types, (hackType, name) => {
             const options = PHASES.map((c, i) => <option key={i} value={c[1]}>{c[0]}</option>);
             hackTypes.push(
+
                 <div className="hack-type-phase-selector" key={++index} >
                     <strong className="hack-type-name">{_pageData.hackTypes[name].label}</strong>: <br/>
                     <div className="phase-select-wrapper">
@@ -186,6 +188,8 @@ export default class App extends React.Component {
                         <a className="btn" href="/admin/csv/topics">Topics</a>
                         {" "}
                         <a className="btn" href="/admin/csv/scores">Scores</a>
+                        {" "}
+                        <a className="btn" href="/admin/csv/commitSurveyStatus">Commit survey status</a>
                         <h2>Export users</h2>
                         <form action="/admin/csv/export-users">
                             <HackTypeAndIdSelector show_export_type={true} users={this.state.users}/> <br />
