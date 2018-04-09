@@ -65,6 +65,7 @@ export default class App extends React.Component {
 						reloading_preview: true,
 						preview_filepath: "index.html",
 						readonly: !!_pageData.query.readonly,
+						user: window._pageData.user
 				}
 				this.saved = true
 				this.reloadFileTree()
@@ -87,7 +88,6 @@ export default class App extends React.Component {
 				//ADV
 				this.getURLParameter("dfs")
 				this.isLastCommit = false
-
 				//ADV
 		}
 
@@ -174,13 +174,15 @@ export default class App extends React.Component {
 		}
 
 		_saveFile (opts = {}) {
+			this.saved = false
+			this.state.readonly = false
 				if (this.saved) {
 						return Promise.resolve()
 				}
 				if (this.state.readonly) {
 						return Promise.reject(new Error("You are in the read-only mode. Cannot save the file."));
 				}
-
+				
 				Actions.post("stats.insert", {
 						event: "save-file",
 						metadata: {
@@ -188,7 +190,6 @@ export default class App extends React.Component {
 								filepath: opts.filepath || this.state.filepath,
 						}
 				});
-
 				return BloggifyActions.post("projects.saveFile", {
 						project_name: this.state.page.project.name,
 						filepath: opts.filepath || this.state.filepath,
@@ -288,8 +289,10 @@ export default class App extends React.Component {
 			  },
 			  buttons: {
 			    cancel: true,
-			    confirm: "Confirm",
-				}
+			    confirm: {text: "Confirm"},
+
+				},
+				
 		  }	
 		  const successCommit = {
 				title: "Success!",
@@ -298,19 +301,33 @@ export default class App extends React.Component {
 			  buttons: {
 			    confirm: "OK",
 				}
-		  }	
+		  }
+		  const commitMustHaveMessage = {
+				title: "Error",
+				icon: "error",
+				text: "Your commit must have a message.",
+			  buttons: {
+			    confirm: "OK",
+				}
+		  }
 		
 			swal(preAlertContent).then((finalCommit) => {
 				//Normal commit
-							console.log(location)
-						console.log(finalCommit)
+					console.log(location)
+					console.log(finalCommit)
 				if (finalCommit == "noFinalCommit") {
 					swal(commitContent).then((result) => {
+						console.log(result)
 						if(result){
+							this.commitFile(result)
 							swal(successCommit)
+						}else if(result == ""){
+							swal(commitMustHaveMessage)
 						}
 					})
 				}else if(finalCommit){ //Last commit
+					//Here we make the "precommit"
+					this.commitFile("Automatic commit. Done before go to queltrics")
 					swal(surveyRedirecAlert).then((result) => { 
 						if(result){
 							var currentLocation = location.href
@@ -352,10 +369,32 @@ export default class App extends React.Component {
 			    confirm: "OK",
 				}
 		  }
+		  const commitMustHaveMessage = {
+				title: "Error",
+				icon: "error",
+				text: "Your commit must have a message.",
+			  buttons: {
+			    confirm: "OK",
+				}
+		  }
 			if(didFinishSurvey == 1){
+				//Pushing to the database
+				Actions.post("surveytracker.insert", {
+			    hack_type: this.state.user.profile.hack_type,
+			    user_email: this.state.user.email,
+			    github_username: this.state.user.profile.github_username,
+	    		phase: this.state.page.project.phase[5],
+	    		status: 'true',
+	    		timestamp: new Date(),
+	    		hack_id : this.state.user.profile.hack_id
+				});
+				//showing alert
 				swal(commitContent).then((result) => { 
 						if(result){
-							 swal(successCommit)
+							this.commitFile(result)
+							swal(successCommit)
+						}else if(result == ""){
+							swal(commitMustHaveMessage)
 						}
 					})
 			}

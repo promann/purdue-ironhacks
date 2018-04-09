@@ -1,6 +1,17 @@
 <% include(Bloggify.partials.header, { title: "Scores" }) %>
 <% include(Bloggify.partials.container.start) %>
 
+<div id="app"></div>
+<script>
+    window._pageData = {
+        component: "scores",
+        user: <%- stringify(ctx.user) %>,
+        hackers: <%- stringify(users) %>,
+        calendar_values: <%- stringify(calendarValues) %>,
+        csrfToken: <%- stringify(ctx.csrfToken) %>
+    };
+</script>
+
 <head>
   <!-- Meta-->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
