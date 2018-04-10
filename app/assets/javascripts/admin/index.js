@@ -118,10 +118,13 @@ export default class App extends React.Component {
 
         forEach(window._pageData.settings.hack_types, (hackType, name) => {
             const options = PHASES.map((c, i) => <option key={i} value={c[1]}>{c[0]}</option>);
+            console.log(name)
+            console.log(_pageData.hackTypes[name])
+            console.log(_pageData.hackTypes[name].label)
             hackTypes.push(
 
                 <div className="hack-type-phase-selector" key={++index} >
-                    <strong className="hack-type-name">{window._pageData.hackTypes[name].label}</strong>: <br/>
+                    <strong className="hack-type-name">{_pageData.hackTypes[name].label}</strong>: <br/>
                     <div className="phase-select-wrapper">
                         <select data-hack-type={name} value={this.state.phases[name]} className="phase-select" onChange={this.onPhaseChange.bind(this)}>
                             {options}

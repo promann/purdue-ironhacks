@@ -16,6 +16,7 @@ const SettingsSchema = new Bloggify.db.Schema({
 const SURVEY_URL = "https://purdue.ca1.qualtrics.com/jfe/form/SV_23GkqPCNMdqsdo1"
 
 const HACK_TYPES = {
+  
     purdue: {
         survey: SURVEY_URL
       , label: "Purdue"
