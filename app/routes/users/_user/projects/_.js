@@ -10,8 +10,8 @@ exports.get = ctx => {
         // The results page is not yet visible and another user is trying to access the project
         || (new Date() < hackType.show_results_date && !isOwner)
     ) {
-        //ctx.redirect("/timeline")
-        //return false
+        ctx.redirect("/timeline")
+        return false
     }
 
     return Project.find({
