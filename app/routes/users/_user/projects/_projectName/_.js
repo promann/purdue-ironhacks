@@ -30,8 +30,8 @@ exports.use = (ctx, cb) => {
                 && (new Date() < hackType.show_results_date && !isOwner)
             )
         ) {
-            ctx.redirect("/timeline")
-            return false
+            //ctx.redirect("/timeline")
+            //return false
         }
         cb();
     })
