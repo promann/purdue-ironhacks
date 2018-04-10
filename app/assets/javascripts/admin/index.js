@@ -154,6 +154,7 @@ export default class App extends React.Component {
             console.log(name)
             console.log(_pageData.hackTypes[name])
             console.log(_pageData.hackTypes[name].label)
+
             hackTypesStartDates.push(
                 <div className="hack-type-start-date" key={++index} >
                     <strong>{_pageData.hackTypes[name].label}</strong>: <br/>
@@ -172,7 +173,6 @@ export default class App extends React.Component {
             );
         });
 
-                            //<HackTypeAndIdSelector show_export_type={true} users={this.state.users}/> <br />
         return (
             <div className="admin-view">
                 <div className="row">
@@ -196,6 +196,7 @@ export default class App extends React.Component {
                         <a className="btn" href="/admin/csv/commitSurveyStatus">Commit survey status</a>
                         <h2>Export users</h2>
                         <form action="/admin/csv/export-users">
+                            <HackTypeAndIdSelector show_export_type={true} users={this.state.users}/> <br />
                             <button className="btn" type="submit">Export</button>
                         </form>
                     </div>
