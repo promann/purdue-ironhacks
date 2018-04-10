@@ -28,7 +28,7 @@ export default class App extends React.Component {
             const cHackType = setOrGet(hackTypes, c.profile.hack_type, {});
             setOrGet(cHackType, c.profile.hack_id, []).push(c);
         });
-
+        console.log(users)
         const phases = {};
         forEach(_pageData.settings.hack_types, (hType, name) => {
             phases[name] = hType.phase;
@@ -151,9 +151,6 @@ export default class App extends React.Component {
             hackType.show_results_date = moment(hackType.show_results_date);
 
             hackType.subforums_count = hackType.subforums_count || 0;
-            console.log(name)
-            console.log(_pageData.hackTypes[name])
-            console.log(_pageData.hackTypes[name].label)
 
             hackTypesStartDates.push(
                 <div className="hack-type-start-date" key={++index} >
