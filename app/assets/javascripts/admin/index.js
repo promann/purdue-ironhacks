@@ -119,10 +119,10 @@ export default class App extends React.Component {
         forEach(window._pageData.settings.hack_types, (hackType, name) => {
             const options = PHASES.map((c, i) => <option key={i} value={c[1]}>{c[0]}</option>);
             
-                    //<strong className="hack-type-name">{_pageData.hackTypes[name].label}</strong>: <br/>
             hackTypes.push(
 
                 <div className="hack-type-phase-selector" key={++index} >
+                    <strong className="hack-type-name">{_pageData.hackTypes[name].label}</strong>: <br/>
                     <div className="phase-select-wrapper">
                         <select data-hack-type={name} value={this.state.phases[name]} className="phase-select" onChange={this.onPhaseChange.bind(this)}>
                             {options}
@@ -154,9 +154,9 @@ export default class App extends React.Component {
             console.log(name)
             console.log(_pageData.hackTypes[name])
             console.log(_pageData.hackTypes[name].label)
-                    //<strong>{_pageData.hackTypes[name].label}</strong>: <br/>
             hackTypesStartDates.push(
                 <div className="hack-type-start-date" key={++index} >
+                    <strong>{_pageData.hackTypes[name].label}</strong>: <br/>
                     Start of <strong>forum</strong>: <input data-hack-type={name} type="text" defaultValue={hackType.start_date.format("YYYY-MM-DD HH:mm:ss")} /><br/>
                     End of <strong>hackaton</strong>: <input data-hack-type={name} type="text" defaultValue={hackType.end_date.format("YYYY-MM-DD HH:mm:ss")} /><br/>
                     Start of <strong>hack</strong>: <input data-hack-type={name} type="text" defaultValue={hackType.hack_start_date.format("YYYY-MM-DD HH:mm:ss")} /><br/>
@@ -164,14 +164,15 @@ export default class App extends React.Component {
                     Time when <strong>results become visible</strong>: <input data-hack-type={name} type="text" defaultValue={hackType.show_results_date.format("YYYY-MM-DD HH:mm:ss")} /><br/>
                 </div>
             );
-                    //<strong className="hack-type-name">{window._pageData.hackTypes[name].label}</strong> ({_pageData.users.filter(c => c.profile.hack_type === name).length} students): <br/>
             hackTypesSubforums.push(
                 <div className="hack-type-subgroup" key={++index} >
+                    <strong className="hack-type-name">{window._pageData.hackTypes[name].label}</strong> ({_pageData.users.filter(c => c.profile.hack_type === name).length} students): <br/>
                     <input data-hack-type={name} type="number" defaultValue={hackType.subforums_count + 1} />
                 </div>
             );
         });
 
+                            //<HackTypeAndIdSelector show_export_type={true} users={this.state.users}/> <br />
         return (
             <div className="admin-view">
                 <div className="row">
@@ -195,7 +196,6 @@ export default class App extends React.Component {
                         <a className="btn" href="/admin/csv/commitSurveyStatus">Commit survey status</a>
                         <h2>Export users</h2>
                         <form action="/admin/csv/export-users">
-                            <HackTypeAndIdSelector show_export_type={true} users={this.state.users}/> <br />
                             <button className="btn" type="submit">Export</button>
                         </form>
                     </div>
