@@ -6,11 +6,8 @@ export default class HackTypeAndIdSelector extends React.Component {
         let hackTypeOptions = ["All"]
           , hackIdOptions = ["All"]
           ;
-        console.log(this.props.users)
+
         this.props.users.forEach(user => {
-            console.log("····")
-            console.log(user.profile)
-            console.log("····")
             if (!hackTypeOptions.includes(user.profile.hack_type)) {
                 hackTypeOptions.push(user.profile.hack_type);
             }
@@ -18,15 +15,14 @@ export default class HackTypeAndIdSelector extends React.Component {
                 hackIdOptions.push(+user.profile.hack_id);
             }
         });
-        console.log(_pageData.hackTypes)
-        console.log(hackTypeOptions)
+
+        for (var i = 0; i < hackTypeOptions.length; i++) {
+            if(!(typeof hackTypeOptions[i] != 'undefined')){
+                hackTypeOptions.splice(i, 1);
+            }
+        }
         hackTypeOptions = hackTypeOptions.map((c, i) => {
-            console.log("--")
-        console.log(c)
-        console.log(i)
-        console.log(_pageData.hackTypes[c])
-        console.log(c === "All" ? c : _pageData.hackTypes[c].label)
-        console.log("--")
+
             return <option key={i} value={c}>{c === "All" ? c : _pageData.hackTypes[c].label}</option>
         });
 
