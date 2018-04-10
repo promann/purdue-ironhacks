@@ -28,7 +28,6 @@ export default class App extends React.Component {
             const cHackType = setOrGet(hackTypes, c.profile.hack_type, {});
             setOrGet(cHackType, c.profile.hack_id, []).push(c);
         });
-        console.log(users)
         const phases = {};
         forEach(_pageData.settings.hack_types, (hType, name) => {
             phases[name] = hType.phase;

@@ -14,8 +14,6 @@ export default class AdminHackTypeItem extends React.Component {
         return items;
     }
     render () {
-        console.log(this.props.hackType.name)
-        console.log(this.props.hackType.name == 'undefined')
         this.props.hackType.name == "undefined"
         if(this.props.hackType.name != 'undefined'){ 
             return (
@@ -25,7 +23,7 @@ export default class AdminHackTypeItem extends React.Component {
                 </div>
             );
         }else{
-            return (<div>lalalalallalalallalal</div>)
+            return (<div></div>)
         }
     }
 }
