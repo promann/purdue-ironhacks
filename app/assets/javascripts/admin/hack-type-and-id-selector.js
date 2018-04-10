@@ -23,7 +23,7 @@ export default class HackTypeAndIdSelector extends React.Component {
         }
         console.log(hackTypeOptions)
         hackTypeOptions = hackTypeOptions.map((c, i) => {
-
+            
             return <option key={i} value={c}>{c === "All" ? c : _pageData.hackTypes[c].label}</option>
         });
 

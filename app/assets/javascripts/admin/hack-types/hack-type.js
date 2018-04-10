@@ -11,6 +11,7 @@ export default class AdminHackTypeItem extends React.Component {
             hackObj.id = hackId;
             items.push(<HackItem hack={hackObj} key={++index} phases={this.props.phases} />);
         });
+        console.log(this.props.hackType)
         return items;
     }
     render () {
