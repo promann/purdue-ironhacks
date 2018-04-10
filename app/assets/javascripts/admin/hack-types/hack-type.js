@@ -14,6 +14,8 @@ export default class AdminHackTypeItem extends React.Component {
         return items;
     }
     render () {
+        console.log(this.props.hackType.name)
+        console.log(typeof this.props.hackType.name != 'undefined')
         if(typeof this.props.hackType.name != 'undefined'){ 
             return (
                 <div>
