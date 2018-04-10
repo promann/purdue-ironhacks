@@ -15,7 +15,8 @@ export default class HackTypeAndIdSelector extends React.Component {
                 hackIdOptions.push(+user.profile.hack_id);
             }
         });
-
+        console.log(_pageData.hackTypes)
+        console.log(hackTypeOptions)
         hackTypeOptions = hackTypeOptions.map((c, i) => {
             console.log("--")
         console.log(c)
