@@ -6,7 +6,7 @@ export default class HackTypeAndIdSelector extends React.Component {
         let hackTypeOptions = ["All"]
           , hackIdOptions = ["All"]
           ;
-        console.log(users)
+        console.log(this.props.users)
         this.props.users.forEach(user => {
             console.log("····")
             console.log(user.profile)
