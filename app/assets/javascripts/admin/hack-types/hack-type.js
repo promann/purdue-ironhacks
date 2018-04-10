@@ -15,8 +15,8 @@ export default class AdminHackTypeItem extends React.Component {
     }
     render () {
         console.log(this.props.hackType.name)
-        console.log(typeof this.props.hackType.name != 'undefined')
-        if(typeof this.props.hackType.name != 'undefined'){ 
+        console.log(this.props.hackType.name == 'undefined')
+        if(this.props.hackType.name != 'undefined'){ 
             return (
                 <div>
                     <h2>HackType: <span className="hack-type-name">{_pageData.hackTypes[this.props.hackType.name].label}</span></h2>
