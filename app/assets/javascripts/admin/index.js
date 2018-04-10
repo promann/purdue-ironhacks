@@ -118,9 +118,7 @@ export default class App extends React.Component {
 
         forEach(window._pageData.settings.hack_types, (hackType, name) => {
             const options = PHASES.map((c, i) => <option key={i} value={c[1]}>{c[0]}</option>);
-            console.log(name)
-            console.log(_pageData.hackTypes[name])
-            console.log(_pageData.hackTypes[name].label)
+            
             hackTypes.push(
 
                 <div className="hack-type-phase-selector" key={++index} >
@@ -153,6 +151,10 @@ export default class App extends React.Component {
             hackType.show_results_date = moment(hackType.show_results_date);
 
             hackType.subforums_count = hackType.subforums_count || 0;
+            console.log(name)
+            console.log(_pageData.hackTypes[name])
+            console.log(_pageData.hackTypes[name].label)
+
             hackTypesStartDates.push(
                 <div className="hack-type-start-date" key={++index} >
                     <strong>{window._pageData.hackTypes[name].label}</strong>: <br/>
