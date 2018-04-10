@@ -14,7 +14,7 @@
 </script>
 
 <h1>Admin</h1>
-<div id="app"></div>
+
 
 <% include(Bloggify.partials.container.end) %>
 <% include(Bloggify.partials.footer) %>
