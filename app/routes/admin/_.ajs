@@ -10,6 +10,7 @@
         csrfToken: <%- stringify(ctx.csrfToken) %>,
         hackTypes: <%- stringify(Bloggify.services.hack_types || {}) %>
     };
+    console.log(window._pageData)
 </script>
 
 <h1>Admin</h1>
