@@ -11,10 +11,12 @@ export default class AdminHackTypeItem extends React.Component {
             hackObj.id = hackId;
             items.push(<HackItem hack={hackObj} key={++index} phases={this.props.phases} />);
         });
-        console.log(this.props.hackType)
         return items;
     }
     render () {
+            console.log("11")
+            console.log(this.props.hackType)
+            console.log("11")
         return (
             <div>
                 <h2>HackType: <span className="hack-type-name">{_pageData.hackTypes[this.props.hackType.name].label}</span></h2>
