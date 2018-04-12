@@ -32,7 +32,7 @@ exports.use = (ctx, cb) => {
     const HackTypes = Bloggify.services.hack_types
         , Session = Bloggify.services.session
 
-    if (!WHITELISTED_PRIVATE_PAGES.includes(ctx.pathname) && user && HackTypes[user.profile.hack_type].start_date > new Date() && !Session.isAdmin(user)) {
+    if (!WHITELISTED_PRIVATE_PAGES.includes(ctx.pathname) && user && Object(HackTypes[user.profile.hack_type]).start_date > new Date() && !Session.isAdmin(user)) {
         return ctx.redirect("/timeline")
     }
 
