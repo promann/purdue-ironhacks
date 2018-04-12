@@ -28,7 +28,6 @@ export default class App extends React.Component {
             const cHackType = setOrGet(hackTypes, c.profile.hack_type, {});
             setOrGet(cHackType, c.profile.hack_id, []).push(c);
         });
-
         const phases = {};
         forEach(_pageData.settings.hack_types, (hType, name) => {
             phases[name] = hType.phase;
@@ -118,7 +117,9 @@ export default class App extends React.Component {
 
         forEach(window._pageData.settings.hack_types, (hackType, name) => {
             const options = PHASES.map((c, i) => <option key={i} value={c[1]}>{c[0]}</option>);
+            
             hackTypes.push(
+
                 <div className="hack-type-phase-selector" key={++index} >
                     <strong className="hack-type-name">{_pageData.hackTypes[name].label}</strong>: <br/>
                     <div className="phase-select-wrapper">
@@ -149,6 +150,7 @@ export default class App extends React.Component {
             hackType.show_results_date = moment(hackType.show_results_date);
 
             hackType.subforums_count = hackType.subforums_count || 0;
+
             hackTypesStartDates.push(
                 <div className="hack-type-start-date" key={++index} >
                     <strong>{_pageData.hackTypes[name].label}</strong>: <br/>
@@ -161,7 +163,7 @@ export default class App extends React.Component {
             );
             hackTypesSubforums.push(
                 <div className="hack-type-subgroup" key={++index} >
-                    <strong className="hack-type-name">{_pageData.hackTypes[name].label}</strong> ({_pageData.users.filter(c => c.profile.hack_type === name).length} students): <br/>
+                    <strong className="hack-type-name">{window._pageData.hackTypes[name].label}</strong> ({_pageData.users.filter(c => c.profile.hack_type === name).length} students): <br/>
                     <input data-hack-type={name} type="number" defaultValue={hackType.subforums_count + 1} />
                 </div>
             );
@@ -186,6 +188,8 @@ export default class App extends React.Component {
                         <a className="btn" href="/admin/csv/topics">Topics</a>
                         {" "}
                         <a className="btn" href="/admin/csv/scores">Scores</a>
+                        {" "}
+                        <a className="btn" href="/admin/csv/commitSurveyStatus">Commit survey status</a>
                         <h2>Export users</h2>
                         <form action="/admin/csv/export-users">
                             <HackTypeAndIdSelector show_export_type={true} users={this.state.users}/> <br />

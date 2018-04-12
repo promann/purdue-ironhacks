@@ -2,7 +2,7 @@
 <% include(Bloggify.partials.header, { title: "Timeline" }) %>
 <% include(Bloggify.partials.container.start) %>
 
-<% var timelineImage = _public("/img/timelines/" + user.profile.hack_type + ".jpeg"); %>
+<% var timelineImage = _public("/img/timelines/" + user.profile.hack_type + ".png"); %>
 
 <script>
     window._pageData = {

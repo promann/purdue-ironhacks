@@ -91,7 +91,7 @@
                                         <i class="zmdi zmdi-settings"></i>
                                     </div>
                                     <h4 class="ht-pt">WHAT IS IRONHACKS?</h4>
-                                    <p>An Ironhack is a unique 21-day, 5-stage innovative hacking program for individuals who want to create impact from open data.<br>Participation is free. During the iterative hacking process, you will  learn new skills, have the chance to learn from others, and receive feedback from Ironhacks experts! Turn your ideas into web apps that make data actionable and useful!</p>
+                                    <p>IronHacks is a unique one month, 5-stage innovative hacking program for individuals who want to create impact from open data. During the iterative hacking process, you will learn new skills, have the chance to learn from others, and receive feedback from IronHacks experts! Turn your ideas into web apps that make data actionable and useful!</p>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-4">
@@ -100,7 +100,7 @@
                                         <i class="zmdi zmdi-comments"></i>
                                     </div>
                                     <h4 class="ht-pt">WHY SHOULD I PARTICIPATE?</h4>
-                                    <p>In IronHacks, you learn new skills, win prizes ($$$), get exposed to global tech companies, and win internships. Most importantly, you become part of a global movement of open data to make an impact in areas such as safety, health, or travel.</p>
+                                    <p>In IronHacks, you learn new skills, win prizes ($$$), get exposed to tech organizations, and win internships. Most importantly, you become part of a global movement of open data to make an impact in areas such as safety, health, or travel.</p>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-4">
@@ -109,7 +109,7 @@
                                         <i class="zmdi zmdi-accounts"></i>
                                     </div>
                                     <h4 class="ht-pt">HOW CAN I GET INVOLVED?</h4>
-                                    <p>There are many ways to get involved. We are always looking for open data enthusiasts, UX experts, and partners that want to help define future IronHacks challenges. Check out and sign up for our upcoming hacks. But if you don't feel quite ready to sign up, contact us and we can help you to get started.</p>
+                                    <p>There are many ways to get involved: As hack participants, as industry sponsor, or as researcher. To learn more about upcoming hacks, please send an email to opendigital@purdue.edu.</p>
                                 </div>
                             </div>
                         </div>
@@ -128,15 +128,10 @@
                             <div class="col-md-8 col-md-offset-2">
                                 <div class="about-bottom-left clearfix pt-120">
                                     <h1>About <span>IronHacks</span></h1>
-                                    <p><strong>Innovate with open data</strong>: Create a novel and useful web app with an interactive <a href="https://techterms.com/definition/mashup">mashup</a> that combines several (at least 2) open data sets into interactive visualizations.</p>
-                                    <p><strong>Outperform and learn from others</strong>: IronHacks is a competition, but you also get expertfeedbackandlearnfromothers’work.</p>
-                                    <p><strong>Hack and learn   virtually.</strong> During the competition, you have access to an online forum where
-                                        you  can ask  questions and access all  the information,  including  your  own  scores at each
-                                        hacking round. No physical presence is needed. 3 weeks prior to the hack, we offer tutorials
-                                    on key technologies, from basics like CSS to D3.js to using the required APIs.</p>
-                                <p><strong>Gain fame</strong>: Improve your score along the way, build your reputation among other hackers,
-                                    create  a  link  with  IronHacks  sponsors,  win  cool  prizes  ($$$),  and  receive  a  certificate
-                                confirming your successful completion in the competition.</p>
+                                    <p><strong>Innovate with open data:</strong> Create novel and useful data-driven web apps; analyze data and display them in an interactive <a href="https://techterms.com/definition/mashup">mashup</a> that combines several open data sets into interactive visualizations. </p>
+                                    <p><strong>Outperform and learn from others: </strong>IronHacks is a competition, however, there is more o be gained: you receive expert feedback and learn from other’s work.</p>
+                                    <p><strong>Hack and learn virtually:</strong> During the competition, you will use a unique social coding environment with direct access to tutorials, libraries, datasets, your dashboard with information about our progress, and a discussion forum. No physical presence is needed. Prior to the hack, we offer online tutorials and videos on technologies needed in the hack (e.g. how to access an API, how use bootstrap CSS, jquery, and D3.js). </p>
+                                    <p><strong>Gain fame:</strong> Improve your score along the way, build your reputation among other hackers, create a link with IronHacks sponsors, win cool prizes ($$$), and receive a certificate confirming your successful completion in the competition.</p>
                                     <div class="about-icon">
                                         <ul>
                                             <li><a href="https://www.facebook.com/OpenDigitalPurdue"><i class="zmdi zmdi-facebook"></i></a></li>
@@ -177,7 +172,7 @@
                                         <i class="zmdi zmdi-card-giftcard"></i>
                                     </div>
                                     <div class="team-details">
-                                        <h3>Best Solution ($500 Amazon Gift Card)</h3>
+                                        <h3>Best Solution</h3>
                                         <div class="team-social fix">
                                             <p>The best solution will be evaluated based on the submission we receive in the final round. There are  four equally weighed criteria: Technology, User Requirements, Usability, and Novelty applied. The highest aggregate score  wins.</p>
                                         </div>
@@ -188,10 +183,9 @@
                                         <i class="zmdi zmdi-card-giftcard"></i>
                                     </div>
                                     <div class="team-details">
-                                        <h3>Winning Spirit ($250 Amazon Gift Card)</h3>
+                                        <h3>Winning Spirit</h3>
                                         <div class="team-social fix">
-                                            <p>Those who are  among the top 25% in each of the three hacking phases qualify  for this award.
-                                            Those who meet this criteria will be ranked in terms of the number of GitHub submissions with significant changes (changes related to all categories).</p>
+                                            <p>Those who are  among the top 25% in each of the three hacking phases qualify  for this award.  Those who meet thes criteria will be ranked in terms of the number of GitHub submissions with significant changes (changes related to all categories).</p>
                                         </div>
                                     </div>
                                 </div>
@@ -200,9 +194,9 @@
                                         <i class="zmdi zmdi-card-giftcard"></i>
                                     </div>
                                     <div class="team-details">
-                                        <h3>Community Spirit ($150 Amazon Gift Card)</h3>
+                                        <h3>Community Spirit</h3>
                                         <div class="team-social fix">
-                                            <p>Those who make  the most valuable contributions to the discussion qualify  for this award (number of posts, number of other people that find   the post useful, and expert judgment).</p>
+                                            <p>Those who make  the most valuable contributions to the discussion qualify  for this award (number of posts, number of other people that find the post useful, and expert judgment).</p>
                                         </div>
                                     </div>
                                 </div>
@@ -227,8 +221,8 @@
                    <div class="row">
                        <div class="col-md-12 text-center">
                             <div class="feature-title title-style title-pb">
-                                <h1>Rules</h1>
-                                <p>Our IronHacks follow a unique 5-stage process. In order to win a prize and qualify for a certificate there are few rules and guidelines to keep in mind! We are all about openness and community-think! Be part of it.</p>
+                                <h1>RULES AND GUIDELINES</h1>
+                                <p>Our IronHacks follow a unique 5-stage process. In order to win a prize and qualify for a certificate, there are few rules and guidelines to keep in mind! We are all about openness and community-think! Be part of it.</p>
                             </div>
                        </div>
                    </div>
@@ -241,8 +235,8 @@
                                     <i class="zmdi zmdi-assignment-account"></i>
                                 </div>
                                 <div class="feature-list-text text-right">
-                                    <h3>One hack per participant</h3>
-                                    <p>To make this a fair competition, we only allow one hack per participant in the Fall of 2017.</p>
+                                    <h3>Follow the process</h3>
+                                    <p>Our IronHacks follows a unique 5-stage process. In order to win a prize, there are a few rules to keep in mind. The most important thing: you need to submit in each round in order to be eligible for the award. </p>
                                     <p>&nbsp;</p>
                                 </div>
                             </div>
@@ -251,19 +245,19 @@
                                     <i class="zmdi zmdi-file-text"></i>
                                 </div>
                                 <div class="feature-list-text text-right">
-                                    <h3>Code of conduct</h3>
-                                    <p>To qualify for the award, you need to be the originator & submitter of your app. Even though we allow you to reuse others’ code, your code should be written by yourself. Further, we follow the idea of openness and open source (you will learn more about it during the hack).</p>
+                                    <h3>Use our tools and infrastructure</h3>
+                                    <p>In IronHacks, we give you access to a great social coding experience. All the activites happen online. Use our tools and environments and do not cheat.</p>
                                     <p>&nbsp;</p>
                                 </div>
                             </div>
                             <div class="single-features-list mrn-nn normal-device">
                                 <div class="feature-list-icon">
-                                    <i class="zmdi zmdi-mood"></i>
+                                    <i class="zmdi zmdi-calendar"></i>
                                 </div>
                                 <div class="feature-list-text text-right">
-                                    <h3>Iteration encouraged</h3>
+                                    <h3>Iterate</h3>
                                     <p>
-                                        Your first of four submissions does not have to be a shiny app. It is about getting started.  A rough working prototype is fine to start off. The feedback from experts will help you to improve.
+                                        Your first of  submission does not have to be final. A rough working prototype is enough to start off,  and improving. We will help with a pre-defined file structure to get started.
                                     </p>
                                 </div>
                             </div>
@@ -280,11 +274,11 @@
                         <div class="feature-list res2">
                             <div class="single-features-list2 sfl-lsft normal-device">
                                 <div class="feature-list-icon2">
-                                    <i class="zmdi zmdi-calendar"></i>
+                                    <i class="zmdi zmdi-mood"></i>
                                 </div>
                                 <div class="feature-list-text2 res1">
-                                    <h3>Follow the process</h3>
-                                    <p>Our IronHacks follows a unique 5-stage process. In order to win a prize, there are a few rules to keep in mind.  We are all about openness and communitythink.  Be part of it!</p>
+                                    <h3>Be ethical</h3>
+                                    <p>To qualify for the award, you need to be the originator & submitter of your app. Even though we allow you to reuse existing libraries (eligible), your code should be written by yourself. Further, we follow the idea of openness and open source. We encourage re-use and your final solution will be made available using an open source library.</p>
                                 </div>
                             </div>
                             <div class="single-features-list2 sfl-lsft normal-device">
@@ -292,8 +286,8 @@
                                     <i class="zmdi zmdi-puzzle-piece"></i>
                                 </div>
                                 <div class="feature-list-text2">
-                                    <h3>Technical requirements</h3>
-                                    <p>In each hack, the application should include at least 2 open data sets. Your application should be (mostly) written in JavaScript. For visualizations we ask you to use libraries like D3.js, etc.</p>
+                                    <h3>Meet the Requirements</h3>
+                                    <p>To make it a fair competition and ensure high quality apps, we clearly define  functional and technical requirements: e.g. minimum functionalities needed, eligible languages and datasets. Further, we also give you a list of libraries that help you to master the task. </p>
                                 </div>
                             </div>
                             <div class="single-features-list2 mrn-nn sfl-lsft normal-device">
@@ -301,8 +295,8 @@
                                     <i class="zmdi zmdi-memory"></i>
                                 </div>
                                 <div class="feature-list-text2 res1">
-                                    <h3>Evaluation in four categories</h3>
-                                    <p>Our experts judge your application in four categories: technology, user requirements, information visualization, and novelty. Stand out from the crowd.</p>
+                                    <h3>Focus on quality</h3>
+                                    <p>Our experts judge your application in technical, functional, and user-centered categories: technology, functional requirements, usability, and information visualization. Stand out from the crowd.</p>
                                 </div>
                             </div>
                         </div>
@@ -315,7 +309,7 @@
                        <div class="col-md-12 text-center">
                             <div class="feature-title title-style title-pb">
                                 <h1>Prior Hacks</h1>
-                                <p>Check out what prior participants experienced</p>
+                                <p>Check out what prior participants experienced.</p>
                             </div>
                        </div>
                    </div>
@@ -324,17 +318,17 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="embed-responsive embed-responsive-4by3">
-                                <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/188211462" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/F2ilwYXBGxw" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="embed-responsive embed-responsive-4by3">
-                                <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/187095271" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/o1big3v_EBE" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="embed-responsive embed-responsive-4by3">
-                                <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/185403671" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/tpDjpYA9z6A" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                             </div>
                         </div>
                     </div>
@@ -379,7 +373,7 @@
                                         </div>
                                         <div id="billingInformation" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                             <div class="panel-body">
-                                                <p>No. All our training material is available via GitHub. We offer virtual meetings 3 weeks prior to the hacks. Once you have signed-up you will receive a google hangout invitation with bi-weekly meeting information. All hacking activities are online.</p>
+                                                <p>No. Our hacks are virtual and take place on a social coding environment.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -393,7 +387,7 @@
                                         </div>
                                         <div id="shippingMethod" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                                             <div class="panel-body">
-                                                <p>Yes, you must submit at least one application for each of the 4 hacking phases, otherwise you will not be eligible for the award. You will also have to fill in a survey prior to the start, and another after the hack (they are short). This project is sponsored by NSF.</p>
+                                                <p>Yes, you must submit at least one application for each of the 5 hacking phases, otherwise you will not be eligible for the award. You will also have to fill in a survey prior to the start, and another after the hack (they are short). This project is sponsored by NSF.</p>
                                             </div>
                                         </div>
                                     </div>

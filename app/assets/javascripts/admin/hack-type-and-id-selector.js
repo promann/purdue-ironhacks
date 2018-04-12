@@ -2,6 +2,7 @@ import React from "react";
 
 export default class HackTypeAndIdSelector extends React.Component {
     render () {
+        
         let hackTypeOptions = ["All"]
           , hackIdOptions = ["All"]
           ;
@@ -15,7 +16,13 @@ export default class HackTypeAndIdSelector extends React.Component {
             }
         });
 
+        for (var i = 0; i < hackTypeOptions.length; i++) {
+            if(!(typeof hackTypeOptions[i] != 'undefined')){
+                hackTypeOptions.splice(i, 1);
+            }
+        }
         hackTypeOptions = hackTypeOptions.map((c, i) => {
+
             return <option key={i} value={c}>{c === "All" ? c : _pageData.hackTypes[c].label}</option>
         });
 

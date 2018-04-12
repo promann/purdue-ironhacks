@@ -14,11 +14,16 @@ export default class AdminHackTypeItem extends React.Component {
         return items;
     }
     render () {
-        return (
-            <div>
-                <h2>HackType: <span className="hack-type-name">{_pageData.hackTypes[this.props.hackType.name].label}</span></h2>
-                {this.renderItems()}
-            </div>
-        );
+        this.props.hackType.name == "undefined"
+        if(this.props.hackType.name != 'undefined'){ 
+            return (
+                <div>
+                    <h2>HackType: <span className="hack-type-name">{_pageData.hackTypes[this.props.hackType.name].label}</span></h2>
+                    {this.renderItems()}
+                </div>
+            );
+        }else{
+            return (<div></div>)
+        }
     }
 }
