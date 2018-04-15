@@ -1352,3 +1352,13 @@ The `notifications.js` file takes care of sending the emails using this module. 
  2. Somebody posts a comment
 
     Emails are sent to previous people involved in the conversation.
+
+## Creating the docs
+
+### Initial Start
+Follow the [Get Started](http://docs.readthedocs.io/en/latest/getting_started.html) page and run:
+
+ 1. `pip install sphinx sphinx-autobuild`
+ 2. `mkdir docs`
+ 3. `sphinx-quickstart`
+ 4. `make html`
