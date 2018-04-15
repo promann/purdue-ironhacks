@@ -18,10 +18,3 @@ Welcome to Purdue IronHacks's documentation!
    managing_the_docs
 
 These pages contain technical details about how the platform behind Purdue Ironhacks works.
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
