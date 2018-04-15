@@ -1,4 +1,4 @@
-# Purdue Ironhacks Platform 
+# Purdue Ironhacks Platform
 Hack for innovation and join the open data movement.
 
 ### About
@@ -7,6 +7,10 @@ An Ironhack is a unique 21-day, 4-stage innovative hacking program for individua
 Participation is free. During our iterative hacking process, you will learn new skills, have the chance to learn from others and receive feedback from our experts! Turn your ideas into web apps that make data actionable and useful!
 
 [![](http://i.imgur.com/wtv2dy6.png)](http://ironhacks.com)
+
+
+### Technical Documentation
+If you are interested how the app works in the depth, check out the [documentation hosted on Read the Docs](http://ironhacks.readthedocs.io/en/latest/).
 
 ### License
 This application is open-source, being licensed under the MIT license Research Center for Open Digital Innovation.
