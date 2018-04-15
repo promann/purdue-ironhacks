@@ -10,7 +10,7 @@ Welcome to Purdue IronHacks's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-
+These pages contain technical details about how the platform behind Purdue Ironhacks works.
 
 Indices and tables
 ==================
