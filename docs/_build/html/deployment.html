@@ -1,6 +1,5 @@
 
 
-
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
@@ -9,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; Purdue IronHacks 2.0.0 documentation</title>
+  <title>Deployment &mdash; Purdue IronHacks 2.0.0 documentation</title>
   
 
   
@@ -28,8 +27,10 @@
   
     <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="#" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Forum structure" href="forum_structure.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -79,10 +80,10 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="dependencies.html">Dependencies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="forum_structure.html">Forum structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="workflow_and_functionality.html">Workflow and functionality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="managing_the_docs.html">Creating the docs</a></li>
@@ -131,12 +132,14 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Index</li>
+      <li>Deployment</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
+            <a href="_sources/deployment.rst.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -148,11 +151,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <div class="section" id="deployment">
+<h1>Deployment<a class="headerlink" href="#deployment" title="Permalink to this headline">¶</a></h1>
+<p>When deployed to Heroku, the application url is
+<code class="docutils literal notranslate"><span class="pre">https://&lt;app-name&gt;.herokuapp.com</span></code> (unless it’s using a custom
+domain). <strong>Note:</strong> When using a free dyno, it’s working fine, but with
+some limitations:</p>
+<ul class="simple">
+<li>it’s slower</li>
+<li>it’s going to sleep if it’s innactive for a certain period of time.</li>
+<li>it has bandwidth limits, but pretty liberal</li>
+</ul>
+<p>The app configuration is stored in the <code class="docutils literal notranslate"><span class="pre">bloggify.js</span></code> file.</p>
+<ol class="arabic">
+<li><p class="first">Make sure that the <code class="docutils literal notranslate"><span class="pre">heroku</span></code> remote exists (run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span> <span class="pre">-v</span></code>
+for that). If it doesn’t exist, run:</p>
+<div class="code sh highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">heroku</span> <span class="n">git</span><span class="p">:</span><span class="n">remote</span> <span class="n">ironhackplatform</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Commit all the changes and then run the following command:</p>
+<div class="code sh highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">npm</span> <span class="n">run</span> <span class="n">deploy</span>
+</pre></div>
+</div>
+</li>
+</ol>
 </div>
 
 
@@ -160,6 +183,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="forum_structure.html" class="btn btn-neutral float-right" title="Forum structure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="installation.html" class="btn btn-neutral" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

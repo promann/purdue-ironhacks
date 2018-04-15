@@ -1,0 +1,312 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Dependencies &mdash; Purdue IronHacks 2.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="Welcome to Purdue IronHacks’s documentation!" href="index.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Purdue IronHacks
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="forum_structure.html">Forum structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow_and_functionality.html">Workflow and functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="managing_the_docs.html">Creating the docs</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Purdue IronHacks</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Dependencies</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/dependencies.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="dependencies">
+<h1>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h1>
+<p>The app is powered by [Bloggify](<a class="reference external" href="https://bloggify.org">https://bloggify.org</a>)—a modular and flexible platform for building modular applications. Since Bloggify is a Node.js platform, you have to install Node.js on your machine. The data is stored in a MongoDB database.</p>
+<p>Along with this platform, other direct dependencies are needed. Some of them are only needed in the development environment, while others are required while the app is running in production.</p>
+<p><strong>Bloggify-related dependencies</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><cite>bloggify</cite>: The Bloggify platform.</li>
+<li><cite>bloggify-github-login</cite>: A Bloggify plugin to provide GitHub authentication.</li>
+<li><cite>bloggify-icons</cite>: A set of icons by Bloggify.</li>
+<li><cite>bloggify-mongoose</cite>: The Mongoose module for Bloggify.</li>
+<li><cite>bloggify-sendgrid</cite>: A module for sending emails using Sendgrid as a service.</li>
+<li><cite>bloggify-ws</cite>: Websocket communication for Bloggify.</li>
+</ul>
+</div></blockquote>
+<p><strong>React-related Dependencies</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><cite>react</cite>: The React library.</li>
+<li><cite>react-ace</cite>: ACE editor bindings for React.</li>
+<li><cite>react-dom</cite>:</li>
+<li><cite>react-folder-tree</cite>: Tree view for folders and files for React.</li>
+<li><cite>react-github-contribution-calendar</cite>: GitHub-like contributions calendar for React.</li>
+<li><cite>react-markdown</cite>: Render MarkDown content using React.</li>
+<li><cite>react-md-editor</cite>: MarkDown editor for React.</li>
+<li><cite>react-treebeard</cite>: Tree view for folders and files for React.</li>
+<li><cite>sweetalert2-react</cite>: SweetAlert for React.</li>
+</ul>
+</div></blockquote>
+<dl class="docutils">
+<dt><strong>UI &amp; UX Libraries</strong></dt>
+<dd><ul class="first last simple">
+<li><cite>bag.css</cite>: A small CSS library for building DOM containers.</li>
+<li><cite>gridly</cite>: CSS library for handling grids.</li>
+<li><cite>sweetalert</cite>: Cute alternative for the native browser prompts.</li>
+<li><cite>codemirror</cite>: Editor for the web.</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Utility Libraries</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><cite>array-unique</cite>: Remove duplicate values from an array.</li>
+<li><cite>bindy</cite>:  Create an array of functions bound to an the values of an input array.</li>
+<li><cite>execa</cite>:  Execute child processes.</li>
+<li><cite>fast-csv</cite>: A Node.js module for managing CSV files (creation and parsing).</li>
+<li><cite>find-value</cite>: Find a specific value in an object, by providing the key.</li>
+<li><cite>html-entities</cite>: Parse HTML entities in a string.</li>
+<li><cite>is-valid-path</cite>: Check whether the path is valid.</li>
+<li><cite>modernizr</cite>: A friendly library for checking different browser features.</li>
+<li><cite>moment</cite>: A library for managing date objects.</li>
+<li><cite>moment-timezone</cite>: An extension for <cite>moment</cite> for managing timezones.</li>
+<li><cite>uc-first</cite>: Uppercase the first character in a string.</li>
+<li><cite>unique-random-range</cite>: Get a unique random in a specific range.</li>
+<li><cite>treeify-paths</cite>:</li>
+<li><cite>util-promisifyall</cite>: Polyfill for <cite>util.promisifyall</cite>.</li>
+<li><cite>map-o</cite>: Iterate over objects.</li>
+<li><cite>node-schedule</cite>: Node.js module to schedule tasks.</li>
+<li><cite>obj-flatten</cite>: Get the flatten version of an provided object</li>
+<li><cite>paths2tree</cite>: Get the tree of an array of paths.</li>
+<li><cite>regex-escape</cite>: Escape special characters in regular expressions.</li>
+<li><cite>connect-mongo</cite>: Connect plugin for MongoDB sessions.</li>
+<li><cite>same-time</cite>: Run tasks in parallel.</li>
+<li><cite>slugo</cite>: Used to get the title slugs etc.</li>
+<li><cite>streamp</cite>: Create readable and writable streams in directories which do not exist (those will be created if needed).</li>
+</ul>
+</div></blockquote>
+<dl class="docutils">
+<dt><strong>API Wrappers</strong></dt>
+<dd><ul class="first last simple">
+<li><cite>gh.js</cite>: A small Node.js wrapper for the GitHub API.</li>
+<li><cite>aws-sdk</cite>: The AWS SDK for Node.js. Used for the S3 APIs.</li>
+</ul>
+</dd>
+<dt><strong>DOM Libraries</strong></dt>
+<dd><ul class="first last simple">
+<li><cite>jquery</cite>: The jQuery library.</li>
+<li><cite>elly</cite>: Select DOM elements.</li>
+</ul>
+</dd>
+<dt><strong>Polyfills</strong></dt>
+<dd><ul class="first last simple">
+<li><cite>whatwg-fetch</cite>: Polyfill for <cite>fetch</cite>.</li>
+</ul>
+</dd>
+</dl>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Welcome to Purdue IronHacks’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Purdue University.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'2.0.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>

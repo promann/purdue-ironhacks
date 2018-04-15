@@ -10,6 +10,13 @@ Welcome to Purdue IronHacks's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   dependencies
+   installation
+   deployment
+   forum_structure
+   workflow_and_functionality
+   managing_the_docs
+
 These pages contain technical details about how the platform behind Purdue Ironhacks works.
 
 Indices and tables

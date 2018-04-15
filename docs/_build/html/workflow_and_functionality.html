@@ -1,0 +1,1420 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Workflow and functionality &mdash; Purdue IronHacks 2.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Creating the docs" href="managing_the_docs.html" />
+    <link rel="prev" title="Forum structure" href="forum_structure.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Purdue IronHacks
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dependencies.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="forum_structure.html">Forum structure</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Workflow and functionality</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#qualtrics-integration">Qualtrics integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#login-register-process">Login / Register Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quizzes">Quizzes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#search">Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#posts-page">Posts Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#single-post-pages">Single post pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#posting-a-new-topic">Posting a new topic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-scores-page">The scores page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#admin-interface">Admin interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#application-structure">Application structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modules">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#database-connection">Database Connection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-stats-we-collect">What stats we collect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#github-login">GitHub Login</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#email-notifications">Email Notifications</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="managing_the_docs.html">Creating the docs</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Purdue IronHacks</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Workflow and functionality</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/workflow_and_functionality.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="workflow-and-functionality">
+<h1>Workflow and functionality<a class="headerlink" href="#workflow-and-functionality" title="Permalink to this headline">¶</a></h1>
+<p>Being a Bloggify application, the application configuration is kept in a
+file: <code class="docutils literal notranslate"><span class="pre">bloggify.js</span></code>.:</p>
+<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span>&quot;use strict&quot;;
+
+// Set the right MongoDB URI (depending on the environment).
+const DB_URI = process.env.DB_URI
+if (!DB_URI) {
+    Bloggify.log(new Error(&quot;&gt;&gt;&gt;&gt; Please provide the MongoDB URI. Set the DB_URI environment variable.&quot;));
+}
+
+module.exports = {
+    title: &quot;IronHacks&quot;,
+    description: &quot;Hack for inovation and join the open data movement.&quot;,
+    domain: process.env.DOMAIN || &quot;http://www.ironhacks.com&quot;,
+    core_plugins: [
+        [&quot;github-login&quot;, {
+            githubClient: process.env.GITHUB_CLIENT,
+            githubSecret: process.env.GITHUB_SECRET,
+        }]
+    ],
+    plugins: [
+        [&quot;sendgrid&quot;, {
+            key: process.env.SENDGRID_KEY
+        }]
+    ],
+    styles: [ &quot;app/assets/stylesheets/index.css&quot; ],
+    bundles: {
+        publicHomepage: {
+            scripts: [ &quot;app/assets/javascripts/homepage/index.js&quot; ],
+            styles: [ &quot;app/assets/stylesheets/homepage/index.css&quot; ]
+        },
+        editor: {
+            styles: [ &quot;app/assets/stylesheets/editor/index.css&quot; ]
+        },
+        auth: {
+            scripts: [ &quot;app/assets/javascripts/private-router.js&quot; ],
+            styles: [ &quot;app/assets/stylesheets/auth.css&quot; ]
+        },
+        notAuth: {
+            scripts: [ &quot;app/assets/javascripts/public-router.js&quot; ]
+        },
+        main: {
+            scripts: [ &quot;app/assets/javascripts/common-router.js&quot; ]
+        }
+    }
+};
+</pre></div>
+</div>
+<p>The way how this Bloggify application is structured is explained below.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">app</span></code> directory contains the application files</p>
+<p>The application routes (urls) are:</p>
+<div class="code sh highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GET</span>         <span class="o">/</span>
+<span class="n">GET</span>         <span class="o">/</span><span class="mi">404</span>
+<span class="n">GET</span>         <span class="o">/</span><span class="mi">422</span>
+<span class="n">GET</span>         <span class="o">/</span><span class="mi">500</span>
+<span class="n">GET</span><span class="o">/</span><span class="n">POST</span>    <span class="o">/</span><span class="n">admin</span>
+<span class="n">GET</span>         <span class="o">/</span><span class="n">admin</span><span class="o">/</span><span class="n">csv</span><span class="o">/</span><span class="n">export</span><span class="o">-</span><span class="n">users</span>
+<span class="n">GET</span>         <span class="o">/</span><span class="n">admin</span><span class="o">/</span><span class="n">csv</span><span class="o">/</span><span class="n">scores</span>
+<span class="n">GET</span>         <span class="o">/</span><span class="n">admin</span><span class="o">/</span><span class="n">csv</span><span class="o">/</span><span class="n">topics</span>
+<span class="n">GET</span>         <span class="o">/</span><span class="n">countdown</span>
+<span class="n">GET</span><span class="o">/</span><span class="n">POST</span>    <span class="o">/</span><span class="n">logout</span>
+<span class="n">GET</span><span class="o">/</span><span class="n">POST</span>    <span class="o">/</span><span class="n">new</span>
+<span class="n">GET</span><span class="o">/</span><span class="n">POST</span>    <span class="o">/</span><span class="n">register</span>
+<span class="n">GET</span>         <span class="o">/</span><span class="n">login</span>
+<span class="n">GET</span>         <span class="o">/</span><span class="n">scores</span>
+<span class="n">GET</span>         <span class="o">/</span><span class="n">search</span>
+<span class="n">GET</span>         <span class="o">/</span><span class="n">quizzes</span>
+<span class="n">GET</span>         <span class="o">/</span><span class="n">posts</span>
+<span class="n">GET</span>         <span class="o">/</span><span class="n">timeline</span>
+<span class="n">GET</span>         <span class="o">/</span><span class="n">task</span>
+<span class="n">GET</span><span class="o">/</span><span class="n">POST</span>    <span class="o">/</span><span class="n">posts</span><span class="o">/</span><span class="p">:</span><span class="n">topicId</span><span class="o">-</span><span class="p">:</span><span class="n">slug</span><span class="o">/</span>
+<span class="n">POST</span>        <span class="o">/</span><span class="n">posts</span><span class="o">/</span><span class="p">:</span><span class="n">topicId</span><span class="o">-</span><span class="p">:</span><span class="n">slug</span><span class="o">/</span><span class="n">comments</span>
+<span class="n">POST</span>        <span class="o">/</span><span class="n">posts</span><span class="o">/</span><span class="p">:</span><span class="n">topicId</span><span class="o">-</span><span class="p">:</span><span class="n">slug</span><span class="o">/</span><span class="n">delete</span>
+<span class="n">GET</span><span class="o">/</span><span class="n">POST</span>    <span class="o">/</span><span class="n">posts</span><span class="o">/</span><span class="p">:</span><span class="n">topicId</span><span class="o">-</span><span class="p">:</span><span class="n">slug</span><span class="o">/</span><span class="n">edit</span>
+<span class="n">POST</span>        <span class="o">/</span><span class="n">posts</span><span class="o">/</span><span class="p">:</span><span class="n">topicId</span><span class="o">-</span><span class="p">:</span><span class="n">slug</span><span class="o">/</span><span class="n">toggle</span><span class="o">-</span><span class="n">vote</span>
+<span class="n">GET</span><span class="o">/</span><span class="n">POST</span>    <span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="p">:</span><span class="n">user</span><span class="o">/</span><span class="n">edit</span>
+<span class="n">GET</span>         <span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="p">:</span><span class="n">user</span>
+<span class="n">GET</span><span class="o">/</span><span class="n">POST</span>    <span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="p">:</span><span class="n">user</span><span class="o">/</span><span class="n">edit</span>
+<span class="n">GET</span>         <span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="p">:</span><span class="n">user</span><span class="o">/</span><span class="n">projects</span>
+<span class="n">GET</span>         <span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="p">:</span><span class="n">user</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">projectName</span>
+<span class="n">GET</span><span class="o">/</span><span class="n">POST</span>    <span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="p">:</span><span class="n">user</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">projectName</span><span class="o">/</span><span class="n">delete</span>
+<span class="n">GET</span><span class="o">/</span><span class="n">POST</span>    <span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="p">:</span><span class="n">user</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">projectName</span><span class="o">/</span><span class="n">edit</span>
+<span class="n">GET</span>         <span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="p">:</span><span class="n">user</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">projectName</span><span class="o">/</span><span class="n">preview</span>
+<span class="n">GET</span><span class="o">/</span><span class="n">POST</span>    <span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="p">:</span><span class="n">user</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">projectName</span><span class="o">/</span><span class="n">new</span>
+<span class="n">GET</span>         <span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="p">:</span><span class="n">user</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="p">:</span><span class="n">projectName</span><span class="o">/</span><span class="n">preview</span><span class="o">/</span><span class="p">:</span><span class="n">filepath</span><span class="o">*</span>
+<span class="n">GET</span>         <span class="o">/</span><span class="n">preview</span><span class="o">/</span><span class="p">:</span><span class="n">user</span><span class="o">/</span><span class="p">:</span><span class="n">projectName</span><span class="o">/</span><span class="p">:</span><span class="n">filepath</span><span class="o">*</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">GET</span></code> method means that we fetch information from the server,
+while the <code class="docutils literal notranslate"><span class="pre">POST</span></code> means we post information to the server side.</p>
+<p>The routes may have associated controllers which are located in the
+<code class="docutils literal notranslate"><span class="pre">app/controllers</span></code> directory.</p>
+<div class="section" id="qualtrics-integration">
+<h2>Qualtrics integration<a class="headerlink" href="#qualtrics-integration" title="Permalink to this headline">¶</a></h2>
+<p>All the quizzes created on the Qualtrics platform have a snippet of
+JavaScript which stores the user data in the response (as known as
+<em>Embedded data</em>).</p>
+<p>We store the <code class="docutils literal notranslate"><span class="pre">user_email</span></code> and the <code class="docutils literal notranslate"><span class="pre">user_id</span></code> which are sent in the
+url.</p>
+<p>The code in the Qualtrics quizzes is set in the last block, last
+question (which may happen to be an empty question, used for tracking):</p>
+<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span>function getParameterByName(name, url) {
+    if (!url) {
+      url = window.location.href;
+    }
+    name = name.replace(/[\[\]]/g, &quot;\\$&amp;&quot;);
+    var regex = new RegExp(&quot;[?&amp;]&quot; + name + &quot;(=([^&amp;#]*)|&amp;|#|$)&quot;),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return &#39;&#39;;
+    return decodeURIComponent(results[2].replace(/\+/g, &quot; &quot;));
+}
+
+var redirectUrl = getParameterByName(&quot;redirect_to&quot;);
+var userEmail = getParameterByName(&quot;user_email&quot;);
+var userId = getParameterByName(&quot;user_id&quot;);
+if (userEmail) {
+   Qualtrics.SurveyEngine.setEmbeddedData(&quot;email&quot;, userEmail);
+}
+if (userId) {
+   Qualtrics.SurveyEngine.setEmbeddedData(&quot;user_id&quot;, userId);
+}
+if (redirectUrl) {
+    var interval = setInterval(function () {
+        if (Qualtrics.SurveyEngine.Page.isEndOfSurvey()) {
+            window.location = decodeURIComponent(redirectUrl);
+            clearInterval(interval);
+        }
+    }, 100);
+}
+</pre></div>
+</div>
+<p>This approach is being used for all the quizzes: the sign up survey and
+the other technical quizzes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Surveys</span><span class="p">:</span>                    <span class="o">-------&gt;</span> <span class="n">Qualtrics</span>
+     <span class="n">d3</span><span class="o">.</span><span class="n">js</span>                                  <span class="o">|</span> <span class="n">email</span><span class="p">,</span> <span class="n">user_id</span>
+     <span class="n">HTML</span> <span class="o">&amp;</span> <span class="n">CSS</span>                             <span class="o">|</span> <span class="n">And</span> <span class="n">after</span> <span class="n">the</span> <span class="n">survey</span> <span class="n">we</span> <span class="n">redirect</span> <span class="n">back</span>
+     <span class="n">JavaScript</span> <span class="ow">and</span> <span class="n">jQuery</span>                  <span class="o">|</span>
+        <span class="o">^</span>                                   <span class="o">|</span>
+        <span class="o">+-----------------------------------+</span>
+            <span class="n">Save</span> <span class="ow">in</span> <span class="n">db</span>
+            <span class="p">(</span><span class="n">that</span> <span class="n">the</span> <span class="n">user</span> <span class="n">took</span> <span class="n">the</span> <span class="n">survey</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="login-register-process">
+<h2>Login / Register Process<a class="headerlink" href="#login-register-process" title="Permalink to this headline">¶</a></h2>
+<p>When the user is not authenticated, the main page displays two buttons:
+a login button and a Sign up button.</p>
+<p>When the login button is clicked, the <code class="docutils literal notranslate"><span class="pre">/login</span></code> url is opened. The
+login url redirects to the GitHub authentication workflow (OAuth2) where
+the user should accept access of our GitHub app in their GitHub account.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>IronHack Platform                             GitHub.com
+-----------------                             ----------
+/login  ----------------------------------------&gt; Do you want to accept access of the app?
+                                            (the message won&#39;t appear if accept was already granted)
+                                                    |
+                                                    *------------ GitHub App: IronHack
+                                                    |
+                                        ___________/ \___________
+                                       /                         \
+                                     Yes                          No
+/login-callback  &lt;-------------------/                            |
+/                &lt;------------------------------------------------/
+</pre></div>
+</div>
+<p>The difference between the Sign in and Sign up buttons is that for the
+sign in, we assume that the user already has an account, therefore we
+make the redirection to GitHub APIs and authenticate them with their
+GitHub account. In case they do <em>not</em> have an account on the site, they
+will have to choose the hack type <em>after</em> the GitHub authentication.</p>
+<p>In Sign up case we will assume that the user doesn’t have an account
+yet, therefore we ask them to choose the hack type and only then the
+GitHub authentication is made. Still, if an existing user clicks the
+Sign up button, they will log in into their account anyways.</p>
+<p>This is the authentication workflow:</p>
+<div class="figure">
+<img alt="" src="http://i.imgur.com/b0RRhc6.png" />
+</div>
+<p>In the <code class="docutils literal notranslate"><span class="pre">controllers/register.js</span></code> file, we create a new user or
+authenticate an existing user. For the first-time users, we display the
+selection of the hack type: Purdue, Bogota and Platzi, and then redirect
+to the survey. At this moment, we start a session on the server side,
+but we don’t write any data in the users’ database yet.</p>
+<p>After the user completes the survey, they are redirected back, and the
+user account is created.</p>
+<p>To redirect the users to the survey, we send the <code class="docutils literal notranslate"><span class="pre">Location</span></code> header
+from the server to the client. Additional data is added in the url
+parameters to track the user:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">email</span></code>: The email of the user</li>
+<li><code class="docutils literal notranslate"><span class="pre">user_id</span></code>: The user id</li>
+<li><code class="docutils literal notranslate"><span class="pre">redirect_to</span></code>: The redirection url where they will arrive after
+answering the survey.</li>
+</ul>
+<p>Using a JavaScript snippet in the survey page we store the email and the
+user id in the survey answer and we detect when the survey is done and
+redirect the users back to the app.</p>
+<p>When they finish the survey, they are redirected to the main app and the
+account is created.</p>
+<p>When creating a user account, we do <em>not</em> assign a <code class="docutils literal notranslate"><span class="pre">hack_id</span></code> to the
+user but we wait until the contest is started. The <code class="docutils literal notranslate"><span class="pre">hack_id</span></code> is a
+number between <code class="docutils literal notranslate"><span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">2</span></code> based on which we create multiple forums
+inside of the same hack type. The range can be configured in the admin
+dashboard.</p>
+<p>For Purdue, we have one forum (the <code class="docutils literal notranslate"><span class="pre">hack_id</span></code> will be always <code class="docutils literal notranslate"><span class="pre">0</span></code>) and
+for <code class="docutils literal notranslate"><span class="pre">Bogota</span></code> and <code class="docutils literal notranslate"><span class="pre">Platzi</span></code>, we have three forums for each (the
+<code class="docutils literal notranslate"><span class="pre">hack_id</span></code> can be <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span></code> or <code class="docutils literal notranslate"><span class="pre">2</span></code>).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+--------------------+-------------+--------------+</span>
+<span class="o">|</span>       <span class="n">Purdue</span>       <span class="o">|</span>   <span class="n">Bogota</span>    <span class="o">|</span>     <span class="n">Plazi</span>    <span class="o">|</span>
+<span class="o">+--------------------+-------------+--------------+</span>
+<span class="o">|</span>         <span class="mi">0</span>          <span class="o">|</span>  <span class="mi">0</span>  <span class="o">|</span> <span class="mi">1</span> <span class="o">|</span> <span class="mi">2</span> <span class="o">|</span>  <span class="mi">0</span>  <span class="o">|</span> <span class="mi">1</span> <span class="o">|</span> <span class="mi">2</span>  <span class="o">|</span>
+<span class="o">+--------------------+-------------+--------------+</span>
+<span class="o">|</span>                    <span class="o">|</span>     <span class="o">|</span>   <span class="o">|</span>   <span class="o">|</span>     <span class="o">|</span>   <span class="o">|</span>    <span class="o">|</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>If the user is already registered, they are authenticated based on the
+existing data.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">hack_id</span></code> values are assigned either when the user signs up (if
+the contest is already started) or when the contest starts. The default
+value for <code class="docutils literal notranslate"><span class="pre">hack_id</span></code> is <code class="docutils literal notranslate"><span class="pre">null</span></code>. This is changed automatically when
+the contest starts.</p>
+<p>The algorithm which assigns the hack ids is designed to create groups of
+an equal number of users. Specifically, the user will join in the hack
+id with the fewest users at that moment.</p>
+<p>The database query is: find how many users we have in each hack id, for
+a given hack type. Then, join the current user in the hack id with the
+fewest users.</p>
+<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span>function generateGetHackId(hType, name) {
+    return cb =&gt; {
+        User.model.aggregate([{
+            $match: {
+                &quot;profile.hack_id&quot;: { $ne: null },
+                &quot;profile.hack_type&quot;: name
+            }
+        }, {
+            $group: {
+                _id: &quot;$profile.hack_id&quot;,
+                total: { $sum: 1 }
+            }
+        }], (err, docs) =&gt; {
+            if (err) { return cb(0); }
+            const ids = Array(hType.subforums_count + 1).fill(0);
+            docs.forEach(c =&gt; {
+                ids[c._id] = c.total;
+            });
+            let minId = 0;
+            let min = ids[minId];
+            ids.forEach((count, index) =&gt; {
+                if (count &lt; min) {
+                    minId = index;
+                    min = ids[minId];
+                }
+            });
+            cb(minId);
+        });
+    };
+}
+
+forEach(HACK_TYPES, (c, name) =&gt; {
+    c.getHackId = generateGetHackId(c, name);
+});
+</pre></div>
+</div>
+<p>The function which assigns the hack id values to the users is in the
+<code class="docutils literal notranslate"><span class="pre">HackTypes</span></code> controller (<code class="docutils literal notranslate"><span class="pre">app/controllers/HackTypes.js</span></code>).</p>
+<p>This function receives as input a hack type object and groups the users
+inside of the hack type.</p>
+<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span>const assignHackIdsToUsers = hType =&gt; {
+    const usersCursor = User.model.find({
+        &quot;profile.hack_id&quot;: null,
+        &quot;profile.hack_type&quot;: hType.name
+    }).cursor();
+
+    usersCursor.on(&quot;data&quot;, cDoc =&gt; {
+        usersCursor.pause();
+        hType.getHackId(uHackId =&gt; {
+            User.update({
+                _id: cDoc._id
+            }, {
+                profile: {
+                    hack_id: uHackId
+                }
+            }, (err, data) =&gt; {
+                if (err) { Bloggify.log(err); }
+                usersCursor.resume();
+            });
+        });
+    });
+
+    usersCursor.on(&quot;error&quot;, err =&gt; {
+        Bloggify.log(err);
+    });
+
+    usersCursor.on(&quot;end&quot;, cDoc =&gt; {
+        Bloggify.log(`Grouped the studends from ${hType.name}.`);
+    });
+};
+</pre></div>
+</div>
+<p>The function above is called when the countdown finishes, being
+triggered by a scheduler:</p>
+<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">setScheduleForHackType</span> <span class="o">=</span> <span class="n">name</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">name</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">let</span> <span class="n">hackTypeObj</span> <span class="o">=</span> <span class="n">HACK_TYPES</span><span class="p">[</span><span class="n">name</span><span class="p">];</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">hackTypeObj</span><span class="o">.</span><span class="n">startSchedule</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">hackTypeObj</span><span class="o">.</span><span class="n">startSchedule</span><span class="o">.</span><span class="n">cancel</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="n">hackTypeObj</span><span class="o">.</span><span class="n">startSchedule</span> <span class="o">=</span> <span class="n">schedule</span><span class="o">.</span><span class="n">scheduleJob</span><span class="p">(</span><span class="n">hackTypeObj</span><span class="o">.</span><span class="n">start_date</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="n">assignHackIdsToUsers</span><span class="p">(</span><span class="n">hackTypeObj</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Or, it may be triggered when we make changes in the admin dashboard,
+changing the start of the contest.</p>
+<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">new</span> <span class="n">Date</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">thisHackType</span><span class="o">.</span><span class="n">start_date</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">thisHackType</span><span class="o">.</span><span class="n">startSchedule</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">thisHackType</span><span class="o">.</span><span class="n">startSchedule</span><span class="o">.</span><span class="n">cancel</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="n">assignHackIdsToUsers</span><span class="p">(</span><span class="n">thisHackType</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">setScheduleForHackType</span><span class="p">(</span><span class="n">thisHackType</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>To catch the <code class="docutils literal notranslate"><span class="pre">save</span></code> event, we add a hook using the <code class="docutils literal notranslate"><span class="pre">addHook</span></code> method
+defined by the
+<code class="docutils literal notranslate"><span class="pre">`bloggify-mongoose</span></code> &lt;<a class="reference external" href="https://github.com/Bloggify/bloggify-mongoose">https://github.com/Bloggify/bloggify-mongoose</a>&gt;`__
+plugin.</p>
+<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Settings</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">addHook</span><span class="p">(</span><span class="s2">&quot;post&quot;</span><span class="p">,</span> <span class="s2">&quot;save&quot;</span><span class="p">,</span> <span class="n">update</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="quizzes">
+<h2>Quizzes<a class="headerlink" href="#quizzes" title="Permalink to this headline">¶</a></h2>
+<p>The quizzes page displays the quizzes that can be taken by the user. The
+user may answer the same quiz multiple times.</p>
+<p>In the view file (<code class="docutils literal notranslate"><span class="pre">app/routes/quizzes.ajs</span></code>) we have the part which
+renders the links to each quiz:</p>
+<div class="code erb highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;%</span> <span class="n">include</span><span class="p">(</span><span class="s2">&quot;../views/header&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="n">title</span><span class="p">:</span> <span class="s2">&quot;Quizzes&quot;</span> <span class="p">})</span> <span class="o">%&gt;</span>
+<span class="o">&lt;%</span> <span class="n">include</span><span class="p">(</span><span class="s2">&quot;../views/container/start&quot;</span><span class="p">)</span> <span class="o">%&gt;</span>
+<span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">Quizzes</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+
+<span class="o">&lt;%</span> <span class="n">quizzes</span><span class="o">.</span><span class="n">forEach</span><span class="p">(</span><span class="n">function</span> <span class="p">(</span><span class="n">quiz</span><span class="p">)</span> <span class="p">{</span> <span class="o">%&gt;</span>
+    <span class="o">&lt;</span><span class="n">a</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;btn&quot;</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;&lt;%= quiz.url %&gt;&quot;</span><span class="o">&gt;&lt;%=</span> <span class="n">quiz</span><span class="o">.</span><span class="n">label</span> <span class="o">%&gt;&lt;/</span><span class="n">a</span><span class="o">&gt;</span>
+<span class="o">&lt;%</span> <span class="p">});</span> <span class="o">%&gt;</span>
+
+<span class="o">&lt;%</span> <span class="n">include</span><span class="p">(</span><span class="s2">&quot;../views/container/end&quot;</span><span class="p">)</span> <span class="o">%&gt;</span>
+<span class="o">&lt;%</span> <span class="n">include</span><span class="p">(</span><span class="s2">&quot;../views/footer&quot;</span><span class="p">)</span> <span class="o">%&gt;</span>
+</pre></div>
+</div>
+<p>The data associated with this view is storred in the controller
+(<code class="docutils literal notranslate"><span class="pre">app/controllers/quizzes.js</span></code>)–see below. The user can click the
+generated link which contains information about the user (the email
+address and the user id)–which are storred in the Qualtrics quiz
+responses as embedded data, and also the redirect url. When the user
+finishes the quiz, they are redirected back the application, on the
+<code class="docutils literal notranslate"><span class="pre">/quizzes</span></code> page and the application marks the quiz complete
+internally. Even the quiz was completed, the user can take it again.</p>
+<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span>const Bloggify = require(&quot;bloggify&quot;)
+    , Session = require(&quot;./Session&quot;)
+    , User = require(&quot;./User&quot;)
+    , findValue = require(&quot;find-value&quot;)
+    ;
+
+// Define the quizzes list
+const quizzes = [
+    [&quot;d3.js&quot;, &quot;https://purdue.qualtrics.com/jfe/form/SV_71xEzp5vQ7rC817&quot;, &quot;d3&quot;]
+  , [&quot;HTML &amp; CSS&quot;, &quot;https://purdue.qualtrics.com/jfe/form/SV_do6Sc9VJsAMmOih&quot;, &quot;html_css&quot;]
+  , [&quot;JavaScript &amp; jQuery&quot;, &quot;https://purdue.qualtrics.com/jfe/form/SV_b8zyxX8wozQfNul&quot;, &quot;javascript_jquery&quot;]
+];
+
+// Map the quizzes labels to the data
+const validQuizzes = {};
+quizzes.forEach(c =&gt; {
+    validQuizzes[c[2]] = c;
+});
+
+module.exports = (lien, cb) =&gt; {
+    const user = Session.getUser(lien);
+    if (!user) { return lien.redirect(&quot;/&quot;); }
+
+    // Set the quiz complete
+    const completed = lien.query.markComplete;
+    if (completed &amp;&amp; validQuizzes[completed]) {
+        return User.update({
+            _id: user._id
+        }, {
+            profile: {
+                surveys: {
+                    [completed]: {
+                        ended_at: new Date()
+                    }
+                }
+            }
+        }, (err, _user) =&gt; {
+            lien.redirect(&quot;/quizzes&quot;);
+        })
+    }
+
+    // Generate the redirect links
+    const completedSurveys = findValue(user, &quot;profile.surveys&quot;) || {};
+    const userQuizzes = quizzes.map(c =&gt; {
+        const redirectTo =  encodeURIComponent(`${Bloggify.options.metadata.domain}/quizzes?markComplete=${c[2]}`);
+        return {
+            label: c[0]
+          , url: `${c[1]}?redirect_to=${redirectTo}&amp;user_email=${user.email}&amp;user_id=${user._id}`
+          , is_complete: !!completedSurveys[c[2]]
+        };
+    });
+
+    // Send the quizzes array to the view
+    cb(null, {
+        quizzes: userQuizzes
+    });
+};
+</pre></div>
+</div>
+</div>
+<div class="section" id="search">
+<h2>Search<a class="headerlink" href="#search" title="Permalink to this headline">¶</a></h2>
+<p>On the search page (<code class="docutils literal notranslate"><span class="pre">/search</span></code>) we can search for content which appears
+either in the post data or in the comments.</p>
+<p>The view associated with this page is storred in the
+<code class="docutils literal notranslate"><span class="pre">app/routes/search.ajs</span></code> and it looks like this:</p>
+<div class="code erb highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;% include(&quot;../views/header&quot;, { title: &quot;Search&quot; }) %&gt;
+&lt;% include(&quot;../views/container/start&quot;) %&gt;
+&lt;h1&gt;Search&lt;/h1&gt;
+&lt;div class=&quot;search-form-wrapper&quot;&gt;
+    &lt;% include(&quot;../views/search-form&quot;) %&gt;
+&lt;/div&gt;
+&lt;% if (f(&quot;results&quot;)) { %&gt;
+    &lt;p class=&quot;search-results-text&quot;&gt;Search results for &lt;em&gt;‘&lt;%= lien.query.search %&gt;’&lt;/em&gt;&lt;/p&gt;
+    &lt;div class=&quot;search-results&quot;&gt;
+        &lt;% if (results.length) { %&gt;
+            &lt;% results.forEach(function (cResult) { %&gt;
+                &lt;div class=&quot;seach-result-item&quot;&gt;
+                    &lt;h2&gt;
+                        &lt;a href=&quot;&lt;%= cResult.url %&gt;&quot;&gt;
+                            &lt;%= cResult.title %&gt;
+                        &lt;/a&gt;
+                    &lt;/h2&gt;
+                &lt;/div&gt;
+            &lt;% }) %&gt;
+        &lt;% } else { %&gt;
+            &lt;div class=&quot;no-search-results&quot;&gt;
+                There are no results. Maybe try a different query.
+            &lt;/div&gt;
+        &lt;% } %&gt;
+    &lt;/div&gt;
+&lt;% } %&gt;
+&lt;% include(&quot;../views/container/end&quot;) %&gt;
+&lt;% include(&quot;../views/footer&quot;) %&gt;
+</pre></div>
+</div>
+<p>This file requires the <code class="docutils literal notranslate"><span class="pre">search-form</span></code> which appears in the
+<code class="docutils literal notranslate"><span class="pre">app/views/search-form.ajs</span></code> file, representing the search form itself:</p>
+<div class="code erb highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">form</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nb">input</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;search&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;&lt;%= lien.query.search || &quot;&quot; %&gt;&quot;</span> <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Search for something...&quot;</span> <span class="o">/&gt;</span>
+<span class="o">&lt;/</span><span class="n">form</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>When the user submits the query, the <code class="docutils literal notranslate"><span class="pre">?search=&lt;query&gt;</span></code> querystring
+parameter is added in the url, triggering the search functionality in
+the controller (located in <code class="docutils literal notranslate"><span class="pre">app/controllers/search.js</span></code>). To increase
+the search results accuracy we used the internal MongoDB text search
+indexes like this: we created text indexes for the topic title and
+content and comment content, using the <code class="docutils literal notranslate"><span class="pre">text:</span> <span class="pre">true</span></code> in the model
+configuration:</p>
+<p><strong>``app/models/Topic.js``</strong>:</p>
+<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span><span class="o">.</span><span class="n">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="o">...</span>
+    <span class="n">title</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+        <span class="n">text</span><span class="p">:</span> <span class="n">true</span>
+    <span class="p">},</span>
+    <span class="o">...</span>
+    <span class="n">body</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+        <span class="n">text</span><span class="p">:</span> <span class="n">true</span>
+    <span class="p">},</span>
+    <span class="o">...</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p><strong>``app/models/Comment.js``</strong>:</p>
+<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span><span class="o">.</span><span class="n">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="o">...</span>
+    <span class="n">body</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+        <span class="n">text</span><span class="p">:</span> <span class="n">true</span>
+    <span class="p">},</span>
+    <span class="o">...</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p><strong>Note</strong>: The admin users will see the search results from all the
+forums, while the simple users will see the search results from the
+forum they belong to.</p>
+<p>The controller which takes care of searching looks like this:</p>
+<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span>const Session = require(&quot;./Session&quot;)
+    , Topic = require(&quot;./Topic&quot;)
+    , Comment = require(&quot;./Comment&quot;)
+    ;
+
+module.exports = (lien, cb) =&gt; {
+
+    const user = Session.getUser(lien);
+    if (!user) {
+        return lien.redirect(&quot;/&quot;);
+    }
+
+    const isAdmin = Session.isAdmin(user);
+
+    // Perform the search query
+    if (lien.query.search) {
+
+        // Use the $text index to search
+        const filters = {
+            $text: {
+                $search: lien.query.search
+            }
+        };
+        let results = {};
+
+        // Search in the topics and comments
+        Promise.all([
+            Topic.model.find(filters)
+          , Comment.model.find(filters)
+        ]).then(data =&gt; {
+            results.topics = data[0];
+            results.comments = data[1].map(c =&gt; c.toObject());
+            return Promise.all(results.comments.map(cComment =&gt; {
+                return Topic.model.findOne({ _id: cComment.topic });
+            }));
+        }).then(topics =&gt; {
+            let uniqueTopics = {};
+            results.topics.concat(topics).forEach(c =&gt; {
+                if (!c) { return; }
+
+                // Let the admin see all the posts/comments in all the forums
+                if (!isAdmin) {
+                    if (c.metadata.hack_type !== user.profile.hack_type ||
+                        c.metadata.hack_id !== user.profile.hack_id) {
+                        return;
+                    }
+                }
+                uniqueTopics[c._id] = c;
+                c.url = Topic.getUrl(c);
+            });
+
+            cb(null, { results: Object.keys(uniqueTopics).map(k =&gt; uniqueTopics[k]) });
+        }).catch(e =&gt; {
+            cb(e);
+        });
+    } else {
+        cb();
+    }
+};
+</pre></div>
+</div>
+</div>
+<div class="section" id="posts-page">
+<h2>Posts Page<a class="headerlink" href="#posts-page" title="Permalink to this headline">¶</a></h2>
+<p>For authenticated users, we display the posts on the first page, ordered
+by the date, but the sticky posts are always the first ones. Only the
+admin users can make create sticky posts (or edit a post and make it
+sticky).</p>
+<p>Here, the users from a specific forum can see and upvote the posts from
+the same forum. They can click on the post urls and post comments.</p>
+</div>
+<div class="section" id="single-post-pages">
+<h2>Single post pages<a class="headerlink" href="#single-post-pages" title="Permalink to this headline">¶</a></h2>
+<p>The single post pages are accessible by authenticated users only. They
+display the post title, body, votes and comments.</p>
+<p>In case somebody comments, the comments are updated in real-time, the
+votes too.</p>
+<p>When a user opens a topic page, we collect stats about that event:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">actor</span></code>: the user id who clicked the button</li>
+<li><code class="docutils literal notranslate"><span class="pre">topic_id</span></code>: the topic id</li>
+<li><code class="docutils literal notranslate"><span class="pre">phase</span></code>: the phase of the project</li>
+<li><code class="docutils literal notranslate"><span class="pre">created_at</span></code>: the timestamp</li>
+</ul>
+</div>
+<div class="section" id="posting-a-new-topic">
+<h2>Posting a new topic<a class="headerlink" href="#posting-a-new-topic" title="Permalink to this headline">¶</a></h2>
+<p>By accessing the <code class="docutils literal notranslate"><span class="pre">/new</span></code> endpoint, one can post a topic in their forum.
+They have to write the title and the topic content.</p>
+<p>The topic content can be styled with Markdown specific styles (bold,
+italic etc).</p>
+</div>
+<div class="section" id="the-scores-page">
+<h2>The scores page<a class="headerlink" href="#the-scores-page" title="Permalink to this headline">¶</a></h2>
+<p>We display the scores of the users, on the <code class="docutils literal notranslate"><span class="pre">/scores</span></code> page. The users
+see the anonymous name of the users in the table. The displayed items in
+the table are shuffled each time.</p>
+<p>If in the admin interface the scores are not provided, the scores
+collumns will not appear in the scores. In a similar way it happens for
+the urls: if we don’t enter the urls, the urls collumns will not appear
+in the scores page.</p>
+<p>When the user clicks on the View scores button, we collect stats:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">actor</span></code>: the user id who clicked the button</li>
+<li><code class="docutils literal notranslate"><span class="pre">hacker_id</span></code>: the user from the table which was clicked</li>
+<li><code class="docutils literal notranslate"><span class="pre">phase</span></code>: the phase of the project</li>
+<li><code class="docutils literal notranslate"><span class="pre">created_at</span></code>: the timestamp</li>
+</ul>
+<p>Similar things happen when one clicks the Project url or the GitHub
+repository url. We know what was clicked and who did it.</p>
+<p>In the scores controller (the <code class="docutils literal notranslate"><span class="pre">controllers/scores.js</span></code> file) a query to
+fetch the users from a certain forum is made. Then we get the active
+scores and urls for the current phase of the contest and create an array
+which is passed to the scores view. To keep the users semi-anonymous, we
+change the usernames into <code class="docutils literal notranslate"><span class="pre">Hacker</span> <span class="pre">{1-...}</span></code>. Then the users array is
+shuffled.</p>
+<p>This is the code snippet which fetches the users, modifies the usernames
+and shuffles the array.</p>
+<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span>User.model.find({
+    &quot;profile.hack_type&quot;: user.profile.hack_type,
+    &quot;profile.hack_id&quot;: user.profile.hack_iand usls for the current phase of the contest and create an array which is passed to the scores view.
+}, (err, users) =&gt; {
+    if (err) { return cb(err); }
+    Settings.get((err, options) =&gt; {
+        if (err) { return cb(err); }
+        const phase = options.settings.hack_types[user.profile.hack_type].phase;
+        users = users.map((u, i) =&gt; {
+            u = u.toObject();
+            u.username = `Hacker ${i + 1}`;
+            const phaseObj = Object(u.profile[phase]);
+            return {
+                _id: u._id,
+                username: u.username,
+                score_technical: phaseObj.score_technical,
+                score_info_viz: phaseObj.score_info_viz,
+                score_novelty: phaseObj.score_novelty,
+                score_total: phaseObj.score_total,
+                project_url: phaseObj.project_url,
+                github_repo_url: phaseObj.github_repo_url
+            };
+        });
+
+        shuffle(users);
+
+        cb(null, {
+            users: users,
+            phase: phase
+        });
+    });
+});
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">shuffle</span></code> function is a basic algorithm of shuffling the elements
+from a given array:</p>
+<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">shuffle</span><span class="p">(</span><span class="n">array</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">var</span> <span class="n">currentIndex</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">length</span><span class="p">,</span> <span class="n">temporaryValue</span><span class="p">,</span> <span class="n">randomIndex</span><span class="p">;</span>
+
+  <span class="o">//</span> <span class="n">While</span> <span class="n">there</span> <span class="n">remain</span> <span class="n">elements</span> <span class="n">to</span> <span class="n">shuffle</span><span class="o">...</span>
+  <span class="k">while</span> <span class="p">(</span><span class="mi">0</span> <span class="o">!==</span> <span class="n">currentIndex</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="o">//</span> <span class="n">Pick</span> <span class="n">a</span> <span class="n">remaining</span> <span class="n">element</span><span class="o">...</span>
+    <span class="n">randomIndex</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">*</span> <span class="n">currentIndex</span><span class="p">);</span>
+    <span class="n">currentIndex</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="o">//</span> <span class="n">And</span> <span class="n">swap</span> <span class="n">it</span> <span class="k">with</span> <span class="n">the</span> <span class="n">current</span> <span class="n">element</span><span class="o">.</span>
+    <span class="n">temporaryValue</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">currentIndex</span><span class="p">];</span>
+    <span class="n">array</span><span class="p">[</span><span class="n">currentIndex</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">randomIndex</span><span class="p">];</span>
+    <span class="n">array</span><span class="p">[</span><span class="n">randomIndex</span><span class="p">]</span> <span class="o">=</span> <span class="n">temporaryValue</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">array</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="admin-interface">
+<h2>Admin interface<a class="headerlink" href="#admin-interface" title="Permalink to this headline">¶</a></h2>
+<p>An admin can access additional functionality (such as deleting and
+editing any post). They have access to the dashboard (<code class="docutils literal notranslate"><span class="pre">/admin</span></code>) where
+they can make other users admins. If nobody is admin (say there are no
+users), we can make somebody an admin (even if they don’t exist <em>yet</em> in
+the database) by assiging the GitHub username of an eventual user to the
+environment variable called <code class="docutils literal notranslate"><span class="pre">ADMIN_USERNAME</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ADMIN_USERNAME</span></code> environment variable represents the GitHub
+username of the user which should be an admin (this user cannot be a
+simple user anymore, nobody being able to remove the admin rights from
+them). When they are going to log in, they will be authenticated as
+admin.</p>
+<p>To set the <code class="docutils literal notranslate"><span class="pre">ADMIN_USERNAME</span></code> variable, there are multiple ways, but the
+easiest ones are:</p>
+<ul>
+<li><p class="first">If the application runs in a Heroku environment, the variable can be
+set from the browser interface:
+<code class="docutils literal notranslate"><span class="pre">https://dashboard.heroku.com/apps/&lt;app-name&gt;/settings</span></code>, by
+clicking the <code class="docutils literal notranslate"><span class="pre">Reveal</span> <span class="pre">Config</span> <span class="pre">Vars</span></code> button or in the command line
+using:</p>
+<div class="code sh highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">heroku</span> <span class="n">config</span><span class="p">:</span><span class="nb">set</span> <span class="n">ADMIN_USERNAME</span><span class="o">=</span><span class="n">hackpurdue</span>
+</pre></div>
+</div>
+<p>Note: after setting an enviroment variable on Heroku (either from the
+command line) or from the browser interface, the application will be
+restarted automatically.</p>
+</li>
+<li><p class="first">When running locally, the environment variable can be set when
+starting the app:</p>
+<div class="code sh highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ADMIN_USERNAME</span><span class="o">=</span><span class="n">hackpurdue</span> <span class="n">npm</span> <span class="n">run</span> <span class="n">start</span><span class="p">:</span><span class="n">dev</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>In the admin interface, the admin can:</p>
+<ol class="arabic simple">
+<li>Change the Phase.</li>
+<li>Download the CSV stats.</li>
+<li>Set the start dates for each hack type.</li>
+<li>See all the users and update the scores for each and eventually make
+them admins.</li>
+</ol>
+<p>In case another user is made admin, they should log out (if they are
+authenticated) and log in back.</p>
+<p>Custom database Filters for admin</p>
+<p>For simple users, the database queries include the <code class="docutils literal notranslate"><span class="pre">author</span></code>, being the
+current authenticated user. When the user has admin permissions, we do
+not append anymore the <code class="docutils literal notranslate"><span class="pre">author</span></code> the queries, therefore making the
+queries more liberal, giving more power to the admin.</p>
+<p>For instance, when deleting a post, the user will create the following
+query:</p>
+<p><em>delete the post with ``_id``=… and ``author=…``</em></p>
+<p>Therefore, if the user tries to delete another post, having the id, that
+post will not be found because it is not created by the authenticated
+user.</p>
+<p>Tho, if the user is an admin, the query is simpler, lacking the
+<code class="docutils literal notranslate"><span class="pre">author</span></code> field (we want to give them the power to delete any post):</p>
+<p><a href="#id1"><span class="problematic" id="id2">*</span></a>delete the post with <code class="docutils literal notranslate"><span class="pre">_id=...</span></code> *</p>
+<p>This is happening in the
+<code class="docutils literal notranslate"><span class="pre">app/controllers/posts/_topicId-_slug/delete.js</span></code> controller:</p>
+<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span>const Topic = require(&quot;../../Topic&quot;)
+    , Session = require(&quot;../../Session&quot;)
+    ;
+
+exports.post = (lien, cb) =&gt; {
+    const user = Session.getUser(lien);
+    if (!user) {
+        return lien.next();
+    }
+
+    const filters = {
+        _id: lien.params.topicId
+    };
+
+    if (!Session.isAdmin(user)) {
+         filters.author = user._id;
+    }
+
+    Topic.remove(filters, (err, count) =&gt; {
+        if (err) { return lien.apiError(err); }
+        lien.redirect(&quot;/&quot;);
+    })
+};
+</pre></div>
+</div>
+</div>
+<div class="section" id="application-structure">
+<h2>Application structure<a class="headerlink" href="#application-structure" title="Permalink to this headline">¶</a></h2>
+<p>In the <code class="docutils literal notranslate"><span class="pre">routes</span></code> folder, we have the page templates which are linked to
+the controllers from the <code class="docutils literal notranslate"><span class="pre">controllers</span></code> folder.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>app/routes/
+├── 404.ajs
+├── 422.ajs
+├── 500.ajs
+├── _.ajs
+├── _.js
+├── admin
+│   ├── _.ajs
+│   ├── _.js
+│   └── csv
+│       ├── _.js
+│       ├── export-users
+│       │   └── _.js
+│       ├── scores
+│       │   └── _.js
+│       └── topics
+│           └── _.js
+├── logout
+│   ├── _.ajs
+│   └── _.js
+├── new
+│   ├── _.ajs
+│   └── _.js
+├── posts
+│   ├── _.ajs
+│   └── _topicId-_slug
+│       ├── _.ajs
+│       ├── _.js
+│       ├── comments
+│       │   ├── _.ajs
+│       │   └── _.js
+│       ├── delete
+│       │   └── _.js
+│       ├── edit
+│       │   ├── _.ajs
+│       │   └── _.js
+│       └── toggle-vote
+│           └── _.js
+├── preview
+│   └── _user
+│       └── _projectName
+│           └── _filepath*
+│               └── _.js
+├── quizzes
+│   ├── _.ajs
+│   └── _.js
+├── register
+│   ├── _.ajs
+│   └── _.js
+├── scores
+│   ├── _.ajs
+│   └── _.js
+├── search
+│   ├── _.ajs
+│   └── _.js
+├── task
+│   ├── _.ajs
+│   └── _.js
+├── timeline
+│   ├── _.ajs
+│   └── _.js
+├── users
+│   └── _user
+│       ├── _.ajs
+│       ├── _.js
+│       ├── edit
+│       │   ├── _.ajs
+│       │   └── _.js
+│       └── projects
+│           ├── _.ajs
+│           ├── _.js
+│           ├── _projectName
+│           │   ├── _.ajs
+│           │   ├── _.js
+│           │   ├── delete
+│           │   │   ├── _.ajs
+│           │   │   └── _.js
+│           │   ├── edit
+│           │   │   ├── _.ajs
+│           │   │   └── _.js
+│           │   └── preview
+│           │       ├── _.ajs
+│           │       └── _filepath*
+│           │           └── _.js
+│           └── new
+│               ├── _.ajs
+│               └── _.js
+└── view-project
+    └── _projectHash
+        ├── _.ajs
+        └── _.js
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">_</span></code> character marks a dynamic route (such as a topic id/slug, or
+user). The <code class="docutils literal notranslate"><span class="pre">.js</span></code> files are the controlers.</p>
+</div>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<p>In this application we use the following main modules:</p>
+<div class="section" id="database-connection">
+<h3>Database Connection<a class="headerlink" href="#database-connection" title="Permalink to this headline">¶</a></h3>
+<p>To connect with the database the
+<code class="docutils literal notranslate"><span class="pre">`bloggify-mongoose</span></code> &lt;<a class="reference external" href="https://github.com/Bloggify/bloggify-mongoose">https://github.com/Bloggify/bloggify-mongoose</a>&gt;`__
+module was used. The database models are stored in the <code class="docutils literal notranslate"><span class="pre">app/models</span></code>
+directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>models/
+├── Comment.js
+├── Settings.js
+├── Stats.js
+├── Topic.js
+└── User.js
+</pre></div>
+</div>
+<p>To see the raw database collections and documents, we can connect
+directly using the MongoDB CLI:</p>
+<div class="code sh highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mongo</span> <span class="o">....</span><span class="n">mlab</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">63758</span><span class="o">/</span><span class="n">heroku_</span><span class="o">...</span> <span class="o">-</span><span class="n">u</span> <span class="o">&lt;</span><span class="n">dbuser</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">p</span> <span class="o">&lt;</span><span class="n">dbpassword</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>or we can see that in the browser:</p>
+<ol class="arabic">
+<li><p class="first">Open the application <em>Overview</em> page
+<code class="docutils literal notranslate"><span class="pre">https://dashboard.heroku.com/apps/ironhackplatform</span></code></p>
+</li>
+<li><p class="first">Clik the <code class="docutils literal notranslate"><span class="pre">mLab</span> <span class="pre">MongoDB</span></code>. This will redirect to an url like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">mlab</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">heroku_</span><span class="o">...</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">On this page, we can see the collections and eventually the documents
+and edit them.</p>
+</li>
+</ol>
+<p>The models we interact with are:</p>
+<p><code class="docutils literal notranslate"><span class="pre">Comment</span></code></p>
+<p>Stores the comments in the <code class="docutils literal notranslate"><span class="pre">comments</span></code> collection.</p>
+<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span><span class="o">.</span><span class="n">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">author</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+    <span class="n">body</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+        <span class="n">text</span><span class="p">:</span> <span class="n">true</span>
+    <span class="p">},</span>
+    <span class="n">created_at</span><span class="p">:</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span>
+    <span class="n">topic</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+    <span class="n">votes</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;string&quot;</span><span class="p">]</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Settings</span></code></p>
+<p>Stores the application settings.</p>
+<div class="code sh highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span><span class="o">.</span><span class="n">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">settings</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Stats</span></code></p>
+<p>Used to store the stats we collect.</p>
+<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span><span class="o">.</span><span class="n">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">actor</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+    <span class="n">metadata</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+    <span class="n">event</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+    <span class="n">created_at</span><span class="p">:</span> <span class="s2">&quot;date&quot;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>In this collection we save the user events. See below what stats we
+collect.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Topic</span></code></p>
+<p>Stores the topics in the <code class="docutils literal notranslate"><span class="pre">topics</span></code> collection.</p>
+<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span><span class="o">.</span><span class="n">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">author</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+    <span class="n">title</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+        <span class="n">text</span><span class="p">:</span> <span class="n">true</span>
+    <span class="p">},</span>
+    <span class="n">slug</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+    <span class="n">body</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">String</span><span class="p">,</span>
+        <span class="n">text</span><span class="p">:</span> <span class="n">true</span>
+    <span class="p">},</span>
+    <span class="n">created_at</span><span class="p">:</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span>
+    <span class="n">votes</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;string&quot;</span><span class="p">],</span>
+    <span class="n">sticky</span><span class="p">:</span> <span class="s2">&quot;boolean&quot;</span><span class="p">,</span>
+    <span class="n">metadata</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">User</span></code></p>
+<p>Stores the users in the <code class="docutils literal notranslate"><span class="pre">users</span></code> collection.</p>
+<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span><span class="o">.</span><span class="n">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">username</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+    <span class="n">email</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+    <span class="n">password</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+    <span class="n">profile</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+    <span class="n">role</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="what-stats-we-collect">
+<h3>What stats we collect<a class="headerlink" href="#what-stats-we-collect" title="Permalink to this headline">¶</a></h3>
+<p>We collect stats when the user:</p>
+<ul class="simple">
+<li>clicks the View scores button</li>
+<li>opens a topic page</li>
+</ul>
+<p>The stats are collected by making HTTP requests to the server, using the
+<code class="docutils literal notranslate"><span class="pre">fetch</span></code> technology (it’s a new browser API, similar to
+<code class="docutils literal notranslate"><span class="pre">XHRHttpRequest</span></code>).</p>
+<p>The code snippets that take care of this is located in
+<code class="docutils literal notranslate"><span class="pre">app/assets/javascripts/util/index.js</span></code>:</p>
+<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span>...
+    /**
+     * post
+     * Posts the data to the server.
+     *
+     * @name post
+     * @function
+     * @param {String} url The endpoint url.
+     * @param {Object} data The post data.
+     * @returns {Promise} The `fetch` promise.
+     */
+  , post (url, data) {
+        data._csrf = data._csrf || _pageData.csrfToken;
+        return fetch(url, {
+            method: &quot;POST&quot;,
+            headers: {
+                &quot;Content-Type&quot;: &quot;application/json&quot;
+            },
+            credentials: &quot;same-origin&quot;,
+            body: JSON.stringify(data)
+        });
+    }
+
+    /**
+     * getJSON
+     * Fetches from the server JSON data.
+     *
+     * @name getJSON
+     * @function
+     * @param {String} url The endpoint url.
+     * @returns {Promise} The `fetch` promise.
+     */
+  , getJSON (url) {
+        return fetch(url, {
+            credentials: &quot;same-origin&quot;
+        }).then(c =&gt; c.json())
+    }
+...
+</pre></div>
+</div>
+<p>That’s the low-level side of sending/receiving any data to/from the
+server using <code class="docutils literal notranslate"><span class="pre">fetch</span></code>. Note: some browsers don’t have the <code class="docutils literal notranslate"><span class="pre">fetch</span></code>
+technology, therefore we use a <a class="reference external" href="https://github.com/github/fetch">polyfill created by
+GitHub</a> to ensure the function is
+there.</p>
+<p>We collect three types of stats:</p>
+<ol class="arabic">
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">view-topic</span></code></p>
+<p>Emitted when the user opens a topic.</p>
+<p>Metadata:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">topic_id</span></code>: The topic id.</li>
+<li><code class="docutils literal notranslate"><span class="pre">topic_author</span></code>: The user id of the topic author.</li>
+</ul>
+<p>Code snippet:</p>
+<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">util</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/api/stats&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="n">event</span><span class="p">:</span> <span class="s2">&quot;view-topic&quot;</span><span class="p">,</span>
+    <span class="n">metadata</span><span class="p">:</span> <span class="p">{</span>
+        <span class="n">topic_id</span><span class="p">:</span> <span class="n">topic</span><span class="o">.</span><span class="n">_id</span><span class="p">,</span>
+        <span class="n">topic_author</span><span class="p">:</span> <span class="n">topic</span><span class="o">.</span><span class="n">author</span><span class="o">.</span><span class="n">_id</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">score-click</span></code></p>
+<p>Emitted when the user clicks the View scores button.</p>
+<p>Metadata:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">hacker_id</span></code>: The user that <em>was clicked</em>.</li>
+</ul>
+<p>Code snippet:</p>
+<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">util</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/api/stats&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="n">event</span><span class="p">:</span> <span class="s2">&quot;score-click&quot;</span><span class="p">,</span>
+    <span class="n">metadata</span><span class="p">:</span> <span class="p">{</span>
+        <span class="n">hacker_id</span><span class="p">:</span> <span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">hacker</span><span class="o">.</span><span class="n">_id</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Clicks on the urls.</p>
+<p>The following events are emitted:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">click-project-url</span></code>: When clicking the project url.</li>
+<li><code class="docutils literal notranslate"><span class="pre">click-github-repo-url</span></code>: When clicking the GitHub repository
+url.</li>
+</ul>
+<p>Metadata:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">hacker_id</span></code>: The hacker id from the table.</li>
+<li><code class="docutils literal notranslate"><span class="pre">url</span></code>: The clicked url.</li>
+</ul>
+<p>Code snippet:</p>
+<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">util</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/api/stats&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="n">event</span><span class="p">:</span> <span class="n">e</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">event</span><span class="p">,</span>
+    <span class="n">metadata</span><span class="p">:</span> <span class="p">{</span>
+        <span class="n">hacker_id</span><span class="p">:</span> <span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">hacker</span><span class="o">.</span><span class="n">_id</span><span class="p">,</span>
+        <span class="n">url</span><span class="p">:</span> <span class="n">e</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">href</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p><strong>The stats functionality on the server</strong>:</p>
+<p>On the server, we create a custom endpoint at <code class="docutils literal notranslate"><span class="pre">/api/stats</span></code> which
+expects <code class="docutils literal notranslate"><span class="pre">POST</span></code> data. We do not collect any stats from unauthenticated
+users.</p>
+<p>Along with the metadata we receive from the client side (see above) we
+add in the stat object the following information:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">actor</span></code>: The current authenticated user id.</li>
+<li><code class="docutils literal notranslate"><span class="pre">event</span></code>: The event name.</li>
+<li><code class="docutils literal notranslate"><span class="pre">user_agent</span></code>: The user agent: this contains device and browser
+information.</li>
+<li><code class="docutils literal notranslate"><span class="pre">phase</span></code>: The phase of the contest.</li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">actor</span></code> is the authenticated user id, and it will always be
+appended in the event object because we know there is an authenticated
+user.</p>
+<p>After we build the stats object, we call the <code class="docutils literal notranslate"><span class="pre">Stats.record</span></code> which will
+record the event in the database. The <code class="docutils literal notranslate"><span class="pre">record</span></code> method is not anything
+more than just a create query, after appending the <code class="docutils literal notranslate"><span class="pre">created_at</span></code> field
+in the event object.</p>
+<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span>Bloggify.server.addPage(&quot;/api/stats&quot;, &quot;post&quot;, lien =&gt; {
+    const user = Session.getUser(lien);
+
+    if (!user) {
+        return lien.next();
+    }
+
+    const ev = {
+        actor: user._id,
+        event: lien.data.event,
+        metadata: lien.data.metadata || {}
+    };
+
+    ev.metadata.user_agent = lien.header(&quot;user-agent&quot;);
+
+    Settings.get((err, settings) =&gt; {
+        if (settings) {
+            ev.metadata.phase = settings.settings.hack_types[user.profile.hack_type].phase;
+        }
+        Stats.record(ev, (err, data) =&gt; {
+            if (err) {
+                return lien.apiError(err);
+            }
+            lien.apiMsg(&quot;success&quot;);
+        });
+    });
+});
+</pre></div>
+</div>
+</div>
+<div class="section" id="github-login">
+<h3>GitHub Login<a class="headerlink" href="#github-login" title="Permalink to this headline">¶</a></h3>
+<p>We used
+<code class="docutils literal notranslate"><span class="pre">`bloggify-github-login</span></code> &lt;<a class="reference external" href="https://github.com/Bloggify/github-login">https://github.com/Bloggify/github-login</a>&gt;`__
+to handle the GitHub authentication.</p>
+<p>By providing the GitHub application credentials, this module handles the
+OAuth2 workflow.</p>
+<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;githubClient&quot;</span><span class="p">:</span> <span class="s2">&quot;45...7&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;githubSecret&quot;</span><span class="p">:</span> <span class="s2">&quot;1f...2&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="email-notifications">
+<h3>Email Notifications<a class="headerlink" href="#email-notifications" title="Permalink to this headline">¶</a></h3>
+<p>To send emails, we use
+<code class="docutils literal notranslate"><span class="pre">`bloggify-sendgrid</span></code> &lt;<a class="reference external" href="https://github.com/Bloggify/bloggify-sendgrid">https://github.com/Bloggify/bloggify-sendgrid</a>&gt;`__.</p>
+<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;SG.SmlHGA...ylY&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">notifications.js</span></code> file takes care of sending the emails using
+this module. We send emails when:</p>
+<ol class="arabic">
+<li><p class="first">Somebody creates a new topic</p>
+<p>Emails are sent to all the users from the forum the author belongs
+to, except to the author.</p>
+</li>
+<li><p class="first">Somebody posts a comment</p>
+<p>Emails are sent to previous people involved in the conversation.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="managing_the_docs.html" class="btn btn-neutral float-right" title="Creating the docs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="forum_structure.html" class="btn btn-neutral" title="Forum structure" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Purdue University.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'2.0.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>

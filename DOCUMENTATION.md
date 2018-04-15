@@ -1,7 +1,3 @@
-This document contains technical details about how the Purdue Ironhacks platform works.
-
-### Dependencies
-
 The app is powered by [Bloggify](https://bloggify.org)—a modular and flexible platform for building modular applications. Since Bloggify is a Node.js platform, you have to install Node.js on your machine. The data is stored in a MongoDB database.
 
 ### Installation
@@ -1362,3 +1358,11 @@ Follow the [Get Started](http://docs.readthedocs.io/en/latest/getting_started.ht
  2. `mkdir docs`
  3. `sphinx-quickstart`
  4. `make html`
+
+### Theme settings
+
+```sh
+pip install sphinx_rtd_theme
+```
+
+And then set it in the `conf.py`.
