@@ -20,7 +20,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Purdue IronHacks'
-copyright = '2018, Purdue University'
+copyright = '2018, Purdue University 42'
 author = 'Purdue University'
 
 # The short X.Y version
