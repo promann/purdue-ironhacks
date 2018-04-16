@@ -1,7 +1,5 @@
 <% include(Bloggify.partials.header, { title: "Scores" }) %>
 <% include(Bloggify.partials.container.start) %>
-
-<div id="app"></div>
 <script>
     window._pageData = {
         component: "scores",
@@ -12,121 +10,75 @@
     };
 </script>
 
-<head>
-  <!-- Meta-->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <!-- Bootstrap -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-</head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-
-<style type="text/css">
-  .scoreLogicContainer {
-    width: 100%;
-    margin-top: 25px;
-  }
-
-  table{
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0px;
-  } 
-
-  table, th, td{
-    padding: 5px;
-    border: 1px solid black;
-    text-align: center;
-  }
-
-  #tableWrapper {
-    margin-top: 15px;
-    position:relative;
-    width:100%;
-    height: 400px;
-  }
-
-  #tableScroll {
-    height:100%;
-    overflow:auto;  
-    margin-top:20px;
-  }
-
-  #phasesDiv {
-    width: 100%;
-  }
-
-  .phase-button {
-    width: 18%;
-    margin-right: 1.9%;
-    border-radius: 20px;
-    background-color: lightgray;
-    color: gray;
-  }
-
-  #phase5{
-    margin-right: 0%;
-  }
-
-  .nav-button{
-    width: 45%;
-    margin-top: 25px;
-    margin-left: 3%;
-    border-radius: 20px;
-  }
-
-  #personalScoreButton{
-    background-color: #F39D26;
-  }
-
-</style>
+<!-- Slider css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css" crossorigin="anonymous">
 
 <script
       src="https://code.jquery.com/jquery-3.2.1.min.js"
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>
+
+
 <div class="scoreLogicContainer">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-12" id="initialText">
-        
-      </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-3">
+        <img src="" id="profilePicture">
+      </div>
+      <div class="col-md-7 col-md-offset-1">
         <div id="phasesDiv">
-          <button class="phase-button" id="phase1" disabled="true">Phase 1</button>
-          <button class="phase-button" id="phase2" disabled="true">Phase 2</button>
-          <button class="phase-button" id="phase3" disabled="true">Phase 3</button>
-          <button class="phase-button" id="phase4" disabled="true">Phase 4</button>
-          <button class="phase-button" id="phase5" disabled="true">Phase 5</button>
+           <input  type="text"
+          data-provide="slider"
+          data-slider-ticks="[1, 2, 3, 4, 5]"
+          data-slider-ticks-labels='["Phase 1", "Phase 2", "Phase 3", "Phase 4", "Phase 5"]'
+          data-slider-min="1"
+          data-slider-max="5"
+          data-slider-step="1"
+          data-slider-value="1"
+          data-slider-tooltip="hide"
+          data-slider-id="ex21"
+          id="phasesSlider" />
         </div>
       </div>
+      
     </div>
     <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <div>
-          <button class="nav-button" id="personalScoreButton">Personal Score</button>
-          <button class="nav-button" id="generalScoreButton" >General Score</button>
-        </div>
+      <div class="col-md-3">
+        <div id="app"></div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div id="tableWrapper">
-            <div id="tableScroll">
-              <table id="generalTable">
-                <thead id="generalTableHead">
-                  
-                </thead>
-                <tbody id="generalTableBody">
+      <div class="col-md-9">
+        <div class="row">
+          <div class="col-md-6">
+            <div>
+              <button class="nav-button" id="personalScoreButton">INDIVIDUAL FEEDBACK</button>
+              <button class="nav-button" id="generalScoreButton" >YOUR COMPETITORS</button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div id="tableWrapper">
+              <div id="tableScroll">
+                <table id="generalTable">
+                  <thead id="generalTableHead">
                     
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody id="generalTableBody">
+                      
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
       <div class="row">
         <div class="col-md-12" id="bottomText">
           
@@ -135,10 +87,15 @@
     </div>
 </div>
 </div>
-<script>  
+<script> 
+
+//Styling buttons
+
+//Styling buttons
+
 //Getting current user data
 var currentUser =  <%- stringify(ctx.user.profile) %>
-console.log(currentUser)
+
 var generalData
 var currentPhase = 1;
 /*
@@ -149,70 +106,20 @@ var currentPhase = 1;
 var currentMode = 1;
 var dimentionNames = ["Technology", "Functionality", "InfoVis", "Novelty"]
 var dimentionDescription = ["Tech requirements: You are expected to meet all 10 technological requirements specified in the challenge description (www.ironhacks.com/task). All requirements are equally weighted. The more more requirements you meet the better", "Error rating: We evaluate the quality of your code by counting the errors and diving it by the total number of lines of code. The lower the value the better your code.", "System affordance: Does the application offer recognizable elements and interactions that can be understood by the user? ", "Adding new data sets definitely makes your app stand (take out the three letters) out from the rest. We evaluate how successfully you implement additional open datasets: How relevant are they for you're the application? How novel is the visualization of this data? We evaluate each dataset individually and average it across all datasets."]
+var measureTypeDescription = ["Error rating", "Number of technology", "Number of user requirements met", "Usability point achieved"]
 
 // API key from the Developer Console
 var API_KEY = 'AIzaSyDzZog6BPwu__S1klBvsGwrtLME6U0oP7s';
 
-function enableButtons(googleData) {
-    var range = googleData;
-    generalData = range;
-
-    //Getting identifier data
-    
-    //DELETE THIS BEFORE GO PRODUCTION
-    console.log(currentUser)
-    currentUser.hack_type = generalData.values[1][0]
-    currentUser.hack_id = 2
-    currentUser.group_id = "bogota"
-    console.log(currentUser)
-    //DELETE THIS BEFORE GO PRODUCTION
-    // Enable phase buttons
-    var currentDate = new Date()
-    //var phaseEnd = new Date(generalData.values[i][12])
-    //here we iterate over all the phases, in order to enable(or disable) the buttons that doesn't should be able. 
-    var phasesEndDates = []
-    for (var i = generalData.values.length - 1; i >= 0; i--) {
-      var row = generalData.values[i];
-      //Getting all the phases from the current user.
-      if(row[4] == currentUser.github_username){
-        if(row[0] == currentUser.hack_type){
-          phasesEndDates.push({phase: row[2], endDate: row[12]})
-        }
-      }
-    }
-
-    for (var i = 0; i < phasesEndDates.length; i++) {
-      var endDate = new Date(phasesEndDates[i].endDate)
-      if(endDate < currentDate){
-        //Enable the button
-        var phaseButton = document.getElementById('phase' + phasesEndDates[i].phase)
-        phaseButton.disabled = false
-        //Styling
-        phaseButton.style.backgroundColor = 'white'
-        phaseButton.style.color = 'black'
-      }
-    }
-}
-function clearAllButtonsColors(){
-  for (var i = 1; i < 6; i++) {
-
-    var phaseButton = document.getElementById("phase" + i)
-    if(phaseButton.disabled == false){
-      phaseButton.style.background = 'white'
-    }
-  }
-}
 //This is the generic function to populate the table when the general score mode is on.
 //The phase attribute is a number from 1 to 5
 //The mode attribute is or 0 or 1
+
 function showPhaseScore(phase, mode){
   //Updating the global variables
   currentPhase = phase;
   currentMode = mode;
   //Highligth the pressed button
-  clearAllButtonsColors()
-  var phaseButton = document.getElementById("phase" + phase)
-  phaseButton.style.background = '#F39D26'
   // Declaring aux variables.
   var newRow, group_id, phase_id, hack_id, project, score, user_id;
   // Array of rows, we storage the rows cause we need to randomize before draw them.
@@ -229,7 +136,7 @@ function showPhaseScore(phase, mode){
   if(currentMode == 0){
     if (generalData.values.length > 0) {
       if(currentUser.hack_id == 0){
-        //showing nothing :(
+        //Show only personal score
         //Creating the headers
         //Title
         var titleRows = tableHeadReference.insertRow(0);
@@ -242,15 +149,11 @@ function showPhaseScore(phase, mode){
         //Creating the headers
         //Title
         var titleRows = tableHeadReference.insertRow(0);
-        var title = document.createElement('th');
-        title.innerHTML = "General Score Table"
-        title.colSpan = 2
-        titleRows.appendChild(title)
         //columns names
         var comlumnsNameRow = tableHeadReference.insertRow(1);
         var hackerName = document.createElement('th'),
             projectLink = document.createElement('th');
-        hackerName.innerHTML = "Hacker"   //TODO: This should be a constant.
+        hackerName.innerHTML = "Name"   //TODO: This should be a constant.
         projectLink.innerHTML = "Project" //TODO: This should be a constant.
         comlumnsNameRow.appendChild(hackerName)
         comlumnsNameRow.appendChild(projectLink)
@@ -265,7 +168,7 @@ function showPhaseScore(phase, mode){
               if(row[2] == phase){
                 //Creating row data element:
                 var rowData = {
-                  project : "<a href='" + row[4] + "'>" + "Project phase " + currentPhase + "</a>"
+                  project : "<a style='color:#F39D26' href='" + row[4] + "'>" + "<u>View</u></a>"
                 }
                 //Bold the current user name
                 if(row[4] == currentUser.github_username){
@@ -290,8 +193,8 @@ function showPhaseScore(phase, mode){
           user_id = newRow.insertCell(0);
           project = newRow.insertCell(1);
           project.innerHTML = tableRows[i].project
-          newRow.style.background = tableRows[i].background
           user_id.innerHTML = tableRows[i].user_id 
+          newRow.style.background = tableRows[i].background
         }
       }else if(currentUser.hack_id == 2){
         //Showing two columns
@@ -307,7 +210,7 @@ function showPhaseScore(phase, mode){
         var hackerName = document.createElement('th'),
             projectLink = document.createElement('th'),
             score = document.createElement('th');
-        hackerName.innerHTML = "Hacker"   //TODO: This should be a constant.
+        hackerName.innerHTML = "Name"   //TODO: This should be a constant.
         projectLink.innerHTML = "Project" //TODO: This should be a constant.
         score.innerHTML = "Score"         //TODO: This should be a constant.
         comlumnsNameRow.appendChild(hackerName)
@@ -316,7 +219,7 @@ function showPhaseScore(phase, mode){
         for (i = generalData.values.length - 1; i >= 0; i--) {
           var row = generalData.values[i];
           //checking if they are from the same semestrer
-        console.log(phase)
+
           if(row[0] == currentUser.hack_type){
             //checking if they are from the same group_id
             if(row[1] == currentUser.group_id){
@@ -324,7 +227,7 @@ function showPhaseScore(phase, mode){
               if(row[2] == phase){
                 //Creating row data element:
                 var rowData = {
-                  project : "<a href='" + row[5] + "'>" + "Project phase " + currentPhase + "</a>",
+                  project : "<a style='color:#F39D26' href='" + row[5] + "'>" + "<u>View</u></a>",
                   score : row[6]
                 }
                 //Bold the current user name
@@ -344,7 +247,7 @@ function showPhaseScore(phase, mode){
         }
         //Randomizing the names:
         tableRows = shuffle(tableRows)
-        console.log(tableRows)
+
         //Filling the table
         for (var i = 0; i < tableRows.length; i++) {
           newRow = tableBodyReference.insertRow(tableBodyReference.rows.length);
@@ -366,22 +269,26 @@ function showPhaseScore(phase, mode){
     //Title
     var titleRows = tableHeadReference.insertRow(0);
     var title = document.createElement('th');
-    title.innerHTML = "Personal Score Table"
-    title.colSpan = 3
+    title.innerHTML = "INDIVIDUAL FEEDBACK"
+    title.style.color = "#F39D26"
+    title.colSpan = 4
     titleRows.appendChild(title)
     //columns names'
     var comlumnsNameRow = tableHeadReference.insertRow(1);
     var dimensionName = document.createElement('th'),
         dimensionDescription = document.createElement('th'),
+        measureType = document.createElement('th'),
         yourScore = document.createElement('th');
-    dimensionName.innerHTML = "Dimesion"
-    dimensionDescription.innerHTML = "Dimesion description"
-    yourScore.innerHTML = "Your Score"
+    dimensionName.innerHTML = "Perfomance Dimention"
+    dimensionDescription.innerHTML = "Description"
+    measureType.innerHTML = "Measure type"
+    yourScore.innerHTML = "Your Result"
     comlumnsNameRow.appendChild(dimensionName)
     comlumnsNameRow.appendChild(dimensionDescription)
+    comlumnsNameRow.appendChild(measureType)
     comlumnsNameRow.appendChild(yourScore)
     //Crering aditional aux variables:
-    var dimention, dimentionDes;
+    var dimention, dimentionDes, measureTypeDes;
     //Filling the table
     //Fetching the phase results
     for (i = generalData.values.length - 1; i >= 0; i--) {
@@ -399,9 +306,12 @@ function showPhaseScore(phase, mode){
                 newRow = tableBodyReference.insertRow(tableBodyReference.rows.length);
                 dimention = newRow.insertCell(0);
                 dimentionDes = newRow.insertCell(1);
-                score = newRow.insertCell(2);
+                measureTypeDes = newRow.insertCell(2);
+                score = newRow.insertCell(3);
                 dimention.innerHTML = "<b>" + dimentionNames[j] + "</b";
+                dimention.style.color = "#F39D26"
                 dimentionDes.innerHTML = dimentionDescription[j];
+                measureTypeDes.innerHTML = measureTypeDescription[j];
                 score.innerHTML = row[7 + j];
               }
             }
@@ -412,32 +322,17 @@ function showPhaseScore(phase, mode){
     } 
   } 
 }
-function showPhase1(){
-  showPhaseScore(1, currentMode)
-}
-function showPhase2(){
-  showPhaseScore(2, currentMode)
-}
-function showPhase3(){
-  showPhaseScore(3, currentMode)
-}
-function showPhase4(){
-  showPhaseScore(4, currentMode)
-}
-function showPhase5(){
-  showPhaseScore(5, currentMode)
-}
 function showGeneralScore(){
   var generalScoreButton = document.getElementById("generalScoreButton")
   var personalScoreButton = document.getElementById("personalScoreButton")
   generalScoreButton.style.background = '#F39D26'
-  personalScoreButton.style.background = 'white'
+  personalScoreButton.style.background = 'lightgray'
   showPhaseScore(currentPhase, 0)
 }
 function showPersonalScore(){
   var generalScoreButton = document.getElementById("generalScoreButton")
   var personalScoreButton = document.getElementById("personalScoreButton")
-  generalScoreButton.style.background = 'white'
+  generalScoreButton.style.background = 'lightgray'
   personalScoreButton.style.background = '#F39D26'
   showPhaseScore(currentPhase, 1)
 }
@@ -467,8 +362,14 @@ function getDataFromGoogle(){
     
   })
     .done(function () {
-      console.log(data.responseJSON)
-      enableButtons(data.responseJSON)
+      //enableButtons(data.responseJSON)
+      var range = data.responseJSON;
+      generalData = range;
+      //DELETE THIS BEFORE GO PRODUCTION
+      currentUser.hack_type = generalData.values[1][0]
+      currentUser.group_id = "bogota"
+      //DELETE THIS BEFORE GO PRODUCTION
+      showPhaseScore(currentPhase, currentMode)
     })
     .fail(function (error) {
       //fail
@@ -477,33 +378,19 @@ function getDataFromGoogle(){
 }
 
 function initView(){
-  var topDiv = document.getElementById('initialText');
-  var topParagraph = document.createElement('div');
-  var bottomDiv = document.getElementById('bottomText');
-  var bottomParagraph = document.createElement('div');
-  // Showing bogotá text
-  // Bogotá 0
-  console.log(currentUser.hack_type)
+  //Hidding general score button
   currentUser.hack_id = 2
-  if(currentUser.hack_type == 'purdue_spring_2018' && currentUser.hack_id == 0){
-    topParagraph.innerHTML = "<p>Curious to learn about how you are doing? We have now completed the previous phase the hack. Please check your emails to review your personal feedback. You are now competing with 28 other hackers. They have all received their personal feedback for this phase. </p></p>Do not share your feedback with others. This is a competition, and the rules require you to keep this information confidential. If you have questions about your feedback, send us an email on <a href='mailto:opendigital@purdue.edu'>opendigital@purdue.edu</a> or attend one of our tech help sessions. </p><p>Happy Coding! Work hard and play hard. It should be fun! </p>"
-  }else if(currentUser.hack_type == 'purdue_spring_2018' && currentUser.hack_id == 1){
-    topParagraph.innerHTML = "<p>Curious to learn what others are doing to outperform the competition? Below, you find the list of all apps build in this hacking competition. We present a list of all hackers in your group. For reasons of anonymity we do not reveal the names of other hackers.</p><p>You can view all other hackers’ projects (both their code and the running application) by clicking on the “Project Link”. After clicking on this link, you can browse three the other’s apps, their file structure, and their actual code. Further, you can also see the running application as if you were a user of the app. This might inspire you. Keep exploring and get inspired.</p><p>Keep in mind! You are allowed to reuse others’ solutions as long as you are not cloning complete solutions. About 50 percent of the code should be your own (we are not considering libraries for this but the actual original code in other’s app). </p><p>Trying to find your own app? Sorry that you have to keep looking for in this list. Since this is a competition, we do not reveal names. Do not talk to other hackers outside of this competition. Stick to our rules and guidelines (<a href='/tasks'>www.ironhacks.com/tasks</a>). </p><p>Happy Coding! Work hard and play hard. It should be fun!</p>"
-  }else if(currentUser.hack_type == 'purdue_spring_2018' && currentUser.hack_id == 2){ 
-      topParagraph.innerHTML = "<p>Keep in mind! You are allowed to reuse others’ solutions as long as you are not cloning complete solutions. About 50 percent of the code should be your own (we are not considering libraries for this but the actual original code in other’s app). </p><p>Trying to find your own app? You should have received an email with the information about the performance of your own application. Use this as a reference when browsing through this table. </p><p>Happy Coding! Work hard and play hard. It should be fun! </p>"
-      bottomParagraph.innerHTML = "<p>Keep in mind! You are allowed to reuse others’ solutions as long as you are not cloning complete solutions. About 50 percent of the code should be your own (we are not considering libraries for this but the actual original code in other’s app). </p><p>Trying to find your own app? You should have received an email with the information about the performance of your own application. Use this as a reference when browsing through this table. </p><p>Happy Coding! Work hard and play hard. It should be fun! "
+  if(currentUser.hack_id == 0){
+    var generalScoreButton = document.getElementById('generalScoreButton')
+    generalScoreButton.style.display = "none";
   }
-  topDiv.appendChild(topParagraph)
-  bottomDiv.appendChild(bottomParagraph)
+
+  var profilePicture = document.getElementById('profilePicture')
+  profilePicture.src = currentUser.picture
 }
 
 
 $(document).ready(function() {
-  $("#phase1").on("click", showPhase1)
-  $("#phase2").on("click", showPhase2)
-  $("#phase3").on("click", showPhase3)
-  $("#phase4").on("click", showPhase4)
-  $("#phase5").on("click", showPhase5)
   
   $("#generalScoreButton").on("click", showGeneralScore)
   $("#personalScoreButton").on("click", showPersonalScore)
@@ -511,9 +398,14 @@ $(document).ready(function() {
   initView();
   //Pulling the google API
   getDataFromGoogle();
+
+  $("#ex21").on("change", function( event ){
+    showPhaseScore(event.value.newValue, currentMode)
+  })
 })
 
 </script>
+
 
 <% include(Bloggify.partials.container.end) %>
 <% include(Bloggify.partials.footer) %>

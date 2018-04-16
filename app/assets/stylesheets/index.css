@@ -6,4 +6,5 @@
 @import "responsive.css";
 @import "https://cdn.rawgit.com/IonicaBizauKitchen/sweetalert2-react/master/src/sweetalert2.css";
 @import "react-github-contribution-calendar/default.css";
-
+@import "scores/github-heat-calendar.css";
+@import "scores/main.css";

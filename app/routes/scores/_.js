@@ -46,8 +46,7 @@ module.exports = ctx => {
         if (phase === "phase1" && notPublishedYet) {
             return {
                 phase,
-                users: [],
-                calendarValues: data.calendarValues
+                users: []
             }
         }
 

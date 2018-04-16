@@ -3,7 +3,7 @@ const moment = require("moment");
 const flatten = require("obj-flatten");
 const typpy = require("typpy")
 
-const { Topic, User, Stats, SurveyTracker } = Bloggify.models
+const { Topic, User, Stats, SurveyTracker, PersonalScore, GeneralScoreOP, GeneralScoreOS } = Bloggify.models
 
 exports.topics = () => {
 		const csvStream = csv.format({
@@ -230,7 +230,16 @@ exports.commitSurveyStatus = (exportType) => {
 
 		const readStream = SurveyTracker.find(query, {
 				
-		}).stream();
+		}).then(data => {
+		topics = data.map(c => c.toObject())
+		return Topic.populateTopic(topics, {
+			userFields: {
+				"profile.commits": 0,
+				"email": 0,
+				"password": 0
+				}
+			})
+		})
 
 		readStream.on("data", doc => {
 				doc = doc.toObject()
@@ -243,4 +252,46 @@ exports.commitSurveyStatus = (exportType) => {
 				csvStream.end();
 		});
 	 return csvStream;
+};
+
+exports.getPersonalScore = (user) => {
+		console.log(user)
+		//Only ask for user's data
+		const query = {"user_id" : user};
+		
+		const scores = []
+		return PersonalScore.find(query, {
+				
+		}).then(data => {
+			console.log(data)
+			return data
+		})		
+};
+
+exports.getGeneralOS = (user) => {
+		console.log(user)
+		//Only ask for user's data
+		const query = {"user_id" : user};
+		
+		const scores = []
+		return GeneralScoreOS.find(query, {
+				
+		}).then(data => {
+			console.log(data)
+			return data
+		})		
+};
+
+exports.getGeneralOP = (user) => {
+		console.log(user)
+		//Only ask for user's data
+		const query = {"user_id" : user};
+		
+		const scores = []
+		return GeneralScoreOP.find(query, {
+				
+		}).then(data => {
+			console.log(data)
+			return data
+		})		
 };
