@@ -365,6 +365,7 @@ function getDataFromGoogle(){
       //enableButtons(data.responseJSON)
       var range = data.responseJSON;
       generalData = range;
+
       //DELETE THIS BEFORE GO PRODUCTION
       currentUser.hack_type = generalData.values[1][0]
       currentUser.group_id = "bogota"
@@ -379,7 +380,6 @@ function getDataFromGoogle(){
 
 function initView(){
   //Hidding general score button
-  currentUser.hack_id = 2
   if(currentUser.hack_id == 0){
     var generalScoreButton = document.getElementById('generalScoreButton')
     generalScoreButton.style.display = "none";
