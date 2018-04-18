@@ -254,44 +254,49 @@ exports.commitSurveyStatus = (exportType) => {
 	 return csvStream;
 };
 
-exports.getPersonalScore = (user) => {
-		console.log(user)
+exports.getPersonalScore = (userProfile) => {
+		const hackData = userProfile.hack_type.split("_")
+		const group_id = hackData[0]
+		const semester = hackData[1] + "_" + hackData[2]
 		//Only ask for user's data
-		const query = {"user_id" : user};
+		const query = {"user_id" : userProfile.github_username, "semester" : semester, "group_id": group_id};
 		
 		const scores = []
 		return PersonalScore.find(query, {
 				
 		}).then(data => {
-			console.log(data)
 			return data
 		})		
 };
 
-exports.getGeneralOS = (user) => {
-		console.log(user)
-		//Only ask for user's data
-		const query = {"user_id" : user};
+exports.getGeneralOS = (userProfile) => {
+		const hackData = userProfile.hack_type.split("_")
+		const group_id = hackData[0]
+		const semester = hackData[1] + "_" + hackData[2]
+		//Asking for all the projects within the same semester and group
+		const query = {"semester" : semester, "group_id": group_id, "hack_id": userProfile.hack_id};
 		
 		const scores = []
 		return GeneralScoreOS.find(query, {
 				
 		}).then(data => {
-			console.log(data)
 			return data
 		})		
 };
 
-exports.getGeneralOP = (user) => {
-		console.log(user)
-		//Only ask for user's data
-		const query = {"user_id" : user};
+exports.getGeneralOP = (userProfile) => {
+		//Normalizing the data
+
+		const hackData = userProfile.hack_type.split("_")
+		const group_id = hackData[0]
+		const semester = hackData[1] + "_" + hackData[2]
+		//Asking for all the projects within the same semester and group
+		const query = {"semester" : semester, "group_id": group_id, "hack_id": userProfile.hack_id};
 		
 		const scores = []
 		return GeneralScoreOP.find(query, {
 				
 		}).then(data => {
-			console.log(data)
 			return data
 		})		
 };

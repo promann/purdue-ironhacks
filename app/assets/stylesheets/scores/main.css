@@ -1,87 +1,82 @@
 .scoreLogicContainer {
-    width: 100%;
-    margin-top: 25px;
-    height: 100%;
-  }
+  width: 100%;
+  margin-top: 25px;
+  height: 100%;
+}
 
-  table{
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0px;
-  } 
+table{
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0px;
+} 
 
-  table, th, td{
-    padding: 5px;
-    border: 1px solid black;
-    text-align: center;
-  }
+table, th, td{
+  padding: 5px;
+  border: 1px solid black;
+  text-align: center;
+}
 
-  #tableWrapper{
-    position:relative;
-    width:99%;
-    height: 450px;
-    margin-top:10px;
-  }
+.table-wrapper{
+  position:relative;
+  width:100%;
+  height: 330px;
+}
 
-  #tableScroll{
-    height:100%;
-    overflow:auto;  
-  }
+.table-scroll{
+  height:100%;
+  overflow:auto;  
+}
 
-  #phasesDiv{
-    width: 100%;
-    margin-top: 100px;
-  }
+.phases-div{
+  width: 100%;
+  margin-top: 100px;
+}
 
-  .phase-button{
-    width: 7%;
-    margin-right: 1.9%;
-    background-color: lightgray;
-    color: gray;
-  }
+.nav-button{
+  width: 45%;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  background-color: lightgray;
+}
 
-  #phase5{
-    margin-right: 0%;
-  }
+.nav-button.active{
+  background-color: #F39D26;
+}
 
-  .nav-button{
-    width: 45%;
-    height: 40px;
-    border: none;
-    border-radius: 10px;
-    color: white;
-    background-color: lightgray;
-  }
+#phaseSlider{
+  width: 100%;
+}
+#phaseSlider .slider-selection {
+  background: #F39D26;
+  
+}
+#phaseSlider .slider-handle {
+  background: #F39D26;
 
-  #personalScoreButton{
-    background-color: #F39D26;
-  }
+}
+#phaseSlider .slider-tick {
+  background: gray;
+}
+#phaseSlider .slider-tick.round.in-selection{
+  background: #F39D26;
+}
 
-  #phasesSlider{
-    width: 100%;
-  }
-  #ex21{
-    width: 100%;
-  }
-  #ex21 .slider-selection {
-    background: #F39D26;
-    
-  }
-  #ex21 .slider-handle {
-    background: #F39D26;
+#phaseSlider .slider-tick-label-container{
+  margin-top: -30px;
+}
+#app {
+  width: 100%;
+  height: 100%;
+}
 
-  }
-  #ex21 .slider-tick {
-    background: gray;
-  }
-  #ex21 .slider-tick.round.in-selection{
-    background: #F39D26;
-  }
+.tables-title{
+margin-top: 20px;
+margin-bottom: 20px;
 
-  #ex21 .slider-tick-label-container{
-    margin-top: -30px;
-  }
-  #app {
-    width: 100%;
-    height: 100%;
-  }
+}
+
+.score-table{
+margin-bottom: 30px;
+}

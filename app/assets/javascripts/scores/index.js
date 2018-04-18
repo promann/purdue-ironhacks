@@ -1,216 +1,218 @@
-import React from "react"
-import List from "./list"
+ //ADV
+
+// Dependencies
+import React from 'react';
+import List from './list';
 import CalendarHeatmap from 'react-calendar-heatmap';
-import Actions from "bloggify/actions"
-import $ from 'jquery'
+import Actions from 'bloggify/actions';
+import ReactBootstrapSlider from 'react-bootstrap-slider';
+import GeneralTable from './generalTable'
 
+// Constants
+const VIEW_INDIVIDUAL = 'FEEDBACK';
+const VIEW_COMPETITORS = 'COMPETITORS';
+//Main Component
 export default class App extends React.Component {
-    constructor (props) {
-        super(props);
-        this.state = {
-            currentUser: window._pageData.user
-          , hackers:  window._pageData.hackers
+  constructor (props) {
+    super(props);
+    this.state = {
+      currentUser: window._pageData.user,
+      hackers:  window._pageData.hackers,
+      currentPhase: 1,
+      currentView: VIEW_INDIVIDUAL,
+      personalScore : [],
+      generalOS : [],
+      generalOP : []
+    }
+    //Binding
+    this.showIndividual = this.showIndividual.bind(this)
+    this.showCompetitors = this.showCompetitors.bind(this)
+    this.onSliderChange = this.onSliderChange.bind(this)
+    this.getTreatmentData = this.getTreatmentData.bind(this)
+    this.setGeneralTablePhase = this.setGeneralTablePhase.bind(this)
+  }
+  render(){
+    const viewIndividual = this.state.currentView === VIEW_INDIVIDUAL;
+    const viewCompetitors = this.state.currentView === VIEW_COMPETITORS;
+    const showGeneralScoreButton = this.state.currentUser.profile.hack_id == 0
+    const hackers = this.state.hackers.filter(c => {
+      return c.score_total || c.github_repo_url || c.project_url
+    })
+    //Putting the data in the correct format
+    const calendarKeys = Object.keys(_pageData.calendar_values)
+    const values = []
+    for (var i = 0; i < calendarKeys.length; i++) {
+      values.push({date: calendarKeys[i], count: _pageData.calendar_values[calendarKeys[i]]})
+    }
+    return(
+      <div className="page-content">
+        <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-3">
+            <img src={this.state.currentUser.profile.picture} id="profilePicture"/>
+          </div>
+        <div className="col-md-7 col-md-offset-1">
+          <div className="phases-div">
+            <ReactBootstrapSlider step={1} max={5} min={1} orientation="horizontal" id="phaseSlider"
+              ticks={[1, 2, 3, 4, 5]}
+              ticks_labels={['Phase 1', 'Phase 2', 'Phase 3', 'Phase 4', 'Phase 5']}
+              tooltip="hide"
+              value={this.state.currentPhase}
+              change={this.onSliderChange}
+            />
+          </div>
+        </div>  
+        </div>
+        <div className="row">
+          <div className="col-md-3">
+                  <CalendarHeatmap
+                    startDate={new Date('2018-03-01')}
+                    endDate={new Date('2018-05-31')}
+                    classForValue={this.githubClassForValue}
+                    values={values}
+                  />
+          </div>
+          <div className="col-md-9">
+            <div className="row">
+              <div className="col-md-6">
+                <div>
+                  <button 
+                    className={'nav-button' + (viewIndividual ? ' active' : '')} 
+                    onClick={this.showIndividual} 
+                  >INDIVIDUAL FEEDBACK</button>
+                  <button 
+                    className={'nav-button' + (viewCompetitors ? ' active' : '')}
+                    onClick={this.showCompetitors}
+                    style={{'display': showGeneralScoreButton ? 'none' : 'inline-block'}}
+                  >YOUR COMPETITORS</button>
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-12">
+                <GeneralTable
+                  viewType={this.state.currentView}
+                  headers={this.calculateHeaders()}
+                  hack_id={this.state.currentUser.profile.hack_id}
+                  personalScore={this.setGeneralTablePhase()}
+                  generalOS={this.state.generalOS}
+                  generalOP={this.state.generalOP}
+                  currentPhase={this.state.currentPhase}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    )
+  }
+  componentDidMount(){
+    //Getting current user data
+    this.pullPersonalScore() 
+  }
+
+  setGeneralTablePhase(){
+    if(this.state.personalScore.length > 0){
+      for (var i = 0; i < this.state.personalScore.length; i++) {
+        if(this.state.personalScore[i].phase_id == this.state.currentPhase){
+          return this.state.personalScore[i]
         }
-
-        //Getting current user data
-
-        this.generalData
-        this.currentPhase = 1;
-        /*
-          current mode:
-          0 = general score
-          1 = personal score
-        */
-        this.currentMode = 1;
-        this.dimentionNames = ["Technology", "Functionality", "InfoVis", "Novelty"]
-        this.dimentionDescription = ["Tech requirements: You are expected to meet all 10 technological requirements specified in the challenge description (www.ironhacks.com/task). All requirements are equally weighted. The more more requirements you meet the better", "Error rating: We evaluate the quality of your code by counting the errors and diving it by the total number of lines of code. The lower the value the better your code.", "System affordance: Does the application offer recognizable elements and interactions that can be understood by the user? ", "Adding new data sets definitely makes your app stand (take out the three letters) out from the rest. We evaluate how successfully you implement additional open datasets: How relevant are they for you're the application? How novel is the visualization of this data? We evaluate each dataset individually and average it across all datasets."]
-        this.measureTypeDescription = ["Error rating", "Number of technology", "Number of user requirements met", "Usability point achieved"]
-
-
-
-        //this.pullPersonalScore()
-        //this.showGeneralScore()
+      }
     }
-    /*
-    populate(){
-          Actions.post("generalop.insert", {
-            semester: "spring_2018",
-            group_id: "bogota",
-            phase_id: 1,
-            hack_id: 1,
-            user_id: "aldiazve",
-            project: "http://www.ironhacks.com/users/aldiazve/projects/webapp_phase1/preview/index.html",
-            hacker_id : 1
-          });
-          Actions.post("generalop.insert", {
-            semester: "spring_2018",
-            group_id: "bogota",
-            phase_id: 2,
-            hack_id: 1,
-            user_id: "aldiazve",
-            project: "http://www.ironhacks.com/users/aldiazve/projects/webapp_phase2/preview/index.html",
-            hacker_id : 1
-          });
-          Actions.post("generalop.insert", {
-            semester: "spring_2018",
-            group_id: "bogota",
-            phase_id: 3,
-            hack_id: 1,
-            user_id: "aldiazve",
-            project: "http://www.ironhacks.com/users/aldiazve/projects/webapp_phase3/preview/index.html",
-            hacker_id : 1
-          });
-          Actions.post("generalop.insert", {
-            semester: "spring_2018",
-            group_id: "bogota",
-            phase_id: 4,
-            hack_id: 1,
-            user_id: "aldiazve",
-            project: "http://www.ironhacks.com/users/aldiazve/projects/webapp_phase4/preview/index.html",
-            hacker_id : 1
-          });
-          Actions.post("generalop.insert", {
-            semester: "spring_2018",
-            group_id: "bogota",
-            phase_id: 5,
-            hack_id: 1,
-            user_id: "aldiazve",
-            project: "http://www.ironhacks.com/users/aldiazve/projects/webapp_phase5/preview/index.html",
-            hacker_id : 1
-          });
-          Actions.post("generalop.insert", {
-            semester: "spring_2018",
-            group_id: "bogota",
-            phase_id: 1,
-            hack_id: 1,
-            user_id: "RCODI",
-            project: "http://www.ironhacks.com/users/aldiazve/projects/webapp_phase1/preview/index.html",
-            hacker_id : 2
-          });
-          Actions.post("generalop.insert", {
-            semester: "spring_2018",
-            group_id: "bogota",
-            phase_id: 2,
-            hack_id: 1,
-            user_id: "RCODI",
-            project: "http://www.ironhacks.com/users/aldiazve/projects/webapp_phase2/preview/index.html",
-            hacker_id : 2
-          });
-          Actions.post("generalop.insert", {
-            semester: "spring_2018",
-            group_id: "bogota",
-            phase_id: 3,
-            hack_id: 1,
-            user_id: "RCODI",
-            project: "http://www.ironhacks.com/users/aldiazve/projects/webapp_phase3/preview/index.html",
-            hacker_id : 2
-          });
-          Actions.post("generalop.insert", {
-            semester: "spring_2018",
-            group_id: "bogota",
-            phase_id: 4,
-            hack_id: 1,
-            user_id: "RCODI",
-            project: "http://www.ironhacks.com/users/aldiazve/projects/webapp_phase4/preview/index.html",
-            hacker_id : 2
-          });
-          Actions.post("generalop.insert", {
-            semester: "spring_2018",
-            group_id: "bogota",
-            phase_id: 5,
-            hack_id: 1,
-            user_id: "RCODI",
-            project: "http://www.ironhacks.com/users/aldiazve/projects/webapp_phase5/preview/index.html",
-            hacker_id : 2
-          });
-          Actions.post("generalop.insert", {
-            semester: "spring_2018",
-            group_id: "bogota",
-            phase_id: 1,
-            hack_id: 1,
-            user_id: "jealdana",
-            project: "http://www.ironhacks.com/users/aldiazve/projects/webapp_phase1/preview/index.html",
-            hacker_id : 3
-          });
-          Actions.post("generalop.insert", {
-            semester: "spring_2018",
-            group_id: "bogota",
-            phase_id: 2,
-            hack_id: 1,
-            user_id: "jealdana",
-            project: "http://www.ironhacks.com/users/aldiazve/projects/webapp_phase2/preview/index.html",
-            hacker_id : 3
-          });
-          Actions.post("generalop.insert", {
-            semester: "spring_2018",
-            group_id: "bogota",
-            phase_id: 3,
-            hack_id: 1,
-            user_id: "jealdana",
-            project: "http://www.ironhacks.com/users/aldiazve/projects/webapp_phase3/preview/index.html",
-            hacker_id : 3
-          });
-          Actions.post("generalop.insert", {
-            semester: "spring_2018",
-            group_id: "bogota",
-            phase_id: 4,
-            hack_id: 1,
-            user_id: "jealdana",
-            project: "http://www.ironhacks.com/users/aldiazve/projects/webapp_phase4/preview/index.html",
-            hacker_id : 3
-          });
-          Actions.post("generalop.insert", {
-            semester: "spring_2018",
-            group_id: "bogota",
-            phase_id: 5,
-            hack_id: 1,
-            user_id: "jealdana",
-            project: "http://www.ironhacks.com/users/aldiazve/projects/webapp_phase5/preview/index.html",
-            hacker_id : 3
-          });
+    return 0
+  }
+
+  calculateHeaders(){
+    if(this.state.currentView == VIEW_INDIVIDUAL){
+      return(
+        <tr>
+          <th>Perfomance Dimension</th>
+          <th>Description</th>
+          <th>Measure type</th>
+          <th>Your Result</th>
+        </tr>
+      );
+    }else{
+      if(this.state.currentUser.profile.hack_id == 1){
+        return(
+          <tr>
+            <th>
+              {"Name"}
+            </th>
+            <th>
+              {"Project"}
+            </th>
+          </tr>
+        )
+      }else if(this.state.currentUser.profile.hack_id == 2){
+        return(
+          <tr>
+            <th>
+              {"Name"}
+            </th>
+            <th>
+              {"Project"}
+            </th>
+            <th>
+              {"Rank"}
+            </th>
+          </tr>
+        )
+      }
     }
-    */
-    pullPersonalScore(){
+  }
+
+  calculateRows(){
+
+  }
+
+  showIndividual(){
+    this.setState({currentView: VIEW_INDIVIDUAL})
+  }
+  showCompetitors(){
+    this.setState({currentView: VIEW_COMPETITORS})
+  }
+  onSliderChange(event){
+    this.setState({currentPhase: event.target.value})
+  }
+  pullPersonalScore(){
+      console.log(this.state.currentUser)
       Actions.get("scores.getPersonalScores")
           .then(scores => {
-              console.log(scores)
+              this.setState({personalScore: scores})
+              //Once we get the projects from the user, we identify  the treatment, and then ask for the adition data, if it needed.
+              this.getTreatmentData(this.state.currentUser.profile.hack_id)
           })
-    }
-    //select the color ranges 
-    githubClassForValue(value) {
-      if (!value) {
-        return 'color-empty';
-      }
-      if(value.count < 10){
-        return `color-github-1`; 
-      } else if(value.count < 20){
-        return `color-github-2`;
-      } else if(value.count < 30){
-        return `color-github-3`;
-      } else if(value.count < 60){
-        return `color-github-4`;
-      }
-    }
-
-    render () {
-        const hackers = this.state.hackers.filter(c => {
-            return c.score_total || c.github_repo_url || c.project_url
+  }
+  pullGeneralOS(){
+    console.log(this.state.currentUser)
+    Actions.get("scores.getGeneralOS")
+        .then(scores => {
+            this.setState({generalOS: scores})
         })
-        //Putting the data in the correct format
-        const calendarKeys = Object.keys(_pageData.calendar_values)
-        var values = []
-        for (var i = 0; i < calendarKeys.length; i++) {
-          values.push({date: calendarKeys[i], count: _pageData.calendar_values[calendarKeys[i]]})
-        }
-        return (
-            <div className="page-content">
-                <CalendarHeatmap
-                  startDate={new Date('2018-03-01')}
-                  endDate={new Date('2018-05-31')}
-                  classForValue={this.githubClassForValue}
-                  values={values}
-                />
-            </div>
-        )
-    }
+  }
+  pullGeneralOP(){
+    console.log(this.state.currentUser)
+    Actions.get("scores.getGeneralOP")
+        .then(scores => {
+            this.setState({generalOP: scores})
+        })
+  }
+  getTreatmentData(treatmentCase){
+      console.log(treatmentCase)
+      if(treatmentCase == 0){
+        //Only personal data
+        this.pullGeneralOP()
+        this.pullGeneralOS()
+      }else if(treatmentCase == 1){
+        //Personal Data and project links
+        this.pullGeneralOP()
+      }else if(treatmentCase == 2){
+        //Personal Data, project links and general score
+        this.pullGeneralOP()
+        this.pullGeneralOS()
+      }
+  }
 }
+//ADV

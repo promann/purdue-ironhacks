@@ -7,7 +7,7 @@ const PersonalScoreSchema = new Bloggify.db.Schema({
     tech_score: Number,
     func_score: Number,
     info_vis_score: Number,
-    nov_score: Number,
+    novel_score: Number,
     hacker_id : Number
 })
 
