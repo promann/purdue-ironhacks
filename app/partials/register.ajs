@@ -42,7 +42,7 @@
             <div class="col-md-4 col-sm-4 col-xs-12 hide">
                 <div class="single-price-package">
                     <div class="price-title">
-                        <h3>Purdue<br>IronHacks Spring 2018 (For China Students)</h3>
+                        <h3>Purdue<br>IronHacks Spring 2018 (For CUPL Students)</h3>
                     </div>
                     <div class="price">
                         <p>
@@ -54,7 +54,7 @@
                     <div class="price-list">
                         <ul>
                             <li><strong>Challenge topic: Workforce</strong></li>
-                            <li>This hack is for students from China.</li>
+                            <li>This hack is for students from CUPL.</li>
                             <li>Partner: <strong>Management Performance Hub (MPH).</strong></li>
                             <li>Stay tuned for more details.</li>
                         </ul>
@@ -129,20 +129,19 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="single-price-package">
                     <div class="price-title">
-                        <h3>Purdue<br>IronHacks Spring 2018 (For China Students)</h3>
+                        <h3>Purdue<br>IronHacks Spring 2018 (For CUPL Students)</h3>
                     </div>
                     <div class="price">
                         <p>
                             <span class="text-bottom">
-				Start of tutorials: July 2018 <br>
+				Start: April 2018 <br>
                             </span>
                         </p>
                     </div>
                     <div class="price-list">
                         <ul>
-                            <li>Challenge topic: Workforce.</li>
-                            <li>This hack is for students at Purdue University; external students can participate upon request.</li>
-                            <li>Partner: Management Performance Hub (MPH).</li>
+                            <li>Challenge topic: Housing.</li>
+                            <li>This hack is for students at CUPL; external students can participate upon request.</li>
                             <li>Stay tuned for more details.</li>
                         </ul>
                         <div class="price-btn">
