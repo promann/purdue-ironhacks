@@ -13,7 +13,7 @@
             <div class="col-md-4 col-sm-4 col-xs-12 hide">
                 <div class="single-price-package">
                     <div class="price-title">
-                        <h3>Purdue<br>IronHacks Spring 2018</h3>
+                        <h3>Purdue<br>IronHacks Spring 2018 (For UNAL Students)</h3>
                     </div>
                     <div class="price">
                         <p>
@@ -42,19 +42,19 @@
             <div class="col-md-4 col-sm-4 col-xs-12 hide">
                 <div class="single-price-package">
                     <div class="price-title">
-                        <h3>Purdue<br>IronHacks Summer 2018</h3>
+                        <h3>Purdue<br>IronHacks Spring 2018 (For China Students)</h3>
                     </div>
                     <div class="price">
                         <p>
                             <span class="text-bottom">
-				Start of tutorials: July 2018<br>
+				Start of tutorials: April 23<br>
                             </span>
                         </p>
                     </div>
                     <div class="price-list">
                         <ul>
                             <li><strong>Challenge topic: Workforce</strong></li>
-                            <li>This hack is for students at Purdue University; external students can participate upon request.</li>
+                            <li>This hack is for students from China.</li>
                             <li>Partner: <strong>Management Performance Hub (MPH).</strong></li>
                             <li>Stay tuned for more details.</li>
                         </ul>
