@@ -68,6 +68,14 @@ const HACK_TYPES = {
       , end_date: null
       , subforums_count: 0
     }
+    
+  , CUPL_spring_2018: {
+        survey: SURVEY_URL
+      , label: "CUPL Spring 2018"
+      , start_date: null
+      , end_date: null
+      , subforums_count: 0
+    }
 }
 
 SettingsSchema.statics.setSettings = data => {

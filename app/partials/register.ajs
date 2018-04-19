@@ -120,7 +120,7 @@
                             <form method="POST" action="/register">
                                 <%- ctx.csrfInput %>
                                 <input name="hack_type" value="purdue_spring_2018" type="hidden" />
-                                <input class="button" type="submit" value="Sign up" />
+                                <input class="button" type="submit" value="Sign up" disabled="true"/>
                             </form>
                         </div>
                     </div>
@@ -147,7 +147,7 @@
                         <div class="price-btn">
                             <form method="POST" action="/register">
                                 <%- ctx.csrfInput %>
-                                <input name="hack_type" value="purdue_summer_2018" type="hidden" />
+                                <input name="hack_type" value="CUPL_spring_2018" type="hidden" />
                                 <input class="button" type="submit" value="Sign up" disabled="true"/>
                             </form>
                         </div>

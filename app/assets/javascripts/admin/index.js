@@ -140,6 +140,7 @@ export default class App extends React.Component {
         let index = -1;
 
         const hackTypes = window._pageData.settings.hack_types
+        console.log(hackTypes)
         Object.keys(hackTypes).sort().forEach(name => {
             const hackType = hackTypes[name]
 
@@ -151,9 +152,9 @@ export default class App extends React.Component {
 
             hackType.subforums_count = hackType.subforums_count || 0;
 
+                    //<strong>{_pageData.hackTypes[name].label}</strong>: <br/>
             hackTypesStartDates.push(
                 <div className="hack-type-start-date" key={++index} >
-                    <strong>{_pageData.hackTypes[name].label}</strong>: <br/>
                     Start of <strong>forum</strong>: <input data-hack-type={name} type="text" defaultValue={hackType.start_date.format("YYYY-MM-DD HH:mm:ss")} /><br/>
                     End of <strong>hackaton</strong>: <input data-hack-type={name} type="text" defaultValue={hackType.end_date.format("YYYY-MM-DD HH:mm:ss")} /><br/>
                     Start of <strong>hack</strong>: <input data-hack-type={name} type="text" defaultValue={hackType.hack_start_date.format("YYYY-MM-DD HH:mm:ss")} /><br/>

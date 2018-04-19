@@ -16,7 +16,9 @@
 	googleDocId = unalLinks[user.profile.hack_id]
 %>
 <% } else if (user.profile.hack_type === "purdue_spring_2018") { %>
-<% 	 googleDocId = "2PACX-1vQqGsBT9gNentDKniNctoxfNpi1XsjBpoy1M1qzPnhe7GOx6M_pzUZt6oMZuYb-phTBlnPJQaRu9b60" %>
+<% 	 googleDocId = "2PACX-1vQ2rURoyujMe4LHce4VKFPXBYDeXz6sXP-EXAlg1hZ-VBgV12MHHR4ZmA3BHYrhpb9RgF-77VHz_nER" %>
+<% } else if (user.profile.hack_type === "CUPL_spring_2018") { %>
+<% 	 googleDocId = "2PACX-1vT_8ipsaGUAJhoVz8T3seYfJooyLCKNFIxnYzeric1x0VpSIo_RC5xzc3z6ydnuomRVGT0W3tgXhT-w" %>
 <% } %>
 
 <% if (googleDocId) { %>
