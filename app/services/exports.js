@@ -245,7 +245,6 @@ exports.commitSurveyStatus = (exportType) => {
 				doc = doc.toObject()
 				delete doc.__v;
 				readStream.pause();
-				console.log(doc)
 				csvStream.write(doc);
 				readStream.resume();
 		}).on("close", () => {

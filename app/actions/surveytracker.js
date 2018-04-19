@@ -1,4 +1,4 @@
 exports.insert = ctx => {
     console.log(ctx)
-    return Bloggify.services.surveyservice.saveClick(ctx.data)
+    return Bloggify.services.survey_tracker.saveClick(ctx.data)
 }
