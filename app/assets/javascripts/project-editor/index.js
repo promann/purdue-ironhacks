@@ -92,7 +92,7 @@ export default class App extends React.Component {
 
     this.getURLParameter("dfs")
     this.isLastCommit = false
-    if(user.profile.hack_type == CUPL_HACK_TYPE){
+    if(this.state.user.profile.hack_type == CUPL_HACK_TYPE){
       this.commitSurveyLinks = {
         phase1: "https://purdue.ca1.qualtrics.com/jfe/form/SV_b2eadtu1OXBQsN7",
         phase2: "https://purdue.ca1.qualtrics.com/jfe/form/SV_6mUpUncphCN30zP",
