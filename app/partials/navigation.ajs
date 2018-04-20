@@ -5,7 +5,23 @@
             | <a href="/task">Task</a>
             | <a href="/scores">Results</a>
             | <a href="/quizzes">Quizzes</a>
-            <% var tutorialLink = "https://github.com/RCODI/Purdue-IronHacks-Spring-2018-Tutorials" %>
+            <% var tutorialLink = "" %>
+            <% if (user.profile.hack_type === "bogota") { %>
+            <%   tutorialLink = "https://github.com/RCODI/Purdue-IronHacks-Spring-2018-Tutorials" %>
+            <% } else if (user.profile.hack_type === "unal") { %>
+            <%
+                var unalLinks = [
+                    "https://github.com/RCODI/Purdue-IronHacks-Spring-2018-Tutorials",
+                    "https://github.com/RCODI/Purdue-IronHacks-Spring-2018-Tutorials",
+                    "https://github.com/RCODI/Purdue-IronHacks-Spring-2018-Tutorials"
+                ]
+                tutorialLink = unalLinks[user.profile.hack_id]
+            %>
+            <% } else if (user.profile.hack_type === "purdue_spring_2018") { %>
+            <%   tutorialLink = "https://github.com/RCODI/Purdue-IronHacks-Spring-2018-Tutorials" %>
+            <% } else if (user.profile.hack_type === "CUPL_spring_2018") { %>
+            <%   tutorialLink = "https://github.com/RCODI/Purdue-CUPL-IronHacks-Spring-2018-Tutorials" %>
+            <% } %>
             <% if (tutorialLink) { %>
                 | <a href="<%= tutorialLink %>">Tutorial</a>
             <% } %>

@@ -16,6 +16,10 @@ table, th, td{
   text-align: center;
 }
 
+th {
+  color: #F39D26;
+}
+
 .table-wrapper{
   position:relative;
   width:100%;

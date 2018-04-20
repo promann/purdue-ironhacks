@@ -49,6 +49,10 @@ decorators.Header = ({style, node}) => {
   );
 };
 
+//ADV
+const CUPL_HACK_TYPE  = "CUPL_spring_2018"
+//ADV
+
 export default class App extends React.Component {
   constructor (props) {
     super(props);
@@ -85,14 +89,25 @@ export default class App extends React.Component {
 
     
     //ADV
+
     this.getURLParameter("dfs")
     this.isLastCommit = false
-    this.commitSurveyLinks = {
-      phase1: "https://purdue.ca1.qualtrics.com/jfe/form/SV_b2eadtu1OXBQsN7",
-      phase2: "https://purdue.ca1.qualtrics.com/jfe/form/SV_0NC8FN64SjpewRf",
-      phase3: "https://purdue.ca1.qualtrics.com/jfe/form/SV_54KMGT8CsGzpBkh",
-      phase4: "https://purdue.ca1.qualtrics.com/jfe/form/SV_7aN9RRhFrj3sbWZ",
-      phase5: "https://purdue.ca1.qualtrics.com/jfe/form/SV_cvell5D0HM02T0p",
+    if(user.profile.hack_type == CUPL_HACK_TYPE){
+      this.commitSurveyLinks = {
+        phase1: "https://purdue.ca1.qualtrics.com/jfe/form/SV_b2eadtu1OXBQsN7",
+        phase2: "https://purdue.ca1.qualtrics.com/jfe/form/SV_6mUpUncphCN30zP",
+        phase3: "https://purdue.ca1.qualtrics.com/jfe/form/SV_54KMGT8CsGzpBkh",
+        phase4: "https://purdue.ca1.qualtrics.com/jfe/form/SV_24OPBStVgiHxeiF",
+        phase5: "https://purdue.ca1.qualtrics.com/jfe/form/SV_81FAJhmadOgR5Ot",
+      }
+    }else{
+      this.commitSurveyLinks = {
+        phase1: "https://purdue.ca1.qualtrics.com/jfe/form/SV_b2eadtu1OXBQsN7",
+        phase2: "https://purdue.ca1.qualtrics.com/jfe/form/SV_6lCUlDlDWN1FbbD",
+        phase3: "https://purdue.ca1.qualtrics.com/jfe/form/SV_eeQhYqPbnTZsoF7",
+        phase4: "https://purdue.ca1.qualtrics.com/jfe/form/SV_6y6cEjJp72fpBJ3",
+        phase5: "https://purdue.ca1.qualtrics.com/jfe/form/SV_bQK4wA367xloVLL",
+      }
     }
     //ADV
   }

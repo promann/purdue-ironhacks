@@ -19,14 +19,22 @@ const DIMENSION_SCORES = {
 }
 
 export default class GeneralTable extends React.Component {
-	constructor (props) {
-    super(props);
-    this.state = {
-
-    }
-
+  
+  render(){
+    const title = <th colSpan={4}>
+      {TITLE[this.props.viewType]}
+    </th>
+    return(
+      <div>
+        <table className="tables-title">
+          <thead >
+            <tr>{title}</tr>
+          </thead>
+        </table>
+        {this.calculateTables()}
+      </div>
+    );
   }
-
   calculateTables(){
     //showing individual Score
     if(this.props.viewType == VIEW_INDIVIDUAL){
@@ -194,22 +202,5 @@ export default class GeneralTable extends React.Component {
         )
       }
     }
-  }
-  
-
-  render(){
-    const title = <th colSpan={4}>
-      {TITLE[this.props.viewType]}
-    </th>
-    return(
-      <div>
-        <table className="tables-title">
-          <thead >
-            <tr>{title}</tr>
-          </thead>
-        </table>
-        {this.calculateTables()}
-      </div>
-    );
   }
 }

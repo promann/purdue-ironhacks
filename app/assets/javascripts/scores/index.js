@@ -24,6 +24,7 @@ export default class App extends React.Component {
       generalOS : [],
       generalOP : []
     }
+
     //Binding
     this.showIndividual = this.showIndividual.bind(this)
     this.showCompetitors = this.showCompetitors.bind(this)
@@ -51,12 +52,12 @@ export default class App extends React.Component {
           <div className="col-md-3">
             <img src={this.state.currentUser.profile.picture} id="profilePicture"/>
           </div>
-        <div className="col-md-7 col-md-offset-1">
+        <div className="col-md-7 offset-md-1">
           <div className="phases-div">
             <ReactBootstrapSlider step={1} max={5} min={1} orientation="horizontal" id="phaseSlider"
               ticks={[1, 2, 3, 4, 5]}
               ticks_labels={['Phase 1', 'Phase 2', 'Phase 3', 'Phase 4', 'Phase 5']}
-              tooltip="hide"
+              
               value={this.state.currentPhase}
               change={this.onSliderChange}
             />
@@ -111,7 +112,6 @@ export default class App extends React.Component {
     //Getting current user data
     this.pullPersonalScore() 
   }
-
   setGeneralTablePhase(){
     if(this.state.personalScore.length > 0){
       for (var i = 0; i < this.state.personalScore.length; i++) {
@@ -122,7 +122,6 @@ export default class App extends React.Component {
     }
     return 0
   }
-
   calculateHeaders(){
     if(this.state.currentView == VIEW_INDIVIDUAL){
       return(
@@ -162,11 +161,6 @@ export default class App extends React.Component {
       }
     }
   }
-
-  calculateRows(){
-
-  }
-
   showIndividual(){
     this.setState({currentView: VIEW_INDIVIDUAL})
   }
@@ -174,12 +168,24 @@ export default class App extends React.Component {
     this.setState({currentView: VIEW_COMPETITORS})
   }
   onSliderChange(event){
-    this.setState({currentPhase: event.target.value})
+    var globalPhase = 0
+    console.log(this.state.personalScore)
+    for (var i = 0; i < this.state.personalScore.length; i++) {
+      if(this.state.personalScore[i].phase_id > globalPhase){
+        globalPhase = this.state.personalScore[i].phase_id
+      }
+    }
+    if(event.target.value <= globalPhase){
+      this.setState({currentPhase: event.target.value})
+    }else{
+      this.forceUpdate();
+    }
   }
   pullPersonalScore(){
       console.log(this.state.currentUser)
       Actions.get("scores.getPersonalScores")
           .then(scores => {
+            console.log(scores)
               this.setState({personalScore: scores})
               //Once we get the projects from the user, we identify  the treatment, and then ask for the adition data, if it needed.
               this.getTreatmentData(this.state.currentUser.profile.hack_id)
@@ -203,8 +209,6 @@ export default class App extends React.Component {
       console.log(treatmentCase)
       if(treatmentCase == 0){
         //Only personal data
-        this.pullGeneralOP()
-        this.pullGeneralOS()
       }else if(treatmentCase == 1){
         //Personal Data and project links
         this.pullGeneralOP()
