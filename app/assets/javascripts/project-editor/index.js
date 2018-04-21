@@ -68,6 +68,8 @@ export default class App extends React.Component {
       reloading_preview: true,
       preview_filepath: "index.html",
       readonly: !!_pageData.query.readonly,
+      showPrev: true,
+      wrongTreatment: false,
       user: window._pageData.user
     }
     this.saved = true
@@ -109,6 +111,51 @@ export default class App extends React.Component {
         phase5: "https://purdue.ca1.qualtrics.com/jfe/form/SV_bQK4wA367xloVLL",
       }
     }
+
+    //Setting the "read-only state"
+    if(this.state.page.project.username != this.state.user.username){
+      // The current user is NOT the owner of the project, now we need to check the treatment, if the hack_id == 0 the user shouldn't be here (treatment 1)
+      this.state.readonly = true
+      if(this.state.user.profile.hack_id == 0){
+        //This user should be here
+        this.state.wrongTreatment = true
+      }else if(this.state.user.profile.hack_id == 1){
+        this.state.showPrev = false
+      }
+    }
+
+    if(this.state.readonly){
+      //Overrating decorators.header to hide delete icon
+      decorators.Header = ({style, node}) => {
+        const isFolder = node.children
+          , iconType = isFolder ? 'folder' : 'file-text'
+          , iconClass = `fa fa-${iconType}`
+          , iconStyle = {marginRight: '5px'}
+
+        style.title.width = style.base.width = "100%";
+        style.deleteIcon = {
+          marginLeft: "2px",
+          marginTop: "2px",
+          float: "right"
+        }
+
+        if (isFolder) {
+          node.onDelete = null
+          node.onOpen = null
+        }
+        return (
+          <div style={style.base} data-type={iconType}>
+            <div style={style.title} >
+              <span onClick={node.onOpen}>
+                <i className={iconClass} style={iconStyle}/>
+                {node.name}
+              </span>
+            </div>
+          </div>
+        );
+      };
+    }
+
     //ADV
   }
 
@@ -116,7 +163,6 @@ export default class App extends React.Component {
   getURLParameter(parameter){
       let params = new URLSearchParams(document.location.search.substring(1));
       let status = params.get(parameter);
-          console.log(status)
       if(status){
           this.qualtricsHandler(status)
           params.delete(parameter)
@@ -165,13 +211,13 @@ export default class App extends React.Component {
   openFile (path) {
           if (this.maybeNotSaved()) { return }
           if (this.state.readonly) {
-                  Actions.post("stats.insert", {
-                          event: `open-file`,
-                          metadata: {
-                                  url: location.href,
-                                  file_path: path
-                          }
-                  });
+            Actions.post("stats.insert", {
+              event: `open-file`,
+              metadata: {
+                url: location.href,
+                file_path: path
+              }
+            });
           }
 
           this.editor_content = ""
@@ -274,9 +320,6 @@ export default class App extends React.Component {
   */
   //ADV
   //Content objects:
-
-  console.log(this.state.page.project.phase)
-
     const preAlertContent = {
         title: "Commit",
         text: "Do you want to submit this version for grading?",
@@ -333,14 +376,11 @@ export default class App extends React.Component {
   
     swal(preAlertContent).then((result) => {
         //Normal commit
-        console.log(location)
-        console.log(result)
         if (result.dismiss === swal.DismissReason.esc || result.dismiss === swal.DismissReason.close) {
           //User hit scape or close
         }else if (result.dismiss === swal.DismissReason.cancel) {
           //The user hit "No", so this is not a final commit
           swal(commitContent).then((result) => {
-            console.log(result)
             if (result.dismiss === swal.DismissReason.esc || result.dismiss === swal.DismissReason.close) {
               //The user hit esc or cancel
               swal(commitCanceled)
@@ -449,143 +489,161 @@ export default class App extends React.Component {
   }
   }
   //ADV
-
-
   onEditorContentChange (content) {
-          this.editor_content = content;
-          this.maybeTriggerSave()
-          this.saved = false
+    this.editor_content = content;
+    this.maybeTriggerSave()
+    this.saved = false
   }
-
   renderFolderTree () {
-          if (this.state.files) {
-                  const walk = obj => {
-                          obj.active = false;
-                          obj._path = obj.path.split("/").slice(2).join("/");
-                          if (obj.clickable !== false) {
-                                  obj.onOpen = () => {
-                                          this.openFile(obj._path)
-                                  }
-                          }
-                          if (obj.deletable !== false) {
-                                  obj.onDelete = () => {
-                                          if (confirm(`Do you really want to delete ${obj._path}?`)) {
-                                                  this.deleteFile(obj._path)
-
-                                          }
-                               }
-                          }
-                          if (obj._path === this.state.filepath) {
-                                  obj.active = true
-                          }
-                          if (obj.children) {
-                                  for (let i = 0; i < obj.children.length; ++i) {
-                                          walk(obj.children[i])
-                                  }
-                          }
-                  }
-                  this.state.files.deletable = false;
-                  this.state.files.clickable = false;
-                  walk(this.state.files)
-
-                  return <Treebeard
-                          data={this.state.files}
-                  />
+    if (this.state.files) {
+      const walk = obj => {
+        obj.active = false;
+        obj._path = obj.path.split("/").slice(2).join("/");
+        if (obj.clickable !== false) {
+          obj.onOpen = () => {
+                  this.openFile(obj._path)
           }
-          return <p>Loading...</p>;
-  }
+        }
+        if (obj.deletable !== false) {
+          obj.onDelete = () => {
+            if (confirm(`Do you really want to delete ${obj._path}?`)) {
+              this.deleteFile(obj._path)
+            }
+          }
+        }
+        if (obj._path === this.state.filepath) {
+          obj.active = true
+        }
+        if (obj.children) {
+          for (let i = 0; i < obj.children.length; ++i) {
+            walk(obj.children[i])
+          }
+        }
+      }
+      this.state.files.deletable = false;
+      this.state.files.clickable = false;
+      walk(this.state.files)
 
+      return <Treebeard
+        data={this.state.files}
+      />
+    }
+    return <p>Loading...</p>;
+  }
   reloadPreview () {
-          const iframe = document.getElementById("preview-iframe")
-          iframe.src = iframe.src
+    const iframe = document.getElementById("preview-iframe")
+    iframe.src = iframe.src
   }
-
   previewLoaded () {
-          this.setState({
-                  reloading_preview: false
-          })
+    this.setState({
+      reloading_preview: false
+    })
   }
-
   renderSurveys () {
-          const afterHackSurvey = `https://purdue.qualtrics.com/jfe/form/SV_bKmRJnCYfb9rRnn?redirect_to=${location.href}`;
-          return <div>
-                  If this is your last commit for this phase, please provide the mandatory submission information <a href={afterHackSurvey} target="blank">here</a>!
-          </div>
+    const afterHackSurvey = `https://purdue.qualtrics.com/jfe/form/SV_bKmRJnCYfb9rRnn?redirect_to=${location.href}`;
+    return <div>
+      If this is your last commit for this phase, please provide the mandatory submission information <a href={afterHackSurvey} target="blank">here</a>!
+    </div>
   }
   renderLeftBoottomControls () {
-          return <div className="left-bottom-controls">
-          </div>
+    return <div className="left-bottom-controls">
+    </div>
   }
 
   render () {
-          const previewFileUrl = `/users/${_pageData.project.username}/projects/${_pageData.project.name}/preview/${this.state.preview_filepath}`
-          const commitPromptHtml = <div>
-                  <p>Enter the commit message below:</p>
-                  <p><input autoFocus="autofocus" id="commit-message" type="text" className="swal2-input" /></p>
-                  {this.renderSurveys()}
+    if(this.state.wrongTreatment && !(this.state.user.role == "admin")){
+      return (
+        <h1>YOU SHOULDN'T BE HERE. PLEASE BE HONEST.</h1>
+      )
+    }
+    const previewFileUrl = `/users/${_pageData.project.username}/projects/${_pageData.project.name}/preview/${this.state.preview_filepath}`
+    //ADV
+    //Loading the buttons only if the user has pemitions
+    var controlButtons = ( <div></div> )
+    if(!this.state.readonly){
+      controlButtons = (
+        <div className="editor-controls">
+          <button className="btn btn-small"
+            onClick={this.saveFile.bind(this)}
+            style={{'display': this.state.readonly ? 'none' : 'inline-block'}}
+          >Save (⌘ + S)</button>
+          <button className="btn btn-small"
+            onClick={this.commitProject.bind(this)}
+            style={{'display': this.state.readonly ? 'none' : 'inline-block'}}
+          >Commit</button>
+          <button className="btn btn-small"
+            onClick={this.newFile.bind(this)}
+            style={{'display': this.state.readonly ? 'none' : 'inline-block'}}
+          >New file</button>
+        </div>
+      )
+    }
+    //Loading the preview object only if the user has pemitions
+    var preview = ( <div></div> )
+    if(this.state.showPrev){
+      preview = (
+        <div className="col preview-column">
+          <div className={`editor-preview ${this.state.reloading_preview ? "reloading-preview" : "loaded-preview"}`}>
+            <div className="open-in-new-tab">
+              <a href={previewFileUrl} target="blank">Open in New Tab</a> |
+              <span className="pull-right breadcrumbs">
+                <a href={`/users/${_pageData.project.username}`}>
+                  @{_pageData.project.username}
+                </a>
+                /
+                <a href={`/users/${_pageData.project.username}/projects`}>
+                  projects
+                </a>
+                /
+                <a href={`/users/${_pageData.project.username}/projects/${_pageData.project.name}`}>
+                  {_pageData.project.name}
+                </a>
+                /edit
+              </span>
+            </div>
+            <iframe src={previewFileUrl} id="preview-iframe" className="editor-preview-iframe" onLoad={this.previewLoaded.bind(this)} />
+            <div className="iframe-spinner">
+              Loading...
+            </div>
           </div>
-          return (
-                  <div>
-                          <div className="row editor-container">
-                                  <div className="readonly-badge">
-                                          Read-only
-                                  </div>
-                                  <div className="col file-tree-column">
-                                          <div className="editor-controls">
-                                                  <button className="btn btn-small" onClick={this.saveFile.bind(this)}>Save (⌘ + S)</button>
-                                                  <button className="btn btn-small" onClick={this.commitProject.bind(this)}>Commit</button>
-                                                  <button className="btn btn-small" onClick={this.newFile.bind(this)}>New file</button>
-                                          </div>
-                                          {this.renderFolderTree()}
-                                          {this.renderLeftBoottomControls()}
-                                  </div>
-                                  <div className="col">
-                                          <div className="row">
-                                                  <div className="col editor-column">
-                                                          <AceEditor
-                                                                  mode={this._getEditorMode(this.state.filepath)}
-                                                                  theme="monokai"
-                                                                  value={this.editor_content || this.state.file_content}
-                                                                  onChange={this.onEditorContentChange.bind(this)}
-                                                                  name="project-ace-editor"
-                                                                  width="100%"
-                                                                  height="100%"
-                                                                  editorProps={{
-                                                                          $blockScrolling: true
-                                                                  }}
-                                                                  readOnly={this.state.readonly}
-                                                          />
-                                                  </div>
-                                                  <div className="col preview-column">
-                                                          <div className={`editor-preview ${this.state.reloading_preview ? "reloading-preview" : "loaded-preview"}`}>
-                                                                  <div className="open-in-new-tab">
-                                                                          <a href={previewFileUrl} target="blank">Open in New Tab</a> |
-                                                                          <span className="pull-right breadcrumbs">
-                                                                                  <a href={`/users/${_pageData.project.username}`}>
-                                                                                          @{_pageData.project.username}
-                                                                                  </a>
-                                                                                  /
-                                                                                  <a href={`/users/${_pageData.project.username}/projects`}>
-                                                                                          projects
-                                                                                  </a>
-                                                                                  /
-                                                                                  <a href={`/users/${_pageData.project.username}/projects/${_pageData.project.name}`}>
-                                                                                          {_pageData.project.name}
-                                                                                  </a>
-                                                                                  /edit
-                                                                          </span>
-
-                                                                  </div>
-                                                                  <iframe src={previewFileUrl} id="preview-iframe" className="editor-preview-iframe" onLoad={this.previewLoaded.bind(this)} />
-                                                                  <div className="iframe-spinner">
-                                                                          Loading...
-                                                                  </div>
-                                                          </div>
-                                                  </div>
-                                          </div>
-                                  </div>
-                          </div>
-                  </div>
-          )
+        </div>
+      )
+      
+    }
+    //ADV
+    return (
+      <div>
+        <div className="row editor-container">
+          <div className="readonly-badge">
+            Read-only
+          </div>
+          <div className="col file-tree-column">
+            {controlButtons}
+            {this.renderFolderTree()}
+            {this.renderLeftBoottomControls()}
+          </div>
+          <div className="col">
+            <div className="row">
+              <div className="col editor-column">
+                <AceEditor
+                  mode={this._getEditorMode(this.state.filepath)}
+                  theme="monokai"
+                  value={this.editor_content || this.state.file_content}
+                  onChange={this.onEditorContentChange.bind(this)}
+                  name="project-ace-editor"
+                  width="100%"
+                  height="100%"
+                  editorProps={{
+                          $blockScrolling: true
+                  }}
+                  readOnly={this.state.readonly}
+                />
+              </div>
+              {preview}
+            </div>
+          </div>
+        </div>
+      </div>
+        )
   }
 }

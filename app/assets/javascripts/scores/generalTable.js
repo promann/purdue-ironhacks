@@ -129,7 +129,7 @@ export default class GeneralTable extends React.Component {
               {"Haker " + participant.hacker_id}
             </td>
             <td>
-              <a href={participant.project}>{"View"}</a> 
+              <a href={participant.projects}>{"View"}</a> 
             </td>
           </tr>
         )
@@ -156,11 +156,11 @@ export default class GeneralTable extends React.Component {
           if(this.props.generalOP[i].phase_id == this.props.currentPhase){
             //... and then ranks  
             for (var j = 0; j < this.props.generalOS.length; j++) {
-              console.log("lala")
               if(this.props.generalOP[i].phase_id == this.props.generalOS[j].phase_id &&
                  this.props.generalOP[i].user_id == this.props.generalOS[j].user_id){
                 //merging the data
                 var participant = {
+                  username: this.props.generalOP[i].user_id,
                   hacker_id : this.props.generalOP[i].hacker_id,
                   projects : this.props.generalOP[i].project,
                   phase_id : this.props.generalOP[i].phase_id,
@@ -179,7 +179,7 @@ export default class GeneralTable extends React.Component {
               {"Haker " + participant.hacker_id}
             </td>
             <td>
-              <a href={participant.project}>{"View"}</a> 
+              <a href={"participant.projects"}>{"View"}</a> 
             </td>
             <td>
               {participant.rank}
