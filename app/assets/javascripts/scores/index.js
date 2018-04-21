@@ -31,6 +31,7 @@ export default class App extends React.Component {
     this.onSliderChange = this.onSliderChange.bind(this)
     this.getTreatmentData = this.getTreatmentData.bind(this)
     this.setGeneralTablePhase = this.setGeneralTablePhase.bind(this)
+    this.state.currentUser.profile.hack_id = 2
   }
   render(){
     const viewIndividual = this.state.currentView === VIEW_INDIVIDUAL;

@@ -102,8 +102,8 @@ export default class App extends React.Component {
       }
     }else{
       this.commitSurveyLinks = {
-        phase1: "https://purdue.ca1.qualtrics.com/jfe/form/SV_b2eadtu1OXBQsN7",
-        phase2: "https://purdue.ca1.qualtrics.com/jfe/form/SV_6lCUlDlDWN1FbbD",
+        phase1: "https://purdue.ca1.qualtrics.com/jfe/form/SV_6lCUlDlDWN1FbbD",
+        phase2: "https://purdue.ca1.qualtrics.com/jfe/form/SV_6RkSqbqGwvJib4x",
         phase3: "https://purdue.ca1.qualtrics.com/jfe/form/SV_eeQhYqPbnTZsoF7",
         phase4: "https://purdue.ca1.qualtrics.com/jfe/form/SV_6y6cEjJp72fpBJ3",
         phase5: "https://purdue.ca1.qualtrics.com/jfe/form/SV_bQK4wA367xloVLL",
