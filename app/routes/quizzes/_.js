@@ -13,9 +13,6 @@ const quizzesCUPL = [
     ["HTML & CSS", "https://purdue.ca1.qualtrics.com/jfe/form/SV_0wvLmftYNcq7XmZ", "html_css"]
   , ["JavaScript & jQuery", "https://purdue.ca1.qualtrics.com/jfe/form/SV_6VyKlIuvYPISjWt", "javascript_jquery"]
   , ["d3.js", "https://purdue.ca1.qualtrics.com/jfe/form/SV_3TUal9JowRXS3Ot", "d3"]
-  , ["Design Elements", "https://purdue.ca1.qualtrics.com/jfe/form/SV_cXXHVFVtaBdEnXf", "design_elements"]
-  , ["Design Principles", "https://purdue.ca1.qualtrics.com/jfe/form/SV_1RkuOP1lOUqvoDH", "design_principles"]
-  , ["Usability Heuristics", "https://purdue.ca1.qualtrics.com/jfe/form/SV_3eqr0m63LBvRdv7", "usability_heuristics"]
 ];
 const validQuizzes = {}
 // Map the quizzes labels to the data
