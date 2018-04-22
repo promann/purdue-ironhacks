@@ -7,7 +7,7 @@
 table{
   width: 100%;
   border-collapse: collapse;
-  border-spacing: 0px;
+  border-radius: 10px;
 } 
 
 table, th, td{
@@ -17,7 +17,7 @@ table, th, td{
 }
 
 th {
-  color: #F39D26;
+  background-color: #F39D26;
 }
 
 .table-wrapper{

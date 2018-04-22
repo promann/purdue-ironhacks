@@ -2,9 +2,7 @@
     <span class="auth-buttons float-left">
         <a href="/" class="show-xs">Home</a>
         <% if (user) { %>
-            | <a href="/task">Task</a>
-            | <a href="/scores">Results</a>
-            | <a href="/quizzes">Quizzes</a>
+            |  <a href="/timeline">Timeline</a>
             <% var tutorialLink = "" %>
             <% if (user.profile.hack_type === "bogota") { %>
             <%   tutorialLink = "https://github.com/RCODI/Purdue-IronHacks-Spring-2018-Tutorials" %>
@@ -25,7 +23,9 @@
             <% if (tutorialLink) { %>
                 | <a href="<%= tutorialLink %>">Tutorial</a>
             <% } %>
-            | <a href="/timeline">Timeline</a>
+            | <a href="/quizzes">Quizzes</a>
+            | <a href="/task">Task</a>
+            | <a href="/scores">Results</a>
             <% ctx.tutorialLink = tutorialLink %>
             <% if (Bloggify.services.session.isAdmin(ctx)) { %>
                 | <a href="/admin">Admin</a>
