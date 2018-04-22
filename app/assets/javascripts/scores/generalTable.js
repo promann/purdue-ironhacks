@@ -246,8 +246,9 @@ export default class GeneralTable extends React.Component {
     Actions.post("stats.insert", {
       event: "onShowGeneralScoreClick",
       metadata: {
-        hacker_id: this.props.hacker._id
+        user_object_id: this.props.hacker._id,
+        
       }
-    });
+    }); 
   }
 }

@@ -47,7 +47,6 @@ const TREATMENT_2_TEXT = {
     <p>Check out your competitors: Also, please take a look at your fellow participants’ solutions. Just click on the tap "My competitors" above and you can see other's apps. It’s a great way to learn how to improve your performance and gear up for the next round! Click on the link to check out other's code!</p>
     </div>
 }
-
 const TREATMENT_3_TEXT = {
   PHASE_1_MESSAGE : <div style={{'textAlign': 'justify', 'marginTop' : '30px', 'marginBottom' : '30px'}}>
     <p><strong>Welcome back to your personal dashboard!</strong></p> 
@@ -66,13 +65,11 @@ const TREATMENT_3_TEXT = {
     <p>Check out your competitors: Also, please take a look at your fellow participants’ solutions. Just click on the tap "My competitors" above and you can see other's apps. It’s a great way to learn how to improve your performance and gear up for the next round!  lick on the link to check out other's code! You also find ranking (leaderboard) of your competitors. We use perecentile scores to rank the app. A percentile rank achieved by  you indicates the percentage of participants in your hacking contest who achieved a lower performance than you.</p>
     </div>
 }
-
 const DASHBOARD_TEXT = {
   0: TREATMENT_1_TEXT,
   1: TREATMENT_2_TEXT,
   2: TREATMENT_3_TEXT
 }
-
 const CONFIDENTIALITY_MESSAGE = <div style={{'textAlign': 'justify', 'marginTop' : '30px', 'marginBottom' : '30px'}}>
   <p><strong>CONFIDENTIALITY NOTE: This information is confidential and should not be shared with other participants in your hack! Follow the rules of IronHacks and do not share this information.</strong></p>
 </div>
@@ -90,7 +87,6 @@ export default class App extends React.Component {
       generalOS : [],
       generalOP : []
     }
-
     //Binding
     this.showIndividual = this.showIndividual.bind(this)
     this.showCompetitors = this.showCompetitors.bind(this)
@@ -176,6 +172,7 @@ export default class App extends React.Component {
                   generalOS={this.state.generalOS}
                   generalOP={this.state.generalOP}
                   currentPhase={this.state.currentPhase}
+                  user={this.state.currentUser}
                 />
               </div>
             </div>
@@ -284,5 +281,6 @@ export default class App extends React.Component {
         this.pullGeneralOS()
       }
   }
+
 }
 //ADV

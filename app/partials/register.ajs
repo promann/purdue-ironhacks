@@ -148,7 +148,7 @@
                             <form method="POST" action="/register">
                                 <%- ctx.csrfInput %>
                                 <input name="hack_type" value="CUPL_spring_2018" type="hidden" />
-                                <input class="button" type="submit" value="Sign up" disabled="true"/>
+                                <input class="button" type="submit" value="Sign up"/>
                             </form>
                         </div>
                     </div>
