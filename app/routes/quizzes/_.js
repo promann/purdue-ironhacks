@@ -61,7 +61,7 @@ module.exports = ctx => {
       const redirectTo =  encodeURIComponent(`${Bloggify.options.domain}/quizzes?markComplete=${c[2]}`);
       return {
         label: c[0]
-      , url: `${c[1]}?redirect_to=${redirectTo}&user_email=${user.email}&user_id=${user._id}`
+      , url: `${c[1]}?redirect_to=${redirectTo}&user_email=${user.email}&user_id=${user.username}`
       , is_complete: !!completedSurveys[c[2]]
       };
     });
@@ -74,7 +74,7 @@ module.exports = ctx => {
       const redirectTo =  encodeURIComponent(`${Bloggify.options.domain}/quizzes?markComplete=${c[2]}`);
       return {
         label: c[0]
-      , url: `${c[1]}?redirect_to=${redirectTo}&user_email=${user.email}&user_id=${user._id}`
+      , url: `${c[1]}?redirect_to=${redirectTo}&user_email=${user.email}&user_id=${user.username}`
       , is_complete: !!completedSurveys[c[2]]
       };
     });

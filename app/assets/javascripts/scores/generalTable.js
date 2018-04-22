@@ -241,4 +241,13 @@ export default class GeneralTable extends React.Component {
       }
     }
   }
+  //Click tracker funcs
+  onGeneralTableButtonClick() {    
+    Actions.post("stats.insert", {
+      event: "onShowGeneralScoreClick",
+      metadata: {
+        hacker_id: this.props.hacker._id
+      }
+    });
+  }
 }

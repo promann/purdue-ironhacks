@@ -238,7 +238,6 @@ export default class App extends React.Component {
   }
   onSliderChange(event){
     var globalPhase = 0
-    console.log(this.state.personalScore)
     for (var i = 0; i < this.state.personalScore.length; i++) {
       if(this.state.personalScore[i].phase_id > globalPhase){
         globalPhase = this.state.personalScore[i].phase_id
@@ -251,10 +250,8 @@ export default class App extends React.Component {
     }
   }
   pullPersonalScore(){
-      console.log(this.state.currentUser)
       Actions.get("scores.getPersonalScores")
           .then(scores => {
-            console.log(scores)
               this.setState({personalScore: scores})
             if(scores.length != 0){
               //No scores available, we are still in phase 1.
@@ -264,21 +261,18 @@ export default class App extends React.Component {
           })
   }
   pullGeneralOS(){
-    console.log(this.state.currentUser)
     Actions.get("scores.getGeneralOS")
         .then(scores => {
             this.setState({generalOS: scores})
         })
   }
   pullGeneralOP(){
-    console.log(this.state.currentUser)
     Actions.get("scores.getGeneralOP")
         .then(scores => {
             this.setState({generalOP: scores})
         })
   }
   getTreatmentData(treatmentCase){
-      console.log(treatmentCase)
       if(treatmentCase == 0){
         //Only personal data
       }else if(treatmentCase == 1){
