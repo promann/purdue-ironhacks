@@ -80,6 +80,7 @@ module.exports = ctx => {
             };
         });
         shuffle(data.users);
+        console.log(data)
         return {
             users: data.users,
             phase: phaseToDisplay,
