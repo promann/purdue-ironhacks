@@ -24,9 +24,6 @@ module.exports = ctx => {
     return Bloggify.models.Stats.find({
         actor: ctx.user._id,
         event: "save-file"
-        console.log("tt")
-        console.log(data)
-        console.log("tt")
     }).then(res => {
         data.calendarValues = {}
         res.forEach(c => {
@@ -43,9 +40,6 @@ module.exports = ctx => {
         })
     }).then(users => {
         data.users = users
-        console.log("11")
-        console.log(data)
-        console.log("11")
         return Bloggify.models.Settings.getSettings()
     }).then(options => {
         const hackType = options.settings.hack_types[ctx.user.profile.hack_type]
