@@ -31,9 +31,6 @@ module.exports = ctx => {
             data.calendarValues[cDay] = data.calendarValues[cDay] || 0
             ++data.calendarValues[cDay]
         })
-        console.log("yy")
-        console.log(data)
-        console.log("yy")
         return Bloggify.models.User.find({
             "profile.hack_type": ctx.user.profile.hack_type,
             "profile.hack_id": ctx.user.profile.hack_id
@@ -49,7 +46,8 @@ module.exports = ctx => {
         if (phase === "phase1" && notPublishedYet) {
             return {
                 phase,
-                users: []
+                users: [],
+                calendarValues: data.calendarValues
             }
         }
 
@@ -84,10 +82,6 @@ module.exports = ctx => {
         });
 
         shuffle(data.users);
-        console.log("---")
-        console.log(data)
-        console.log("---")
-
         return {
             users: data.users,
             phase: phaseToDisplay,
