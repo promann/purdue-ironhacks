@@ -107,9 +107,6 @@ export default class App extends React.Component {
     const viewIndividual = this.state.currentView === VIEW_INDIVIDUAL;
     const viewCompetitors = this.state.currentView === VIEW_COMPETITORS;
     const showGeneralScoreButton = this.state.currentUser.profile.hack_id == 0
-    const hackers = this.state.hackers.filter(c => {
-      return c.score_total || c.github_repo_url || c.project_url
-    })
     //Putting the data in the correct format
     const calendarKeys = Object.keys(_pageData.calendar_values)
     const values = []
