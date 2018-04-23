@@ -13,7 +13,7 @@ const SettingsSchema = new Bloggify.db.Schema({
 })
 
 
-const SURVEY_URL = "https://purdue.ca1.qualtrics.com/jfe/form/SV_23GkqPCNMdqsdo1"
+const SURVEY_URL = "https://purdue.ca1.qualtrics.com/jfe/form/SV_1LXiVsGcARieE3X"
 const UNAL_SURVEY_URL = "https://purdue.ca1.qualtrics.com/jfe/form/SV_1LXiVsGcARieE3X"
 const CUPL_SURVEY_URL = "https://purdue.ca1.qualtrics.com/jfe/form/SV_5z2DMohEhCpwYf3"
 
