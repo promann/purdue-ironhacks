@@ -24,9 +24,9 @@ module.exports = ctx => {
     return Bloggify.models.Stats.find({
         actor: ctx.user._id,
         event: "save-file"
-        console.log(",,")
+        console.log("tt")
         console.log(data)
-        console.log(",,")
+        console.log("tt")
     }).then(res => {
         data.calendarValues = {}
         res.forEach(c => {
@@ -34,9 +34,9 @@ module.exports = ctx => {
             data.calendarValues[cDay] = data.calendarValues[cDay] || 0
             ++data.calendarValues[cDay]
         })
-        console.log("||")
+        console.log("yy")
         console.log(data)
-        console.log("||")
+        console.log("yy")
         return Bloggify.models.User.find({
             "profile.hack_type": ctx.user.profile.hack_type,
             "profile.hack_id": ctx.user.profile.hack_id
