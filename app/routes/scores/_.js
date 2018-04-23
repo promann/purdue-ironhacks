@@ -24,6 +24,9 @@ module.exports = ctx => {
     return Bloggify.models.Stats.find({
         actor: ctx.user._id,
         event: "save-file"
+        console.log(",,")
+        console.log(data)
+        console.log(",,")
     }).then(res => {
         data.calendarValues = {}
         res.forEach(c => {
@@ -31,12 +34,18 @@ module.exports = ctx => {
             data.calendarValues[cDay] = data.calendarValues[cDay] || 0
             ++data.calendarValues[cDay]
         })
+        console.log("||")
+        console.log(data)
+        console.log("||")
         return Bloggify.models.User.find({
             "profile.hack_type": ctx.user.profile.hack_type,
             "profile.hack_id": ctx.user.profile.hack_id
         })
     }).then(users => {
         data.users = users
+        console.log("11")
+        console.log(data)
+        console.log("11")
         return Bloggify.models.Settings.getSettings()
     }).then(options => {
         const hackType = options.settings.hack_types[ctx.user.profile.hack_type]
@@ -79,8 +88,12 @@ module.exports = ctx => {
                 phase: phaseToDisplay
             };
         });
+
         shuffle(data.users);
+        console.log("---")
         console.log(data)
+        console.log("---")
+
         return {
             users: data.users,
             phase: phaseToDisplay,
