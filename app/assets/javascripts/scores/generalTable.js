@@ -43,11 +43,14 @@ const DIMENSION_SCORES = {
   'InfoVis': 'info_vis_score',
   'Novelty': 'novel_score'
 }
-
-
-
 export default class GeneralTable extends React.Component {
-  
+  constructor (props) {
+    super(props);
+    this.state = {
+    }
+    //Binding
+    this.onGeneralTableButtonClick = this.onGeneralTableButtonClick.bind(this)
+  }
   render(){
     const title = <th colSpan={4}>
       {TITLE[this.props.viewType]}
@@ -164,10 +167,15 @@ export default class GeneralTable extends React.Component {
         const rows = samePhaseParticipants.map((participant) => 
           <tr key={participant.user_id}>
             <td>
-              {"Haker " + participant.hacker_id}
+              {"Hacker " + participant.hacker_id}
             </td>
             <td>
-              <a href={participant.projects}>{"View"}</a> 
+              <WatchedAnchor 
+                link={participant.projects}
+                user={this.props.user}
+                phaseId={participant.phase_id}
+                projectOwner={participant.username}
+              /> 
             </td>
           </tr>
         )
@@ -214,10 +222,15 @@ export default class GeneralTable extends React.Component {
         const rows = samePhaseParticipants.map((participant) => 
           <tr key={participant.hacker_id}>
             <td>
-              {"Haker " + participant.hacker_id}
+              {"Hacker " + participant.hacker_id}
             </td>
             <td>
-              <a href={"participant.projects"}>{"View"}</a> 
+              <WatchedAnchor 
+                link={participant.projects}
+                user={this.props.user}
+                phaseId={participant.phase_id}
+                projectOwner={participant.username}
+              /> 
             </td>
             <td>
               {participant.rank}
@@ -242,13 +255,44 @@ export default class GeneralTable extends React.Component {
     }
   }
   //Click tracker funcs
-  onGeneralTableButtonClick() {    
-    Actions.post("stats.insert", {
-      event: "onShowGeneralScoreClick",
-      metadata: {
-        user_object_id: this.props.hacker._id,
-        
-      }
-    }); 
+  onGeneralTableButtonClick(object, object2) {
+    console.log(object2)
+    console.log(object)
+    console.log(this.props.user)
+    
+  }
+}
+//Class to track the click
+class WatchedAnchor extends React.Component {
+  constructor(props){
+    super(props)
+    link = this.props.link
+
+    this.onClick = function( event ){
+      event.preventDefault();
+      Actions.post("stats.insert", {
+        event: "onShowGeneralScoreClick",
+        metadata: {
+          user_object_id: this.props.user._id,
+          timestamp: new Date(),
+          hack_id_clicker: this.props.user._id,
+          hack_type: this.props.user.profile.hack_type,
+          clicker_username: this.props.user.username,
+          project: this.props.link,
+          owner: this.props.projectOwner,
+          phase_id: this.props.phaseId
+        }
+      });
+      
+      // After receiving some response from the DB API, then you can call something like
+      setTimeout(function(){
+        window.location.href = link
+      }, 7500 )
+    }.bind(this)
+  }
+  render(){
+    return (
+      <a href={ this.props.link } onClick={(e) => {this.onClick(e)}}>View</a>
+    )
   }
 }
