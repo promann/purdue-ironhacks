@@ -271,7 +271,7 @@ class WatchedAnchor extends React.Component {
     this.onClick = function( event ){
       event.preventDefault();
       Actions.post("stats.insert", {
-        event: "onShowGeneralScoreClick",
+        event: "on_click_link_project_general_score",
         metadata: {
           user_object_id: this.props.user._id,
           timestamp: new Date(),
@@ -286,8 +286,8 @@ class WatchedAnchor extends React.Component {
       
       // After receiving some response from the DB API, then you can call something like
       setTimeout(function(){
-        window.location.href = link
-      }, 7500 )
+        //window.location.href = link
+      }, 750 )
     }.bind(this)
   }
   render(){

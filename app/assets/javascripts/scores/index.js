@@ -28,7 +28,6 @@ const TREATMENT_1_TEXT = {
     <p>Remember that your evaluations are private and confidential.</p> 
     </div>
 }
-
 const TREATMENT_2_TEXT = {
   PHASE_1_MESSAGE : <div style={{'textAlign': 'justify', 'marginTop' : '30px', 'marginBottom' : '30px'}}>
     <p><strong>Welcome back to your personal dashboard!</strong></p>
@@ -120,64 +119,64 @@ export default class App extends React.Component {
     return(
       <div className="page-content">
         <div className="container-fluid">
-        <div className="row">
-          <div className="col-md-3">
-            <img src={this.state.currentUser.profile.picture} id="profilePicture"/>
-            <CalendarHeatmap
-              startDate={new Date('2018-03-01')}
-              endDate={new Date('2018-05-31')}
-              classForValue={this.githubClassForValue}
-              values={values}
-            />
+          <div className="row">
+            <div className="col-md-3">
+              <img src={this.state.currentUser.profile.picture} id="profilePicture"/>
+              <CalendarHeatmap
+                startDate={new Date('2018-03-01')}
+                endDate={new Date('2018-05-31')}
+                classForValue={this.githubClassForValue}
+                values={values}
+              />
+            </div>
+          <div className="col-md-7 offset-md-1">
+            <div className="phases-div">
+              <ReactBootstrapSlider step={1} max={5} min={1} orientation="horizontal" id="phaseSlider"
+                ticks={[1, 2, 3, 4, 5]}
+                ticks_labels={['Phase 1', 'Phase 2', 'Phase 3', 'Phase 4', 'Phase 5']}
+                value={this.state.currentPhase}
+                change={this.onSliderChange}
+              />
+            </div>
+            <div>
+              {text}
+            </div>
+          </div>  
           </div>
-        <div className="col-md-7 offset-md-1">
-          <div className="phases-div">
-            <ReactBootstrapSlider step={1} max={5} min={1} orientation="horizontal" id="phaseSlider"
-              ticks={[1, 2, 3, 4, 5]}
-              ticks_labels={['Phase 1', 'Phase 2', 'Phase 3', 'Phase 4', 'Phase 5']}
-              value={this.state.currentPhase}
-              change={this.onSliderChange}
-            />
-          </div>
-          <div>
-            {text}
-          </div>
-        </div>  
-        </div>
-        <div className="row">
-          <div className="col-md-9 offset-md-3"
-              style={{'display': this.state.personalScore.length > 0 ? 'inline-block' : 'none'}}>
-            <div className="row">
-              <div className="col-md-6">
-                <div>
-                  <button 
-                    className={'nav-button' + (viewIndividual ? ' active' : '')} 
-                    onClick={this.showIndividual} 
-                  >INDIVIDUAL FEEDBACK</button>
-                  <button 
-                    className={'nav-button' + (viewCompetitors ? ' active' : '')}
-                    onClick={this.showCompetitors}
-                    style={{'display': showGeneralScoreButton ? 'none' : 'inline-block'}}
-                  >YOUR COMPETITORS</button>
+          <div className="row">
+            <div className="col-md-9 offset-md-3"
+                style={{'display': this.state.personalScore.length > 0 ? 'inline-block' : 'none'}}>
+              <div className="row">
+                <div className="col-md-6">
+                  <div>
+                    <button 
+                      className={'nav-button' + (viewIndividual ? ' active' : '')} 
+                      onClick={this.showIndividual} 
+                    >INDIVIDUAL FEEDBACK</button>
+                    <button 
+                      className={'nav-button' + (viewCompetitors ? ' active' : '')}
+                      onClick={this.showCompetitors}
+                      style={{'display': showGeneralScoreButton ? 'none' : 'inline-block'}}
+                    >YOUR COMPETITORS</button>
+                  </div>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-12">
+                  <GeneralTable
+                    viewType={this.state.currentView}
+                    headers={this.calculateHeaders()}
+                    hack_id={this.state.currentUser.profile.hack_id}
+                    personalScore={this.setGeneralTablePhase()}
+                    generalOS={this.state.generalOS}
+                    generalOP={this.state.generalOP}
+                    currentPhase={this.state.currentPhase}
+                    user={this.state.currentUser}
+                  />
                 </div>
               </div>
             </div>
-            <div className="row">
-              <div className="col-md-12">
-                <GeneralTable
-                  viewType={this.state.currentView}
-                  headers={this.calculateHeaders()}
-                  hack_id={this.state.currentUser.profile.hack_id}
-                  personalScore={this.setGeneralTablePhase()}
-                  generalOS={this.state.generalOS}
-                  generalOP={this.state.generalOP}
-                  currentPhase={this.state.currentPhase}
-                  user={this.state.currentUser}
-                />
-              </div>
-            </div>
           </div>
-        </div>
         </div>
       </div>
     )
@@ -231,6 +230,15 @@ export default class App extends React.Component {
     this.setState({currentView: VIEW_INDIVIDUAL})
   }
   showCompetitors(){
+    //Sending stats to db
+    Actions.post("stats.insert", {
+        event: "on_click_show_general_score_table",
+        metadata: {
+          user_object_id: this.state.currentUser._id,
+          clicker_username: this.state.currentUser.username,
+          phase_id: this.state.currentPhase
+        }
+      });
     this.setState({currentView: VIEW_COMPETITORS})
   }
   onSliderChange(event){
