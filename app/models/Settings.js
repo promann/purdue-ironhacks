@@ -20,7 +20,7 @@ const CUPL_SURVEY_URL = "https://purdue.ca1.qualtrics.com/jfe/form/SV_5z2DMohEhC
 const HACK_TYPES = {
   purdue_spring_2018: {
         survey: SURVEY_URL
-      , label: "Purdue Spring 2018"
+      , label: "Purdue Unal Spring 2018"
       , start_date: null
       , end_date: null
       , subforums_count: 0
