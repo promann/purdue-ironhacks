@@ -482,6 +482,11 @@
                                 </a>
                             </div>
                             <div class="col-md-12 single-item2">
+                                <a href="https://www.technexus.com/" target="_blank">
+                                  <img src="<%= _public("/images/partners/Tech_Nexus_logo.png") %>" />
+                                </a>
+                            </div> 
+                            <div class="col-md-12 single-item2">
                                 <a href="http://matchboxstudio.org/" target="_blank">
                                     <img src="<%= _public("/images/partners/match-box.png") %>" />
                                 </a>
@@ -509,6 +514,11 @@
                             <div class="col-md-12 single-item2">
                                 <a href="http://unal.edu.co/" target="_blank">
                                     <img src="<%= _public("/images/partners/universidad-nacional-de-colombia.png") %>" />
+                                </a>
+                            </div>
+                            <div class="col-md-12 single-item2">
+                                <a href="http://www.cupl.edu.cn/" target="_blank">
+                                 <img src="<%= _public("/images/partners/CUPL_logo.png") %>" />
                                 </a>
                             </div>
                         </div>

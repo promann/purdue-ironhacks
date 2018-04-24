@@ -8,6 +8,9 @@
         <a href="https://socrata.com/" target="_blank">
             <img src="<%= _public("/images/partners/socrata.png") %>" />
         </a>
+        <a href="https://www.technexus.com/" target="_blank">
+            <img src="<%= _public("/images/partners/Tech_Nexus_logo.png") %>" />
+        </a>
         <a href="https://github.com" target="_blank">
             <img src="<%= _public("/images/partners/github.jpg") %>" />
         </a>
@@ -28,6 +31,9 @@
         </a>
         <a href="http://unal.edu.co/" target="_blank">
             <img src="<%= _public("/images/partners/universidad-nacional-de-colombia.png") %>" />
+        </a>
+        <a href="http://www.cupl.edu.cn/" target="_blank">
+            <img src="<%= _public("/images/partners/CUPL_logo.png") %>" />
         </a>
     </div>
 

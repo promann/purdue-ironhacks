@@ -18,59 +18,13 @@ const UNAL_SURVEY_URL = "https://purdue.ca1.qualtrics.com/jfe/form/SV_1LXiVsGcAR
 const CUPL_SURVEY_URL = "https://purdue.ca1.qualtrics.com/jfe/form/SV_5z2DMohEhCpwYf3"
 
 const HACK_TYPES = {
-  
-    purdue: {
-        survey: SURVEY_URL
-      , label: "Purdue"
-      , display_label: "Purdue Gold IronHacks Fall " + CURRENT_YEAR
-      , start_date: null
-      , end_date: null
-      , subforums_count: 0
-    }
-
-  , bogota: {
-        survey: SURVEY_URL
-      , label: "Honors"
-      , display_label: "Purdue – Gold IronHacks Fall" + CURRENT_YEAR
-      , start_date: null
-      , end_date: null
-      , subforums_count: 0
-    }
-
-  , unal: {
-        survey: SURVEY_URL
-      , label: "UNAL"
-      , display_label: "Purdue – UNAL Gold IronHacks " + CURRENT_YEAR
-      , start_date: null
-      , end_date: null
-      , subforums_count: 0
-    }
-
-    // Gold
-  , purdue_spring_2018: {
+  purdue_spring_2018: {
         survey: SURVEY_URL
       , label: "Purdue Spring 2018"
       , start_date: null
       , end_date: null
       , subforums_count: 0
     }
-
-  , purdue_summer_2018: {
-        survey: SURVEY_URL
-      , label: "Purdue Summer 2018"
-      , start_date: null
-      , end_date: null
-      , subforums_count: 0
-    }
-
-  , purdue_fall_2018: {
-        survey: SURVEY_URL
-      , label: "Purdue Fall 2018"
-      , start_date: null
-      , end_date: null
-      , subforums_count: 0
-    }
-    
   , CUPL_spring_2018: {
         survey: CUPL_SURVEY_URL
       , label: "CUPL Spring 2018"
@@ -165,7 +119,7 @@ const setScheduleForHackType = name => {
 
 const updateSettingsInternally = () => {
     return Bloggify.models.Settings.getSettings().then(doc => {
-        if (!doc || !HACK_TYPES.purdue.getHackId) {
+        if (!doc || !HACK_TYPES.purdue_spring_2018.getHackId) {
             Bloggify.log("Settings not found. Trying again in a second.")
             return setTimeout(updateSettingsInternally, 1000)
         }

@@ -246,6 +246,15 @@ export default class App extends React.Component {
       }
     }
     if(event.target.value <= globalPhase){
+      Actions.post("stats.insert", {
+        event: "on_click_phase_slider",
+        metadata: {
+          user_object_id: this.state.currentUser._id,
+          clicker_username: this.state.currentUser.username,
+          current_phase_id: this.state.currentPhase,
+          clicked_phase_id: event.target.value
+        }
+      });
       this.setState({currentPhase: event.target.value})
     }else{
       this.forceUpdate();

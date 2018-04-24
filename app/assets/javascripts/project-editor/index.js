@@ -566,7 +566,7 @@ export default class App extends React.Component {
           <button className="btn btn-small"
             onClick={this.saveFile.bind(this)}
             style={{'display': this.state.readonly ? 'none' : 'inline-block'}}
-          >Save (⌘ + S)</button>
+          >Save and run (⌘ + S)</button>
           <button className="btn btn-small"
             onClick={this.commitProject.bind(this)}
             style={{'display': this.state.readonly ? 'none' : 'inline-block'}}
