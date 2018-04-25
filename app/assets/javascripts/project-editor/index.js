@@ -342,6 +342,14 @@ export default class App extends React.Component {
       showCloseButton: true,
       allowOutsideClick: false
     }
+    const finalCommitNotAble = {
+      type: 'info',
+      text: "Please wait until the hack starts.",
+      confirmButtonText: 'Ok',
+      confirmButtonColor: '#F39D26',
+      allowOutsideClick: false,
+      animation: false
+    }
     const commitContent = {
       title: "Commit",
       text: "Enter the commit message below:",
@@ -391,17 +399,22 @@ export default class App extends React.Component {
           })
         }else if (result.value == true) {
           //Here we make the "precommit"
-          this.commitFile("Automatic commit. Done before go to queltrics")
-          swal(surveyRedirecAlert).then((result) => { 
-            if (result.dismiss === swal.DismissReason.esc || result.dismiss === swal.DismissReason.close || result.dismiss === swal.DismissReason.cancel) {
-              //User hit scape or close
-            }else if (result.value == true){
-              const currentLocation = location.href
-              const currentPhase = this.state.page.project.phase 
-              const clearURL = this.removeURLParameter(currentLocation, "dfs");
-              document.location.href= this.commitSurveyLinks[currentPhase] + '?redirect_to=' + clearURL;
-            }
-          })
+
+          if(new Date() > new Date(2018, 5, 7, 0, 0, 0)){
+            this.commitFile("Automatic commit. Done before go to queltrics")
+            swal(surveyRedirecAlert).then((result) => { 
+              if (result.dismiss === swal.DismissReason.esc || result.dismiss === swal.DismissReason.close || result.dismiss === swal.DismissReason.cancel) {
+                //User hit scape or close
+              }else if (result.value == true){
+                const currentLocation = location.href
+                const currentPhase = this.state.page.project.phase 
+                const clearURL = this.removeURLParameter(currentLocation, "dfs");
+                document.location.href= this.commitSurveyLinks[currentPhase] + '?redirect_to=' + clearURL;
+              }
+            })
+          }else{
+            swal(finalCommitNotAble)
+          }
         }
     })
   //ADV
