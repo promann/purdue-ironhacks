@@ -38,7 +38,7 @@ export default class TopicsListItem extends React.Component {
     }
 
     renderEdit () {
-        if (window._pageData.isAdmin || this.props.author._id === window._pageData.user._id) {
+        if (window._pageData.isAdmin || this.props.author.profile._id === window._pageData.user._id) {
             return <span className="post-info-section">
                 <a href={`${this.props.url}/edit`}>Edit</a>
             </span>;
@@ -53,7 +53,7 @@ export default class TopicsListItem extends React.Component {
     }
 
     renderDelete () {
-        if (window._pageData.isAdmin || this.props.author._id === window._pageData.user._id) {
+        if (window._pageData.isAdmin || this.props.author.profile._id === window._pageData.user._id) {
             return  <form onSubmit={this.onDeleteIntent} action={`${this.props.url}/delete`} method="post" className="inline-block">
                 <CsrfInput />
                 <button className="btn btn-small btn-delete">Delete</button>
@@ -76,8 +76,8 @@ export default class TopicsListItem extends React.Component {
                 </a>
                 <div className="post-info">
                     <span className="post-info-section">
-                        <a href={`/users/${this.props.author.username}`}>
-                            <strong>{this.props.author.username}</strong>
+                        <a href={`/users/${this.props.author.profile.username}`}>
+                            <strong>{this.props.author.profile.username}</strong>
                         </a>
                     </span>
                     <span className="post-info-section">

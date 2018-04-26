@@ -51,8 +51,15 @@ exports.post = ctx => {
     }
 
     // Post comment
+    const userData = {
+        _id: user._id,
+        profile: {
+            username: user.username,
+            picture: user.profile.picture    
+        }
+    }
     return Bloggify.models.Topic.postComment({
-        author: user._id,
+        author: userData,
         body: ctx.data.body,
         topic: ctx.params.topicId
     }).then(data => {

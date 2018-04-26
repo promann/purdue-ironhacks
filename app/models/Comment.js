@@ -1,10 +1,7 @@
 const deffy = require("deffy")
 
 const CommentSchema = new Bloggify.db.Schema({
-    author: {
-        type: String,
-        index: true
-    },
+    author: Object,
     body: {
         type: String,
         text: true

@@ -140,7 +140,6 @@ export default class App extends React.Component {
         let index = -1;
 
         const hackTypes = window._pageData.settings.hack_types
-        console.log(hackTypes)
         Object.keys(hackTypes).sort().forEach(name => {
             const hackType = hackTypes[name]
 

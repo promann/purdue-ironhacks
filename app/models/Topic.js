@@ -6,10 +6,7 @@ const USER_FIELDS = {
 }
 
 const TopicSchema = new Bloggify.db.Schema({
-    author: {
-        type: String,
-        index: true
-    },
+    author: Object,
     title: {
         type: String,
         text: true
@@ -77,14 +74,9 @@ TopicSchema.statics.populateTopic = (item, options) => {
     options.userFields = options.userFields || USER_FIELDS
 
     return Promise.all([
-        Bloggify.models.User.getUser({
-            filters: { _id: item.author },
-            fields: options.userFields
-        })
-      , Topic.getComments(item, options)
+        Topic.getComments(item, options)
     ]).then(data => {
-        item.author = data[0]
-        item.comments = data[1]
+        item.comments = data[0]
         item.metadata.hack_label = Object(Bloggify.models.Settings.HACK_TYPES[item.metadata.hack_type]).label
         return item
     })
@@ -99,14 +91,8 @@ TopicSchema.statics.getComments = (item, opts) => {
         }
     }).then(comments => {
         return Promise.all(comments.map(comment => {
-            return Bloggify.models.User.getUser({
-                filters: { _id: comment.author },
-                fields: opts.userFields
-            }).then(author => {
-                comment = comment.toObject()
-                comment.author = author.toObject()
-                return comment
-            })
+            comment = comment.toObject()
+            return comment
         }))
     })
 }

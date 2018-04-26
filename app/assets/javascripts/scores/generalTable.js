@@ -95,7 +95,6 @@ export default class GeneralTable extends React.Component {
             })
             rows = []
           }
-          console.log(tableContent)
           const individualScoreData = tableContent.map((content) => 
           <div className="score-table table-wrapper" key={content.headers[0].toString()}>
             <div className="table-scroll">
@@ -136,7 +135,6 @@ export default class GeneralTable extends React.Component {
         }
       }
     }else if(this.props.viewType == VIEW_COMPETITORS){
-      console.log(this.props)
       if(this.props.hack_id == 0){
         //This case should never happen, cause we hide the button, but just in case.
         return(
@@ -218,7 +216,6 @@ export default class GeneralTable extends React.Component {
             }
           }
         }
-        console.log(samePhaseParticipants)
         const rows = samePhaseParticipants.map((participant) => 
           <tr key={participant.hacker_id}>
             <td>
@@ -256,9 +253,6 @@ export default class GeneralTable extends React.Component {
   }
   //Click tracker funcs
   onGeneralTableButtonClick(object, object2) {
-    console.log(object2)
-    console.log(object)
-    console.log(this.props.user)
     
   }
 }

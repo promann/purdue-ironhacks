@@ -9,7 +9,6 @@ const SurveyTrackerSchema = new Bloggify.db.Schema({
 })
 
 SurveyTrackerSchema.statics.record = data => {
-	console.log(SurveyTracker(data))
     return SurveyTracker(data).save()
 }
 

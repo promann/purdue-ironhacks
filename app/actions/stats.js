@@ -3,7 +3,7 @@ exports.before = ctx => {
 }
 
 exports.insert = ctx => {
-    const user = ctx.user
+    const user = ctx.user 
     const ev = {
         actor: user._id,
         event: ctx.data.event,

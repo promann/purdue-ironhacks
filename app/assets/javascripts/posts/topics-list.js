@@ -9,6 +9,7 @@ export default class TopicsList extends React.Component {
         this.state = {
             topics: this.props.topics
         };
+
     }
 
     updateTopics (topics) {

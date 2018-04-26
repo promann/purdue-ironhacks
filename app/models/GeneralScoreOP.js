@@ -10,7 +10,6 @@ const GeneralScoreOPSchema = new Bloggify.db.Schema({
 
 
 GeneralScoreOPSchema.statics.record = data => {
-    console.log(GeneralScoreOP(data))
     return GeneralScoreOP(data).save()
 }
 

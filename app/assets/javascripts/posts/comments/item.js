@@ -31,7 +31,7 @@ export default class TopicCommentsItem extends React.Component {
     }
 
     renderCommentControls () {
-        if (window._pageData.isAdmin || this.props.author._id === window._pageData.user._id) {
+        if (window._pageData.isAdmin || this.props.author.profile._id === window._pageData.user._id) {
             return <span className="comment-controls">
                 <span><a href="#" onClick={this.toggleCommentEdit.bind(this)}>Edit</a></span>
                 <span><a href="#" onClick={this.onCommentDelete.bind(this)}>Delete</a></span>
@@ -65,15 +65,15 @@ export default class TopicCommentsItem extends React.Component {
                     {this.renderCommentContent()}
                     <hr />
                     <div className="comment-metadata">
-                        <a href={`/users/${this.props.author.username}`} className="comment-profile-link-text">
-                            <span>{this.props.author.username}</span>
+                        <a href={`/users/${this.props.author.profile.username}`} className="comment-profile-link-text">
+                            <span>{this.props.author.profile.username}</span>
                         </a>,
                         {" "}
                         posted <span className="comment-date" title={createdAt.format("LLLL")}>{createdAt.fromNow()}</span>
                         {this.renderCommentControls()}
                     </div>
-                    <a href={`/users/${this.props.author.username}`} className="comment-profile-link">
-                        <img title={this.props.author.username} src={this.props.author.profile.picture} />
+                    <a href={`/users/${this.props.author.profile.username}`} className="comment-profile-link">
+                        <img title={this.props.author.profile.username} src={this.props.author.profile.picture} />
                     </a>
                 </div>
             </div>

@@ -20,8 +20,13 @@ exports.get = ctx => {
 
 exports.post = ctx => {
     const user = ctx.user;
-
-    ctx.data.author = user._id;
+    const userData = {
+        profile: {
+            _id: user._id,
+            username: user.username,    
+        }
+    }
+    ctx.data.author = userData;
     ctx.data.created_at = new Date();
     ctx.data.votes = [];
 
