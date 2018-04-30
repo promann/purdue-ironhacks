@@ -1,5 +1,4 @@
 module.exports = ctx => {
-    console.log(ctx.query.exportType)
     const hackType = ctx.query.hackType
         , hackId = ctx.query.hackId
         ;

@@ -5,6 +5,7 @@ const ProjectSchema = new Bloggify.db.Schema({
         type: String,
         index: true
     },
+    id: String,
     name: {
         type: String,
         index: true
@@ -20,8 +21,8 @@ const ProjectSchema = new Bloggify.db.Schema({
 })
 
 
-ProjectSchema.statics.getGitHubRepoName = (username, projectName, year) => {
-    return `IH-Project-${year}-${username}_${projectName}`
+ProjectSchema.statics.getGitHubRepoName = (id, projectName, year) => {
+    return `IH-Project-${year}-${id}_${projectName}`
 }
 
 ProjectSchema.methods.syncGitHubRepository = function (commitMessage) {
@@ -47,7 +48,7 @@ ProjectSchema.methods.destroyProject = function () {
 }
 
 ProjectSchema.virtual("url").get(function () {
-   return `/users/${this.username}/projects/${this.name}`
+   return `/users/${this.id}/projects/${this.name}`
 })
 
 
@@ -63,7 +64,7 @@ ProjectSchema.virtual("local_path").get(function () {
 
 
 ProjectSchema.virtual("github_repo_name").get(function () {
-   return Project.getGitHubRepoName(this.username, this.name, this.created_at.getFullYear())
+   return Project.getGitHubRepoName(this.id, this.name, this.created_at.getFullYear())
 })
 
 

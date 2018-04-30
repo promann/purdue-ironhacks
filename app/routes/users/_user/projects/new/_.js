@@ -7,9 +7,11 @@ exports.post = ctx => {
         , data = ctx.data
 
     data.username = user.username
+    data.id = user._id
 
     return Bloggify.services.projects.create(data).then(project => {
         ctx.redirect(project.url);
         return false
     })
+
 };

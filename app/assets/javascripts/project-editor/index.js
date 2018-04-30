@@ -111,7 +111,6 @@ export default class App extends React.Component {
         phase5: "https://purdue.ca1.qualtrics.com/jfe/form/SV_bQK4wA367xloVLL",
       }
     }
-
     //Setting the "read-only state"
     if(this.state.page.project.username != this.state.user.username){
       // The current user is NOT the owner of the project, now we need to check the treatment, if the hack_id == 0 the user shouldn't be here (treatment 1)
@@ -569,7 +568,12 @@ export default class App extends React.Component {
         <h1>YOU SHOULDN'T BE HERE. PLEASE BE HONEST.</h1>
       )
     }
-    const previewFileUrl = `/users/${_pageData.project.username}/projects/${_pageData.project.name}/preview/${this.state.preview_filepath}`
+    var previewFileUrl = ""
+    if(typeof _pageData.project.id == "undefined"){
+      previewFileUrl = `/users/${this.state.user._id}/projects/${_pageData.project.name}/preview/${this.state.preview_filepath}`
+    }else{
+      previewFileUrl = `/users/${_pageData.project.id}/projects/${_pageData.project.name}/preview/${this.state.preview_filepath}`
+    }
     //ADV
     //Loading the buttons only if the user has pemitions
     var controlButtons = ( <div></div> )

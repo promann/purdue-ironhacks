@@ -25,6 +25,13 @@ exports.streamFile = ctx => {
             return res
         }
         shouldBeCached = true
+        return Bloggify.models.User.findOne({
+           _id: ctx.params.user
+        })
+    }).then(_user => {
+
+        ctx.params.user = _user.username
+        params.Key = buildFilePath(ctx.params)
         return s3.getObjectAsync(params).then(data => {
             return data.Body.toString("utf-8")
         })
@@ -200,7 +207,6 @@ exports.get = data => {
  */
 exports.create = projectData => {
     projectData.name = slug(projectData.name).trim()
-
     if (!projectData.name) {
         throw Bloggify.errors.PROJECT_NAME_IS_EMPTY()
     }

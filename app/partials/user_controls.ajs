@@ -1,4 +1,4 @@
-<a href="/users/<%= user.username %>" class="profile-link">
+<a href="/users/<%= user._id %>" class="profile-link">
     <img class="profile-picture" src="<%= user.profile.picture %>" height="50">
     <strong class="hide-sm"><%= user.username %></strong>
 </a>

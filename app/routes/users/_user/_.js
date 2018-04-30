@@ -2,7 +2,7 @@
 exports.use = (ctx, cb) => {
     Bloggify.models.User.getUser({
         filters: {
-            username: ctx.params.user
+            _id: ctx.user._id
         }
       , fields: {
             password: 0
