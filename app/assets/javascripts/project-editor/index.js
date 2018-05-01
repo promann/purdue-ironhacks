@@ -10,6 +10,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 
 import 'brace/mode/javascript'
 import 'brace/mode/html'
+import 'brace/mode/css'
 import 'brace/theme/monokai'
 
 import 'brace/ext/searchbox'
@@ -172,7 +173,9 @@ export default class App extends React.Component {
   _getEditorMode (filepath) {
           const extension = filepath.split(".").slice(-1)[0]
           const mappings = {
-                  js: "javascript"
+                  js: "javascript",
+                  html: "html",
+                  css: "css"
           }
           const editorMode = mappings[extension] || extension
           return editorMode
@@ -603,20 +606,6 @@ export default class App extends React.Component {
           <div className={`editor-preview ${this.state.reloading_preview ? "reloading-preview" : "loaded-preview"}`}>
             <div className="open-in-new-tab">
               <a href={previewFileUrl} target="blank">Open in New Tab</a> |
-              <span className="pull-right breadcrumbs">
-                <a href={`/users/${_pageData.project.username}`}>
-                  @{_pageData.project.username}
-                </a>
-                /
-                <a href={`/users/${_pageData.project.username}/projects`}>
-                  projects
-                </a>
-                /
-                <a href={`/users/${_pageData.project.username}/projects/${_pageData.project.name}`}>
-                  {_pageData.project.name}
-                </a>
-                /edit
-              </span>
             </div>
             <iframe src={previewFileUrl} id="preview-iframe" className="editor-preview-iframe" onLoad={this.previewLoaded.bind(this)} />
             <div className="iframe-spinner">
@@ -653,6 +642,10 @@ export default class App extends React.Component {
                   editorProps={{
                           $blockScrolling: true
                   }}
+                  showPrintMargin={false}
+                  wrapEnabled={true}
+                  enableBasicAutocompletion={true}
+                  enableLiveAutocompletion={true}
                   readOnly={this.state.readonly}
                 />
               </div>

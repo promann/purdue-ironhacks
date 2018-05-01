@@ -53,6 +53,7 @@ body.hack-type-bogota nav, body.hack-type-bogota footer, body.hack-type-purdue n
     top: 60px;
     right: 0;
     bottom: 50px;
+    width: 100%;
 }
 
 #project-ace-editor {
