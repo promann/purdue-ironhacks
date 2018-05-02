@@ -92,7 +92,6 @@ export default class App extends React.Component {
     this.onSliderChange = this.onSliderChange.bind(this)
     this.getTreatmentData = this.getTreatmentData.bind(this)
     this.setGeneralTablePhase = this.setGeneralTablePhase.bind(this)
-    this.state.currentUser.profile.hack_id = 2
   }
   render(){
     //Select the text according with the phase
@@ -263,6 +262,7 @@ export default class App extends React.Component {
   pullPersonalScore(){
       Actions.get("scores.getPersonalScores")
           .then(scores => {
+              console.log(scores)
               this.setState({personalScore: scores})
             if(scores.length != 0){
               //No scores available, we are still in phase 1.
