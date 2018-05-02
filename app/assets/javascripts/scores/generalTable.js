@@ -37,11 +37,22 @@ const DIMENSION_DESCRIPTIONS = {
     "Visualizing new data sets on the charts definitely makes your app standing out from the rest. We evaluate how successfully you visualize additional data from the eligable list of data sets (www.ironhacks.com/task). The more unique (e.g. multi-dimensional) your chart visualization, the better. For the implication score you can achieve a score from 0 to 100. We evaluate each dataset individually and then average the score across all datasets that you use.",
   ]
 }
+'ana_qua'
+'ana_func'
+'ana_param_var' 
+'data_vis_map_req',
+'data_vis_char_var',
+'data_vis_usa_points',
+'data_vis_nov_map_params',
+'data_vis_nov_map_data',
+'data_vis_nov_chart_params',
+'data_vis_nov_chart_data',
+'hacker_id'
+'hacker_position'
 const DIMENSION_SCORES = {
-  'Technology': 'tech_score',
-  'Functionality': 'func_score',
-  'InfoVis': 'info_vis_score',
-  'Novelty': 'novel_score'
+  'Technology': ['tech_error', 'tech_req_met'],
+  'Functionality': ['ana_qua', 'ana_func', 'ana_param_var'],
+  'Visualization': ['data_vis_map_req', 'data_vis_char_var', 'data_vis_usa_points', 'data_vis_nov_map_params', 'data_vis_nov_map_data', 'data_vis_nov_chart_params', 'data_vis_nov_chart_data']
 }
 export default class GeneralTable extends React.Component {
   constructor (props) {
@@ -70,69 +81,64 @@ export default class GeneralTable extends React.Component {
     //showing individual Score
     if(this.props.viewType == VIEW_INDIVIDUAL){
       if(this.props.personalScore !=  0){
-
         const title = <th colSpan={4}>
           {TITLE[this.props.viewType]}
         </th>
-        if(this.props.viewType == VIEW_INDIVIDUAL){
-          //Drawing the individual score table
-          var headers = []
-          var rows = []
-          const tableContent = []
-          for (var i = 0; i < TABLES_NAMES.length; i++) {
-            headers =[TABLES_NAMES[i], TABLE_DESCRIPTIONS[i], 'Your evaluation']
-            for (var j = 0; j < DIMENSION_NAMES[TABLES_NAMES[i]].length; j++) {
-              rows.push({
-                DIMENSION_NAME: DIMENSION_NAMES[TABLES_NAMES[i]][j],
-                DIMENSION_DESCRIPTION: DIMENSION_DESCRIPTIONS[TABLES_NAMES[i]][j],
-                SCORE: 0
-              })
-            }
-
-            tableContent.push({
-              headers: headers,
-              rows: rows
+        //Drawing the individual score table
+        var headers = []
+        var rows = []
+        const tableContent = []
+        for (var i = 0; i < TABLES_NAMES.length; i++) {
+          headers =[TABLES_NAMES[i], TABLE_DESCRIPTIONS[i], 'Your evaluation']
+          for (var j = 0; j < DIMENSION_NAMES[TABLES_NAMES[i]].length; j++) {
+            rows.push({
+              DIMENSION_NAME: DIMENSION_NAMES[TABLES_NAMES[i]][j],
+              DIMENSION_DESCRIPTION: DIMENSION_DESCRIPTIONS[TABLES_NAMES[i]][j],
+              SCORE: DIMENSION_SCORES[TABLES_NAMES[i]][j]
             })
-            rows = []
           }
-          const individualScoreData = tableContent.map((content) => 
-          <div className="score-table table-wrapper" key={content.headers[0].toString()}>
-            <div className="table-scroll">
-              <table>
-                <thead >
-                  <tr>
-                    <th>
-                      {content.headers[0]}
-                    </th>
-                    <th>
-                      {content.headers[1]}
-                    </th>
-                    <th>
-                      {content.headers[2]}
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {
-                    content.rows.map((row) => 
-                      <tr key={row.DIMENSION_DESCRIPTION.toString()}>
-                        <td >{row.DIMENSION_NAME}</td>
-                        <td >{row.DIMENSION_DESCRIPTION}</td>
-                        <td>{row.SCORE}</td>
-                      </tr>
-                    )
-                  }
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          );
-          return(
-            individualScoreData
-          )
-        }else{
 
+          tableContent.push({
+            headers: headers,
+            rows: rows
+          })
+          rows = []
         }
+        const individualScoreData = tableContent.map((content) => 
+        <div className="score-table table-wrapper" key={content.headers[0].toString()}>
+          <div className="table-scroll">
+            <table>
+              <thead >
+                <tr>
+                  <th>
+                    {content.headers[0]}
+                  </th>
+                  <th>
+                    {content.headers[1]}
+                  </th>
+                  <th>
+                    {content.headers[2]}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  content.rows.map((row) => 
+                    <tr key={row.DIMENSION_DESCRIPTION.toString()}>
+                      <td >{row.DIMENSION_NAME}</td>
+                      <td >{row.DIMENSION_DESCRIPTION}</td>
+                      <td>{row.SCORE}</td>
+                    </tr>
+                  )
+                }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        );
+        return(
+          individualScoreData
+        )
       }
     }else if(this.props.viewType == VIEW_COMPETITORS){
       if(this.props.hack_id == 0){
