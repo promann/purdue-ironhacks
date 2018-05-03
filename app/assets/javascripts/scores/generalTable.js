@@ -37,21 +37,9 @@ const DIMENSION_DESCRIPTIONS = {
     "Visualizing new data sets on the charts definitely makes your app standing out from the rest. We evaluate how successfully you visualize additional data from the eligable list of data sets (www.ironhacks.com/task). The more unique (e.g. multi-dimensional) your chart visualization, the better. For the implication score you can achieve a score from 0 to 100. We evaluate each dataset individually and then average the score across all datasets that you use.",
   ]
 }
-'ana_qua'
-'ana_func'
-'ana_param_var' 
-'data_vis_map_req',
-'data_vis_char_var',
-'data_vis_usa_points',
-'data_vis_nov_map_params',
-'data_vis_nov_map_data',
-'data_vis_nov_chart_params',
-'data_vis_nov_chart_data',
-'hacker_id'
-'hacker_position'
 const DIMENSION_SCORES = {
   'Technology': ['tech_error', 'tech_req_met'],
-  'Functionality': ['ana_qua', 'ana_func', 'ana_param_var'],
+  'Analytics': ['ana_qua', 'ana_func', 'ana_param_var'],
   'Visualization': ['data_vis_map_req', 'data_vis_char_var', 'data_vis_usa_points', 'data_vis_nov_map_params', 'data_vis_nov_map_data', 'data_vis_nov_chart_params', 'data_vis_nov_chart_data']
 }
 export default class GeneralTable extends React.Component {
@@ -61,6 +49,7 @@ export default class GeneralTable extends React.Component {
     }
     //Binding
     this.onGeneralTableButtonClick = this.onGeneralTableButtonClick.bind(this)
+    this.compareHackers = this.compareHackers.bind(this)
   }
   render(){
     const title = <th colSpan={4}>
@@ -94,7 +83,7 @@ export default class GeneralTable extends React.Component {
             rows.push({
               DIMENSION_NAME: DIMENSION_NAMES[TABLES_NAMES[i]][j],
               DIMENSION_DESCRIPTION: DIMENSION_DESCRIPTIONS[TABLES_NAMES[i]][j],
-              SCORE: DIMENSION_SCORES[TABLES_NAMES[i]][j]
+              SCORE: this.props.personalScore[DIMENSION_SCORES[TABLES_NAMES[i]][j]]
             })
           }
 
@@ -168,21 +157,46 @@ export default class GeneralTable extends React.Component {
             samePhaseParticipants.push(this.props.generalOP[i])
           }
         }
-        const rows = samePhaseParticipants.map((participant) => 
-          <tr key={participant.user_id}>
-            <td>
-              {"Hacker " + participant.hacker_id}
-            </td>
-            <td>
-              <WatchedAnchor 
-                link={participant.projects}
-                user={this.props.user}
-                phaseId={participant.phase_id}
-                projectOwner={participant.username}
-              /> 
-            </td>
-          </tr>
-        )
+        //Sorting participants
+        samePhaseParticipants.sort(this.compareHackers)
+        const rows = samePhaseParticipants.map(function(participant){
+          console.log(this.props)
+          console.log(samePhaseParticipants)
+          if(participant.user_id == this.props.user.username){
+            return(
+              <tr key={participant.hacker_id} style={{'backgroundColor': 'lightgray'}}>
+                <td>
+                  {"You"}
+                </td>
+                <td>
+                  <WatchedAnchor 
+                    link={participant.projects}
+                    user={this.props.user}
+                    phaseId={participant.phase_id}
+                    projectOwner={participant.username}
+                  /> 
+                </td>
+              </tr>
+            )
+          }else{
+            return(
+              <tr key={participant.hacker_id}>
+                <td>
+                  {"Hacker " + participant.hacker_id}
+                </td>
+                <td>
+                  <WatchedAnchor 
+                    link={participant.projects}
+                    user={this.props.user}
+                    phaseId={participant.phase_id}
+                    projectOwner={participant.username}
+                  /> 
+                </td>
+              </tr>
+            )
+          }
+        }.bind(this))
+        console.log(rows)
         return(
           <div className="score-table table-wrapper">
             <div className="table-scroll">
@@ -201,7 +215,6 @@ export default class GeneralTable extends React.Component {
         //Show projects and scores
         const samePhaseParticipants = []
         for (var i = 0; i < this.props.generalOP.length; i++) {
-          
           //Check projects...
           if(this.props.generalOP[i].phase_id == this.props.currentPhase){
             //... and then ranks  
@@ -214,7 +227,8 @@ export default class GeneralTable extends React.Component {
                   hacker_id : this.props.generalOP[i].hacker_id,
                   projects : this.props.generalOP[i].project,
                   phase_id : this.props.generalOP[i].phase_id,
-                  rank : this.props.generalOS[j].score
+                  rank : this.props.generalOS[j].score,
+                  hacker_position: this.props.generalOP[i].hacker_position
                 }
                 samePhaseParticipants.push(participant)
                 break;
@@ -222,24 +236,49 @@ export default class GeneralTable extends React.Component {
             }
           }
         }
-        const rows = samePhaseParticipants.map((participant) => 
-          <tr key={participant.hacker_id}>
-            <td>
-              {"Hacker " + participant.hacker_id}
-            </td>
-            <td>
-              <WatchedAnchor 
-                link={participant.projects}
-                user={this.props.user}
-                phaseId={participant.phase_id}
-                projectOwner={participant.username}
-              /> 
-            </td>
-            <td>
-              {participant.rank}
-            </td>
-          </tr>
-        )
+        //Sorting participants
+        samePhaseParticipants.sort(this.compareHackers)
+        const rows = samePhaseParticipants.map(function(participant){
+          if(participant.username == this.props.user.username){
+            return(
+            <tr key={participant.hacker_id} style={{'backgroundColor': 'lightgray'}}>
+              <td>
+                {"You"}
+              </td>
+              <td>
+                <WatchedAnchor 
+                  link={participant.projects}
+                  user={this.props.user}
+                  phaseId={participant.phase_id}
+                  projectOwner={participant.username}
+                /> 
+              </td>
+              <td>
+                {participant.rank}
+              </td>
+            </tr>
+            )
+          }else{
+            return(
+            <tr key={participant.hacker_id}>
+              <td>
+                {"Hacker " + participant.hacker_id}
+              </td>
+              <td>
+                <WatchedAnchor 
+                  link={participant.projects}
+                  user={this.props.user}
+                  phaseId={participant.phase_id}
+                  projectOwner={participant.username}
+                /> 
+              </td>
+              <td>
+                {participant.rank}
+              </td>
+            </tr>
+            )
+          }
+        }.bind(this))
         return(
           <div className="score-table table-wrapper">
             <div className="table-scroll">
@@ -259,7 +298,14 @@ export default class GeneralTable extends React.Component {
   }
   //Click tracker funcs
   onGeneralTableButtonClick(object, object2) {
-    
+  }
+  //This function sort the hacker array by hacker_position
+  compareHackers(a,b) {
+  if (a.hacker_position < b.hacker_position)
+    return -1;
+  if (a.hacker_position > b.hacker_position)
+    return 1;
+  return 0;
   }
 }
 //Class to track the click

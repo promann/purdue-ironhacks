@@ -262,7 +262,6 @@ export default class App extends React.Component {
   pullPersonalScore(){
       Actions.get("scores.getPersonalScores")
           .then(scores => {
-              console.log(scores)
               this.setState({personalScore: scores})
             if(scores.length != 0){
               //No scores available, we are still in phase 1.

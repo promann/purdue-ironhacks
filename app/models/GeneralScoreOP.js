@@ -5,7 +5,8 @@ const GeneralScoreOPSchema = new Bloggify.db.Schema({
     hack_id: Number,
     user_id: String,
     project: String,
-    hacker_id: Number
+    hacker_id: Number,
+    hacker_position: Number
 })
 
 

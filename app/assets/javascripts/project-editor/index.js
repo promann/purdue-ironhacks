@@ -396,6 +396,16 @@ export default class App extends React.Component {
               swal(commitCanceled)
             }else if (result){
               this.commitFile(result)
+              Actions.post("stats.insert", {
+                event: "no-final-commit",
+                metadata: {
+                  project_name: this.state.page.project.name,
+                  phase_id: this.state.page.project.phase,
+                  user_email: this.state.user.email,
+                  github_username: this.state.user.profile.github_username,
+                  hack_id : this.state.user.profile.hack_id                  
+                }
+              });
               swal(successNoFinalCommit)
             }
           })
@@ -404,6 +414,16 @@ export default class App extends React.Component {
 
           if(new Date() > new Date(2018, 5, 7, 0, 0, 0)){
             this.commitFile("Automatic commit. Done before go to queltrics")
+            Actions.post("stats.insert", {
+              event: "automatic-commit",
+              metadata: {
+                project_name: this.state.page.project.name,
+                phase_id: this.state.page.project.phase,
+                user_email: this.state.user.email,
+                github_username: this.state.user.profile.github_username,
+                hack_id : this.state.user.profile.hack_id                  
+              }
+            });
             swal(surveyRedirecAlert).then((result) => { 
               if (result.dismiss === swal.DismissReason.esc || result.dismiss === swal.DismissReason.close || result.dismiss === swal.DismissReason.cancel) {
                 //User hit scape or close
@@ -465,8 +485,6 @@ export default class App extends React.Component {
         github_username: this.state.user.profile.github_username,
         phase: this.state.page.project.phase[5],
         status: 'true',
-        timestamp: new Date(),
-        hack_id : this.state.user.profile.hack_id
       });
       //showing alert
       swal(commitContent).then((result) => {
@@ -475,6 +493,16 @@ export default class App extends React.Component {
           swal(commitCanceled)
         }else if(result){
           this.commitFile(result)
+          Actions.post("stats.insert", {
+            event: "final-commit",
+            metadata: {
+              project_name: this.state.page.project.name,
+              phase_id: this.state.page.project.phase,
+              user_email: this.state.user.email,
+              github_username: this.state.user.profile.github_username,
+              hack_id : this.state.user.profile.hack_id                  
+            }
+          });
           swal(successFinalCommit)
         }
       })

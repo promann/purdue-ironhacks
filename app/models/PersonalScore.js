@@ -15,9 +15,7 @@ const PersonalScoreSchema = new Bloggify.db.Schema({
     data_vis_nov_map_params: Number,
     data_vis_nov_map_data: Number,
     data_vis_nov_chart_params: Number,
-    data_vis_nov_chart_data: Number,
-    hacker_id : Number,
-    hacker_position: Number
+    data_vis_nov_chart_data: Number
 })
 
 PersonalScoreSchema.statics.record = data => {
