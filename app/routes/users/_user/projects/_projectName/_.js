@@ -3,11 +3,31 @@ exports.use = (ctx, cb) => {
     if (!ctx.params.projectName) {
         return cb();
     }
+    var projectQuery = {}
+    if(ctx.params.user != 'undefined'){
+        if(ctx.params.user == ctx.selected_user.username){
+            projectQuery = {
+                username: ctx.selected_user.username,
+                name: ctx.params.projectName,
+            }
+        }else{
+            projectQuery = {
+                id: ctx.params.user,
+                name: ctx.params.projectName
+            }
+        }
+        ctx.params.id = ctx.selected_user._id
+    }else{
+        projectQuery = {
+            username: ctx.selected_user.username,
+            name: ctx.params.projectName,
+        }
+        if(ctx.params.id == 'undefined'){
+            ctx.params.id = ctx.selected_user._id
+        }
+    }
     const isOwner = ctx.isProjectOwner = ctx.selected_user.username === ctx.user.username
-    Project.findOne({
-        username: ctx.selected_user.username,
-        name: ctx.params.projectName
-    }, (err, project) => {
+    Project.findOne(projectQuery, (err, project) => {
         if (err) { return cb(err); }
         if (!project) {
             return ctx.next();

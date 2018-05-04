@@ -160,8 +160,6 @@ export default class GeneralTable extends React.Component {
         //Sorting participants
         samePhaseParticipants.sort(this.compareHackers)
         const rows = samePhaseParticipants.map(function(participant){
-          console.log(this.props)
-          console.log(samePhaseParticipants)
           if(participant.user_id == this.props.user.username){
             return(
               <tr key={participant.hacker_id} style={{'backgroundColor': 'lightgray'}}>
@@ -196,7 +194,6 @@ export default class GeneralTable extends React.Component {
             )
           }
         }.bind(this))
-        console.log(rows)
         return(
           <div className="score-table table-wrapper">
             <div className="table-scroll">

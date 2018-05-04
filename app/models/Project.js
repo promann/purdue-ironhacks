@@ -48,7 +48,8 @@ ProjectSchema.methods.destroyProject = function () {
 }
 
 ProjectSchema.virtual("url").get(function () {
-   return `/users/${this.id}/projects/${this.name}`
+    return `/users/${this.id}/projects/${this.name}`
+
 })
 
 
@@ -64,7 +65,7 @@ ProjectSchema.virtual("local_path").get(function () {
 
 
 ProjectSchema.virtual("github_repo_name").get(function () {
-   return Project.getGitHubRepoName(this.id, this.name, this.created_at.getFullYear())
+    return Project.getGitHubRepoName(this.id, this.name, this.created_at.getFullYear())
 })
 
 

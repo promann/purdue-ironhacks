@@ -158,7 +158,6 @@ export default class App extends React.Component {
 
     //ADV
   }
-
   //ADV
   getURLParameter(parameter){
       let params = new URLSearchParams(document.location.search.substring(1));
@@ -194,7 +193,6 @@ export default class App extends React.Component {
                   this.setState({ files });
           });
   }
-
   deleteFile (path) {
           BloggifyActions.post("projects.deleteFile", {
                   project_name: this.state.page.project.name,
@@ -209,7 +207,6 @@ export default class App extends React.Component {
                   alert(err.message);
           });
   }
-
   openFile (path) {
           if (this.maybeNotSaved()) { return }
           if (this.state.readonly) {
@@ -241,7 +238,6 @@ export default class App extends React.Component {
 
           return prom
   }
-
   _saveFile (opts = {}) {
       this.saved = false
       this.state.readonly = false
@@ -601,7 +597,7 @@ export default class App extends React.Component {
     }
     var previewFileUrl = ""
     if(typeof _pageData.project.id == "undefined"){
-      previewFileUrl = `/users/${this.state.user._id}/projects/${_pageData.project.name}/preview/${this.state.preview_filepath}`
+      previewFileUrl = `/users/${this.state.user.username}/projects/${_pageData.project.name}/preview/${this.state.preview_filepath}`
     }else{
       previewFileUrl = `/users/${_pageData.project.id}/projects/${_pageData.project.name}/preview/${this.state.preview_filepath}`
     }
@@ -646,7 +642,7 @@ export default class App extends React.Component {
     }
     //ADV
     return (
-      <div>
+      <div> 
         <div className="row editor-container">
           <div className="readonly-badge">
             Read-only

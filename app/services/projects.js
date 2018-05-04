@@ -21,15 +21,11 @@ exports.streamFile = ctx => {
     let shouldBeCached = false
 
     return AwsFsCache.getFile(params.Key).then(res => {
-        if (res) {
-            return res
-        }
         shouldBeCached = true
         return Bloggify.models.User.findOne({
-           _id: ctx.params.user
+           _id: ctx.params.id
         })
     }).then(_user => {
-
         ctx.params.user = _user.username
         params.Key = buildFilePath(ctx.params)
         return s3.getObjectAsync(params).then(data => {
