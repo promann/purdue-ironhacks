@@ -7,6 +7,7 @@ import {Treebeard, decorators} from "react-treebeard"
 import Actions from "bloggify/actions"
 import swal from 'sweetalert2';
 import { renderToStaticMarkup } from 'react-dom/server';
+import $ from "jquery"
 
 import 'brace/mode/javascript'
 import 'brace/mode/html'
@@ -155,7 +156,6 @@ export default class App extends React.Component {
         );
       };
     }
-
     //ADV
   }
   //ADV

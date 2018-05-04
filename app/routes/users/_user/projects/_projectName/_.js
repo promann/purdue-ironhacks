@@ -10,13 +10,14 @@ exports.use = (ctx, cb) => {
                 username: ctx.selected_user.username,
                 name: ctx.params.projectName,
             }
+            ctx.params.id = ctx.selected_user._id
         }else{
             projectQuery = {
                 id: ctx.params.user,
                 name: ctx.params.projectName
             }
+            ctx.params.id = ctx.params.user
         }
-        ctx.params.id = ctx.selected_user._id
     }else{
         projectQuery = {
             username: ctx.selected_user.username,
