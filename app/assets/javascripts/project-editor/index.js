@@ -157,12 +157,19 @@ export default class App extends React.Component {
     //ADV
 
     this.mouseSet = []
+    this.shouldTrackMouse = true
     //Adding listener
     $("body").mousemove(function(e) {
-      this.mouseSet.push([e.pageX, e.pageY])
-      if(this.mouseSet.length > 1000){
-        //console.log(this.mouseSet)
-        this.mouseSet = []
+      if(shouldTrackMouse){
+        this.mouseSet.push({'x' : e.pageX, 'y': e.pageY})
+        if(this.mouseSet.length > 1000){
+          //console.log(this.mouseSet)
+          this.mouseSet = []
+        
+        }
+        this.shouldTrackMouse = false
+      }else{
+        this.shouldTrackMouse = true
       }
     }.bind(this))
   }

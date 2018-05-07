@@ -5,18 +5,18 @@
 <% var googleDocId = "" %>
 
 <% if (user.profile.hack_type === "bogota") { %>
-<%   googleDocId = "2PACX-1vSmiVCtk148gG_jKjqJZvyWKFef_036ztwOeTNuMcmMeXg_vXTWFJTCgMz68hZ8NdCUp_wHNyTM8jtM" %>
+<%   googleDocId = "2PACX-1vQ2rURoyujMe4LHce4VKFPXBYDeXz6sXP-EXAlg1hZ-VBgV12MHHR4ZmA3BHYrhpb9RgF-77VHz_nER" %>
 <% } else if (user.profile.hack_type === "unal") { %>
 <%
 	var unalLinks = [
-		"2PACX-1vSmiVCtk148gG_jKjqJZvyWKFef_036ztwOeTNuMcmMeXg_vXTWFJTCgMz68hZ8NdCUp_wHNyTM8jtM",
-		"2PACX-1vSmiVCtk148gG_jKjqJZvyWKFef_036ztwOeTNuMcmMeXg_vXTWFJTCgMz68hZ8NdCUp_wHNyTM8jtM",
-		"2PACX-1vSmiVCtk148gG_jKjqJZvyWKFef_036ztwOeTNuMcmMeXg_vXTWFJTCgMz68hZ8NdCUp_wHNyTM8jtM"
+		"2PACX-1vQ2rURoyujMe4LHce4VKFPXBYDeXz6sXP-EXAlg1hZ-VBgV12MHHR4ZmA3BHYrhpb9RgF-77VHz_nER",
+		"2PACX-1vQ2rURoyujMe4LHce4VKFPXBYDeXz6sXP-EXAlg1hZ-VBgV12MHHR4ZmA3BHYrhpb9RgF-77VHz_nER",
+		"2PACX-1vQ2rURoyujMe4LHce4VKFPXBYDeXz6sXP-EXAlg1hZ-VBgV12MHHR4ZmA3BHYrhpb9RgF-77VHz_nER"
 	]
 	googleDocId = unalLinks[user.profile.hack_id]
 %>
 <% } else if (user.profile.hack_type === "purdue_spring_2018") { %>
-<% 	 googleDocId = "2PACX-1vSmiVCtk148gG_jKjqJZvyWKFef_036ztwOeTNuMcmMeXg_vXTWFJTCgMz68hZ8NdCUp_wHNyTM8jtM" %>
+<% 	 googleDocId = "2PACX-1vQ2rURoyujMe4LHce4VKFPXBYDeXz6sXP-EXAlg1hZ-VBgV12MHHR4ZmA3BHYrhpb9RgF-77VHz_nER" %>
 <% } else if (user.profile.hack_type === "CUPL_spring_2018") { %>
 <% 	 googleDocId = "2PACX-1vTYWS5HIWbvaYH3Q6X4uFRIVd-rNnvjRbbD3Lu0e675Z9xUOFkM6_mIBL3uBTZCnlFeGuew_4cuk_QT" %>
 <% } %>
