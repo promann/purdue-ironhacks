@@ -50,6 +50,7 @@
     "node-schedule": "^1.2.0",
     "obj-flatten": "^2.0.0",
     "paths2tree": "0.0.1",
+    "p-limit": "1.2.0",
     "react": "^15.4.2",
     "react-ace": "^5.1.2",
     "react-bootstrap-slider": "^2.1.4",
