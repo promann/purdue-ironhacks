@@ -32,12 +32,13 @@ Bloggify.ready(err => {
                         username: user.username,
                         name: projectName
                     }).then(project => {
-                    //    return project.destroyProject()
+                        return project.destroyProject()
                     }).then(() => {
                         return Bloggify.services.projects.create({
                           name: projectName
                         , username: user.username
                         , phase
+                        , id: user._id
                         })
                     }).then(() => {
                         Bloggify.log(`Created the project for @${user.username}, ${phase}`)

@@ -90,8 +90,6 @@ export default class App extends React.Component {
         }
       }
     })
-
-    
     //ADV
 
     this.getURLParameter("dfs")
@@ -157,6 +155,16 @@ export default class App extends React.Component {
       };
     }
     //ADV
+
+    this.mouseSet = []
+    //Adding listener
+    $("body").mousemove(function(e) {
+      this.mouseSet.push([e.pageX, e.pageY])
+      if(this.mouseSet.length > 1000){
+        console.log(this.mouseSet)
+        this.mouseSet = []
+      }
+    }.bind(this))
   }
   //ADV
   getURLParameter(parameter){
@@ -597,7 +605,7 @@ export default class App extends React.Component {
     }
     var previewFileUrl = ""
     if(typeof _pageData.project.id == "undefined"){
-      previewFileUrl = `/users/${this.state.user.username}/projects/${_pageData.project.name}/preview/${this.state.preview_filepath}`
+      previewFileUrl = `/users/${this.state.user.username}/projects${_pageData.project.name}/preview/${this.state.preview_filepath}`
     }else{
       previewFileUrl = `/users/${_pageData.project.id}/projects/${_pageData.project.name}/preview/${this.state.preview_filepath}`
     }
