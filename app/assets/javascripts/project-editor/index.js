@@ -161,7 +161,7 @@ export default class App extends React.Component {
     $("body").mousemove(function(e) {
       this.mouseSet.push([e.pageX, e.pageY])
       if(this.mouseSet.length > 1000){
-        console.log(this.mouseSet)
+        //console.log(this.mouseSet)
         this.mouseSet = []
       }
     }.bind(this))
