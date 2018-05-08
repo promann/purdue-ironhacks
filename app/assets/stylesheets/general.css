@@ -280,6 +280,15 @@ pre {
     opacity: 0.6;
 }
 
-.swal2-icon.swal2-info {
-    font-size: 16px;
+.swal2-icon.swal2-warning {
+    font-size: 25px;
+    line-height: 110px;
+}
+
+.swal2-icon.swal2-warning.span {
+    font-size: 3.5em;
+}
+
+#swal2-content strong {
+    color: #F39D26;
 }

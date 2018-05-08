@@ -96,7 +96,7 @@ export default class App extends React.Component {
     this.isLastCommit = false
     if(this.state.user.profile.hack_type == CUPL_HACK_TYPE){
       this.commitSurveyLinks = {
-        phase1: "https://purdue.ca1.qualtrics.com/jfe/form/SV_b2eadtu1OXBQsN7",
+        phase1: "https://purdue.ca1.qualtrics.com/jfe/form/SV_cUgJ1RrGquz3GcZ",
         phase2: "https://purdue.ca1.qualtrics.com/jfe/form/SV_6mUpUncphCN30zP",
         phase3: "https://purdue.ca1.qualtrics.com/jfe/form/SV_54KMGT8CsGzpBkh",
         phase4: "https://purdue.ca1.qualtrics.com/jfe/form/SV_24OPBStVgiHxeiF",
@@ -107,7 +107,7 @@ export default class App extends React.Component {
         phase1: "https://purdue.ca1.qualtrics.com/jfe/form/SV_6lCUlDlDWN1FbbD",
         phase2: "https://purdue.ca1.qualtrics.com/jfe/form/SV_6RkSqbqGwvJib4x",
         phase3: "https://purdue.ca1.qualtrics.com/jfe/form/SV_eeQhYqPbnTZsoF7",
-        phase4: "https://purdue.ca1.qualtrics.com/jfe/form/SV_6y6cEjJp72fpBJ3",
+        phase4: "https://purdue.ca1.qualtrics.com/jfe/form/SV_6lCUlDlDWN1FbbD",
         phase5: "https://purdue.ca1.qualtrics.com/jfe/form/SV_bQK4wA367xloVLL",
       }
     }
@@ -351,7 +351,7 @@ export default class App extends React.Component {
   //Content objects:
     const preAlertContent = {
         title: "Commit",
-        text: "Do you want to submit this version for grading?",
+        text: "Do you want to submit this version for grading for phase " + this.state.page.project.phase[5] + "?",
         confirmButtonText: 'Yes',
         confirmButtonColor: '#F39D26',
         showCancelButton: true,
@@ -372,9 +372,9 @@ export default class App extends React.Component {
       allowOutsideClick: false
     }
     const finalCommitNotAble = {
-      type: 'info',
-      text: "Please wait until the hack starts.",
-      confirmButtonText: 'Ok',
+      type: 'warning',
+      html: "Dear Participant, The final commit will be available <strong>after</strong> the <strong>contest starts</strong> and it is used to <strong>evaluate</strong> your <strong>final version</strong> of the code for the current phase.",
+      confirmButtonText: 'OK',
       confirmButtonColor: '#F39D26',
       allowOutsideClick: false,
       animation: false
@@ -396,7 +396,7 @@ export default class App extends React.Component {
       title: "Success",
       type: "success",
       text: 'You have just commited your code to github! Congratulations!\nRemember: To submit your app for grading you have to make a final commit (select yes)',
-      confirmButtonText: 'Ok',
+      confirmButtonText: 'OK',
       confirmButtonColor: '#F39D26',
       showCloseButton: true,
       allowOutsideClick: false,
@@ -405,7 +405,7 @@ export default class App extends React.Component {
       title: "Error",
       type: "error",
       text: "Your commit was canceled.",
-      confirmButtonText: 'Ok',
+      confirmButtonText: 'OK',
       confirmButtonColor: '#F39D26',
       showCloseButton: true,
       allowOutsideClick: false,
@@ -439,7 +439,7 @@ export default class App extends React.Component {
         }else if (result.value == true) {
           //Here we make the "precommit"
 
-          if(new Date() > new Date(2018, 5, 7, 0, 0, 0)){
+          if(new Date() > new Date(2018, 5, 9, 0, 0, 0)){
             this.commitFile("Automatic commit. Done before go to queltrics")
             Actions.post("stats.insert", {
               event: "automatic-commit",
@@ -461,6 +461,8 @@ export default class App extends React.Component {
                 document.location.href= this.commitSurveyLinks[currentPhase] + '?redirect_to=' + clearURL;
               }
             })
+          }else{
+            swal(finalCommitNotAble)
           }
         }
     })
