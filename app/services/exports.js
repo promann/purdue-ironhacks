@@ -299,3 +299,12 @@ exports.getGeneralOP = (userProfile) => {
 			return data
 		})		
 };
+
+exports.getUser = (_id) => {
+		//Normalizing the data
+		return User.find({"_id" : _id}, {
+				
+		}).then(data => {
+			return data
+		})		
+};

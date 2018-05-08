@@ -112,15 +112,31 @@ export default class App extends React.Component {
       }
     }
     //Setting the "read-only state"
+
     if(this.state.page.project.username != this.state.user.username){
       // The current user is NOT the owner of the project, now we need to check the treatment, if the hack_id == 0 the user shouldn't be here (treatment 1)
-      this.state.readonly = true
-      if(this.state.user.profile.hack_id == 0){
-        //This user should be here
-        this.state.wrongTreatment = true
-      }else if(this.state.user.profile.hack_id == 1){
-        this.state.showPrev = false
+      // Checking if the current user is admin
+      if(window._pageData.isAdmin){
+        //This is an admin, showing everithing
+      }else{
+        //Pulling data from the current user:
+        Actions.get("getuser.getUser")
+          .then(function(user){
+              this.state.user.profile.hack_id = 1
+            if(this.state.user.profile.hack_id != user[0].profile.hack_id){
+              //This user should be here
+              this.state.wrongTreatment = true
+            }else{
+              if(this.state.user.profile.hack_id == 0){
+                //This user should be here
+                this.state.wrongTreatment = true
+              }else if(this.state.user.profile.hack_id == 1){
+                this.state.showPrev = false
+              }
+            }
+          }.bind(this))
       }
+      this.state.readonly = true
     }
 
     if(this.state.readonly){
@@ -160,7 +176,7 @@ export default class App extends React.Component {
     this.shouldTrackMouse = true
     //Adding listener
     $("body").mousemove(function(e) {
-      if(shouldTrackMouse){
+      if(this.shouldTrackMouse){
         this.mouseSet.push({'x' : e.pageX, 'y': e.pageY})
         if(this.mouseSet.length > 1000){
           //console.log(this.mouseSet)
@@ -346,7 +362,7 @@ export default class App extends React.Component {
     }
     const surveyRedirecAlert = {
       title: "Final commit",
-      text: "Before push your final commit, you must fill the phase survey.",
+      text: "Before push your final commit for this phase, you must fill the phase survey.",
       confirmButtonText: 'Go to survey',
       confirmButtonColor: '#F39D26',
       showCancelButton: true,
@@ -445,8 +461,6 @@ export default class App extends React.Component {
                 document.location.href= this.commitSurveyLinks[currentPhase] + '?redirect_to=' + clearURL;
               }
             })
-          }else{
-            swal(finalCommitNotAble)
           }
         }
     })
@@ -472,7 +486,7 @@ export default class App extends React.Component {
     const successFinalCommit = {
       title: "Success",
       type: "success",
-      text: 'Thanks for making your final commit in phase ' + this.state.page.project.phase[5] + '! Your app will be considered for evaluation! Stay tuned and wait for feedback in your dashboard!' ,
+      text: 'Thanks for making your final commit for phase ' + this.state.page.project.phase[5] + '! Your app will be considered for evaluation! Stay tuned and wait for feedback in your dashboard!' ,
       confirmButtonText: 'Ok',
       confirmButtonColor: '#F39D26',
       showCloseButton: true,
