@@ -438,8 +438,7 @@ export default class App extends React.Component {
           })
         }else if (result.value == true) {
           //Here we make the "precommit"
-
-          if(new Date() > new Date(2018, 5, 9, 0, 0, 0)){
+          if(new Date() > new Date(2018, 4, 9, 0, 0, 0)){
             this.commitFile("Automatic commit. Done before go to queltrics")
             Actions.post("stats.insert", {
               event: "automatic-commit",
