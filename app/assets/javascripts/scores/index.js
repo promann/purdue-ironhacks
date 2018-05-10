@@ -120,7 +120,11 @@ export default class App extends React.Component {
           </div>  
           </div>
           <div className="row">
-            <div className="col-md-9 offset-md-3"
+            <div className="col-md-3">
+              <p>Below, we present a few more indices that show you hard you work! Keep working hard.</p>
+              <p>Your effort measured in number of times you saved your app: <strong>{calendarKeys.length}</strong></p>
+            </div>
+            <div className="col-md-9"
                 style={{'display': this.state.personalScore.length > 0 ? 'inline-block' : 'none'}}>
               <div className="row">
                 <div className="col-md-6">
