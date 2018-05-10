@@ -211,8 +211,6 @@ export default class GeneralTable extends React.Component {
             <div>
               {topText}
             </div>
-            <div className="score-table table-wrapper">
-              <div className="table-scroll">
                 <table>
                   <thead>
                     {this.props.headers}
@@ -221,8 +219,6 @@ export default class GeneralTable extends React.Component {
                     {rows}
                   </tbody>
                 </table>
-              </div>
-            </div>
             <div>
               {bottomText}
             </div>
@@ -311,18 +307,17 @@ export default class GeneralTable extends React.Component {
             <div>
               {topText}
             </div>
-            <div className="score-table table-wrapper">
-              <div className="table-scroll">
+            
                 <table>
                   <thead>
                     {this.props.headers}
                   </thead>
                   <tbody>
                     {rows}
+                    {rows}
+                    {rows}
                   </tbody>
                 </table>
-              </div>
-            </div>
             <div>
               {bottomText}
             </div>
