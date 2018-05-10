@@ -120,3 +120,36 @@ div[data-radium] > div:not([data-type='file-text']):first-of-type {
     bottom: 20px;
     width: 160px;
 }
+
+
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #F39D26; /* Blue */
+    border-radius: 50%;
+    width: 25%;
+    height: 47.2%;
+    margin-left: 37.5%; 
+    animation: spin 2s linear infinite;
+    display: flex;
+    justify-content: center;
+    /*overwriting */
+    position: relative;
+    z-index: 99999;
+    bottom: 0;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loader-title{
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+}
+
+.loader-container{
+    width: 100%;
+    height: 250px;
+}

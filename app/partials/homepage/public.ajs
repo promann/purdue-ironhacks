@@ -172,9 +172,14 @@
                                         <i class="zmdi zmdi-card-giftcard"></i>
                                     </div>
                                     <div class="team-details">
-                                        <h3>Best Solution</h3>
+                                        <h3>Top 3 Awards</h3>
                                         <div class="team-social fix">
-                                            <p>The best solution will be evaluated based on the submission we receive in the final round. There are  four equally weighed criteria: Technology, User Requirements, Usability, and Novelty applied. The highest aggregate score  wins.</p>
+                                            <p>We award the top 3 apps based on the weighted average rank (percentile ranking) achieved in each hacking phase (the last phase counts 60% so give it all in the end).</p>
+                                            <ol>
+                                                <li>Best Solution (first place) will receive $200 USD</li>
+                                                <li>Runner up (second place) will receive $120 USD</li>
+                                                <li>Third place will receive $80 USD</li>
+                                            </ol>
                                         </div>
                                     </div>
                                 </div>
@@ -185,7 +190,14 @@
                                     <div class="team-details">
                                         <h3>Winning Spirit</h3>
                                         <div class="team-social fix">
-                                            <p>Those who are  among the top 25% in each of the three hacking phases qualify  for this award.  Those who meet thes criteria will be ranked in terms of the number of GitHub submissions with significant changes (changes related to all categories).</p>
+                                            <p>If you do not make it to the top 3, do not worry. There is a winning spirit award. Depending on your relative standing in the hacking group, we offer additional financial incentives.</p>
+                                            <p>The following categories describe the award’s structure to recognize YOUR winning spirit:</p>
+                                            <ul>
+                                                <li>Leading group with highest winning spirit: If you are among 25 % (Between 75 percentile and 100 percentile), you receive $40 USD</li>
+                                                <li>Follower group with high winning spirit: If you are among the top 50 % but not the top 25 % (Between 50 percentile and 75 percentile) you receive $35 USD</li>
+                                                <li>Follower group with moderate winning spirit: If you are in the better than the worst 25 % (Between 25 percentile and 50 percentile), you receive $25 USD</li>
+                                                <li>Laggards with no winning spirit: If you are in the lowest quartile (0 to lower 25 percentile), there will be no financial reward.</li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -196,7 +208,7 @@
                                     <div class="team-details">
                                         <h3>Community Spirit</h3>
                                         <div class="team-social fix">
-                                            <p>Those who make  the most valuable contributions to the discussion qualify  for this award (number of posts, number of other people that find the post useful, and expert judgment).</p>
+                                            <p>We are about community-think. Thus, we encourage you to engage with others on the discussion forum. If you make truly valuable contributions, we will recognize this. In each hacking group, the hacker who makes the most valuable contributions to the discussion is eligible for this award (number of posts, number of people that found the comment useful, and expert judgment). The prize is $25 USD (it will be rewarded as Amazon Gift Card). This award can be earned in addition to the Top 3 and winning spirit award.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -207,7 +219,18 @@
                                     <div class="team-details">
                                         <h3>Additional great opportunities</h3>
                                         <div class="team-social fix">
-                                            <p>Additional Great Opportunities Each person will receive a signed certificate. Best Solution, Winning Spirit, and Community Spirit Winners will be invited for internship interviews by companies driving the open data movement. And most importantly, you will build your portfolio and reputation in the open data community!</p>
+                                            <ul>
+                                                <li>
+                                                    <p><strong>Internships opportunities:</strong></p>
+                                                    <ul>
+                                                        <li>Internship/Visiting Student Opportunities at Purdue: Excellent participants will be interviewed by Purdue for visiting positions sponsored by Purdue</li>
+                                                        <li>Internship opportunity at sponsoring partners: The Recipient of the Best Solution Award is also eligible to be interviewed by our sponsoring organizations (e.g. Socrata, Red Hat, Amazon, TechNexus)</li>
+                                                    </ul>
+                                                </li>
+                                                <li><strong>Class Credits: </strong>Students who complete the competition in due course will be offered credits (30 % of the class)</li>
+                                                <li><strong>Certificate: </strong>In addition to the awards, every student is granted to a certificate of participation.</li>
+                                                <li><strong>Official rankings: </strong>We will publish the final rankings on our platform www.ironhacks.com at the end of the competition. This gives you an opportunity to showcase your performance and use it in future interviews.</li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>

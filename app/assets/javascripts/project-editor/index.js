@@ -179,7 +179,6 @@ export default class App extends React.Component {
       if(this.shouldTrackMouse){
         this.mouseSet.push({'x' : e.pageX, 'y': e.pageY})
         if(this.mouseSet.length > 1000){
-          //console.log(this.mouseSet)
           this.mouseSet = []
         
         }
@@ -336,7 +335,7 @@ export default class App extends React.Component {
   }
 
   commitFile (commit_message) {
-          BloggifyActions.post("projects.commit", {
+          return BloggifyActions.post("projects.commit", {
                   project_name: this.state.page.project.name,
                   commit_message
           }).catch(err => alert(err.message))
@@ -373,7 +372,7 @@ export default class App extends React.Component {
     }
     const finalCommitNotAble = {
       type: 'warning',
-      html: "Dear Participant, The final commit will be available <strong>after</strong> the <strong>contest starts</strong> and it is used to <strong>evaluate</strong> your <strong>final version</strong> of the code for the current phase.",
+      html: "Dear Participant, The final commit for " + this.state.page.project.phase[5] + " will be available on <strong>May 14 12:00 EST </strong>.",
       confirmButtonText: 'OK',
       confirmButtonColor: '#F39D26',
       allowOutsideClick: false,
@@ -410,6 +409,17 @@ export default class App extends React.Component {
       showCloseButton: true,
       allowOutsideClick: false,
     }
+
+    const currentLocation = location.href
+    const currentPhase = this.state.page.project.phase 
+    const clearURL = this.removeURLParameter(currentLocation, "dfs")
+    
+    const loading = {
+      html: "<div class='loader-container'><div class='loader'></div><h2 class='loader-title'>Redirecting...</h2><br><p>Click <a href=" + this.commitSurveyLinks[currentPhase] + '?redirect_to=' + clearURL + ">here</a> if you are not redirected in less than 5 seconds</p></div>",
+      showConfirmButton: false,
+      showCloseButton: false,
+      allowOutsideClick: false,
+    }
   
     swal(preAlertContent).then((result) => {
         //Normal commit
@@ -438,28 +448,32 @@ export default class App extends React.Component {
           })
         }else if (result.value == true) {
           //Here we make the "precommit"
-          if(new Date() > new Date(2018, 4, 9, 0, 0, 0)){
+          if(new Date() > new Date(2018, 4, 14, 0, 0, 0)){
             this.commitFile("Automatic commit. Done before go to queltrics")
-            Actions.post("stats.insert", {
-              event: "automatic-commit",
-              metadata: {
-                project_name: this.state.page.project.name,
-                phase_id: this.state.page.project.phase,
-                user_email: this.state.user.email,
-                github_username: this.state.user.profile.github_username,
-                hack_id : this.state.user.profile.hack_id                  
-              }
-            });
-            swal(surveyRedirecAlert).then((result) => { 
-              if (result.dismiss === swal.DismissReason.esc || result.dismiss === swal.DismissReason.close || result.dismiss === swal.DismissReason.cancel) {
-                //User hit scape or close
-              }else if (result.value == true){
-                const currentLocation = location.href
-                const currentPhase = this.state.page.project.phase 
-                const clearURL = this.removeURLParameter(currentLocation, "dfs");
-                document.location.href= this.commitSurveyLinks[currentPhase] + '?redirect_to=' + clearURL;
-              }
-            })
+              Actions.post("stats.insert", {
+                event: "automatic-commit",
+                metadata: {
+                  project_name: this.state.page.project.name,
+                  phase_id: this.state.page.project.phase,
+                  user_email: this.state.user.email,
+                  github_username: this.state.user.profile.github_username,
+                  hack_id : this.state.user.profile.hack_id                  
+                }
+              });
+              swal(surveyRedirecAlert).then((result) => { 
+                if (result.dismiss === swal.DismissReason.esc || result.dismiss === swal.DismissReason.close || result.dismiss === swal.DismissReason.cancel) {
+                  //User hit scape or close
+                  return false
+                }else if (result.value == true){
+                  swal(loading)
+                  return this
+                }                
+              }).then(x => new Promise(resolve => setTimeout(() => resolve(x), 2000)))
+                .then((x) => {
+                  if(x){
+                    document.location.href= this.commitSurveyLinks[currentPhase] + '?redirect_to=' + clearURL;
+                  }
+              })
           }else{
             swal(finalCommitNotAble)
           }
@@ -528,7 +542,7 @@ export default class App extends React.Component {
               github_username: this.state.user.profile.github_username,
               hack_id : this.state.user.profile.hack_id                  
             }
-          });
+          })
           swal(successFinalCommit)
         }
       })
