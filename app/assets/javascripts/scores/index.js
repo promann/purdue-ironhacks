@@ -89,8 +89,10 @@ export default class App extends React.Component {
     //Putting the data in the correct format
     const calendarKeys = Object.keys(_pageData.calendar_values)
     const values = []
+    var total = 0
     for (var i = 0; i < calendarKeys.length; i++) {
       values.push({date: calendarKeys[i], count: _pageData.calendar_values[calendarKeys[i]]})
+      total += _pageData.calendar_values[calendarKeys[i]];
     }
     return(
       <div className="page-content">
@@ -122,7 +124,7 @@ export default class App extends React.Component {
           <div className="row">
             <div className="col-md-3">
               <p>Below, we present a few more indices that show you hard you work! Keep working hard.</p>
-              <p>Your effort measured in number of times you saved your app: <strong>{calendarKeys.length}</strong></p>
+              <p>Your effort measured in number of times you saved your app: <strong>{total}</strong></p>
             </div>
             <div className="col-md-9"
                 style={{'display': this.state.personalScore.length > 0 ? 'inline-block' : 'none'}}>
