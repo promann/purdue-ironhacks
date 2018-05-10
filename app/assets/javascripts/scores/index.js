@@ -107,19 +107,25 @@ export default class App extends React.Component {
                 values={values}
               />
             </div>
-          <div className="col-md-7 offset-md-1">
-            <div className="phases-div">
-              <ReactBootstrapSlider step={1} max={5} min={1} orientation="horizontal" id="phaseSlider"
-                ticks={[1, 2, 3, 4, 5]}
-                ticks_labels={['Phase 1', 'Phase 2', 'Phase 3', 'Phase 4', 'Phase 5']}
-                value={this.state.currentPhase}
-                change={this.onSliderChange}
-              />
+            <div className="col-md-9">
+              <div className="row">
+                <div className="col-md-8 offset-md-2">
+                  <div className="phases-div">
+                    <ReactBootstrapSlider step={1} max={5} min={1} orientation="horizontal" id="phaseSlider"
+                      ticks={[1, 2, 3, 4, 5]}
+                      ticks_labels={['Phase 1', 'Phase 2', 'Phase 3', 'Phase 4', 'Phase 5']}
+                      value={this.state.currentPhase}
+                      change={this.onSliderChange}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-12">
+                  {text}
+                </div>
+              </div>
             </div>
-            <div>
-              {text}
-            </div>
-          </div>  
           </div>
           <div className="row">
             <div className="col-md-3">
