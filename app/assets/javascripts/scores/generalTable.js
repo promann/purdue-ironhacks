@@ -113,7 +113,6 @@ export default class GeneralTable extends React.Component {
                   {
                     content.rows.map((row) => 
                       <tr key={row.DIMENSION_NAME.toString()}>
-                      {console.log(row)}
                         <td><strong>{row.DIMENSION_NAME}</strong></td>
                         <td>{row.DIMENSION_DESCRIPTION}</td>
                         <td>{row.SCORE}</td>
