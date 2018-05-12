@@ -44,9 +44,9 @@ const DIMENSION_DESCRIPTIONS = {
     </div>
 }
 const DIMENSION_SCORES = {
-  'Technology': ['tech_error', 'tech_req_met'],
-  'Analytics': ['ana_qua', 'ana_func', 'ana_param_var'],
-  'Visualization': ['data_vis_map_req', 'data_vis_char_var', 'data_vis_usa_points', 'data_vis_nov_map_params', 'data_vis_nov_map_data', 'data_vis_nov_chart_params', 'data_vis_nov_chart_data']
+  'Technology': 'tech_score',
+  'Analytics': 'ana_score',
+  'Visualization': 'vis_score'
 }
 
 
@@ -79,7 +79,7 @@ export default class GeneralTable extends React.Component {
           rows.push({
             DIMENSION_NAME: DECISION_PARAMETER_NAMES[j],
             DIMENSION_DESCRIPTION: DIMENSION_DESCRIPTIONS[DECISION_PARAMETER_NAMES[j]],
-            SCORE: 0
+            SCORE: this.props.personalScore[DIMENSION_SCORES[DECISION_PARAMETER_NAMES[j]]]
           })
         }
 

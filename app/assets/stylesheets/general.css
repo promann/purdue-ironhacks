@@ -292,3 +292,7 @@ pre {
 #swal2-content strong {
     color: #F39D26;
 }
+
+td, th {
+    padding: 0;
+}
