@@ -22,8 +22,6 @@ exports.getGeneralOS = ctx => {
 }
 
 // GeneralOP 
-
-
 exports.insertGeneralOP = ctx => {
     return Bloggify.services.generalop.saveGeneralOP(ctx.data)
 }
@@ -31,4 +29,11 @@ exports.insertGeneralOP = ctx => {
 exports.getGeneralOP = ctx => {
 	const user = Bloggify.services.session.getUser(ctx)
     return Bloggify.services.exports.getGeneralOP(user.profile)
+}
+
+// Used Libraries
+
+exports.getUsedLibraries = ctx => {
+	const user = Bloggify.services.session.getUser(ctx)
+  return Bloggify.services.exports.getUsedLibraries(user.profile.hack_type)
 }

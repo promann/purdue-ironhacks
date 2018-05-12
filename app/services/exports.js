@@ -3,7 +3,7 @@ const moment = require("moment");
 const flatten = require("obj-flatten");
 const typpy = require("typpy")
 
-const { Topic, User, Stats, SurveyTracker, PersonalScore, GeneralScoreOP, GeneralScoreOS } = Bloggify.models
+const { Topic, User, Stats, SurveyTracker, PersonalScore, GeneralScoreOP, GeneralScoreOS, UsedLibraries } = Bloggify.models
 
 exports.topics = () => {
 		const csvStream = csv.format({
@@ -294,6 +294,18 @@ exports.getGeneralOP = (userProfile) => {
 		
 		const scores = []
 		return GeneralScoreOP.find(query, {
+				
+		}).then(data => {
+			return data
+		})		
+};
+
+exports.getUsedLibraries = (userType) => {
+		//Normalizing the data
+		const query = {"hack_type" : userType};
+		
+		const libraries = []
+		return UsedLibraries.find(query, {
 				
 		}).then(data => {
 			return data

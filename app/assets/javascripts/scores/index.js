@@ -33,7 +33,8 @@ export default class App extends React.Component {
       currentView: VIEW_INDIVIDUAL,
       personalScore : [],
       generalOS : [],
-      generalOP : []
+      generalOP : [],
+      libLinks : []
     }
     //Binding
     this.showIndividual = this.showIndividual.bind(this)
@@ -41,6 +42,8 @@ export default class App extends React.Component {
     this.onSliderChange = this.onSliderChange.bind(this)
     this.getTreatmentData = this.getTreatmentData.bind(this)
     this.setGeneralTablePhase = this.setGeneralTablePhase.bind(this)
+
+    
   }
   render(){
     //We put this here to make the phase number Dynamics
@@ -160,6 +163,7 @@ export default class App extends React.Component {
                     generalOP={this.state.generalOP}
                     currentPhase={this.state.currentPhase}
                     user={this.state.currentUser}
+                    libLinks={this.state.libLinks}
                   />
                 </div>
               </div>
@@ -258,7 +262,11 @@ export default class App extends React.Component {
             if(scores.length != 0){
               //No scores available, we are still in phase 1.
               //Once we get the projects from the user, we identify  the treatment, and then ask for the adition data, if it needed.
-              this.getTreatmentData(this.state.currentUser.profile.hack_id)
+              if(this.state.currentUser.profile.hack_type == "CUPL_spring_2018"){
+                this.getTreatmentDataCUPL(this.state.currentUser.profile.hack_id)
+              }else{
+                this.getTreatmentData(this.state.currentUser.profile.hack_id)
+              }
             }
           })
   }
@@ -274,6 +282,12 @@ export default class App extends React.Component {
             this.setState({generalOP: scores})
         })
   }
+  pullUsedLibraries(){
+    Actions.get("scores.getUsedLibraries")
+        .then(scores => {
+            this.state.libLinks = scores
+        })
+  }
   getTreatmentData(treatmentCase){
       if(treatmentCase == 0){
         //Only personal data
@@ -286,6 +300,18 @@ export default class App extends React.Component {
         this.pullGeneralOS()
       }
   }
-
+  getTreatmentDataCUPL(treatmentCase){
+      if(treatmentCase == 0){
+        //Only personal data
+      }else if(treatmentCase == 1){
+        //Personal Data and project links
+        this.pullUsedLibraries()
+      }else if(treatmentCase == 2){
+        //Personal Data, project links and general score
+        this.pullUsedLibraries()
+        this.pullGeneralOP()
+        this.pullGeneralOS()
+      }
+  }
 }
 //ADV

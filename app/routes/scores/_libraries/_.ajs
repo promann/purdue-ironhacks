@@ -1,0 +1,12 @@
+<% include(Bloggify.partials.header, { title: "Libraries" }) %>
+<% include(Bloggify.partials.container.start) %>
+<script>
+    window._pageData = {
+        component: "libraries",
+        user: <%- stringify(ctx.user) %>
+    };
+</script>
+<div id='app'></div>
+
+<% include(Bloggify.partials.container.end) %>
+<% include(Bloggify.partials.footer) %>

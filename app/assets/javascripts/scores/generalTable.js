@@ -314,8 +314,6 @@ export default class GeneralTable extends React.Component {
                   </thead>
                   <tbody>
                     {rows}
-                    {rows}
-                    {rows}
                   </tbody>
                 </table>
             <div>
@@ -343,7 +341,6 @@ class WatchedAnchor extends React.Component {
   constructor(props){
     super(props)
     link = this.props.link
-
     this.onClick = function( event ){
       event.preventDefault();
       Actions.post("stats.insert", {
@@ -361,14 +358,27 @@ class WatchedAnchor extends React.Component {
       });
       
       // After receiving some response from the DB API, then you can call something like
-      setTimeout(function(){
-        //window.location.href = link
-      }, 750 )
+      if(this.props.user.profile.hack_type == "CUPL_spring_2018"){
+        setTimeout(function(){
+          window.location.href = document.location.href + "/libraries?" + this.props.projectOwner
+        }.bind(this), 750 )
+      }else{
+        setTimeout(function(){
+          window.location.href = link
+        }, 750 )
+      }
     }.bind(this)
   }
   render(){
-    return (
-      <a href={ this.props.link } onClick={(e) => {this.onClick(e)}}>View</a>
-    )
+    if(this.props.user.profile.hack_type == "CUPL_spring_2018"){
+      //Changing the links for the libraries show:
+      return (
+        <a href={ document.location.href + "/libraries?" + this.props.projectOwner} onClick={(e) => {this.onClick(e)}}>View</a>
+      )
+    }else{
+      return (
+        <a href={ this.props.link } onClick={(e) => {this.onClick(e)}}>View</a>
+      )
+    }
   }
 }
