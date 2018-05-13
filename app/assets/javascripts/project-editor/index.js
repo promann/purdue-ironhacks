@@ -668,7 +668,7 @@ export default class App extends React.Component {
     }
     //Loading the preview object only if the user has pemitions
     var preview = ( <div></div> )
-    if(this.state.showPrev && !(this.state.user.username == "marobayos")){
+    if(this.state.showPrev){
       preview = (
         <div className="col preview-column">
           <div className={`editor-preview ${this.state.reloading_preview ? "reloading-preview" : "loaded-preview"}`}>

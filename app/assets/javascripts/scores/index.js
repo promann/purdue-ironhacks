@@ -158,7 +158,7 @@ export default class App extends React.Component {
                     viewType={this.state.currentView}
                     headers={this.calculateHeaders()}
                     hack_id={this.state.currentUser.profile.hack_id}
-                    personalScore={this.setGeneralTablePhase()}
+                    personalScore={this.state.personalScore}
                     generalOS={this.state.generalOS}
                     generalOP={this.state.generalOP}
                     currentPhase={this.state.currentPhase}
@@ -258,7 +258,6 @@ export default class App extends React.Component {
   pullPersonalScore(){
       Actions.get("scores.getPersonalScores")
           .then(scores => {
-            console.log(scores)
               this.setState({personalScore: scores})
             if(scores.length != 0){
               //No scores available, we are still in phase 1.

@@ -69,7 +69,7 @@ export default class GeneralTable extends React.Component {
   calculateTables(){
     //showing individual Score
     if(this.props.viewType == VIEW_INDIVIDUAL){
-      if(this.props.personalScore !=  0){
+      if(this.props.personalScore.length >  0){
         //Drawing the individual score table
         var headers = []
         var rows = []
@@ -79,7 +79,7 @@ export default class GeneralTable extends React.Component {
           rows.push({
             DIMENSION_NAME: DECISION_PARAMETER_NAMES[j],
             DIMENSION_DESCRIPTION: DIMENSION_DESCRIPTIONS[DECISION_PARAMETER_NAMES[j]],
-            SCORE: this.props.personalScore[DIMENSION_SCORES[DECISION_PARAMETER_NAMES[j]]]
+            SCORE: this.props.personalScore[0][DIMENSION_SCORES[DECISION_PARAMETER_NAMES[j]]]
           })
         }
 

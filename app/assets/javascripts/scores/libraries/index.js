@@ -18,7 +18,6 @@ export default class App extends React.Component {
     this.pullUsedLibraries()
   }
   render(){
-    console.log(this.state.score)
     if(this.state.score){
       this.state.libs = this.state.score.white_list.map((link) => {
         return(
