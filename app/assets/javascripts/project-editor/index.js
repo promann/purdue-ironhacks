@@ -118,6 +118,21 @@ export default class App extends React.Component {
       // Checking if the current user is admin
       if(window._pageData.isAdmin){
         //This is an admin, showing everithing
+        Actions.get("getuser.getUser")
+          .then(function(user){
+              this.state.user.profile.hack_id = 1
+            if(this.state.user.profile.hack_id != user[0].profile.hack_id){
+              //This user should be here
+              this.state.wrongTreatment = true
+            }else{
+              if(this.state.user.profile.hack_id == 0){
+                //This user should be here
+                this.state.wrongTreatment = true
+              }else if(this.state.user.profile.hack_id == 1){
+                this.state.showPrev = false
+              }
+            }
+          }.bind(this))
       }else{
         //Pulling data from the current user:
         Actions.get("getuser.getUser")
