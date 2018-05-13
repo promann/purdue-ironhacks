@@ -118,21 +118,6 @@ export default class App extends React.Component {
       // Checking if the current user is admin
       if(window._pageData.isAdmin){
         //This is an admin, showing everithing
-        Actions.get("getuser.getUser")
-          .then(function(user){
-              this.state.user.profile.hack_id = 1
-            if(this.state.user.profile.hack_id != user[0].profile.hack_id){
-              //This user should be here
-              this.state.wrongTreatment = true
-            }else{
-              if(this.state.user.profile.hack_id == 0){
-                //This user should be here
-                this.state.wrongTreatment = true
-              }else if(this.state.user.profile.hack_id == 1){
-                this.state.showPrev = false
-              }
-            }
-          }.bind(this))
       }else{
         //Pulling data from the current user:
         Actions.get("getuser.getUser")
@@ -150,8 +135,8 @@ export default class App extends React.Component {
               }
             }
           }.bind(this))
-        this.state.readonly = true
       }
+      this.state.readonly = true
     }
 
     if(this.state.readonly){
@@ -683,7 +668,7 @@ export default class App extends React.Component {
     }
     //Loading the preview object only if the user has pemitions
     var preview = ( <div></div> )
-    if(this.state.showPrev){
+    if(this.state.showPrev && !(this.state.user.username == "marobayos")){
       preview = (
         <div className="col preview-column">
           <div className={`editor-preview ${this.state.reloading_preview ? "reloading-preview" : "loaded-preview"}`}>
