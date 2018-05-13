@@ -135,8 +135,8 @@ export default class App extends React.Component {
               }
             }
           }.bind(this))
+        this.state.readonly = true
       }
-      this.state.readonly = true
     }
 
     if(this.state.readonly){
