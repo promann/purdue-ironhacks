@@ -6,7 +6,7 @@ exports.insertPersonalScore = ctx => {
 
 exports.getPersonalScores = ctx => {
 	const user = Bloggify.services.session.getUser(ctx)
-    return Bloggify.services.exports.getPersonalScore(user.profile)
+    return Bloggify.services.exports.getPersonalScore(user)
 }
 
 // GeneralOS
@@ -18,7 +18,7 @@ exports.insertGeneralOS = ctx => {
 
 exports.getGeneralOS = ctx => {
 	const user = Bloggify.services.session.getUser(ctx)
-    return Bloggify.services.exports.getGeneralOS(user.profile)
+    return Bloggify.services.exports.getGeneralOS(user)
 }
 
 // GeneralOP 
@@ -28,7 +28,7 @@ exports.insertGeneralOP = ctx => {
 
 exports.getGeneralOP = ctx => {
 	const user = Bloggify.services.session.getUser(ctx)
-    return Bloggify.services.exports.getGeneralOP(user.profile)
+    return Bloggify.services.exports.getGeneralOP(user)
 }
 
 // Used Libraries

@@ -253,12 +253,12 @@ exports.commitSurveyStatus = (exportType) => {
 	 return csvStream;
 };
 
-exports.getPersonalScore = (userProfile) => {
-		const hackData = userProfile.hack_type.split("_")
+exports.getPersonalScore = (user) => {
+		const hackData = user.profile.hack_type.split("_")
 		const group_id = hackData[0]
 		const semester = hackData[1] + "_" + hackData[2]
 		//Only ask for user's data
-		const query = {"user_id" : userProfile.github_username, "semester" : semester, "group_id": group_id};
+		const query = {"user_id" : user.profile.github_username, "semester" : semester, "group_id": group_id};
 		
 		const scores = []
 		return PersonalScore.find(query, {
@@ -268,12 +268,12 @@ exports.getPersonalScore = (userProfile) => {
 		})		
 };
 
-exports.getGeneralOS = (userProfile) => {
-		const hackData = userProfile.hack_type.split("_")
+exports.getGeneralOS = (user) => {
+		const hackData = user.profile.hack_type.split("_")
 		const group_id = hackData[0]
 		const semester = hackData[1] + "_" + hackData[2]
 		//Asking for all the projects within the same semester and group
-		const query = {"semester" : semester, "group_id": group_id, "hack_id": userProfile.hack_id};
+		const query = {"semester" : semester, "group_id": group_id, "hack_id": user.profile.hack_id};
 		
 		const scores = []
 		return GeneralScoreOS.find(query, {
@@ -283,15 +283,14 @@ exports.getGeneralOS = (userProfile) => {
 		})		
 };
 
-exports.getGeneralOP = (userProfile) => {
+exports.getGeneralOP = (user) => {
 		//Normalizing the data
-
-		const hackData = userProfile.hack_type.split("_")
+		const hackData = user.profile.hack_type.split("_")
 		const group_id = hackData[0]
 		const semester = hackData[1] + "_" + hackData[2]
 		//Asking for all the projects within the same semester and group
-		const query = {"semester" : semester, "group_id": group_id, "hack_id": userProfile.hack_id};
-		
+		var query = {"semester" : semester, "group_id": group_id, "hack_id": user.profile.hack_id};
+
 		const scores = []
 		return GeneralScoreOP.find(query, {
 				

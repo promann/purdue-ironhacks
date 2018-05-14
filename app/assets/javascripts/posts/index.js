@@ -62,30 +62,27 @@ export default class App extends React.Component {
             hack_type: this.state.user.user.profile.hack_type,
             events: []
         }
+        
+        this.reducedArray = this.reduceArray.bind(this)
 
         $("body").mousemove(function(e) {
             this.clickTracker["events"].push({x: e.pageX, y: e.pageY})
             if(this.clickTracker["events"].length > 2000){
-                var reducedArray = []
-                for (var i = 0; i < this.clickTracker["events"].length; i = i + 2) {
-                    reducedArray.push(this.clickTracker[i])
-                }
+                this.clickTracker["events"] = this.reducedArray(this.clickTracker["events"])
             }
         }.bind(this));
 
         $("body").click(function(e) {
-            this.reduceArray(this.clickTracker)
+            this.clickTracker["events"] = this.reducedArray(this.clickTracker["events"])
         }.bind(this));
         
-        this.reduceArray = this.reduceArray.bind(this)
     }
 
     reduceArray(array){
         var reducedArray = []
-            for (var i = 0; i < this.array["events"].length; i = i + 2) {
-                reducedArray.push(this.array[i])
-            }
-            
+            for (var i = 0; i < array.length; i = i + 2) {
+                reducedArray.push(array[i])
+            }    
         return reducedArray
     }
 
