@@ -276,6 +276,7 @@ export default class App extends React.Component {
             this.setState({generalOS: scores})
         })
   }
+
   pullGeneralOP(){
     Actions.get("scores.getGeneralOP")
         .then(scores => {

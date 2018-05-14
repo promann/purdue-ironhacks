@@ -33,7 +33,7 @@ export default class App extends React.Component {
           <div className="col-md-12">
             <p><strong>Welcome!</strong></p>
             <p>Below you will find the libraries used by <strong>{this.state.owner}</strong> during <strong>phase {this.state.score ? this.state.score.phase: " "}</strong></p>
-            <p>All these libraries are within the oficial list, so don't be afraid to use them</p>
+            <p>All these libraries are within the official list, so don't be afraid to use them</p>
           </div>
         </div>
         <div className="row">
