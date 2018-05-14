@@ -122,7 +122,6 @@ export default class App extends React.Component {
         //Pulling data from the current user:
         Actions.get("getuser.getUser")
           .then(function(user){
-              this.state.user.profile.hack_id = 1
             if(this.state.user.profile.hack_id != user[0].profile.hack_id){
               //This user should be here
               this.state.wrongTreatment = true

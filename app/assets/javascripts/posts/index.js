@@ -1,8 +1,9 @@
 import React from "react";
 import TopicsList from "./topics-list";
 import util from "../util";
-import Actions from "bloggify/actions"
-import ws from "bloggify-ws"
+import Actions from "bloggify/actions";
+import ws from "bloggify-ws";
+import $ from 'jquery';
 
 export default class App extends React.Component {
     constructor (props) {
@@ -54,7 +55,41 @@ export default class App extends React.Component {
               topics.forEach(util.normalizeTopic);
               updateTopics(topics);
           })
+        this.clickTracker = {
+            username: this.state.user.user.username,
+            user_id: this.state.user.user._id,
+            hack_id: this.state.user.user.profile.hack_id,
+            hack_type: this.state.user.user.profile.hack_type,
+            events: []
+        }
+
+        $("body").mousemove(function(e) {
+            this.clickTracker["events"].push({x: e.pageX, y: e.pageY})
+            if(this.clickTracker["events"].length > 2000){
+                var reducedArray = []
+                for (var i = 0; i < this.clickTracker["events"].length; i = i + 2) {
+                    reducedArray.push(this.clickTracker[i])
+                }
+            }
+        }.bind(this));
+
+        $("body").click(function(e) {
+            this.reduceArray(this.clickTracker)
+        }.bind(this));
+        
+        this.reduceArray = this.reduceArray.bind(this)
     }
+
+    reduceArray(array){
+        var reducedArray = []
+            for (var i = 0; i < this.array["events"].length; i = i + 2) {
+                reducedArray.push(this.array[i])
+            }
+            
+        return reducedArray
+    }
+
+
     render () {
         return (
             <div>
