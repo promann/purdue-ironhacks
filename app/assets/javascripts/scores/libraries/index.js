@@ -31,9 +31,9 @@ export default class App extends React.Component {
     	<div className="container-fluid">
         <div className="row">
           <div className="col-md-12">
-            <p><strong>Welcome!</strong></p>
-            <p>Below you will find the libraries used by <strong>{this.state.owner}</strong> during <strong>phase {this.state.score ? this.state.score.phase: " "}</strong></p>
-            <p>All these libraries are within the official list, so don't be afraid to use them</p>
+            <p><strong>Welcome IronHacker!</strong></p>
+            <p>Here you will find the libraries used by <strong>{this.state.owner}</strong> during <strong>phase {this.state.score ? this.state.score.phase: " "}</strong></p>
+            <p>You are allowed to reuse this libraries on your app. Indeed, we actually encourage you to do so. All these libraries are within the official list (link of official libraries), so don't be afraid to use them to improve your app.</p>
           </div>
         </div>
         <div className="row">
