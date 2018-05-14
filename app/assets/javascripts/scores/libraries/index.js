@@ -57,6 +57,7 @@ export default class App extends React.Component {
 
     Actions.get("scores.getUsedLibraries")
       .then(scores => {
+        console.log(score)
           this.state.libLinks = scores
           for (var i = 0; i < scores.length; i++) {
             if(scores[i].owner_username == this.state.owner){

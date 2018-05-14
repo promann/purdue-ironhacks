@@ -293,6 +293,7 @@ export default class GeneralTable extends React.Component {
                   user={this.props.user}
                   phaseId={participant.phase_id}
                   projectOwner={participant.username}
+                  ownerID={participant.hacker_id}
                 /> 
               </td>
               <td>
@@ -373,7 +374,7 @@ class WatchedAnchor extends React.Component {
     if(this.props.user.profile.hack_type == "CUPL_spring_2018"){
       //Changing the links for the libraries show:
       return (
-        <a href={ document.location.href + "/libraries?" + this.props.projectOwner} onClick={(e) => {this.onClick(e)}}>View</a>
+        <a href={ document.location.href + "/libraries?x=" + this.props.ownerID} onClick={(e) => {this.onClick(e)}}>View</a>
       )
     }else{
       return (
