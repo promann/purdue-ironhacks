@@ -34,30 +34,31 @@ Bloggify.ready(err => {
           project = new Bloggify.models.Project(_project)
           console.log(project.github_repo_name)
           return project.createGitHubRepository()
-        }).then(something => {
+        }).then(x => new Promise(resolve => setTimeout(() => 750)))  
+        .then(something => {
           return project.syncGitHubRepository("recall")
         }).then(something => {
-          console.log(something)
+          console.log("done")
         })
       })
     }
 
-    Bloggify.models.User.find({
-      _id: "5ade5b7f83fd50001416e793"
-    }).then(user => {
-      let project = null
-      const projectName = "webapp_phase2"
-      return Bloggify.models.Project.findOne({
-          username: user[0].username,
-          name: projectName
-        }).then(_project => {
-          project = new Bloggify.models.Project(_project)
-          console.log(project.github_repo_name)
-          return project.createGitHubRepository()
-        }).then(something => {
-          return project.syncGitHubRepository("recall")
-        }).then(something => {
-          console.log(something)
-        })
-    })
+    // Bloggify.models.User.find({
+    //   _id: "5ade5b7f83fd50001416e793"
+    // }).then(user => {
+    //   let project = null
+    //   const projectName = "webapp_phase2"
+    //   return Bloggify.models.Project.findOne({
+    //       username: user[0].username,
+    //       name: projectName
+    //     }).then(_project => {
+    //       project = new Bloggify.models.Project(_project)
+    //       console.log(project.github_repo_name)
+    //       return project.createGitHubRepository()
+    //     }).then(something => {
+    //       return project.syncGitHubRepository("recall")
+    //     }).then(something => {
+    //       console.log(something)
+    //     })
+    // })
 })
