@@ -60,7 +60,8 @@ export default class App extends React.Component {
             user_id: this.state.user.user._id,
             hack_id: this.state.user.user.profile.hack_id,
             hack_type: this.state.user.user.profile.hack_type,
-            events: []
+            events: [],
+            end_by : ""
         }
         
         this.reducedArray = this.reduceArray.bind(this)
@@ -69,11 +70,15 @@ export default class App extends React.Component {
             this.clickTracker["events"].push({x: e.pageX, y: e.pageY})
             if(this.clickTracker["events"].length > 2000){
                 this.clickTracker["events"] = this.reducedArray(this.clickTracker["events"])
+                this.clickTracker["end_by"] = "max-size"
             }
         }.bind(this));
 
         $("body").click(function(e) {
             this.clickTracker["events"] = this.reducedArray(this.clickTracker["events"])
+            console.log(this.clickTracker["events"])
+            this.clickTracker["end_by"] = "click"
+            console.log(this.clickTracker)
         }.bind(this));
         
     }
