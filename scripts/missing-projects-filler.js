@@ -23,7 +23,7 @@ Bloggify.ready(err => {
       Bloggify.models.User.find({
         _id: missingUsersID[i]
       }).then(user => {
-        const projectName = "webapp_phase2"
+        const projectName = "webapp_phase1"
         return Bloggify.models.Project.findOne({
           username: user[0].username,
           name: projectName
@@ -33,9 +33,10 @@ Bloggify.ready(err => {
           console.log(user[0].username)
           console.log(project)
           console.log("---")
-          return project.createGitHubRepository("Init")
+          //return project.createGitHubRepository("Init")
+          return project.syncGitHubRepository("LALALA")
         }).then(result => {
-          return project.syncGitHubRepository("Rebuild")
+          console.log(result)
         })
       })
     }
