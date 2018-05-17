@@ -44,7 +44,7 @@ export default class App extends React.Component {
     this.setGeneralTablePhase = this.setGeneralTablePhase.bind(this)
 
     if(this.state.currentUser.role = 'admin'){
-      this.setState('phase' :2)
+      this.setState({'phase' :2})
     }
     
   }
