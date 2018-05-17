@@ -141,6 +141,7 @@ exports.downloadFiles = (project, projectPath) => {
 
 exports.syncGitHubRepository = (project, commitMessage) => {
     const repoPath = project.local_path
+    console.log(repoPath)
     // 1. Delete the projec path
     return execa("rm", ["-rf", repoPath]).then(() =>
         // 2. Clone the GitHub repo
