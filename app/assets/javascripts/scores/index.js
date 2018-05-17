@@ -43,6 +43,9 @@ export default class App extends React.Component {
     this.getTreatmentData = this.getTreatmentData.bind(this)
     this.setGeneralTablePhase = this.setGeneralTablePhase.bind(this)
 
+    if(currentUser.role = 'admin'){
+      this.setState('phase' :2)
+    }
     
   }
   render(){
