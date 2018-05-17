@@ -74,12 +74,18 @@ export default class GeneralTable extends React.Component {
         var headers = []
         var rows = []
         const tableContent = []
+        var currentPhaseScore
+        for (var i = 0; i < this.props.personalScore.length; i++) {
+          if(this.props.personalScore.phase_id == this.props.phaseId){
+            currentPhaseScore = this.props.personalScore.phase_id
+          }
+        }
         headers =[INDIVIDUAL_SCORE_HEADERS[0], INDIVIDUAL_SCORE_HEADERS[1], INDIVIDUAL_SCORE_HEADERS[2]]
         for (var j = 0; j < DECISION_PARAMETER_NAMES.length; j++) {
           rows.push({
             DIMENSION_NAME: DECISION_PARAMETER_NAMES[j],
             DIMENSION_DESCRIPTION: DIMENSION_DESCRIPTIONS[DECISION_PARAMETER_NAMES[j]],
-            SCORE: this.props.personalScore[0][DIMENSION_SCORES[DECISION_PARAMETER_NAMES[j]]]
+            SCORE: currentPhaseScore[0][DIMENSION_SCORES[DECISION_PARAMETER_NAMES[j]]]
           })
         }
 
