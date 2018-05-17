@@ -258,7 +258,7 @@ exports.getPersonalScore = (user) => {
 		const group_id = hackData[0]
 		const semester = hackData[1] + "_" + hackData[2]
 		//Only ask for user's data
-		const query = {"user_id" : user.profile.github_username, "semester" : semester, "group_id": group_id};
+		query = {"user_id" : user.profile.github_username, "semester" : semester, "group_id": group_id};
 		
 		const scores = []
 		return PersonalScore.find(query, {

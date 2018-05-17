@@ -359,27 +359,14 @@ class WatchedAnchor extends React.Component {
       });
       
       // After receiving some response from the DB API, then you can call something like
-      if(this.props.user.profile.hack_type == "CUPL_spring_2018"){
-        setTimeout(function(){
-          window.location.href = document.location.href + "/libraries?" + this.props.projectOwner
-        }.bind(this), 750 )
-      }else{
-        setTimeout(function(){
-          window.location.href = link
-        }, 750 )
-      }
+      setTimeout(function(){
+        window.location.href = link
+      }, 750 )
     }.bind(this)
   }
   render(){
-    if(this.props.user.profile.hack_type == "CUPL_spring_2018"){
-      //Changing the links for the libraries show:
-      return (
-        <a href={ document.location.href + "/libraries?x=" + this.props.ownerID} onClick={(e) => {this.onClick(e)}}>View</a>
-      )
-    }else{
       return (
         <a href={ this.props.link } onClick={(e) => {this.onClick(e)}}>View</a>
       )
-    }
   }
 }

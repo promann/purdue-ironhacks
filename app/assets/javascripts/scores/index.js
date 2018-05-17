@@ -136,7 +136,7 @@ export default class App extends React.Component {
               <p>Your effort measured in number of times you saved your app: <strong>{total}</strong></p>
             </div>
             <div className="col-md-9"
-                style={{'display': this.state.personalScore.length > 0 ? 'inline-block' : 'none'}}>
+                style={{'display': this.state.personalScore.length > 0 || this.state.currentUser.role == 'admin' ? 'inline-block' : 'none'}}>
               <div className="row">
                 <div className="col-md-6">
                   <div>
@@ -262,11 +262,15 @@ export default class App extends React.Component {
             if(scores.length != 0){
               //No scores available, we are still in phase 1.
               //Once we get the projects from the user, we identify  the treatment, and then ask for the adition data, if it needed.
-              if(this.state.currentUser.profile.hack_type == "CUPL_spring_2018"){
-                this.getTreatmentDataCUPL(this.state.currentUser.profile.hack_id)
-              }else{
+              //if(this.state.currentUser.profile.hack_type == "CUPL_spring_2018"){
+              //  this.getTreatmentDataCUPL(this.state.currentUser.profile.hack_id)
+              //}else{
                 this.getTreatmentData(this.state.currentUser.profile.hack_id)
-              }
+              //}
+            }
+            if(this.state.currentUser.role == 'admin'){
+              //admin can see everithing
+                this.getTreatmentData(this.state.currentUser.profile.hack_id)
             }
           })
   }
