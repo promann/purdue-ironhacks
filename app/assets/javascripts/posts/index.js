@@ -76,9 +76,7 @@ export default class App extends React.Component {
 
         $("body").click(function(e) {
             this.clickTracker["events"] = this.reducedArray(this.clickTracker["events"])
-            console.log(this.clickTracker["events"])
             this.clickTracker["end_by"] = "click"
-            console.log(this.clickTracker)
         }.bind(this));
         
     }

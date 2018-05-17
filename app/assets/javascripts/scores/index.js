@@ -43,9 +43,7 @@ export default class App extends React.Component {
     this.getTreatmentData = this.getTreatmentData.bind(this)
     this.setGeneralTablePhase = this.setGeneralTablePhase.bind(this)
 
-    if(this.state.currentUser.role = 'admin'){
-      this.setState({'phase' :2})
-    }
+    
     
   }
   render(){
@@ -66,14 +64,22 @@ export default class App extends React.Component {
         <p><strong>Welcome back to your personal dashboard!</strong></p>
         <p>On this page, you can review the evaluations for your app in a very detailed way for each category: Technology, Analytics, and Visualization. Below are the results for <strong style={{'color': '#F39D26'}}>Phase {this.state.currentPhase}</strong>.</p>
         <p>There are two views: (1) "<strong style={{'color': '#F39D26'}}>Your personal feedback</strong>" (<strong>private and confidential</strong>) and (2) "<strong style={{'color': '#F39D26'}}><em>Your competitors</em></strong>" (showing what other's are doing). You can select the different views by clicking on the tabs below. Just click on the tab "Your competitors" above and <strong>you can see other's apps</strong> (the actual code).</p>
-      </div>
+      </div>,
+      AFTER_PHASE_1_MESSAGE: <div style={{'textAlign': 'justify', 'marginTop' : '30px', 'marginBottom' : '30px'}}>
+        <p><strong>Welcome back to your dashboard!</strong></p>
+        <p>There are two views: (1) <strong style={{'color': '#F39D26'}}>"Your personal feedback"</strong> <strong>(private and confidential)</strong> and (2) <strong style={{'color': '#F39D26'}}>"Your competitors"</strong> (showing what other's are doing). You can select the different views by clicking on the tabs below. Just click on the tab "Your competitors" above and <strong>you can see other's apps</strong> (the actual code) and also their <strong>rank.</strong></p>
+        </div>
     }
     const TREATMENT_3_TEXT = {
       PHASE_1_MESSAGE : <div style={{'textAlign': 'justify', 'marginTop' : '30px', 'marginBottom' : '30px'}}>
-        <p><strong>Welcome back to your personal dashboard!</strong></p> 
+        <p><strong>Welcome back to your dashboard!</strong></p> 
         <p>On this page, you can review the evaluations for your app in a very detailed way for each category: Technology, Analytics, and Visualization. Below are the results for <strong style={{'color': '#F39D26'}}>Phase {this.state.currentPhase}</strong>.</p>
         <p>There are two views: (1) "<strong style={{'color': '#F39D26'}}>Your personal feedback</strong>" (<strong>private and confidential</strong>) and (2) "<strong style={{'color': '#F39D26'}}><em>Your competitors</em></strong>" (showing what other's are doing). You can select the different views by clicking on the tabs below. Just click on the tab "Your competitors" above and you can see other's apps (the actual code) and also how the rank. </p>
-      </div>
+      </div>,
+      AFTER_PHASE_1_MESSAGE: <div style={{'textAlign': 'justify', 'marginTop' : '30px', 'marginBottom' : '30px'}}>
+        <p><strong>Welcome back to your dashboard!</strong></p>
+        <p>There are two views: (1) <strong style={{'color': '#F39D26'}}>"Your personal feedback"</strong> <strong>(private and confidential)</strong> and (2) <strong style={{'color': '#F39D26'}}>"Your competitors"</strong> (showing what other's are doing). You can select the different views by clicking on the tabs below. Just click on the tab "Your competitors" above and <strong>you can see other's apps</strong> (the actual code). </p>
+        </div>
     }
     const DASHBOARD_TEXT = {
       0: TREATMENT_1_TEXT,
@@ -83,12 +89,13 @@ export default class App extends React.Component {
     //Select the text according with the phase
     var text = <div></div>
     if(this.state.personalScore.length == 0){
-      text = PHASE_0_MESSAGE
+      text = DASHBOARD_TEXT[this.state.currentUser.profile.hack_id].AFTER_PHASE_1_MESSAGE
     }else if(this.state.personalScore.length == 1){
       text = DASHBOARD_TEXT[this.state.currentUser.profile.hack_id].PHASE_1_MESSAGE
     }else{
       text = DASHBOARD_TEXT[this.state.currentUser.profile.hack_id].AFTER_PHASE_1_MESSAGE
     }
+    
     const viewIndividual = this.state.currentView === VIEW_INDIVIDUAL;
     const viewCompetitors = this.state.currentView === VIEW_COMPETITORS;
     const showGeneralScoreButton = this.state.currentUser.profile.hack_id == 0
@@ -179,6 +186,9 @@ export default class App extends React.Component {
   componentDidMount(){
     //Getting current user data
     this.pullPersonalScore() 
+    if(this.state.currentUser.role = 'admin'){
+      this.setState({'currentPhase' :2})
+    }
   }
   setGeneralTablePhase(){
     if(this.state.personalScore.length > 0){
@@ -238,9 +248,12 @@ export default class App extends React.Component {
   }
   onSliderChange(event){
     var globalPhase = 0
-    for (var i = 0; i < this.state.personalScore.length; i++) {
-      if(this.state.personalScore[i].phase_id > globalPhase){
-        globalPhase = this.state.personalScore[i].phase_id
+    if(this.state.personalScore.length == 0){
+    }else{
+      for (var i = 0; i < this.state.personalScore.length; i++) {
+        if(this.state.personalScore[i].phase_id > globalPhase){
+          globalPhase = this.state.personalScore[i].phase_id
+        }
       }
     }
     if(this.state.currentUser.role == 'admin'){

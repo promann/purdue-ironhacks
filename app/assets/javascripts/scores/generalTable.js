@@ -77,7 +77,7 @@ export default class GeneralTable extends React.Component {
         var currentPhaseScore
         for (var i = 0; i < this.props.personalScore.length; i++) {
           if(this.props.personalScore.phase_id == this.props.phaseId){
-            currentPhaseScore = this.props.personalScore.phase_id
+            currentPhaseScore = this.props.personalScore[i]
           }
         }
         headers =[INDIVIDUAL_SCORE_HEADERS[0], INDIVIDUAL_SCORE_HEADERS[1], INDIVIDUAL_SCORE_HEADERS[2]]
@@ -85,7 +85,7 @@ export default class GeneralTable extends React.Component {
           rows.push({
             DIMENSION_NAME: DECISION_PARAMETER_NAMES[j],
             DIMENSION_DESCRIPTION: DIMENSION_DESCRIPTIONS[DECISION_PARAMETER_NAMES[j]],
-            SCORE: currentPhaseScore[0][DIMENSION_SCORES[DECISION_PARAMETER_NAMES[j]]]
+            SCORE: currentPhaseScore[DIMENSION_SCORES[DECISION_PARAMETER_NAMES[j]]]
           })
         }
 
@@ -95,11 +95,11 @@ export default class GeneralTable extends React.Component {
         })
         rows = []
         const individualScoreData = tableContent.map((content, i) =>
-        <div>
+        <div key={content.headers[i].toString()}>
           <div>
             {TOP_TEXT['FEEDBACK']}
           </div>
-          <div className="score-table table-wrapper" key={content.headers[i].toString()}>
+          <div className="score-table table-wrapper">
             <div className="table-scroll">
               <table>
                 <thead>
@@ -117,13 +117,14 @@ export default class GeneralTable extends React.Component {
                 </thead>
                 <tbody>
                   {
-                    content.rows.map((row) => 
+                    content.rows.map((row) => {
+                      return(
                       <tr key={row.DIMENSION_NAME.toString()}>
                         <td><strong>{row.DIMENSION_NAME}</strong></td>
                         <td>{row.DIMENSION_DESCRIPTION}</td>
                         <td>{row.SCORE}</td>
-                      </tr>
-                    )
+                      </tr>)
+                    })
                   }
                   </tbody>
                 </table>

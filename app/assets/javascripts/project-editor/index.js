@@ -112,7 +112,6 @@ export default class App extends React.Component {
       }
     }
     //Setting the "read-only state"
-    console.log(this.state.page.project.phase[5])
     if(this.state.page.project.username != this.state.user.username){
       // The current user is NOT the owner of the project, now we need to check the treatment, if the hack_id == 0 the user shouldn't be here (treatment 1)
       // Checking if the current user is admin
