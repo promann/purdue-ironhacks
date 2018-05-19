@@ -67,19 +67,19 @@ export default class App extends React.Component {
       </div>,
       AFTER_PHASE_1_MESSAGE: <div style={{'textAlign': 'justify', 'marginTop' : '30px', 'marginBottom' : '30px'}}>
         <p><strong>Welcome back to your dashboard!</strong></p>
-        <p>There are two views: (1) <strong style={{'color': '#F39D26'}}>"Your personal feedback"</strong> <strong>(private and confidential)</strong> and (2) <strong style={{'color': '#F39D26'}}>"Your competitors"</strong> (showing what other's are doing). You can select the different views by clicking on the tabs below. Just click on the tab "Your competitors" above and <strong>you can see other's apps</strong> (the actual code) and also their <strong>rank.</strong></p>
-        </div>
+        <p>There are two views: (1) <strong style={{'color': '#F39D26'}}>"Your personal feedback"</strong> <strong>(private and confidential)</strong> and (2) <strong style={{'color': '#F39D26'}}>"Your competitors"</strong> (showing what other's are doing). You can select the different views by clicking on the tabs below. Just click on the tab "Your competitors" above and <strong>you can see other's apps</strong> (the actual code). </p>
+      </div>
     }
     const TREATMENT_3_TEXT = {
       PHASE_1_MESSAGE : <div style={{'textAlign': 'justify', 'marginTop' : '30px', 'marginBottom' : '30px'}}>
         <p><strong>Welcome back to your dashboard!</strong></p> 
         <p>On this page, you can review the evaluations for your app in a very detailed way for each category: Technology, Analytics, and Visualization. Below are the results for <strong style={{'color': '#F39D26'}}>Phase {this.state.currentPhase}</strong>.</p>
-        <p>There are two views: (1) "<strong style={{'color': '#F39D26'}}>Your personal feedback</strong>" (<strong>private and confidential</strong>) and (2) "<strong style={{'color': '#F39D26'}}><em>Your competitors</em></strong>" (showing what other's are doing). You can select the different views by clicking on the tabs below. Just click on the tab "Your competitors" above and you can see other's apps (the actual code) and also how the rank. </p>
+        <p>There are two views: (1) "<strong style={{'color': '#F39D26'}}>Your personal feedback</strong>" (<strong>private and confidential</strong>) and (2) "<strong style={{'color': '#F39D26'}}><em>Your competitors</em></strong>" (showing what other's are doing). You can select the different views by clicking on the tabs below. Just click on the tab "Your competitors" above and you can see other's apps (the actual code) and also how the rank.</p>
       </div>,
       AFTER_PHASE_1_MESSAGE: <div style={{'textAlign': 'justify', 'marginTop' : '30px', 'marginBottom' : '30px'}}>
         <p><strong>Welcome back to your dashboard!</strong></p>
-        <p>There are two views: (1) <strong style={{'color': '#F39D26'}}>"Your personal feedback"</strong> <strong>(private and confidential)</strong> and (2) <strong style={{'color': '#F39D26'}}>"Your competitors"</strong> (showing what other's are doing). You can select the different views by clicking on the tabs below. Just click on the tab "Your competitors" above and <strong>you can see other's apps</strong> (the actual code). </p>
-        </div>
+        <p>There are two views: (1) <strong style={{'color': '#F39D26'}}>"Your personal feedback"</strong> <strong>(private and confidential)</strong> and (2) <strong style={{'color': '#F39D26'}}>"Your competitors"</strong> (showing what other's are doing). You can select the different views by clicking on the tabs below. Just click on the tab "Your competitors" above and <strong>you can see other's apps</strong> (the actual code) and also their <strong>rank.</strong></p>
+      </div>
     }
     const DASHBOARD_TEXT = {
       0: TREATMENT_1_TEXT,
