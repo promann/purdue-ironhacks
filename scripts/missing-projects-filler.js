@@ -23,7 +23,7 @@ Bloggify.ready(err => {
       Bloggify.models.User.find({
         _id: missingUsersID[i]
       }).then(user => {
-        const projectName = "webapp_phase2"
+        const projectName = "webapp_phase3"
         return Bloggify.models.Project.findOne({
           username: user[0].username,
           name: projectName
