@@ -187,7 +187,7 @@ export default class App extends React.Component {
     //Getting current user data
     this.pullPersonalScore() 
     if(this.state.currentUser.role = 'admin'){
-      this.setState({'currentPhase' :2})
+      this.setState({'currentPhase' : 3})
     }
   }
   setGeneralTablePhase(){

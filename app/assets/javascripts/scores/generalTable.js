@@ -203,7 +203,7 @@ export default class GeneralTable extends React.Component {
                 </td>
                 <td>
                   <WatchedAnchor 
-                    link={participant.projects}
+                    link={participant.project}
                     user={this.props.user}
                     phaseId={participant.phase_id}
                     projectOwner={participant.username}
@@ -277,7 +277,7 @@ export default class GeneralTable extends React.Component {
               </td>
               <td>
                 <WatchedAnchor 
-                  link={participant.projects}
+                  link={participant.project}
                   user={this.props.user}
                   phaseId={participant.phase_id}
                   projectOwner={participant.username}
