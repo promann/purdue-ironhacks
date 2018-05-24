@@ -256,9 +256,7 @@ export default class App extends React.Component {
         }
       }
     }
-    if(this.state.currentUser.role == 'admin'){
-        this.setState({currentPhase: event.target.value})
-    }else if(event.target.value <= globalPhase){
+    if(event.target.value <= globalPhase){
       Actions.post("stats.insert", {
         event: "on_click_phase_slider",
         metadata: {
