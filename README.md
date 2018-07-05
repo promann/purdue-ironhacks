@@ -14,3 +14,5 @@ If you are interested how the app works in the depth, check out the [documentati
 
 ### License
 This application is open-source, being licensed under the MIT license Research Center for Open Digital Innovation.
+
+[![DOI](https://zenodo.org/badge/80545027.svg)](https://zenodo.org/badge/latestdoi/80545027)
